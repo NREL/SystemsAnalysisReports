@@ -1,6 +1,7 @@
 import React from 'react';
-import { PeakZoneLoadReport } from './Reports/PeakZoneLoadReport';
+import { Navbar } from './Components/Navbar';
 import './App.css';
+import jsonData from './complete_set.json';
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
           Revit Systems Analysis - Loads Report
         </p>
       </header>
-      <PeakZoneLoadReport/>
+      <Navbar data={jsonData} />
     </div>
   );
 }
