@@ -1,9 +1,4 @@
 import React from 'react';
-import Container from 'react-bootstrap/Container'
-import Col from 'react-bootstrap/Col'
-import Row from 'react-bootstrap/Row'
-import { MyTable } from '../Components/Table';
-import { CustomPieChart } from '../Components/PieChart';
 
 export class DesignPsychrometrics extends React.Component {
 

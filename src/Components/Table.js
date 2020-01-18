@@ -2,7 +2,7 @@ import React from 'react';
 import Table from 'react-bootstrap/Table'
 
 export class MyTable extends React.Component {
-    addDataRow = (rows, columns, rowKey, data) => {
+    addDataRow(rows, columns, rowKey, data) {
         var rowData = data[rowKey];
         return (
             <tr>

@@ -62,19 +62,19 @@ export class SystemLoadSummary extends React.Component {
         this.getZoneList()
     }
 
-    handleZoneSelect = (eventKey) => {
+    handleZoneSelect (eventKey) {
         this.setState({
             zone_selection: eventKey
         });
     }
 
-    handleHeatingCoolingSelect = (eventKey) => {
+    handleHeatingCoolingSelect (eventKey) {
         this.setState({
             heating_cooling_selection: eventKey
         });
     }
 
-    getZoneList = () => {
+    getZoneList() {
         // Get a list of zone names, ids, and cad_object, ids
         var zone_list = []
         for (var i = 0; i < this.props.data.length; i++) {
@@ -85,7 +85,7 @@ export class SystemLoadSummary extends React.Component {
         this.setState({num_zones: zone_list.length});  // Update state with number of zones
     }
 
-    getZoneName = (id) => {
+    getZoneName(id) {
         // Get the string name of the zone given an id
         for (var i = 0; i < this.state.zone_list.length; i++) {
             if (this.state.zone_list[i].id == id) {
@@ -94,11 +94,11 @@ export class SystemLoadSummary extends React.Component {
         }
     }
 
-    getLoadComponents = () => {
+    getLoadComponents() {
         return this.props.data[this.state.zone_selection][this.state.heating_cooling_selection];
     }
 
-    formatChartData = (data) => {
+    formatChartData(data) {
         //const data = jsonData['zone_loads_by_components'][this.zone_selection][this.heating_cooling_selection];
 
         // This variable defines the load component keys assigned to each load group.  These are used to create a radial bar chart of the load components.
