@@ -4,7 +4,7 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row'
 import Tab from 'react-bootstrap/Tab';
-import { MyTable } from '../Components/Table';
+import { CustomTable } from '../Components/Table';
 import { CustomPieChart } from '../Components/PieChart';
 
 const loadTypes = {
@@ -182,7 +182,7 @@ export class SystemLoadSummary extends React.Component {
                         </Nav>
                 </Row>
                 <Row>
-                    <Col xs={6}><MyTable rows={loadComponents} columns={loadTypes} data={data}/></Col>
+                    <Col xs={6}><CustomTable rows={loadComponents} columns={loadTypes} data={data}/></Col>
                     <Col>
                         <Row>
                             <CustomPieChart  yDataKey="total"  xDataKey={loadTypes} data={this.formatChartData(data)}/>

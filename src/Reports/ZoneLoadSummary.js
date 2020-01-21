@@ -4,47 +4,44 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row'
 import Tab from 'react-bootstrap/Tab';
-import { MyTable } from '../Components/Table';
+import { PeakConditionsCard } from '../Components/PeakConditionsCard';
+import { CustomTable } from '../Components/Table';
 import { CustomPieChart } from '../Components/PieChart';
 
 const loadTypes = {
-    "latent": "Latent",
-    "related_area": "Related Area",
-    "sensible_delayed":"Sensible Delayed",
-    "sensible_instant": "Sensible Instant",
-    "sensible_return_air": "Sensible Return Air",
-    "total": "Total",
-    "total_per_area": "Total Per Area",
-    "percent_grand_total": "Percent Grand Total",
+    "sensible_instant": "Instant Sensible (W)",
+    "sensible_delayed":"Delayed Sensible (W)",
+    "latent": "Latent (W)",
+    "total": "Total (W)",
+    "percent_grand_total": "Percent of Total (%)",
 };
 
 const loadComponents = {
-    "doas_direct_to_zone": "DOAS Direct to Zone",
-    "equipment": "Equipment",
-    "exterior_floor": "Exterior Floor",
-    "exterior_wall": "Exterior Wall",
-    "fenestration_conduction": "Fenestration - Conduction",
-    "fenestration_solar": "Fenestration - Solar",
-    "grand_total": "Grand Total",
-    "ground_contact_floor": "Ground Contact Floor",
-    "ground_contact_wall": "Ground Contact Wall",
-    "hvac_equipment_loss": "HVAC Equipment Loss",
-    "infiltration": "Infiltration",
-    "interzone_ceiling": "Interzone - Ceiling",
-    "interzone_floor": "Interzone Floor",
-    "interzone_mixing": "Interzone - Mixing",
-    "interzone_wall": "Interzone - Wall",
-    "lights": "Lights",
-    "opaque_door": "Opaque Door",
-    "other_floor": "Other - Floor",
+    "roof": "Roof",
     "other_roof": "Other - Roof",
+    "interzone_ceiling": "Ceiling",
+    "fenestration_conduction": "Glass - Conduction",
+    "fenestration_solar": "Glass - Solar",
+    "opaque_door": "Door",
+    "exterior_wall": "Wall",
+    "ground_contact_wall": "Below-grade Wall",
+    "interzone_wall": "Partition",
     "other_wall": "Other - Wall",
+    "exterior_floor": "Exterior Floor",
+    "interzone_floor": "Interior Floor",
+    "ground_contact_floor": "Slab",
+    "other_floor": "Other - Floor",
+    "infiltration": "Infiltration",
     "people": "People",
+    "lights": "Lights",
+    "equipment": "Equipment",
     "power_generation_equipment": "Power Generation Equipment",
     "refrigeration": "Refrigeration",
-    "roof": "Roof",
     "water_use_equipment": "Water Use Equipment",
+    "hvac_equipment_loss": "HVAC Equipment Loss",
     "zone_ventilation": "Zone Ventilation",
+    "interzone_mixing": "Transfer Air",
+    "doas_direct_to_zone": "DOAS Direct to Zone",
 };
 
 export class ZoneLoadSummary extends React.Component {
@@ -64,7 +61,7 @@ export class ZoneLoadSummary extends React.Component {
 
     handleZoneSelect(eventKey) {
         this.setState({
-            zone_selection: eventKey
+            zone_selection: eventKey,
         });
     }
 
@@ -151,7 +148,7 @@ export class ZoneLoadSummary extends React.Component {
             var total = 0;
             // Loop again to total the loads for each load group
             loadGroups[loadGroup].map((loadComponent) => total += data[loadComponent]['total'])
-            newData.push({'name': loadGroup, 'total': total})
+            newData.push({'name': loadGroup, 'value': total})
         })
 
         return newData
@@ -161,10 +158,10 @@ export class ZoneLoadSummary extends React.Component {
         const data = this.getLoadComponents();
 
         return (
-            <Tab.Container id="zone-loads-report" defaultActiveKey="cooling">
+            <Tab.Container id="zone-loads-report" activeKey={this.state.heating_cooling_selection} defaultActiveKey="cooling_peak_load_component_table">
                 <Row>
-                        <Dropdown onSelect={this.handleZoneSelect}>
-                        <Dropdown.Toggle variant="success" id="dropdown-basic">
+                        <Dropdown onSelect={this.handleZoneSelect.bind(this)} className="App-dropdown">
+                        <Dropdown.Toggle variant="secondary" id="dropdown-basic">
                             { this.getZoneName(this.state.zone_selection) }
                         </Dropdown.Toggle>
 
@@ -172,7 +169,7 @@ export class ZoneLoadSummary extends React.Component {
                             {this.state.zone_list.map((zone) => <Dropdown.Item eventKey={zone.id}>{zone.name}</Dropdown.Item>)}
                         </Dropdown.Menu>
                         </Dropdown>
-                        <Nav variant="pills" onSelect={this.handleHeatingCoolingSelect}>
+                        <Nav variant="pills" onSelect={this.handleHeatingCoolingSelect.bind(this)} className="App-buttons">
                             <Nav.Item>
                             <Nav.Link eventKey="cooling_peak_load_component_table">Cooling</Nav.Link>
                             </Nav.Item>
@@ -182,16 +179,14 @@ export class ZoneLoadSummary extends React.Component {
                         </Nav>
                 </Row>
                 <Row>
-                    <Col xs={6}><MyTable rows={loadComponents} columns={loadTypes} data={data}/></Col>
+                    <Col xs={6}><CustomTable rows={loadComponents} columns={loadTypes} data={data}/></Col>
                     <Col>
+                        <Row><PeakConditionsCard/></Row>
                         <Row>
-                            <CustomPieChart  yDataKey="total"  xDataKey={loadTypes} data={this.formatChartData(data)}/>
+                            <CustomPieChart  yDataKey="value"  xDataKey={loadTypes} data={this.formatChartData(data)}/>
                         </Row>
                         <Row>
-                            <CustomPieChart  yDataKey="total"  xDataKey={loadTypes} data={this.formatChartData(data)}/>
-                        </Row>
-                        <Row>
-                            <CustomPieChart  yDataKey="total"  xDataKey={loadTypes} data={this.formatChartData(data)}/>
+                            <CustomPieChart  yDataKey="value"  xDataKey={loadTypes} data={this.formatChartData(data)}/>
                         </Row>
                     </Col>
               </Row>

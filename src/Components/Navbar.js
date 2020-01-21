@@ -11,8 +11,8 @@ export class Navbar extends React.Component {
         return (
             <Tab.Container id="report-navbar" defaultActiveKey="zone_load_summary">
             <Row>
-                <Nav variant="tabs" className="ml-5 mb-2">
-                    <Nav.Item>
+                <Nav variant="tabs" className="App-navbar">
+                    <Nav.Item background="black">
                         <Nav.Link eventKey="zone_load_summary">
                             Zone Load Summary
                         </Nav.Link>
@@ -30,7 +30,7 @@ export class Navbar extends React.Component {
                 </Nav>
             </Row>
             <Row>
-                <Tab.Content  className="ml-5 mr-5">
+                <Tab.Content className="App-content">
                     <Tab.Pane eventKey="zone_load_summary">
                         <ZoneLoadSummary data={this.props.data['zone_loads_by_components']}/>
                     </Tab.Pane>

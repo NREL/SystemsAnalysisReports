@@ -9,13 +9,18 @@ export class CustomPieChart extends React.Component {
     render() {
         const { data } = this.props;
 
+        function renderLegendText(value, entry) {
+            // Sets the legend font size     
+          return <span style={{ fontSize: "12px" }}>{value}</span>;
+        }
+        
         return (
-            <PieChart width={400} height={400}>
+            <PieChart width={350} height={325}>
             <Pie
                 data={data}
-                dataKey="total"
-                cx={200}
-                cy={200}
+                dataKey="value"
+                cx={150}
+                cy={150}
                 innerRadius={0}
                 outerRadius={90}
                 fill="#8884d8"
@@ -25,7 +30,7 @@ export class CustomPieChart extends React.Component {
                 data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]} />)
             }
             </Pie>
-            <Legend/>
+            <Legend iconSize="12" formatter={renderLegendText}/>
             </PieChart>
         );
     }

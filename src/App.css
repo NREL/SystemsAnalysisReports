@@ -15,12 +15,12 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 10vh;
+  min-height: 5vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(8px + 2vmin);
   color: white;
 }
 
@@ -35,8 +35,42 @@
   margin-left: 50px;
 }
 
+.App-navbar {
+  margin-top: 5px;
+  margin-right: 45px;
+  margin-bottom: 0px;
+  margin-left: 45px;
+}
+
+.App-content {
+  margin-top: 0px;
+  margin-right: 50px;
+  margin-bottom: 0px;
+  margin-left: 50px;
+}
+
+.App-dropdown {
+  padding-top: 5px;
+  padding-right: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  color: black;
+}
+
+.App-buttons {
+  padding-top: 5px;
+  padding-right: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+}
+
 .App-table {
   font-size: 9px;
+}
+
+.App-textbox {
+  font-size: 12px;
+  line-height: 0.6;
 }
 
 @keyframes App-logo-spin {

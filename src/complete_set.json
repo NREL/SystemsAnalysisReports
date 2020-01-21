@@ -2664,11 +2664,11 @@
         "doas_direct_to_zone": {
           "latent": 0.0,
           "percent_grand_total": 0.0,
-          "related_area": 0.0,
-          "sensible_delayed": 0.0,
+          "related_area": 5.0,
+          "sensible_delayed": 5.0,
           "sensible_instant": 0.0,
           "sensible_return_air": 0.0,
-          "total": 2.0,
+          "total": 10.0,
           "total_per_area": 0.0
         },
         "equipment": {
