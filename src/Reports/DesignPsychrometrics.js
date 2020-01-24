@@ -4,7 +4,6 @@ export class DesignPsychrometrics extends React.Component {
 
     render() {
         const data = this.props.data[0];
-        console.log(data);
 
         return (
             <div>

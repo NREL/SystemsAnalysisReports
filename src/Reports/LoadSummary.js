@@ -4,7 +4,7 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row'
 import Tab from 'react-bootstrap/Tab';
-import { PeakConditionsCard } from '../Components/PeakConditionsCard';
+import { ReportCard } from '../Components/ReportCard';
 import { CustomTable } from '../Components/Table';
 import { CustomPieChart } from '../Components/PieChart';
 
@@ -44,11 +44,48 @@ const loadComponents = {
     "doas_direct_to_zone": "DOAS Direct to Zone",
 };
 
-export class ZoneLoadSummary extends React.Component {
+const peakConditionTableMapping = [
+    {
+        "label": "Outside",
+        "items": [
+            {"displayName": "DB", "jsonKey": "oa_drybulb", "unitLabel": "C"},
+            {"displayName": "HR", "jsonKey": "oa_hr", "unitLabel": "kg/kg"},
+            {"displayName": "WB", "jsonKey": "oa_wetbulb", "unitLabel": "C"}
+        ]
+    },
+    {
+        "label": "Zone",
+        "items": [
+            {"displayName": "DB", "jsonKey": "zone_drybulb", "unitLabel": "C"},
+            {"displayName": "HR", "jsonKey": "zone_hr", "unitLabel": "kg/kg"},
+            {"displayName": "WB", "jsonKey": "zone_rh", "unitLabel": "C"}
+        ]
+    }
+];
+
+const engineeringCheckTableMapping = [
+    {
+        "label": null,
+        "items": [
+            {"displayName": "m3/s-m2", "jsonKey": "airflow_per_floor_area", "unitLabel": null},
+        ]
+    },
+    {
+        "label": null,
+        "items": [
+            {"displayName": "people", "jsonKey": "number_of_people", "unitLabel": null},
+        ]
+    }
+];
+
+export class LoadSummary extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            heating_cooling_selection: "cooling_peak_load_component_table",
+            heating_cooling_selection: "cooling",
+            engineering_check_table: "cooling_engineering_check_table",
+            peak_condition_table: "cooling_peak_condition_table",
+            peak_load_component_table: "cooling_peak_load_component_table",
             zone_selection: 0,
             num_zones: 0,
             zone_list: [],
@@ -60,15 +97,29 @@ export class ZoneLoadSummary extends React.Component {
     }
 
     handleZoneSelect(eventKey) {
+        // Update state when user selects a zone from dropdown
         this.setState({
             zone_selection: eventKey,
         });
     }
 
     handleHeatingCoolingSelect(eventKey) {
-        this.setState({
-            heating_cooling_selection: eventKey
-        });
+        // Update state when user selects either "heating" or "cooling"
+        if (eventKey === "heating") {
+            this.setState({
+                heating_cooling_selection: "heating",
+                engineering_check_table: "heating_engineering_check_table",
+                peak_condition_table: "heating_peak_condition_table",
+                peak_load_component_table: "heating_peak_load_component_table"
+            });
+        } else {
+            this.setState({
+                heating_cooling_selection: "cooling",
+                engineering_check_table: "cooling_engineering_check_table",
+                peak_condition_table: "cooling_peak_condition_table",
+                peak_load_component_table: "cooling_peak_load_component_table"
+            });           
+        }
     }
 
     getZoneList() {
@@ -92,12 +143,21 @@ export class ZoneLoadSummary extends React.Component {
     }
 
     getLoadComponents() {
-        return this.props.data[this.state.zone_selection][this.state.heating_cooling_selection];
+        // Get data for zone_load_by_components and peak_load_component_table
+        return this.props.data[this.state.zone_selection][this.state.peak_load_component_table];
+    }
+
+    getPeakConditionTable() {
+        // Get data for zone_load_by_components and peak_condition_table
+        return this.props.data[this.state.zone_selection][this.state.peak_condition_table];
+    }
+
+    getEngineeringCheckTable() {
+        // Get data for zone_load_by_components and engineering_check_table
+        return this.props.data[this.state.zone_selection][this.state.engineering_check_table];
     }
 
     formatChartData(data) {
-        //const data = jsonData['zone_loads_by_components'][this.zone_selection][this.heating_cooling_selection];
-
         // This variable defines the load component keys assigned to each load group.  These are used to create a radial bar chart of the load components.
         const loadGroups = {
             "Envelope": [
@@ -155,10 +215,11 @@ export class ZoneLoadSummary extends React.Component {
     }
 
     render() {
-        const data = this.getLoadComponents();
+        const loadData = this.getLoadComponents();
+        const peakConditionsData = this.getPeakConditionTable();
 
         return (
-            <Tab.Container id="zone-loads-report" activeKey={this.state.heating_cooling_selection} defaultActiveKey="cooling_peak_load_component_table">
+            <Tab.Container id="zone-loads-report" activeKey={this.state.heating_cooling_selection} defaultActiveKey="cooling">
                 <Row>
                         <Dropdown onSelect={this.handleZoneSelect.bind(this)} className="App-dropdown">
                         <Dropdown.Toggle variant="secondary" id="dropdown-basic">
@@ -171,22 +232,37 @@ export class ZoneLoadSummary extends React.Component {
                         </Dropdown>
                         <Nav variant="pills" onSelect={this.handleHeatingCoolingSelect.bind(this)} className="App-buttons">
                             <Nav.Item>
-                            <Nav.Link eventKey="cooling_peak_load_component_table">Cooling</Nav.Link>
+                            <Nav.Link eventKey="cooling">Cooling</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                            <Nav.Link eventKey="heating_peak_load_component_table">Heating</Nav.Link>
+                            <Nav.Link eventKey="heating">Heating</Nav.Link>
                             </Nav.Item>
                         </Nav>
                 </Row>
                 <Row>
-                    <Col xs={6}><CustomTable rows={loadComponents} columns={loadTypes} data={data}/></Col>
                     <Col>
-                        <Row><PeakConditionsCard/></Row>
+                        <CustomTable rows={loadComponents} columns={loadTypes} data={loadData}/>
+                    </Col>
+                    <Col>
                         <Row>
-                            <CustomPieChart  yDataKey="value"  xDataKey={loadTypes} data={this.formatChartData(data)}/>
+                            <ReportCard
+                            title="Conditions at Time of Peak"
+                            dataMapping={peakConditionTableMapping}
+                            data={peakConditionsData}
+                            />
                         </Row>
                         <Row>
-                            <CustomPieChart  yDataKey="value"  xDataKey={loadTypes} data={this.formatChartData(data)}/>
+                            <ReportCard
+                            title="Engineering Check"
+                            dataMapping={engineeringCheckTableMapping}
+                            data={this.getEngineeringCheckTable()}
+                            />
+                        </Row>
+                        <Row>
+                            <CustomPieChart  yDataKey="value"  xDataKey={loadTypes} data={this.formatChartData(loadData)}/>
+                        </Row>
+                        <Row>
+                            <CustomPieChart  yDataKey="value"  xDataKey={loadTypes} data={this.formatChartData(loadData)}/>
                         </Row>
                     </Col>
               </Row>
