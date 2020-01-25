@@ -8,6 +8,10 @@ import { ReportCard } from '../Components/ReportCard';
 import { CustomTable } from '../Components/Table';
 import { CustomPieChart } from '../Components/PieChart';
 
+const EQUIDISTANTCOLORS = ["#003f5c","#374c80","#7a5195","#bc5090","#ef5675","#ff764a","#ffa600"];
+
+const COOLINGHEATINGCOLORS = ["#3399FF", "#FF3333"];
+
 const loadTableMapping = {
     "columns": [
         {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant"},
@@ -201,10 +205,17 @@ export class LoadSummary extends React.Component {
     }
 
     getHeatingAndCoolingLoads() {
-        // TODO WORK ON ADDING THE HEATING AND COOLING LOAD CHART HERE!!!!
+        // Assumes that Cooling Peak Condition Table - Sensible Peak Load is the appropriate total load value.
+        // Investigate further whether this should be a calculated value from the subcomponents.
         const data = this.props.data[this.state.zone_selection];
-        console.log(data['cooling_peak_condition_table']);
-        return 'Hi'
+        const peakCoolingLoad = data['cooling_peak_condition_table']['sensible_peak'];
+        const peakHeatingLoad = data['heating_peak_condition_table']['sensible_peak'];
+        const output = [ 
+            {'name': 'Cooling', 'value': Math.abs(peakCoolingLoad)}, 
+            {'name': 'Heating', 'value': Math.abs(peakHeatingLoad)}
+        ]
+
+        return output
     }
 
     formatLoadComponentChartData(dataMapping, data) {
@@ -224,9 +235,6 @@ export class LoadSummary extends React.Component {
     render() {
         const loadData = this.getLoadComponents();
         const peakConditionsData = this.getPeakConditionTable();
-
-        //TEST
-        const test = this.getHeatingAndCoolingLoads();
 
         return (
             <Tab.Container id="zone-loads-report" activeKey={this.state.heating_cooling_selection} defaultActiveKey="cooling">
@@ -269,7 +277,18 @@ export class LoadSummary extends React.Component {
                             />
                         </Row>
                         <Row>
-                            <CustomPieChart  data={this.formatLoadComponentChartData(componentPieChartMapping, loadData)}/>
+                            <CustomPieChart
+                            title={"Peak Loads [W]"}
+                            colors={COOLINGHEATINGCOLORS}
+                            data={this.getHeatingAndCoolingLoads()}
+                            />
+                        </Row>
+                        <Row>
+                            <CustomPieChart
+                            title={ this.state.heatingCoolingSelection === 'cooling' ? 'Cooling Load Components [W]' : 'Heating Load Components [W]'}
+                            colors={EQUIDISTANTCOLORS}
+                            data={this.formatLoadComponentChartData(componentPieChartMapping, loadData)}
+                            /> 
                         </Row>
                     </Col>
               </Row>
