@@ -7,21 +7,25 @@ export class CustomTable extends React.Component {
         var rowData = data[rowKey];
         return (
             <tr>
-            <td key={ rowKey }>{ rows['displayName']}</td>
-            { columns.map((column) => <td>{ rowData[column['jsonKey']] }</td>) }
+            <td key={ rowKey } width="200">{ rows['displayName']}</td>
+            { columns.map((column) => <td width="80">{ rowData[column['jsonKey']] }</td>) }
             </tr>
         );
     }
 
+    //width={ rowData[column['width']] }
+
     render() {
-        var { dataMapping, data } = this.props;
+        var { displayHeader, dataMapping, data } = this.props;
+
+        const headerStyle = displayHeader === true ? null : {"display":"none"};
 
         return (
             <Table striped bordered hover responsive size="sm" className="App-table">
-            <thead>
+            <thead style={headerStyle}>
             <tr>
-                <th key="Table Header"></th>
-                { dataMapping['columns'].map((column) => <th key={ column }>{ column['displayName'] }</th>) }
+                <th key="Table Header"  width="300"></th>
+                { dataMapping['columns'].map((column) => <th key={ column } width="100">{ column['displayName'] }</th>) }
             </tr>
             </thead>
             <tbody>

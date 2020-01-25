@@ -64,18 +64,14 @@
   padding-left: 5px;
 }
 
-.recharts-wrapper {
-  margin : 0 auto;
+.App-table {
+  font-size: 9px;
 }
 
 .App-chart-title {
   align-items: center;
   justify-content: center;
 };
-
-.App-table {
-  font-size: 9px;
-}
 
 .App-card {
   margin-bottom: 10px;
@@ -94,4 +90,8 @@
   padding-right: 5px;
   padding-bottom: 10px;
   padding-left: 5px;
+}
+
+.recharts-wrapper {
+  margin : 0 auto;
 }

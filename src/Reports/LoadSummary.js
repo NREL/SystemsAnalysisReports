@@ -12,7 +12,7 @@ const EQUIDISTANTCOLORS = ["#003f5c","#374c80","#7a5195","#bc5090","#ef5675","#f
 
 const COOLINGHEATINGCOLORS = ["#3399FF", "#FF3333"];
 
-const loadTableMapping = {
+const envelopeLoadsTableMapping = {
     "columns": [
         {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant"},
         {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed"},
@@ -35,10 +35,33 @@ const loadTableMapping = {
         {"displayName": "Interior Floor", "jsonKey": "interzone_floor"},
         {"displayName": "Slab", "jsonKey": "ground_contact_floor"},
         {"displayName": "Other - Floor", "jsonKey": "other_floor"},
-        {"displayName": "Infiltration", "jsonKey": "infiltration"},
+    ]
+};
+
+const internalGainTableMapping = {
+    "columns": [
+        {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant"},
+        {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed"},
+        {"displayName": "Latent (W)", "jsonKey": "latent"},
+        {"displayName": "Total (W)", "jsonKey": "total"},
+        {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total"},
+    ],
+    "rows": [
         {"displayName": "People", "jsonKey": "people"},
         {"displayName": "Lights", "jsonKey": "lights"},
         {"displayName": "Equipment", "jsonKey": "equipment"},
+    ]
+};
+
+const systemsLoadsTableMapping = {
+    "columns": [
+        {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant"},
+        {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed"},
+        {"displayName": "Latent (W)", "jsonKey": "latent"},
+        {"displayName": "Total (W)", "jsonKey": "total"},
+        {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total"},
+    ],
+    "rows": [
         {"displayName": "Power Generation Equipment", "jsonKey": "power_generation_equipment"},
         {"displayName": "Refrigeration", "jsonKey": "refrigeration"},
         {"displayName": "Water Use Equipment", "jsonKey": "water_use_equipment"},
@@ -259,7 +282,15 @@ export class LoadSummary extends React.Component {
                 </Row>
                 <Row>
                     <Col>
-                        <CustomTable dataMapping={loadTableMapping} data={loadData}/>
+                        <Row>
+                            <CustomTable displayHeader={true} dataMapping={envelopeLoadsTableMapping} data={loadData}/>
+                        </Row>
+                        <Row>
+                            <CustomTable displayHeader={false} dataMapping={internalGainTableMapping} data={loadData}/>
+                        </Row>
+                        <Row>
+                            <CustomTable displayHeader={false} dataMapping={systemsLoadsTableMapping} data={loadData}/>
+                        </Row>
                     </Col>
                     <Col>
                         <Row>
