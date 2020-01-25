@@ -13,10 +13,10 @@ export class ReportCard extends React.Component {
             <Card.Body className="App-card-body">
                 <Container>
                     <Row>
-                        {dataMapping.map((colData) => (
-                            <Col>
+                        {dataMapping.map((colData, index) => (
+                            <Col key={ this.props.name + '-' + index.toString() }>
                                 { colData["label"] && <p><b>{ colData["label"] }</b></p> }
-                                { colData["items"].map((item) => <p>{ item["displayName"] }: { data[item["jsonKey"]] } { item["unitLabel"] && item["unitLabel"] }</p> ) }
+                                { colData["items"].map((item) => <p key={ this.props.name + '-' + item["jsonKey"] }>{ item["displayName"] }: { data[item["jsonKey"]] } { item["unitLabel"] && item["unitLabel"] }</p> ) }
                             </Col>
                         ))}
                     </Row>
