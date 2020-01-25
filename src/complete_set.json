@@ -635,8 +635,8 @@
           "latent": 0.0,
           "percent_grand_total": 0.0,
           "related_area": 0.0,
-          "sensible_delayed": 0.0,
-          "sensible_instant": 0.0,
+          "sensible_delayed": 5.0,
+          "sensible_instant": 5.0,
           "sensible_return_air": 0.0,
           "total": 10.0,
           "total_per_area": 0.0
@@ -1814,12 +1814,12 @@
           "total_per_area": 0.0
         },
         "exterior_floor": {
-          "latent": 0.0,
-          "percent_grand_total": 0.0,
-          "related_area": 0.0,
-          "sensible_delayed": 0.0,
-          "sensible_instant": 0.0,
-          "sensible_return_air": 0.0,
+          "latent": 1.0,
+          "percent_grand_total": 2.0,
+          "related_area": 3.0,
+          "sensible_delayed": 4.0,
+          "sensible_instant": 5.0,
+          "sensible_return_air": 6.0,
           "total": 10.0,
           "total_per_area": 0.0
         },

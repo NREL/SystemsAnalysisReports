@@ -35,6 +35,7 @@ const envelopeLoadsTableMapping = {
         {"displayName": "Interior Floor", "jsonKey": "interzone_floor"},
         {"displayName": "Slab", "jsonKey": "ground_contact_floor"},
         {"displayName": "Other - Floor", "jsonKey": "other_floor"},
+        {"displayName": "Total", "jsonKey": "total"},
     ]
 };
 
@@ -50,6 +51,7 @@ const internalGainTableMapping = {
         {"displayName": "People", "jsonKey": "people"},
         {"displayName": "Lights", "jsonKey": "lights"},
         {"displayName": "Equipment", "jsonKey": "equipment"},
+        {"displayName": "Total", "jsonKey": "total"},
     ]
 };
 
@@ -68,7 +70,8 @@ const systemsLoadsTableMapping = {
         {"displayName": "HVAC Equipment Loss", "jsonKey": "hvac_equipment_loss"},
         {"displayName": "Zone Ventilation", "jsonKey": "zone_ventilation"},
         {"displayName": "Transfer Air", "jsonKey": "interzone_mixing"},
-        {"displayName": "DOAS Direct to Zone", "jsonKey": "doas_direct_to_zone"}
+        {"displayName": "DOAS Direct to Zone", "jsonKey": "doas_direct_to_zone"},
+        {"displayName": "Total", "jsonKey": "total"},
     ]
 };
 
@@ -241,7 +244,36 @@ export class LoadSummary extends React.Component {
         return output
     }
 
+    formatTableData(dataMapping, data) {
+        // This function formats the data that will be displayed in the table.
+        var newData = Object.assign({}, data);
+        var totals = {
+            "latent": 0.0,
+            "related_area": 0.0,
+            "sensible_delayed": 0.0,
+            "sensible_instant": 0.0,
+            "sensible_return_air": 0.0,
+            "total": 0.0,
+          };
+        
+        // Loop and calculate the totals for each column
+        dataMapping['rows'].map((row) => {
+            Object.keys(totals).map((colName) => {
+                var rowName = row['jsonKey'];
+                if (rowName !== "total") {
+                    totals[colName] += data[rowName][colName]
+                }
+            })
+        });
+
+        // Add total row to the data object
+        newData["total"] = totals;
+
+        return newData
+    }
+
     formatLoadComponentChartData(dataMapping, data) {
+        // This function formats the data that will be displayed in a chart.
         var newData = [];
 
         // Loop for loadGroups and sum all of the totals
@@ -283,13 +315,25 @@ export class LoadSummary extends React.Component {
                 <Row>
                     <Col>
                         <Row>
-                            <CustomTable displayHeader={true} dataMapping={envelopeLoadsTableMapping} data={loadData}/>
+                            <CustomTable
+                            displayHeader={true}
+                            dataMapping={envelopeLoadsTableMapping}
+                            data={this.formatTableData(envelopeLoadsTableMapping, loadData)}
+                            />
                         </Row>
                         <Row>
-                            <CustomTable displayHeader={false} dataMapping={internalGainTableMapping} data={loadData}/>
+                            <CustomTable
+                            displayHeader={false}
+                            dataMapping={internalGainTableMapping}
+                            data={this.formatTableData(internalGainTableMapping, loadData)}
+                            />
                         </Row>
                         <Row>
-                            <CustomTable displayHeader={false} dataMapping={systemsLoadsTableMapping} data={loadData}/>
+                            <CustomTable
+                            displayHeader={false}
+                            dataMapping={systemsLoadsTableMapping}
+                            data={this.formatTableData(systemsLoadsTableMapping, loadData)}
+                            />
                         </Row>
                     </Col>
                     <Col>
