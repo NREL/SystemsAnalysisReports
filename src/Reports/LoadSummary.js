@@ -8,40 +8,41 @@ import { ReportCard } from '../Components/ReportCard';
 import { CustomTable } from '../Components/Table';
 import { CustomPieChart } from '../Components/PieChart';
 
-const loadTypes = {
-    "sensible_instant": "Instant Sensible (W)",
-    "sensible_delayed":"Delayed Sensible (W)",
-    "latent": "Latent (W)",
-    "total": "Total (W)",
-    "percent_grand_total": "Percent of Total (%)",
-};
-
-const loadComponents = {
-    "roof": "Roof",
-    "other_roof": "Other - Roof",
-    "interzone_ceiling": "Ceiling",
-    "fenestration_conduction": "Glass - Conduction",
-    "fenestration_solar": "Glass - Solar",
-    "opaque_door": "Door",
-    "exterior_wall": "Wall",
-    "ground_contact_wall": "Below-grade Wall",
-    "interzone_wall": "Partition",
-    "other_wall": "Other - Wall",
-    "exterior_floor": "Exterior Floor",
-    "interzone_floor": "Interior Floor",
-    "ground_contact_floor": "Slab",
-    "other_floor": "Other - Floor",
-    "infiltration": "Infiltration",
-    "people": "People",
-    "lights": "Lights",
-    "equipment": "Equipment",
-    "power_generation_equipment": "Power Generation Equipment",
-    "refrigeration": "Refrigeration",
-    "water_use_equipment": "Water Use Equipment",
-    "hvac_equipment_loss": "HVAC Equipment Loss",
-    "zone_ventilation": "Zone Ventilation",
-    "interzone_mixing": "Transfer Air",
-    "doas_direct_to_zone": "DOAS Direct to Zone",
+const loadTableMapping = {
+    "columns": [
+        {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant"},
+        {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed"},
+        {"displayName": "Latent (W)", "jsonKey": "latent"},
+        {"displayName": "Total (W)", "jsonKey": "total"},
+        {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total"},
+    ],
+    "rows": [
+        {"displayName": "Roof", "jsonKey": "roof"},
+        {"displayName": "Other - Roof", "jsonKey": "other_roof"},
+        {"displayName": "Ceiling", "jsonKey": "interzone_ceiling"},
+        {"displayName": "Glass - Conduction", "jsonKey": "fenestration_conduction"},
+        {"displayName": "Glass - Solar", "jsonKey": "fenestration_solar"},
+        {"displayName": "Door", "jsonKey": "opaque_door"},
+        {"displayName": "Wall", "jsonKey": "exterior_wall"},
+        {"displayName": "Below-grade Wall", "jsonKey": "ground_contact_wall"},
+        {"displayName": "Partition", "jsonKey": "interzone_wall"},
+        {"displayName": "Other - Wall", "jsonKey": "other_wall"},
+        {"displayName": "Exterior Floor", "jsonKey": "exterior_floor"},
+        {"displayName": "Interior Floor", "jsonKey": "interzone_floor"},
+        {"displayName": "Slab", "jsonKey": "ground_contact_floor"},
+        {"displayName": "Other - Floor", "jsonKey": "other_floor"},
+        {"displayName": "Infiltration", "jsonKey": "infiltration"},
+        {"displayName": "People", "jsonKey": "people"},
+        {"displayName": "Lights", "jsonKey": "lights"},
+        {"displayName": "Equipment", "jsonKey": "equipment"},
+        {"displayName": "Power Generation Equipment", "jsonKey": "power_generation_equipment"},
+        {"displayName": "Refrigeration", "jsonKey": "refrigeration"},
+        {"displayName": "Water Use Equipment", "jsonKey": "water_use_equipment"},
+        {"displayName": "HVAC Equipment Loss", "jsonKey": "hvac_equipment_loss"},
+        {"displayName": "Zone Ventilation", "jsonKey": "zone_ventilation"},
+        {"displayName": "Transfer Air", "jsonKey": "interzone_mixing"},
+        {"displayName": "DOAS Direct to Zone", "jsonKey": "doas_direct_to_zone"}
+    ]
 };
 
 const peakConditionTableMapping = [
@@ -62,6 +63,48 @@ const peakConditionTableMapping = [
         ]
     }
 ];
+
+const componentPieChartMapping = {
+    "Envelope": [
+        "infiltration",
+        "ground_contact_floor",
+        "ground_contact_wall",
+        "fenestration_conduction",
+        "opaque_door",
+        "other_floor",
+        "other_roof",
+        "other_wall",
+        "roof",
+        "exterior_floor",
+        "exterior_wall",
+    ],
+    "Solar": [
+        "fenestration_solar",
+    ],
+    "Interzone": [
+        "interzone_ceiling",
+        "interzone_floor",
+        "interzone_mixing",
+        "interzone_wall",
+    ],
+    "Equipment": [
+        "equipment",
+    ],
+    "Lights": [
+        "lights",
+    ],
+    "People": [
+        "people",
+    ],
+    "HVAC": [
+        "doas_direct_to_zone",
+        "hvac_equipment_loss",
+        "power_generation_equipment",
+        "refrigeration",
+        "water_use_equipment",
+        "zone_ventilation",
+    ]
+}
 
 const engineeringCheckTableMapping = [
     {
@@ -157,58 +200,22 @@ export class LoadSummary extends React.Component {
         return this.props.data[this.state.zone_selection][this.state.engineering_check_table];
     }
 
-    formatChartData(data) {
-        // This variable defines the load component keys assigned to each load group.  These are used to create a radial bar chart of the load components.
-        const loadGroups = {
-            "Envelope": [
-                "infiltration",
-                "ground_contact_floor",
-                "ground_contact_wall",
-                "fenestration_conduction",
-                "opaque_door",
-                "other_floor",
-                "other_roof",
-                "other_wall",
-                "roof",
-                "exterior_floor",
-                "exterior_wall",
-            ],
-            "Solar": [
-                "fenestration_solar",
-            ],
-            "Interzone": [
-                "interzone_ceiling",
-                "interzone_floor",
-                "interzone_mixing",
-                "interzone_wall",
-            ],
-            "Equipment": [
-                "equipment",
-            ],
-            "Lights": [
-                "lights",
-            ],
-            "People": [
-                "people",
-            ],
-            "HVAC": [
-                "doas_direct_to_zone",
-                "hvac_equipment_loss",
-                "power_generation_equipment",
-                "refrigeration",
-                "water_use_equipment",
-                "zone_ventilation",
-            ]
-        }
+    getHeatingAndCoolingLoads() {
+        // TODO WORK ON ADDING THE HEATING AND COOLING LOAD CHART HERE!!!!
+        const data = this.props.data[this.state.zone_selection];
+        console.log(data['cooling_peak_condition_table']);
+        return 'Hi'
+    }
 
+    formatLoadComponentChartData(dataMapping, data) {
         var newData = [];
 
         // Loop for loadGroups and sum all of the totals
-        Object.keys(loadGroups).map((loadGroup) => {
+        Object.keys(dataMapping).map((group) => {
             var total = 0;
             // Loop again to total the loads for each load group
-            loadGroups[loadGroup].map((loadComponent) => total += data[loadComponent]['total'])
-            newData.push({'name': loadGroup, 'value': total})
+            dataMapping[group].map((loadComponent) => total += data[loadComponent]['total'])
+            newData.push({'name': group, 'value': total})
         })
 
         return newData
@@ -217,6 +224,9 @@ export class LoadSummary extends React.Component {
     render() {
         const loadData = this.getLoadComponents();
         const peakConditionsData = this.getPeakConditionTable();
+
+        //TEST
+        const test = this.getHeatingAndCoolingLoads();
 
         return (
             <Tab.Container id="zone-loads-report" activeKey={this.state.heating_cooling_selection} defaultActiveKey="cooling">
@@ -241,7 +251,7 @@ export class LoadSummary extends React.Component {
                 </Row>
                 <Row>
                     <Col>
-                        <CustomTable rows={loadComponents} columns={loadTypes} data={loadData}/>
+                        <CustomTable dataMapping={loadTableMapping} data={loadData}/>
                     </Col>
                     <Col>
                         <Row>
@@ -259,10 +269,7 @@ export class LoadSummary extends React.Component {
                             />
                         </Row>
                         <Row>
-                            <CustomPieChart  yDataKey="value"  xDataKey={loadTypes} data={this.formatChartData(loadData)}/>
-                        </Row>
-                        <Row>
-                            <CustomPieChart  yDataKey="value"  xDataKey={loadTypes} data={this.formatChartData(loadData)}/>
+                            <CustomPieChart  data={this.formatLoadComponentChartData(componentPieChartMapping, loadData)}/>
                         </Row>
                     </Col>
               </Row>

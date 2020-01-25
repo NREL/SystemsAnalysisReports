@@ -2,29 +2,30 @@ import React from 'react';
 import Table from 'react-bootstrap/Table'
 
 export class CustomTable extends React.Component {
-    addDataRow(rows, columns, rowKey, data) {
+    addDataRow(rows, columns, data) {
+        const rowKey = rows['jsonKey'];
         var rowData = data[rowKey];
         return (
             <tr>
-            <td key={ rowKey }>{ rows[rowKey]}</td>
-            { Object.keys(columns).map((columnKey) => <td>{ rowData[columnKey] }</td>) }
+            <td key={ rowKey }>{ rows['displayName']}</td>
+            { columns.map((column) => <td>{ rowData[column['jsonKey']] }</td>) }
             </tr>
         );
     }
 
     render() {
-        var { rows, columns, data } = this.props;
+        var { dataMapping, data } = this.props;
 
         return (
             <Table striped bordered hover responsive size="sm" className="App-table">
             <thead>
             <tr>
                 <th key="Table Header"></th>
-                { Object.keys(columns).map((columnKey) => <th key={ columnKey }>{ columns[columnKey] }</th>) }
+                { dataMapping['columns'].map((column) => <th key={ column }>{ column['displayName'] }</th>) }
             </tr>
             </thead>
             <tbody>
-                { Object.keys(rows).map((rowKey) => this.addDataRow(rows, columns, rowKey, data)) }
+                { dataMapping['rows'].map((row) => this.addDataRow(row, dataMapping['columns'], data)) }
             </tbody>
             </Table>
         );
