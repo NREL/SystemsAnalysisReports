@@ -29,11 +29,11 @@ const cardDataMapping = [
             {"displayName": "System Name", "jsonKey": "name", "unitLabel": null},
             {"displayName": "Time of Peak", "jsonKey": "time_of_peak", "unitLabel": null},
             {"displayName": "Coil Air Flow Rate", "jsonKey": "coil_air_flow", "unitLabel": "m3/s"},
-            {"displayName": "Sensible Load", "jsonKey": "zone_sensible_load", "unitLabel": "W"},
-            {"displayName": "Percent Outdoor Air", "jsonKey": "percent_oa", "unitLabel": "%"},
+            {"displayName": "Zone Space Sensible Load", "jsonKey": "zone_sensible_load", "unitLabel": "W"},
             {"displayName": "Outdoor Air Flow Rate", "jsonKey": "oa_flow_rate", "unitLabel": "m3/s"},
-            {"displayName": "Air Density", "jsonKey": "air_density", "unitLabel": "kg/m3"},
-            {"displayName": "Air Specific Heat", "jsonKey": "air_specific_heat", "unitLabel": "J-kg/K"},            
+            {"displayName": "Percent Outdoor Air", "jsonKey": "percent_oa", "unitLabel": "%"},
+            {"displayName": "Air Specific Heat", "jsonKey": "air_specific_heat", "unitLabel": "J-kg/K"}, 
+            {"displayName": "Air Density", "jsonKey": "air_density", "unitLabel": "kg/m3"},           
         ]
     },
 ];
