@@ -5,8 +5,6 @@ export class CustomTable extends React.Component {
     addDataRow(row, columns, data) {
         const rowKey = row['jsonKey'];
         var rowData = data[rowKey];
-        console.log(rowData);
-
 
         return (
             <tr key={ this.props.name + '-' + rowKey }>

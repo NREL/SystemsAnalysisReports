@@ -1,7 +1,8 @@
 {
   "design_psychrometrics": [
     {
-      "name": "preheat_coil",
+      "cad_object_id": 1,
+      "name": "Psych System 1",
       "air_density": 17.22,
       "air_specific_heat": 0.00591,
       "coil_air_flow": 1.21,
@@ -23,7 +24,8 @@
       "zone_sensible_load": 0.0
     },
     {
-      "name" :"cooling_coil",
+      "cad_object_id": 2,
+      "name" :"Psych System 2",
       "air_density": 18.22,
       "air_specific_heat": 0.00691,
       "coil_air_flow": 1.11,
