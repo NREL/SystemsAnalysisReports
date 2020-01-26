@@ -37,7 +37,7 @@ export class Navbar extends React.Component {
                         <LoadSummary name="systemLoadSummary" data={this.props.data['system_checksums']}/>
                     </Tab.Pane>
                     <Tab.Pane eventKey="design_psychrometrics">
-                        <DesignPsychrometrics data={this.props.data['design_psychrometrics']}/>
+                        <DesignPsychrometrics name="designPsychrometrics" data={this.props.data['design_psychrometrics']}/>
                     </Tab.Pane>
                 </Tab.Content>
             </Row>

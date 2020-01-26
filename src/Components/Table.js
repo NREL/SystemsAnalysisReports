@@ -2,13 +2,23 @@ import React from 'react';
 import Table from 'react-bootstrap/Table'
 
 export class CustomTable extends React.Component {
-    addDataRow(rows, columns, data) {
-        const rowKey = rows['jsonKey'];
+    addDataRow(row, columns, data) {
+        const rowKey = row['jsonKey'];
         var rowData = data[rowKey];
+        console.log(rowData);
+
+
         return (
             <tr key={ this.props.name + '-' + rowKey }>
-            <td width="200">{ rows['displayName']}</td>
-            { columns.map((column) => <td key={ this.props.name + '-' + rowKey + '-' + column['jsonKey'] } width="80">{ rowData[column['jsonKey']] }</td>) }
+            <td width="200">{ row['displayName']}</td>
+            { columns.map((column) => (
+                <td
+                key={ this.props.name + '-' + rowKey + '-' + column['jsonKey'] }
+                width="80"
+                >
+                    { ( Object.keys(rowData).includes(column['jsonKey']) ) ? rowData[column['jsonKey']] : null }
+                </td>
+            ))}
             </tr>
         );
     }

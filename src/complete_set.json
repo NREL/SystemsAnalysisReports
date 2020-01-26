@@ -1,6 +1,7 @@
 {
   "design_psychrometrics": [
     {
+      "name": "preheat_coil",
       "air_density": 17.22,
       "air_specific_heat": 0.00591,
       "coil_air_flow": 1.21,
@@ -8,18 +9,40 @@
       "entering_coil_hr": 47.35,
       "leaving_coil_drybulb": 23.33,
       "leaving_coil_hr": 0.00845,
-      "oa_drybulb": "7/21 16:45:00",
+      "oa_drybulb": 28.1,
       "oa_flow_rate": 32.78,
       "oa_hr": 23.33,
       "percent_oa": 0.22,
       "return_air_drybulb": 13052.74,
       "return_air_hr": 1702.53,
       "supply_fan_temp_diff": 47.35,
-      "time_of_peak": 11331.4,
+      "time_of_peak": "7/21 16:45:00",
       "zone_drybulb": 18.81,
       "zone_hr": 14.0,
       "zone_rh": 11350.21,
       "zone_sensible_load": 0.0
+    },
+    {
+      "name" :"cooling_coil",
+      "air_density": 18.22,
+      "air_specific_heat": 0.00691,
+      "coil_air_flow": 1.11,
+      "entering_coil_drybulb": 0.00745,
+      "entering_coil_hr": 48.35,
+      "leaving_coil_drybulb": 24.33,
+      "leaving_coil_hr": 0.00745,
+      "oa_drybulb": 30.17,
+      "oa_flow_rate": 30.78,
+      "oa_hr": 24.33,
+      "percent_oa": 0.30,
+      "return_air_drybulb": 18352.74,
+      "return_air_hr": 1952.53,
+      "supply_fan_temp_diff": 43.35,
+      "time_of_peak": "7/22 12:45:00",
+      "zone_drybulb": 12.81,
+      "zone_hr": 11.0,
+      "zone_rh": 15850.21,
+      "zone_sensible_load": 100.0
     }
   ],
   "facility_component_load_summary": {
