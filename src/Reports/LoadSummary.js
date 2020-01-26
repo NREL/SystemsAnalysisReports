@@ -209,7 +209,7 @@ export class LoadSummary extends React.Component {
     getObjectName(id) {
         // Get the string name of the object given an id
         for (var i = 0; i < this.state.object_list.length; i++) {
-            if (this.state.object_list[i].id == id) {
+            if (this.state.object_list[i].id.toString() === id.toString()) {
                 return this.state.object_list[i].name
             }
         }
@@ -263,7 +263,9 @@ export class LoadSummary extends React.Component {
                 if (rowName !== "total") {
                     totals[colName] += data[rowName][colName]
                 }
+                return totals
             })
+            return totals
         });
 
         // Add total row to the data object
@@ -282,6 +284,7 @@ export class LoadSummary extends React.Component {
             // Loop again to total the loads for each load group
             dataMapping[group].map((loadComponent) => total += data[loadComponent]['total'])
             newData.push({'name': group, 'value': total})
+            return newData
         })
 
         return newData
