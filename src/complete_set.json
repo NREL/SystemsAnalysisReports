@@ -231,8 +231,8 @@
         "related_area": 0.0,
         "sensible_delayed": 0.0,
         "sensible_instant": 0.0,
-        "sensible_return_air": 0.0,
-        "total": 10.0,
+        "sensible_return_air": 100.0,
+        "total": 100.0,
         "total_per_area": 0.0
       },
       "opaque_door": {
@@ -519,8 +519,8 @@
         "related_area": 0.0,
         "sensible_delayed": 0.0,
         "sensible_instant": 0.0,
-        "sensible_return_air": 0.0,
-        "total": 10.0,
+        "sensible_return_air": 100.0,
+        "total": 100.0,
         "total_per_area": 0.0
       },
       "opaque_door": {
@@ -660,10 +660,10 @@
           "latent": 0.0,
           "percent_grand_total": 0.0,
           "related_area": 0.0,
-          "sensible_delayed": 5.0,
-          "sensible_instant": 5.0,
-          "sensible_return_air": 0.0,
-          "total": 10.0,
+          "sensible_delayed": 50.0,
+          "sensible_instant": 50.0,
+          "sensible_return_air": 100.0,
+          "total": 200.0,
           "total_per_area": 0.0
         },
         "equipment": {
@@ -812,8 +812,8 @@
           "related_area": 0.0,
           "sensible_delayed": 0.0,
           "sensible_instant": 0.0,
-          "sensible_return_air": 0.0,
-          "total": 10.0,
+          "sensible_return_air": 100.0,
+          "total": 100.0,
           "total_per_area": 0.0
         },
         "opaque_door": {
@@ -960,7 +960,7 @@
           "related_area": 0.0,
           "sensible_delayed": 0.0,
           "sensible_instant": 0.0,
-          "sensible_return_air": 0.0,
+          "sensible_return_air": 100.0,
           "total": 100.0,
           "total_per_area": 0.0
         },
@@ -1100,8 +1100,8 @@
           "related_area": 0.0,
           "sensible_delayed": 0.0,
           "sensible_instant": 0.0,
-          "sensible_return_air": 0.0,
-          "total": 10.0,
+          "sensible_return_air": 100.0,
+          "total": 100.0,
           "total_per_area": 0.0
         },
         "opaque_door": {
@@ -1391,9 +1391,9 @@
           "percent_grand_total": 0.0,
           "related_area": 0.0,
           "sensible_delayed": 0.0,
-          "sensible_instant": 0.0,
-          "sensible_return_air": 0.0,
-          "total": 10.0,
+          "sensible_instant": 5.0,
+          "sensible_return_air": 100.0,
+          "total": 105.0,
           "total_per_area": 0.0
         },
         "opaque_door": {
@@ -1549,9 +1549,9 @@
           "percent_grand_total": 0.0,
           "related_area": 0.0,
           "sensible_delayed": 0.0,
-          "sensible_instant": 0.0,
-          "sensible_return_air": 0.0,
-          "total": 10.0,
+          "sensible_instant": 2000.0,
+          "sensible_return_air": 1000.0,
+          "total": 3000.0,
           "total_per_area": 0.0
         },
         "exterior_wall": {
@@ -1680,8 +1680,8 @@
           "related_area": 0.0,
           "sensible_delayed": 0.0,
           "sensible_instant": 0.0,
-          "sensible_return_air": 0.0,
-          "total": 10.0,
+          "sensible_return_air": 100.0,
+          "total": 100.0,
           "total_per_area": 0.0
         },
         "opaque_door": {
@@ -1833,9 +1833,9 @@
           "percent_grand_total": 0.0,
           "related_area": 0.0,
           "sensible_delayed": 0.0,
-          "sensible_instant": 0.0,
-          "sensible_return_air": 0.0,
-          "total": 10.0,
+          "sensible_instant": 2000.0,
+          "sensible_return_air": 1000.0,
+          "total": 3000.0,
           "total_per_area": 0.0
         },
         "exterior_floor": {
@@ -1853,9 +1853,9 @@
           "percent_grand_total": 0.0,
           "related_area": 0.0,
           "sensible_delayed": 0.0,
-          "sensible_instant": 0.0,
-          "sensible_return_air": 0.0,
-          "total": 10.0,
+          "sensible_instant": 2000.0,
+          "sensible_return_air": 4000.0,
+          "total": 6000.0,
           "total_per_area": 0.0
         },
         "fenestration_conduction": {
@@ -1973,9 +1973,9 @@
           "percent_grand_total": 0.0,
           "related_area": 0.0,
           "sensible_delayed": 0.0,
-          "sensible_instant": 0.0,
-          "sensible_return_air": 0.0,
-          "total": 4.0,
+          "sensible_instant": 300.0,
+          "sensible_return_air": 200.0,
+          "total": 500.0,
           "total_per_area": 0.0
         },
         "opaque_door": {
@@ -2120,10 +2120,10 @@
           "latent": 0.0,
           "percent_grand_total": 0.0,
           "related_area": 0.0,
-          "sensible_delayed": 0.0,
+          "sensible_delayed": 1000.0,
           "sensible_instant": 0.0,
-          "sensible_return_air": 0.0,
-          "total": 3.0,
+          "sensible_return_air": 1000.0,
+          "total": 2000.0,
           "total_per_area": 0.0
         },
         "exterior_floor": {
@@ -2262,8 +2262,8 @@
           "related_area": 0.0,
           "sensible_delayed": 0.0,
           "sensible_instant": 0.0,
-          "sensible_return_air": 0.0,
-          "total": 20.0,
+          "sensible_return_air": 100.0,
+          "total": 100.0,
           "total_per_area": 0.0
         },
         "opaque_door": {
@@ -2423,9 +2423,9 @@
           "percent_grand_total": 0.0,
           "related_area": 0.0,
           "sensible_delayed": 0.0,
-          "sensible_instant": 0.0,
-          "sensible_return_air": 0.0,
-          "total": 10.0,
+          "sensible_instant": 10000.0,
+          "sensible_return_air": 10000.0,
+          "total": 20000.0,
           "total_per_area": 0.0
         },
         "exterior_wall": {
@@ -2554,8 +2554,8 @@
           "related_area": 0.0,
           "sensible_delayed": 0.0,
           "sensible_instant": 0.0,
-          "sensible_return_air": 0.0,
-          "total": 4.0,
+          "sensible_return_air": 100.0,
+          "total": 100.0,
           "total_per_area": 0.0
         },
         "opaque_door": {
@@ -2830,20 +2830,20 @@
           "latent": 0.0,
           "percent_grand_total": 0.0,
           "related_area": 0.0,
-          "sensible_delayed": 0.0,
-          "sensible_instant": 0.0,
-          "sensible_return_air": 0.0,
-          "total": 5.0,
+          "sensible_delayed": 10.0,
+          "sensible_instant": 10.0,
+          "sensible_return_air": 10.0,
+          "total": 30.0,
           "total_per_area": 0.0
         },
         "lights": {
           "latent": 0.0,
           "percent_grand_total": 0.0,
           "related_area": 0.0,
-          "sensible_delayed": 0.0,
-          "sensible_instant": 0.0,
-          "sensible_return_air": 0.0,
-          "total": 20.0,
+          "sensible_delayed": 50.0,
+          "sensible_instant": 50.0,
+          "sensible_return_air": 400.0,
+          "total": 500.0,
           "total_per_area": 0.0
         },
         "opaque_door": {

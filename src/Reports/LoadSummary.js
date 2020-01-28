@@ -14,6 +14,7 @@ const COOLINGHEATINGCOLORS = ["#3399FF", "#FF3333"];
 
 const envelopeLoadsTableMapping = {
     "columns": [
+        {"displayName": "Return Air (W)", "jsonKey": "sensible_return_air"},
         {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant"},
         {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed"},
         {"displayName": "Latent (W)", "jsonKey": "latent"},
@@ -41,6 +42,7 @@ const envelopeLoadsTableMapping = {
 
 const internalGainTableMapping = {
     "columns": [
+        {"displayName": "Return Air (W)", "jsonKey": "sensible_return_air"},
         {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant"},
         {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed"},
         {"displayName": "Latent (W)", "jsonKey": "latent"},
@@ -50,6 +52,7 @@ const internalGainTableMapping = {
     "rows": [
         {"displayName": "People", "jsonKey": "people"},
         {"displayName": "Lights", "jsonKey": "lights"},
+        {"displayName": "Return Air - Lights", "jsonKey": "return_air_lights"},
         {"displayName": "Equipment", "jsonKey": "equipment"},
         {"displayName": "Total", "jsonKey": "total"},
     ]
@@ -57,6 +60,7 @@ const internalGainTableMapping = {
 
 const systemsLoadsTableMapping = {
     "columns": [
+        {"displayName": "Return Air (W)", "jsonKey": "sensible_return_air"},
         {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant"},
         {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed"},
         {"displayName": "Latent (W)", "jsonKey": "latent"},
@@ -64,6 +68,7 @@ const systemsLoadsTableMapping = {
         {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total"},
     ],
     "rows": [
+        {"displayName": "Return Air - Other", "jsonKey": "return_air_other"},
         {"displayName": "Power Generation Equipment", "jsonKey": "power_generation_equipment"},
         {"displayName": "Refrigeration", "jsonKey": "refrigeration"},
         {"displayName": "Water Use Equipment", "jsonKey": "water_use_equipment"},
@@ -159,6 +164,7 @@ export class LoadSummary extends React.Component {
             engineering_check_table: "cooling_engineering_check_table",
             peak_condition_table: "cooling_peak_condition_table",
             peak_load_component_table: "cooling_peak_load_component_table",
+            lighting_adjusted: false,
             object_selection: 0,
             num_objects: 0,
             object_list: [],
@@ -246,7 +252,7 @@ export class LoadSummary extends React.Component {
 
     formatTableData(dataMapping, data) {
         // This function formats the data that will be displayed in the table.
-        var newData = Object.assign({}, data);
+        var newData = JSON.parse(JSON.stringify(data));
         var totals = {
             "latent": 0.0,
             "related_area": 0.0,
@@ -255,13 +261,14 @@ export class LoadSummary extends React.Component {
             "sensible_return_air": 0.0,
             "total": 0.0,
           };
-        
+
         // Loop and calculate the totals for each column
         dataMapping['rows'].map((row) => {
             Object.keys(totals).map((colName) => {
+                //console.log(row);
                 var rowName = row['jsonKey'];
-                if (rowName !== "total") {
-                    totals[colName] += data[rowName][colName]
+                if (Object.keys(newData).includes(rowName) && rowName !== "total") {
+                    totals[colName] += newData[rowName][colName]
                 }
                 return totals
             })

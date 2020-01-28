@@ -31,15 +31,15 @@ export class CustomTable extends React.Component {
             <thead style={headerStyle}>
             <tr key={ this.props.name + '-header' }>
                 <th  key={ this.props.name + '-label-header' } width="300"></th>
-        { dataMapping['columns'].map((column) => (
-                <th
-                key={ this.props.name + '-' + column['displayName'] + '-header' }
-                width="100"
-                >
-                { column['displayName'] }
-                </th>
-            ))
-        }
+                { dataMapping['columns'].map((column) => (
+                    <th
+                    key={ this.props.name + '-' + column['displayName'] + '-header' }
+                    width="100"
+                    >
+                    { column['displayName'] }
+                    </th>
+                ))
+                }
             </tr>
             </thead>
             <tbody>
