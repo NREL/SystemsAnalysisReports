@@ -1,7 +1,8 @@
 import React from 'react';
 import { Navbar } from './Components/Navbar';
 import './App.css';
-import jsonData from './complete_set.json';
+import jsonData from './data_small.json';
+//import jsonData from './data_large.json';  
 
 export default class App extends React.Component {
 
