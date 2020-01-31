@@ -4,6 +4,10 @@ import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
 import { LoadSummary } from '../Reports/LoadSummary';
 import { DesignPsychrometrics } from '../Reports/DesignPsychrometrics';
+import {
+    zoneLoadSummaryMapping,
+    systemLoadSummaryMapping
+} from '../constants/dataMapping';
 
 export class Navbar extends React.Component {
     render() {
@@ -31,10 +35,10 @@ export class Navbar extends React.Component {
             <Row>
                 <Tab.Content className="App-content">
                     <Tab.Pane eventKey="zone_load_summary">
-                        <LoadSummary name="zoneLoadSummary" data={this.props.data['zone_loads_by_components']}/>
+                        <LoadSummary name="zoneLoadSummary" dataMapping={zoneLoadSummaryMapping} data={this.props.data['zone_loads_by_components']}/>
                     </Tab.Pane>
                     <Tab.Pane eventKey="system_load_summary">
-                        <LoadSummary name="systemLoadSummary" data={this.props.data['system_checksums']}/>
+                        <LoadSummary name="systemLoadSummary" dataMapping={systemLoadSummaryMapping} data={this.props.data['system_checksums']}/>
                     </Tab.Pane>
                     <Tab.Pane eventKey="design_psychrometrics">
                         <DesignPsychrometrics name="designPsychrometrics" data={this.props.data['design_psychrometrics']}/>

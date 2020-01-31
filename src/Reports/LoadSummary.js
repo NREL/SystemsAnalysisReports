@@ -3,23 +3,14 @@ import Col from 'react-bootstrap/Col'
 import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row'
 import Tab from 'react-bootstrap/Tab';
-import { 
-    EQUIDISTANTCOLORS,
-    COOLINGHEATINGCOLORS
-} from '../constants/settings';
-
-import {
-    envelopeLoadsTableMapping,
-    internalGainTableMapping,
-    systemsLoadsTableMapping,
-    peakConditionTableMapping,
-    componentPieChartMapping,
-    engineeringCheckTableMapping
-} from '../constants/dataMapping';
 import { ObjectSelectionDropDown } from '../Components/ObjectSelectionDropdown';
 import { ReportCard } from '../Components/ReportCard';
 import { CustomTable } from '../Components/Table';
 import { CustomPieChart } from '../Components/PieChart';
+import { 
+    EQUIDISTANTCOLORS,
+    COOLINGHEATINGCOLORS
+} from '../constants/settings';
 
 export class LoadSummary extends React.Component {
     constructor(props) {
@@ -185,24 +176,24 @@ export class LoadSummary extends React.Component {
                             <CustomTable
                             name={this.props.name + "-envelopeTable"}
                             displayHeader={true}
-                            dataMapping={envelopeLoadsTableMapping}
-                            data={this.formatTableData(envelopeLoadsTableMapping, loadData)}
+                            dataMapping={this.props.dataMapping['envelopeLoadsTable']}
+                            data={this.formatTableData(this.props.dataMapping['envelopeLoadsTable'], loadData)}
                             />
                         </Row>
                         <Row>
                             <CustomTable
                             name={this.props.name + "-internalGainTable"}
                             displayHeader={false}
-                            dataMapping={internalGainTableMapping}
-                            data={this.formatTableData(internalGainTableMapping, loadData)}
+                            dataMapping={this.props.dataMapping['internalGainsTable']}
+                            data={this.formatTableData(this.props.dataMapping['internalGainsTable'], loadData)}
                             />
                         </Row>
                         <Row>
                             <CustomTable
                             name={this.props.name + "-systemLoadsTable"}
                             displayHeader={false}
-                            dataMapping={systemsLoadsTableMapping}
-                            data={this.formatTableData(systemsLoadsTableMapping, loadData)}
+                            dataMapping={this.props.dataMapping['systemLoadsTable']}
+                            data={this.formatTableData(this.props.dataMapping['systemLoadsTable'], loadData)}
                             />
                         </Row>
                     </Col>
@@ -211,7 +202,7 @@ export class LoadSummary extends React.Component {
                             <ReportCard
                             name={this.props.name + "-conditionsTimePeak"}
                             title="Conditions at Time of Peak"
-                            dataMapping={peakConditionTableMapping}
+                            dataMapping={this.props.dataMapping['peakConditions']}
                             data={peakConditionsData}
                             />
                         </Row>
@@ -219,7 +210,7 @@ export class LoadSummary extends React.Component {
                             <ReportCard
                             name={this.props.name + "-engineeringCheck"}
                             title="Engineering Check"
-                            dataMapping={engineeringCheckTableMapping}
+                            dataMapping={this.props.dataMapping['engineeringCheck']}
                             data={this.getEngineeringCheckTable()}
                             />
                         </Row>
@@ -236,7 +227,7 @@ export class LoadSummary extends React.Component {
                             name={this.props.name + "-loadComponentsChart"}
                             title={ this.state.heating_cooling_selection === 'cooling' ? 'Cooling Load Components [W]' : 'Heating Load Components [W]'}
                             colors={EQUIDISTANTCOLORS}
-                            data={this.formatLoadComponentChartData(componentPieChartMapping, loadData)}
+                            data={this.formatLoadComponentChartData(this.props.dataMapping['componentPieChart'], loadData)}
                             /> 
                         </Row>
                     </Col>
