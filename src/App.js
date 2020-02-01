@@ -42,13 +42,20 @@ export default class App extends React.Component {
         } else {
           // Increment all other loads
           data["return_air_other"]["sensible_instant"] += returnAirLoad;
-          data["return_air_other"]["total"] += returnAirLoad;                    
+          //data["return_air_other"]["total"] += returnAirLoad;                    
         }
 
         // Remove sensible_return air load and reduce total load
         data[rowName]["sensible_return_air"] = 0;
-        data[rowName]["total"] = Math.max(totalLoad-returnAirLoad,0);  
+        //data[rowName]["total"] = Math.max(totalLoad-returnAirLoad,0);  
       }
+
+      // Recalculate total
+      data[rowName]["total"] = 0
+      data[rowName]["total"] += data[rowName]["sensible_instant"]
+      data[rowName]["total"] += data[rowName]["sensible_delayed"]
+      data[rowName]["total"] += data[rowName]["latent"]
+      data[rowName]["total"] += data[rowName]["sensible_return_air"]
       
       return data
     })
