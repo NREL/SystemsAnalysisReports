@@ -3,8 +3,8 @@
 
 const fs = require('fs');
 
-const numCoils = 50;
-const numSystems = 100;
+const numCoils = 5;
+const numSystems = 10;
 const numZones = 1000;
 
 function getRandomInt(max) {

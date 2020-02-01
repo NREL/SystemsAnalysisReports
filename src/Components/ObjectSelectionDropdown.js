@@ -1,7 +1,10 @@
 import React from 'react';
 import Dropdown from 'react-bootstrap/Dropdown'
 import FormControl from 'react-bootstrap/FormControl';
-import Pagination from 'react-bootstrap/Pagination';
+//import Pagination from 'react-bootstrap/Pagination';
+//import ReactPaginate from 'react-paginate';
+import Pagination from 'rc-pagination';
+import 'rc-pagination/assets/index.css';
 import { OBJECT_SELECTION_PAGINATION_ITEMS } from '../constants/settings';
 
 export class ObjectSelectionDropDown extends React.Component {
@@ -9,9 +12,9 @@ export class ObjectSelectionDropDown extends React.Component {
         super(props);
         this.state = {
             filter: '',
-            paginationActiveItem: 1,
+            currentPage: 1,
         };
-    } 
+    }
 
     getObjectName(id) {
         // Get the string name of the object given an id
@@ -23,7 +26,11 @@ export class ObjectSelectionDropDown extends React.Component {
     }
 
     handlePaginationClick(event) {
-        this.setState({paginationActiveItem: Number(event.target.text)});
+        const selected = event;
+
+        this.setState({
+            currentPage: selected,
+        });
     }
 
     render() {
@@ -46,33 +53,16 @@ export class ObjectSelectionDropDown extends React.Component {
         const CustomMenu = React.forwardRef(
             ({ children, style, className, 'aria-labelledby': labeledBy }, ref) => {
 
-            // Get the latest array of filtered children to determine pagination length
-            var newChild = React.Children.toArray(children).filter(
-                child =>
-                    ((!this.state.filter) || (child.props.children.startsWith(this.state.filter))),
-                )
-
-            // Determine number of pagination screens needed
-            const numPagScreens = Math.max(Math.ceil(newChild.length/OBJECT_SELECTION_PAGINATION_ITEMS),1);
-
-            // Loop to create arrayof pagination items to render
-            var paginationItems = [];
-            for (var i = 1; i <= numPagScreens; i++) {
-                paginationItems.push(
-                    <Pagination.Item key={i} active={i === this.state.paginationActiveItem}>
-                    {i}
-                    </Pagination.Item>,
-                );
-            }
+            const selected = this.state.currentPage;
 
             // Get the start/stop indices for the pagination
             // Initialize to full array
             var startIndex = 0;
             var endIndex = React.Children.toArray(children).length;
-
+    
             // Only apply pagination if no filter exists.  Otherwise filtered results may not show.
             if (!this.state.filter) {
-                startIndex = (this.state.paginationActiveItem-1)*OBJECT_SELECTION_PAGINATION_ITEMS;
+                startIndex = (selected-1)*OBJECT_SELECTION_PAGINATION_ITEMS;
                 endIndex = startIndex+OBJECT_SELECTION_PAGINATION_ITEMS;
             }
 
@@ -91,14 +81,26 @@ export class ObjectSelectionDropDown extends React.Component {
                     value={this.state.filter}
                 />
                 <ul className="list-unstyled">
-                    {React.Children.toArray(children).filter(
-                    child =>
-                        ((!this.state.filter) || (child.props.children.startsWith(this.state.filter))) && (((Number(child.props.eventKey) >= startIndex) && (Number(child.props.eventKey) < endIndex))),
-                    )}
+                    {
+                        React.Children.toArray(children).filter(
+                            child => 
+                                ((!this.state.filter) || (child.props.children.includes(this.state.filter))) 
+                                &&
+                                (((Number(child.props.eventKey) >= startIndex) && (Number(child.props.eventKey) < endIndex))),
+
+                        )
+                    }
                 </ul>
-                <Pagination size="sm" onClick={this.handlePaginationClick.bind(this)}>
-                    { paginationItems }
-                </Pagination>
+                { !this.state.filter ? 
+                    <Pagination
+                    current={this.state.currentPage}
+                    total={this.props.objectList.length}
+                    pageSize={OBJECT_SELECTION_PAGINATION_ITEMS}
+                    onChange={this.handlePaginationClick.bind(this)}
+                    showLessItems={true}
+                    locale={'en_US'}
+                    /> 
+                : null}
                 </div>
             );
             },
@@ -120,8 +122,7 @@ export class ObjectSelectionDropDown extends React.Component {
                   </Dropdown.Item>
               ))}
           </Dropdown.Menu>
-          </Dropdown>
-                      
+          </Dropdown> 
         );
     }
 }
