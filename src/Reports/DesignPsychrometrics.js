@@ -1,8 +1,8 @@
 import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
-import Dropdown from 'react-bootstrap/Dropdown';
 import Row from 'react-bootstrap/Row';
+import { ObjectSelectionDropDown } from '../Components/ObjectSelectionDropdown';
 import { CustomTable } from '../Components/Table';
 import { ReportCard } from '../Components/ReportCard';
 
@@ -70,16 +70,6 @@ export class DesignPsychrometrics extends React.Component {
         this.setState({num_objects: object_list.length});  // Update state with number of objects
     }
 
-
-    getObjectName(id) {
-        // Get the string name of the object given an id
-        for (var i = 0; i < this.state.object_list.length; i++) {
-            if (this.state.object_list[i].id.toString() === id.toString()) {
-                return this.state.object_list[i].name
-            }
-        }
-    }
-
     formatTableData(dataMapping, data) {
         // This function formats the data that will be displayed in the table.
         var newData = {};
@@ -108,22 +98,12 @@ export class DesignPsychrometrics extends React.Component {
         return (
             <Container id={this.props.name + '-container'}>
             <Row>
-                    <Dropdown onSelect={this.handleObjectSelect.bind(this)} className="App-dropdown">
-                    <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-                        { this.getObjectName(this.state.object_selection) }
-                    </Dropdown.Toggle>
-
-                    <Dropdown.Menu>
-                        { this.state.object_list.map((item) => (
-                            <Dropdown.Item
-                            key={this.props.name + '-' + item.name}
-                            eventKey={item.id}
-                            >
-                            {item.name}
-                            </Dropdown.Item>
-                        ))}
-                    </Dropdown.Menu>
-                    </Dropdown>
+                <ObjectSelectionDropDown
+                name={this.props.name + "-objectDropdown"}
+                objectList={this.state.object_list}
+                objectSelection={this.state.object_selection}
+                handleObjectSelect={this.handleObjectSelect.bind(this)}
+                />
             </Row>
             <Row>
                 <Col>

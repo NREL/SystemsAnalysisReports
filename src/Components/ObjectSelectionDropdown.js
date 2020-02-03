@@ -1,8 +1,6 @@
 import React from 'react';
 import Dropdown from 'react-bootstrap/Dropdown'
 import FormControl from 'react-bootstrap/FormControl';
-//import Pagination from 'react-bootstrap/Pagination';
-//import ReactPaginate from 'react-paginate';
 import Pagination from 'rc-pagination';
 import 'rc-pagination/assets/index.css';
 import { OBJECT_SELECTION_PAGINATION_ITEMS } from '../constants/settings';
