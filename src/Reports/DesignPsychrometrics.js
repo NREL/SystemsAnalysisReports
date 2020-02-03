@@ -6,38 +6,6 @@ import { ObjectSelectionDropDown } from '../Components/ObjectSelectionDropdown';
 import { CustomTable } from '../Components/Table';
 import { ReportCard } from '../Components/ReportCard';
 
-const tableDataMapping = {
-    "columns": [
-        {"displayName": "Dry Bulb Temperature [C]", "jsonKey": "drybulb"},
-        {"displayName": "Humidity Ratio [kg/kg]", "jsonKey": "hr"},
-        {"displayName": "Tempeature Difference [C]", "jsonKey": "temp_diff"},
-    ],
-    "rows": [
-        {"displayName": "Zone", "jsonKey": "zone"},
-        {"displayName": "Return Air", "jsonKey": "return_air"},
-        {"displayName": "Outdoor Air", "jsonKey": "oa"},
-        {"displayName": "Entering Coil", "jsonKey": "entering_coil"},
-        {"displayName": "Leaving Coil", "jsonKey": "leaving_coil"},
-        {"displayName": "Supply Fan", "jsonKey": "supply_fan"},
-    ]
-};
-
-const cardDataMapping = [
-    {
-        "label": null,
-        "items": [
-            {"displayName": "System Name", "jsonKey": "name", "unitLabel": null},
-            {"displayName": "Time of Peak", "jsonKey": "time_of_peak", "unitLabel": null},
-            {"displayName": "Coil Air Flow Rate", "jsonKey": "coil_air_flow", "unitLabel": "m3/s"},
-            {"displayName": "Zone Space Sensible Load", "jsonKey": "zone_sensible_load", "unitLabel": "W"},
-            {"displayName": "Outdoor Air Flow Rate", "jsonKey": "oa_flow_rate", "unitLabel": "m3/s"},
-            {"displayName": "Percent Outdoor Air", "jsonKey": "percent_oa", "unitLabel": "%"},
-            {"displayName": "Air Specific Heat", "jsonKey": "air_specific_heat", "unitLabel": "J-kg/K"}, 
-            {"displayName": "Air Density", "jsonKey": "air_density", "unitLabel": "kg/m3"},           
-        ]
-    },
-];
-
 export class DesignPsychrometrics extends React.Component {
     constructor(props) {
         super(props);
@@ -110,15 +78,15 @@ export class DesignPsychrometrics extends React.Component {
                 <CustomTable
                 name={this.props.name + "-statePointTable"}
                 displayHeader={true}
-                dataMapping={tableDataMapping}
-                data={this.formatTableData(tableDataMapping, data)}
+                dataMapping={this.props.dataMapping['componentTable']}
+                data={this.formatTableData(this.props.dataMapping['componentTable'], data)}
                 />
                 </Col>
                 <Col>
                 <ReportCard
                 name={this.props.name + "-conditionsTimePeak"}
                 title="Summary"
-                dataMapping={cardDataMapping}
+                dataMapping={this.props.dataMapping['componentChecks']}
                 data={data}
                 />
                 </Col>

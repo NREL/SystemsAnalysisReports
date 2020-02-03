@@ -2,6 +2,7 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
+import { isNumeric } from '../functions/numericFunctions';
 
 export class ReportCard extends React.Component {
     render() {
@@ -12,10 +13,31 @@ export class ReportCard extends React.Component {
             <Card.Body className="App-card-body">
                 <Container>
                     {dataMapping.map((colData, index) => (
-                        <Col key={ this.props.name + '-' + index.toString() }>
-                            { colData["label"] && <p><b>{ colData["label"] }</b></p> }
-                            { colData["items"].map((item) => <p key={ this.props.name + '-' + item["jsonKey"] }>{ item["displayName"] } : { data[item["jsonKey"]] } { item["unitLabel"] && item["unitLabel"] }</p> ) }
-                        </Col>
+                            <Col key={ this.props.name + '-' + index.toString() }>
+                                { colData["label"] && <p><b>{ colData["label"] }</b></p> }
+                                { colData["items"].map((item) => {
+                                    var dataValue = null;
+                                    var decimals = 1;
+
+                                    // Truncate numeric value based on desired decimals
+                                    if (Object.keys(item).includes('decimals')) {
+                                        decimals = item['decimals'];
+                                    }
+                                    if ( isNumeric(data[item["jsonKey"]]) ) {
+                                        // Set value to display with decimal value truncation
+                                        dataValue = data[item["jsonKey"]].toFixed(decimals);
+                                    } else {
+                                        // Set value to null if none exists in data
+                                        dataValue = data[item["jsonKey"]];
+                                    }
+                                    
+                                    return (
+                                        <p key={ this.props.name + '-' + item["jsonKey"] }>
+                                            { item["displayName"] } : { dataValue } { item["unitLabel"] && item["unitLabel"] }
+                                        </p>
+                                    )} 
+                                )}
+                            </Col>
                     ))}
                 </Container>
             </Card.Body>

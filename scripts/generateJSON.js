@@ -33,13 +33,56 @@ function getDesignPsychrometricObject() {
     "return_air_drybulb": getRandomArbitrary(10, 25),
     "return_air_hr": getRandomArbitrary(0.001, 0.010),
     "supply_fan_temp_diff": getRandomArbitrary(0.5, 2.0),
-    "time_of_peak": "7/21 16:45:00",
+    "time_of_peak": "8/21 12:00:00",
     "zone_drybulb": getRandomArbitrary(10, 25),
     "zone_hr": getRandomArbitrary(0.001, 0.010),
     "zone_rh": getRandomArbitrary(10.0, 60.0),
     "zone_sensible_load": getRandomArbitrary(1000.0, 5000.0),
   }
 }
+
+function getCoolingPeakConditionObject() {
+  return {
+    "estimate_instant_delayed_sensible": getRandomArbitrary(1000.0, 5000.0),
+    "fan_flow": getRandomArbitrary(0.5, 1.0),
+    "mat": getRandomArbitrary(10, 25),
+    "oa_drybulb": getRandomArbitrary(10, 25),
+    "oa_flow": getRandomArbitrary(0.5, 1.0),
+    "oa_hr": getRandomArbitrary(0.001, 0.010),
+    "oa_wetbulb": getRandomArbitrary(10, 25),
+    "peak_estimate_diff": getRandomArbitrary(0.5, 2.0),
+    "sat": getRandomArbitrary(10, 25),
+    "sensible_peak": getRandomArbitrary(1000.0, 5000.0),
+    "sensible_peak_sf": getRandomArbitrary(1000.0, 5000.0),
+    "sf_diff": getRandomArbitrary(0.5, 2.0),
+    "time_of_peak_load": "7/21 16:45:00",
+    "zone_drybulb": getRandomArbitrary(10, 25),
+    "zone_hr": getRandomArbitrary(0.001, 0.010),
+    "zone_rh": getRandomArbitrary(10.0, 60.0),
+  }
+}
+
+function getHeatingPeakConditionObject() {
+  return {
+    "estimate_instant_delayed_sensible": -getRandomArbitrary(1000.0, 5000.0),
+    "fan_flow": getRandomArbitrary(0.5, 1.0),
+    "mat": getRandomArbitrary(10, 25),
+    "oa_drybulb": getRandomArbitrary(10, 25),
+    "oa_flow": getRandomArbitrary(0.5, 1.0),
+    "oa_hr": getRandomArbitrary(0.001, 0.010),
+    "oa_wetbulb": getRandomArbitrary(10, 25),
+    "peak_estimate_diff": getRandomArbitrary(0.5, 2.0),
+    "sat": getRandomArbitrary(10, 25),
+    "sensible_peak": -getRandomArbitrary(1000.0, 5000.0),
+    "sensible_peak_sf": -getRandomArbitrary(1000.0, 5000.0),
+    "sf_diff": getRandomArbitrary(0.5, 2.0),
+    "time_of_peak_load": "1/21 2:15:00",
+    "zone_drybulb": getRandomArbitrary(10, 25),
+    "zone_hr": getRandomArbitrary(0.001, 0.010),
+    "zone_rh": getRandomArbitrary(10.0, 60.0),
+  }
+}
+
 
 function getSystemEngineeringChecksumsObject() {
   return {
@@ -160,10 +203,10 @@ for (var i=1; i<=numSystems; i++) {
   }
 
   systemChecksums["cooling_engineering_check_table"] = getSystemEngineeringChecksumsObject()
-  systemChecksums["cooling_peak_condition_table"] = getSystemLoadComponents()
+  systemChecksums["cooling_peak_condition_table"] = getCoolingPeakConditionObject()
   systemChecksums["cooling_peak_load_component_table"] = getSystemLoadComponents()
   systemChecksums["heating_engineering_check_table"] = getSystemEngineeringChecksumsObject()
-  systemChecksums["heating_peak_condition_table"] = getSystemLoadComponents()
+  systemChecksums["heating_peak_condition_table"] = getHeatingPeakConditionObject()
   systemChecksums["heating_peak_load_component_table"] = getSystemLoadComponents()
 
   jsonData['system_checksums'].push(systemChecksums);
@@ -184,10 +227,10 @@ for (var i=1; i<=numZones; i++) {
   }
 
   zoneChecksums["cooling_engineering_check_table"] = getZoneEngineeringChecksumsObject()
-  zoneChecksums["cooling_peak_condition_table"] = getZoneLoadComponents()
+  zoneChecksums["cooling_peak_condition_table"] = getCoolingPeakConditionObject()
   zoneChecksums["cooling_peak_load_component_table"] = getZoneLoadComponents()
   zoneChecksums["heating_engineering_check_table"] = getZoneEngineeringChecksumsObject()
-  zoneChecksums["heating_peak_condition_table"] = getZoneLoadComponents()
+  zoneChecksums["heating_peak_condition_table"] = getHeatingPeakConditionObject()
   zoneChecksums["heating_peak_load_component_table"] = getZoneLoadComponents()
 
   jsonData['zone_loads_by_components'].push(zoneChecksums);

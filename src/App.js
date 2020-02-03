@@ -16,6 +16,7 @@ export default class App extends React.Component {
       "sensible_instant": 0.0,
       "sensible_return_air": 0.0,
       "total": 0.0,
+      "percent_grand_total": 0.0
     };
 
     data["return_air_other"] = {
@@ -25,29 +26,30 @@ export default class App extends React.Component {
       "sensible_instant": 0.0,
       "sensible_return_air": 0.0,
       "total": 0.0,
+      "percent_grand_total": 0.0
     };
+
+    // Initialize total load
+    var totalLoad = 0;
 
     // Loop for row in data
     Object.keys(data).map((rowName) => {
       const returnAirLoad = JSON.parse(JSON.stringify(data))[rowName]['sensible_return_air'];
-      const totalLoad = JSON.parse(JSON.stringify(data))[rowName]['total'];
+      //const totalLoad = JSON.parse(JSON.stringify(data))[rowName]['total'];
 
       // If loads exist
       if (returnAirLoad > 0) {
         // Determine type of load (lighting or other)
         if ( rowName === 'lights') {
           // Lighting loads
-          data["return_air_lights"]["sensible_instant"] = returnAirLoad;
-          data["return_air_lights"]["total"] += returnAirLoad;         
+          data["return_air_lights"]["sensible_instant"] = returnAirLoad;     
         } else {
           // Increment all other loads
-          data["return_air_other"]["sensible_instant"] += returnAirLoad;
-          //data["return_air_other"]["total"] += returnAirLoad;                    
+          data["return_air_other"]["sensible_instant"] += returnAirLoad;                   
         }
 
         // Remove sensible_return air load and reduce total load
-        data[rowName]["sensible_return_air"] = 0;
-        //data[rowName]["total"] = Math.max(totalLoad-returnAirLoad,0);  
+        data[rowName]["sensible_return_air"] = 0; 
       }
 
       // Recalculate total
@@ -56,7 +58,14 @@ export default class App extends React.Component {
       data[rowName]["total"] += data[rowName]["sensible_delayed"]
       data[rowName]["total"] += data[rowName]["latent"]
       data[rowName]["total"] += data[rowName]["sensible_return_air"]
+      totalLoad += data[rowName]["total"];  // Calculate the grand total
       
+      return data
+    })
+
+    // Loop for percent grand total
+    Object.keys(data).map((rowName) => {
+      data[rowName]["percent_grand_total"] = (data[rowName]["total"]/totalLoad)*100.0;
       return data
     })
 

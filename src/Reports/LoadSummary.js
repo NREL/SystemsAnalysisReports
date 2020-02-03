@@ -95,8 +95,8 @@ export class LoadSummary extends React.Component {
         const peakCoolingLoad = data['cooling_peak_condition_table']['sensible_peak'];
         const peakHeatingLoad = data['heating_peak_condition_table']['sensible_peak'];
         const output = [ 
-            {'name': 'Cooling', 'value': Math.abs(peakCoolingLoad)}, 
-            {'name': 'Heating', 'value': Math.abs(peakHeatingLoad)}
+            {'name': 'Cooling', 'value': parseInt(Math.abs(peakCoolingLoad))}, 
+            {'name': 'Heating', 'value': parseInt(Math.abs(peakHeatingLoad))}
         ]
 
         return output
@@ -112,6 +112,7 @@ export class LoadSummary extends React.Component {
             "sensible_instant": 0.0,
             "sensible_return_air": 0.0,
             "total": 0.0,
+            "percent_grand_total": 0.0
           };
 
         // Loop and calculate the table subtotals for each column
@@ -141,7 +142,7 @@ export class LoadSummary extends React.Component {
             var total = 0;
             // Loop again to total the loads for each load group
             dataMapping[group].map((loadComponent) => total += data[loadComponent]['total'])
-            newData.push({'name': group, 'value': total})
+            newData.push({'name': group, 'value': parseInt(total)})
             return newData
         })
 

@@ -1,12 +1,45 @@
+export const designPsychrometricsMapping = {
+    "componentTable":{
+        "columns": [
+            {"displayName": "Dry Bulb Temperature [C]", "jsonKey": "drybulb", "decimals": 1},
+            {"displayName": "Humidity Ratio [kg/kg]", "jsonKey": "hr", "decimals": 4},
+            {"displayName": "Tempeature Difference [C]", "jsonKey": "temp_diff", "decimals": 1},
+        ],
+        "rows": [
+            {"displayName": "Zone", "jsonKey": "zone"},
+            {"displayName": "Return Air", "jsonKey": "return_air"},
+            {"displayName": "Outdoor Air", "jsonKey": "oa"},
+            {"displayName": "Entering Coil", "jsonKey": "entering_coil"},
+            {"displayName": "Leaving Coil", "jsonKey": "leaving_coil"},
+            {"displayName": "Supply Fan", "jsonKey": "supply_fan"},
+        ]
+    },
+    "componentChecks": [
+        {
+            "label": null,
+            "items": [
+                {"displayName": "System Name", "jsonKey": "name", "unitLabel": null},
+                {"displayName": "Time of Peak", "jsonKey": "time_of_peak", "unitLabel": null},
+                {"displayName": "Coil Air Flow Rate", "jsonKey": "coil_air_flow", "unitLabel": "m3/s", "decimals": 3},
+                {"displayName": "Zone Space Sensible Load", "jsonKey": "zone_sensible_load", "unitLabel": "W", "decimals": 0},
+                {"displayName": "Outdoor Air Flow Rate", "jsonKey": "oa_flow_rate", "unitLabel": "m3/s", "decimals": 3},
+                {"displayName": "Percent Outdoor Air", "jsonKey": "percent_oa", "unitLabel": "%", "decimals": 1},
+                {"displayName": "Air Specific Heat", "jsonKey": "air_specific_heat", "unitLabel": "J-kg/K", "decimals": 2}, 
+                {"displayName": "Air Density", "jsonKey": "air_density", "unitLabel": "kg/m3", "decimals": 2},           
+            ]
+        }
+    ]
+};
+
 export const zoneLoadSummaryMapping = {
     "envelopeLoadsTable":{
         "columns": [
-            {"displayName": "Return Air (W)", "jsonKey": "sensible_return_air"},
-            {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant"},
-            {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed"},
-            {"displayName": "Latent (W)", "jsonKey": "latent"},
-            {"displayName": "Total (W)", "jsonKey": "total"},
-            {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total"},
+            {"displayName": "Return Air (W)", "jsonKey": "sensible_return_air", "decimals": 0},
+            {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant", "decimals": 0},
+            {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed", "decimals": 0},
+            {"displayName": "Latent (W)", "jsonKey": "latent", "decimals": 0},
+            {"displayName": "Total (W)", "jsonKey": "total", "decimals": 0},
+            {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total", "decimals": 1},
         ],
         "rows": [
             {"displayName": "Roof", "jsonKey": "roof"},
@@ -28,12 +61,12 @@ export const zoneLoadSummaryMapping = {
     },
     "internalGainsTable":{
         "columns": [
-            {"displayName": "Return Air (W)", "jsonKey": "sensible_return_air"},
-            {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant"},
-            {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed"},
-            {"displayName": "Latent (W)", "jsonKey": "latent"},
-            {"displayName": "Total (W)", "jsonKey": "total"},
-            {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total"},
+            {"displayName": "Return Air (W)", "jsonKey": "sensible_return_air", "decimals": 0},
+            {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant", "decimals": 0},
+            {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed", "decimals": 0},
+            {"displayName": "Latent (W)", "jsonKey": "latent", "decimals": 0},
+            {"displayName": "Total (W)", "jsonKey": "total", "decimals": 0},
+            {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total", "decimals": 1},
         ],
         "rows": [
             {"displayName": "People", "jsonKey": "people"},
@@ -45,12 +78,12 @@ export const zoneLoadSummaryMapping = {
     },
     "systemLoadsTable":{
         "columns": [
-            {"displayName": "Return Air (W)", "jsonKey": "sensible_return_air"},
-            {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant"},
-            {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed"},
-            {"displayName": "Latent (W)", "jsonKey": "latent"},
-            {"displayName": "Total (W)", "jsonKey": "total"},
-            {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total"},
+            {"displayName": "Return Air (W)", "jsonKey": "sensible_return_air", "decimals": 0},
+            {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant", "decimals": 0},
+            {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed", "decimals": 0},
+            {"displayName": "Latent (W)", "jsonKey": "latent", "decimals": 0},
+            {"displayName": "Total (W)", "jsonKey": "total", "decimals": 0},
+            {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total", "decimals": 1},
         ],
         "rows": [
             {"displayName": "Return Air - Other", "jsonKey": "return_air_other"},
@@ -68,17 +101,17 @@ export const zoneLoadSummaryMapping = {
         {
             "label": "Outside",
             "items": [
-                {"displayName": "DB", "jsonKey": "oa_drybulb", "unitLabel": "C"},
-                {"displayName": "HR", "jsonKey": "oa_hr", "unitLabel": "kg/kg"},
-                {"displayName": "WB", "jsonKey": "oa_wetbulb", "unitLabel": "C"}
+                {"displayName": "DB", "jsonKey": "oa_drybulb", "unitLabel": "C", "decimals": 1},
+                {"displayName": "HR", "jsonKey": "oa_hr", "unitLabel": "kg/kg", "decimals": 4},
+                {"displayName": "WB", "jsonKey": "oa_wetbulb", "unitLabel": "C", "decimals": 1}
             ]
         },
         {
             "label": "Zone",
             "items": [
-                {"displayName": "DB", "jsonKey": "zone_drybulb", "unitLabel": "C"},
-                {"displayName": "HR", "jsonKey": "zone_hr", "unitLabel": "kg/kg"},
-                {"displayName": "WB", "jsonKey": "zone_rh", "unitLabel": "C"}
+                {"displayName": "DB", "jsonKey": "zone_drybulb", "unitLabel": "C", "decimals": 1},
+                {"displayName": "HR", "jsonKey": "zone_hr", "unitLabel": "kg/kg", "decimals": 4},
+                {"displayName": "WB", "jsonKey": "zone_rh", "unitLabel": "C", "decimals": 1}
             ]
         }
     ],
@@ -86,13 +119,13 @@ export const zoneLoadSummaryMapping = {
         {
             "label": null,
             "items": [
-                {"displayName": "m3/s-m2", "jsonKey": "airflow_per_floor_area", "unitLabel": null},
+                {"displayName": "m3/s-m2", "jsonKey": "airflow_per_floor_area", "unitLabel": null, "decimals": 4},
             ]
         },
         {
             "label": null,
             "items": [
-                {"displayName": "people", "jsonKey": "number_of_people", "unitLabel": null},
+                {"displayName": "people", "jsonKey": "number_of_people", "unitLabel": null, "decimals": 0},
             ]
         }
     ],
@@ -142,12 +175,12 @@ export const zoneLoadSummaryMapping = {
 export const systemLoadSummaryMapping = {
     "envelopeLoadsTable":{
         "columns": [
-            {"displayName": "Return Air (W)", "jsonKey": "sensible_return_air"},
-            {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant"},
-            {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed"},
-            {"displayName": "Latent (W)", "jsonKey": "latent"},
-            {"displayName": "Total (W)", "jsonKey": "total"},
-            {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total"},
+            {"displayName": "Return Air (W)", "jsonKey": "sensible_return_air", "decimals": 0},
+            {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant", "decimals": 0},
+            {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed", "decimals": 0},
+            {"displayName": "Latent (W)", "jsonKey": "latent", "decimals": 0},
+            {"displayName": "Total (W)", "jsonKey": "total", "decimals": 0},
+            {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total", "decimals": 1},
         ],
         "rows": [
             {"displayName": "Roof", "jsonKey": "roof"},
@@ -169,12 +202,12 @@ export const systemLoadSummaryMapping = {
     },
     "internalGainsTable":{
         "columns": [
-            {"displayName": "Return Air (W)", "jsonKey": "sensible_return_air"},
-            {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant"},
-            {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed"},
-            {"displayName": "Latent (W)", "jsonKey": "latent"},
-            {"displayName": "Total (W)", "jsonKey": "total"},
-            {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total"},
+            {"displayName": "Return Air (W)", "jsonKey": "sensible_return_air", "decimals": 0},
+            {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant", "decimals": 0},
+            {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed", "decimals": 0},
+            {"displayName": "Latent (W)", "jsonKey": "latent", "decimals": 0},
+            {"displayName": "Total (W)", "jsonKey": "total", "decimals": 0},
+            {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total", "decimals": 1},
         ],
         "rows": [
             {"displayName": "People", "jsonKey": "people"},
@@ -186,12 +219,12 @@ export const systemLoadSummaryMapping = {
     },
     "systemLoadsTable":{
         "columns": [
-            {"displayName": "Return Air (W)", "jsonKey": "sensible_return_air"},
-            {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant"},
-            {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed"},
-            {"displayName": "Latent (W)", "jsonKey": "latent"},
-            {"displayName": "Total (W)", "jsonKey": "total"},
-            {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total"},
+            {"displayName": "Return Air (W)", "jsonKey": "sensible_return_air", "decimals": 0},
+            {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant", "decimals": 0},
+            {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed", "decimals": 0},
+            {"displayName": "Latent (W)", "jsonKey": "latent", "decimals": 0},
+            {"displayName": "Total (W)", "jsonKey": "total", "decimals": 0},
+            {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total", "decimals": 1},
         ],
         "rows": [
             {"displayName": "Return Air - Other", "jsonKey": "return_air_other"},
@@ -209,17 +242,17 @@ export const systemLoadSummaryMapping = {
         {
             "label": "Outside",
             "items": [
-                {"displayName": "DB", "jsonKey": "oa_drybulb", "unitLabel": "C"},
-                {"displayName": "HR", "jsonKey": "oa_hr", "unitLabel": "kg/kg"},
-                {"displayName": "WB", "jsonKey": "oa_wetbulb", "unitLabel": "C"}
+                {"displayName": "DB", "jsonKey": "oa_drybulb", "unitLabel": "C", "decimals": 1},
+                {"displayName": "HR", "jsonKey": "oa_hr", "unitLabel": "kg/kg", "decimals": 4},
+                {"displayName": "WB", "jsonKey": "oa_wetbulb", "unitLabel": "C", "decimals": 1}
             ]
         },
         {
             "label": "Zone",
             "items": [
-                {"displayName": "DB", "jsonKey": "zone_drybulb", "unitLabel": "C"},
-                {"displayName": "HR", "jsonKey": "zone_hr", "unitLabel": "kg/kg"},
-                {"displayName": "WB", "jsonKey": "zone_rh", "unitLabel": "C"}
+                {"displayName": "DB", "jsonKey": "zone_drybulb", "unitLabel": "C", "decimals": 1},
+                {"displayName": "HR", "jsonKey": "zone_hr", "unitLabel": "kg/kg", "decimals": 4},
+                {"displayName": "WB", "jsonKey": "zone_rh", "unitLabel": "C", "decimals": 1}
             ]
         }
     ],
@@ -227,13 +260,13 @@ export const systemLoadSummaryMapping = {
         {
             "label": null,
             "items": [
-                {"displayName": "m3/s-m2", "jsonKey": "airflow_per_floor_area", "unitLabel": null},
+                {"displayName": "m3/s-m2", "jsonKey": "airflow_per_floor_area", "unitLabel": null, "decimals": 4},
             ]
         },
         {
             "label": null,
             "items": [
-                {"displayName": "people", "jsonKey": "number_of_people", "unitLabel": null},
+                {"displayName": "people", "jsonKey": "number_of_people", "unitLabel": null, "decimals": 0},
             ]
         }
     ],
