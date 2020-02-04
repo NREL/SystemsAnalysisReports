@@ -25,6 +25,7 @@
     "extends": "react-app"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/plugin-transform-block-scoping": "^7.8.3",
     "@babel/plugin-transform-runtime": "^7.8.3",
     "babel-core": "^6.26.3",
