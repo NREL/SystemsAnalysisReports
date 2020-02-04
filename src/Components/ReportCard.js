@@ -2,6 +2,7 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
+import './ReportCard.css';
 import { formatUnitLabels } from '../functions/textFunctions';
 import { isNumeric, numberWithCommas } from '../functions/numericFunctions';
 
