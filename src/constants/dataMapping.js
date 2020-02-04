@@ -34,7 +34,6 @@ export const designPsychrometricsMapping = {
 export const zoneLoadSummaryMapping = {
     "envelopeLoadsTable":{
         "columns": [
-            {"displayName": "Return Air (W)", "jsonKey": "sensible_return_air", "decimals": 0},
             {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant", "decimals": 0},
             {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed", "decimals": 0},
             {"displayName": "Latent (W)", "jsonKey": "latent", "decimals": 0},
@@ -61,7 +60,6 @@ export const zoneLoadSummaryMapping = {
     },
     "internalGainsTable":{
         "columns": [
-            {"displayName": "Return Air (W)", "jsonKey": "sensible_return_air", "decimals": 0},
             {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant", "decimals": 0},
             {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed", "decimals": 0},
             {"displayName": "Latent (W)", "jsonKey": "latent", "decimals": 0},
@@ -78,7 +76,6 @@ export const zoneLoadSummaryMapping = {
     },
     "systemLoadsTable":{
         "columns": [
-            {"displayName": "Return Air (W)", "jsonKey": "sensible_return_air", "decimals": 0},
             {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant", "decimals": 0},
             {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed", "decimals": 0},
             {"displayName": "Latent (W)", "jsonKey": "latent", "decimals": 0},
@@ -98,6 +95,12 @@ export const zoneLoadSummaryMapping = {
         ]
     },
     "peakConditions": [
+        {
+            "Label": null,
+            "items": [
+                {"displayName": "Time at Peak", "jsonKey": "time_of_peak_load", "unitLabel": null}
+            ]
+        },
         {
             "label": "Outside",
             "items": [
@@ -174,7 +177,6 @@ export const zoneLoadSummaryMapping = {
 export const systemLoadSummaryMapping = {
     "envelopeLoadsTable":{
         "columns": [
-            {"displayName": "Return Air (W)", "jsonKey": "sensible_return_air", "decimals": 0},
             {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant", "decimals": 0},
             {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed", "decimals": 0},
             {"displayName": "Latent (W)", "jsonKey": "latent", "decimals": 0},
@@ -201,7 +203,6 @@ export const systemLoadSummaryMapping = {
     },
     "internalGainsTable":{
         "columns": [
-            {"displayName": "Return Air (W)", "jsonKey": "sensible_return_air", "decimals": 0},
             {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant", "decimals": 0},
             {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed", "decimals": 0},
             {"displayName": "Latent (W)", "jsonKey": "latent", "decimals": 0},
@@ -218,7 +219,6 @@ export const systemLoadSummaryMapping = {
     },
     "systemLoadsTable":{
         "columns": [
-            {"displayName": "Return Air (W)", "jsonKey": "sensible_return_air", "decimals": 0},
             {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant", "decimals": 0},
             {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed", "decimals": 0},
             {"displayName": "Latent (W)", "jsonKey": "latent", "decimals": 0},
