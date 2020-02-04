@@ -1,5 +1,5 @@
 import React from 'react';
-import { TabPanes } from './Components/TabPanes';
+import { Navigation } from './Components/Navigation';
 import './App.css';
 import jsonData from './data.json';
 
@@ -12,7 +12,7 @@ export default class App extends React.Component {
             Revit Systems Analysis - Loads Report
           </p>
           </header>
-          <TabPanes data={jsonData}/>
+          <Navigation data={jsonData}/>
       </div>
     )
   }
