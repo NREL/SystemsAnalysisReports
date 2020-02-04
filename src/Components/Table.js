@@ -1,5 +1,6 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table'
+import { numberWithCommas } from '../functions/numericFunctions';
 
 export class CustomTable extends React.Component {
     addDataRow(row, columns, data) {
@@ -21,7 +22,7 @@ export class CustomTable extends React.Component {
                         }
                         if ( rowData[column['jsonKey']] ) {
                             // Set value to display with decimal value truncation
-                            dataValue = rowData[column['jsonKey']].toFixed(decimals);
+                            dataValue = numberWithCommas(rowData[column['jsonKey']].toFixed(decimals));
                         } else {
                             // Set value to null if none exists in data
                             dataValue = null;

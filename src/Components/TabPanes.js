@@ -24,7 +24,6 @@ export class TabPanes extends React.Component {
     componentDidMount() {
     // Function to load data asyncronously
     this.loadData().then(data => {
-        //this.formatData(data).then(data => this.setState({ loading: false, data: data }))
         this.formatData(data).then(data => {
             this.setState({ navDisabled: false, loading: false, data: data })
         })
@@ -103,13 +102,8 @@ export class TabPanes extends React.Component {
     }
 
     formatData = (data) => new Promise((resolve, reject) => {
-        //var newData = JSON.parse(JSON.stringify(data['zone_loads_by_components']));
-
         // This function formats the data that will be displayed in the table.
-        //console.log('Formatting data...');
         var newData = data;
-        
-        //var newData = JSON.parse(JSON.stringify(data));
 
         // Adjust Zone Loads By Component
         newData['zone_loads_by_components'].map((loadObject) => {
@@ -127,23 +121,11 @@ export class TabPanes extends React.Component {
             return loadObject;
         })
 
-        //console.log('Done formatting data...');
-
         resolve(newData);
     });
 
     render() {
         const { disabled, loading, data } = this.state;
-
-          /*
-              <Tab.Content className="App-content">
-                    <Tab.Pane eventKey="zone_load_summary">
-                        <Spinner animation="border" role="status">
-                        <span className="sr-only">Loading...</span>
-                        </Spinner>
-                    </Tab.Pane>
-                </Tab.Content>
-          */
 
         if(loading) { // if your component doesn't have to wait for an async action, remove this block 
             return(

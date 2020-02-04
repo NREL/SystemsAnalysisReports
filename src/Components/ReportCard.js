@@ -2,7 +2,8 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
-import { isNumeric } from '../functions/numericFunctions';
+import { formatUnitLabels } from '../functions/textFunctions';
+import { isNumeric, numberWithCommas } from '../functions/numericFunctions';
 
 export class ReportCard extends React.Component {
     render() {
@@ -25,15 +26,18 @@ export class ReportCard extends React.Component {
                                     }
                                     if ( isNumeric(data[item["jsonKey"]]) ) {
                                         // Set value to display with decimal value truncation
-                                        dataValue = data[item["jsonKey"]].toFixed(decimals);
+                                        dataValue = numberWithCommas(data[item["jsonKey"]].toFixed(decimals));
                                     } else {
                                         // Set value to null if none exists in data
                                         dataValue = data[item["jsonKey"]];
                                     }
                                     
+                                    // Set formatting for the unit labels
+                                    const unitLabel = formatUnitLabels(item["unitLabel"]);
+
                                     return (
                                         <p key={ this.props.name + '-' + item["jsonKey"] }>
-                                            { item["displayName"] } : { dataValue } { item["unitLabel"] && item["unitLabel"] }
+                                            { item["displayName"] } : { dataValue } { unitLabel && unitLabel }
                                         </p>
                                     )} 
                                 )}
