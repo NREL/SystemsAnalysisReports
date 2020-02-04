@@ -141,7 +141,7 @@ export class LoadSummary extends React.Component {
         Object.keys(dataMapping).map((group) => {
             var total = 0;
             // Loop again to total the loads for each load group
-            dataMapping[group].map((loadComponent) => total += data[loadComponent]['total'])
+            dataMapping[group].map((loadComponent) => ( Object.keys(data).includes(loadComponent) ? total += data[loadComponent]['total'] : null ))
             newData.push({'name': group, 'value': parseInt(total)})
             return newData
         })

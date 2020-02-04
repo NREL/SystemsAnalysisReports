@@ -83,7 +83,6 @@ function getHeatingPeakConditionObject() {
   }
 }
 
-
 function getSystemEngineeringChecksumsObject() {
   return {
     "airflow_per_floor_area": getRandomArbitrary(0.01, 0.05),
@@ -123,6 +122,7 @@ function getSystemLoadComponents() {
     "equipment": getLoadComponentObject(),
     "exterior_floor": getLoadComponentObject(),
     "exterior_wall": getLoadComponentObject(),
+    "fan_heat": getLoadComponentObject(),
     "fenestration_conduction": getLoadComponentObject(),
     "fenestration_solar": getLoadComponentObject(),
     "grand_total": getLoadComponentObject(),
@@ -174,8 +174,7 @@ function getZoneLoadComponents() {
     "power_generation_equipment": getLoadComponentObject(),
     "refrigeration": getLoadComponentObject(),
     "roof": getLoadComponentObject(),
-    "water_use_equipment": getLoadComponentObject(),
-    "zone_ventilation": getLoadComponentObject()
+    "water_use_equipment": getLoadComponentObject()
   }
 }
 
