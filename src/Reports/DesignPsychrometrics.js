@@ -2,6 +2,7 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import Tab from 'react-bootstrap/Tab';
 import { ObjectSelectionDropDown } from '../Components/ObjectSelectionDropdown';
 import { CustomTable } from '../Components/Table';
 import { ReportCard } from '../Components/ReportCard';
@@ -64,7 +65,7 @@ export class DesignPsychrometrics extends React.Component {
         const data = this.props.data[this.state.object_selection];
 
         return (
-            <Container id={this.props.name + '-container'}>
+            <Tab.Container id={this.props.name + '-container'}>
             <Row>
                 <ObjectSelectionDropDown
                 name={this.props.name + "-objectDropdown"}
@@ -91,7 +92,7 @@ export class DesignPsychrometrics extends React.Component {
                 />
                 </Col>
           </Row>
-        </Container>
+        </Tab.Container>
         );
     }
 }

@@ -2,17 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
   background-color: #282c34;
   min-height: 5vh;
@@ -26,35 +15,6 @@
 
 .App-link {
   color: #61dafb;
-}
-
-.App-report {
-  margin-top: 50px;
-  margin-right: 50px;
-  margin-bottom: 50px;
-  margin-left: 50px;
-}
-
-.App-navbar {
-  margin-top: 5px;
-  margin-right: 45px;
-  margin-bottom: 0px;
-  margin-left: 45px;
-}
-
-.App-content {
-  margin-top: 0px;
-  margin-right: 50px;
-  margin-bottom: 0px;
-  margin-left: 50px;
-}
-
-.App-dropdown {
-  padding-top: 5px;
-  padding-right: 5px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  color: black;
 }
 
 .App-buttons {
@@ -72,28 +32,6 @@
   align-items: center;
   justify-content: center;
 };
-
-.App-card {
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.App-card-header {
-  font-size: 14px;
-  line-height: 0.6;
-}
-
-.App-card-body {
-  font-size: 12px;
-  line-height: 0.4;
-  width: 22rem;
-  padding-top: 20px;
-  padding-right: 5px;
-  padding-bottom: 10px;
-  padding-left: 5px;
-}
 
 .recharts-wrapper {
   margin : 0 auto;

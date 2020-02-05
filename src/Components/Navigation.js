@@ -3,8 +3,10 @@ import Spinner from 'react-bootstrap/Spinner';
 import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
 import { LoadSummary } from '../Reports/LoadSummary';
 import { DesignPsychrometrics } from '../Reports/DesignPsychrometrics';
+import './Navigation.css';
 import {
     designPsychrometricsMapping,
     zoneLoadSummaryMapping,
@@ -40,64 +42,39 @@ export class Navigation extends React.Component {
 
         if(loading) { // if your component doesn't have to wait for an async action, remove this block 
             return(
-                <Tab.Container id="report-navbar" defaultActiveKey="zone_load_summary">
-                <Tab.Content className="App-content">
-                <Tab.Pane eventKey="zone_load_summary">
+                <div className="navigation-container">
                     <Spinner animation="border" role="status">
                     <span className="sr-only">Loading...</span>
                     </Spinner>
-                </Tab.Pane>
-                </Tab.Content>
-                </Tab.Container>
+                </div>
             )
         } else {
             return(
-                <Tab.Container id="report-navbar" defaultActiveKey="zone_load_summary">
-                    <Row>
-                        <Nav variant="tabs" className="App-navbar">
-                            <Nav.Item background="black">
-                                <Nav.Link eventKey="zone_load_summary" disabled={disabled}>
-                                    Zone Load Summary
-                                </Nav.Link>
-                            </Nav.Item>
-                            <Nav.Item>
-                                <Nav.Link eventKey="system_load_summary" disabled={disabled}>
-                                    System Load Summary
-                                </Nav.Link>
-                            </Nav.Item>
-                            <Nav.Item>
-                                <Nav.Link eventKey="design_psychrometrics" disabled={disabled}>
-                                    Design Psychrometrics
-                                </Nav.Link>
-                            </Nav.Item>
-                        </Nav>
-                    </Row>
-                    <Row>                
-                        <Tab.Content className="App-content">
-                            <Tab.Pane eventKey="zone_load_summary">
-                                <LoadSummary
-                                name="zoneLoadSummary"
-                                dataMapping={zoneLoadSummaryMapping}
-                                data={data['zone_loads_by_components']}
-                                />
-                            </Tab.Pane>
-                            <Tab.Pane eventKey="system_load_summary">
-                                <LoadSummary
-                                name="systemLoadSummary"
-                                dataMapping={systemLoadSummaryMapping}
-                                data={data['system_checksums']}
-                                />
-                            </Tab.Pane>
-                            <Tab.Pane eventKey="design_psychrometrics">
-                                <DesignPsychrometrics
-                                name="designPsychrometrics"
-                                dataMapping={designPsychrometricsMapping}
-                                data={data['design_psychrometrics']}
-                                />
-                            </Tab.Pane>
-                        </Tab.Content>
-                    </Row>
-                    </Tab.Container>
+                <div className="navigation-container">
+                    <Tabs defaultActiveKey="zone_load_summary" id="report-navbar">
+                    <Tab eventKey="zone_load_summary" title="Zone Load Summary">
+                    <LoadSummary
+                        name="zoneLoadSummary"
+                        dataMapping={zoneLoadSummaryMapping}
+                        data={data['zone_loads_by_components']}
+                        />
+                    </Tab>
+                    <Tab eventKey="system_load_summary" title="System Load Summary">
+                    <LoadSummary
+                        name="systemLoadSummary"
+                        dataMapping={systemLoadSummaryMapping}
+                        data={data['system_checksums']}
+                        />
+                    </Tab>
+                    <Tab eventKey="design_psychrometrics" title="Design Psychrometrics">
+                    <DesignPsychrometrics
+                        name="designPsychrometrics"
+                        dataMapping={designPsychrometricsMapping}
+                        data={data['design_psychrometrics']}
+                        />
+                    </Tab>
+                </Tabs>
+              </div>
             );
         }
     }

@@ -6,16 +6,12 @@
   }
   
   .App-card-header {
-    font-size: 14px;
+    font-size: 12px;
     line-height: 0.6;
   }
   
   .App-card-body {
-    font-size: 12px;
+    font-size: 11px;
     line-height: 0.4;
-    width: 22rem;
-    padding-top: 20px;
-    padding-right: 5px;
-    padding-bottom: 10px;
-    padding-left: 5px;
+    width: 28em;
   }

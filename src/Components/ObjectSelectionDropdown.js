@@ -1,8 +1,10 @@
 import React from 'react';
-import Dropdown from 'react-bootstrap/Dropdown'
+import Dropdown from 'react-bootstrap/Dropdown';
 import FormControl from 'react-bootstrap/FormControl';
 import Pagination from 'rc-pagination';
 import 'rc-pagination/assets/index.css';
+import en_US from 'rc-pagination/es/locale/en_US';
+import './ObjectSelectionDropdown.css';
 import { OBJECT_SELECTION_PAGINATION_ITEMS } from '../constants/settings';
 
 export class ObjectSelectionDropDown extends React.Component {
@@ -31,22 +33,7 @@ export class ObjectSelectionDropDown extends React.Component {
         });
     }
 
-    render() {
-        // Creates a custom toggle for the dropdown menu
-        const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
-            <a
-            href="/"
-            ref={ref}
-            onClick={e => {
-                e.preventDefault();
-                onClick(e);
-            }}
-            >
-            {children}
-            &#x25bc;
-            </a>
-        ));
-        
+    render() {       
         // Creates a custom menu for the dropdown that provides pagination and filtering
         const CustomMenu = React.forwardRef(
             ({ children, style, className, 'aria-labelledby': labeledBy }, ref) => {
@@ -96,7 +83,7 @@ export class ObjectSelectionDropDown extends React.Component {
                     pageSize={OBJECT_SELECTION_PAGINATION_ITEMS}
                     onChange={this.handlePaginationClick.bind(this)}
                     showLessItems={true}
-                    locale={'en_US'}
+                    locale={en_US}
                     /> 
                 : null}
                 </div>
@@ -105,8 +92,8 @@ export class ObjectSelectionDropDown extends React.Component {
         );
 
         return (
-          <Dropdown onSelect={this.props.handleObjectSelect.bind(this)} className="App-dropdown">
-          <Dropdown.Toggle variant="secondary" as={CustomToggle} id="dropdown-custom-components">
+          <Dropdown onSelect={this.props.handleObjectSelect.bind(this)}>
+          <Dropdown.Toggle id="dropdown-custom-components" variant="secondary"> 
               { this.getObjectName(this.props.objectSelection) }
           </Dropdown.Toggle>
 
