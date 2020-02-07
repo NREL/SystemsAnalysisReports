@@ -22,6 +22,6 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 Builds the app for production using Webpack 4 to the `build` folder.<br />
 It bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br />
+The build is minified.  the data.json file is included in the bundle.js.<br />
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This build can be run statically without the need for any web server.<br />
