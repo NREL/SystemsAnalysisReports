@@ -1,7 +1,5 @@
 import React from 'react';
 import Spinner from 'react-bootstrap/Spinner';
-import Nav from 'react-bootstrap/Nav';
-import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import { LoadSummary } from '../Reports/LoadSummary';
@@ -18,7 +16,6 @@ export class Navigation extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            navDisabled: true,
             loading: true,
             data: null
         };
@@ -28,7 +25,7 @@ export class Navigation extends React.Component {
     // Function to load data asyncronously
     loadData(this.props.data).then(data => {
         formatData(data).then(data => {
-            this.setState({ navDisabled: false, loading: false, data: data })
+            this.setState({ loading: false, data: data })
         })
     })
     }
@@ -38,7 +35,7 @@ export class Navigation extends React.Component {
       });
 
     render() {
-        const { disabled, loading, data } = this.state;
+        const { loading, data } = this.state;
 
         if(loading) { // if your component doesn't have to wait for an async action, remove this block 
             return(
