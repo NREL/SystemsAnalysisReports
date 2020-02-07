@@ -6,6 +6,7 @@ import Tab from 'react-bootstrap/Tab';
 import { ObjectSelectionDropDown } from '../Components/ObjectSelectionDropdown';
 import { ReportCard } from '../Components/ReportCard';
 import { CustomTable } from '../Components/Table';
+import TableHeader from '../Components/TableHeader';
 import { CustomPieChart } from '../Components/PieChart';
 import { 
     EQUIDISTANTCOLORS,
@@ -128,7 +129,7 @@ export class LoadSummary extends React.Component {
         });
 
         // Add total row to the data object
-        newData["total"] = totals;
+        newData["subtotal"] = totals;
 
         return newData
     }
@@ -174,14 +175,22 @@ export class LoadSummary extends React.Component {
                 <Row>
                     <Col>
                         <Row>
+                            <TableHeader
+                            name={this.props.name + "-headerTable"}
+                            dataMapping={this.props.dataMapping['headerTable']}
+                            />
+                        </Row>
+                        <Row>
+                            <span>Envelope</span>
                             <CustomTable
                             name={this.props.name + "-envelopeTable"}
-                            displayHeader={true}
+                            displayHeader={false}
                             dataMapping={this.props.dataMapping['envelopeLoadsTable']}
                             data={this.formatTableData(this.props.dataMapping['envelopeLoadsTable'], loadData)}
                             />
                         </Row>
                         <Row>
+                            <span>Internal Gains</span>
                             <CustomTable
                             name={this.props.name + "-internalGainTable"}
                             displayHeader={false}
@@ -190,6 +199,7 @@ export class LoadSummary extends React.Component {
                             />
                         </Row>
                         <Row>
+                            <span>Systems</span>
                             <CustomTable
                             name={this.props.name + "-systemLoadsTable"}
                             displayHeader={false}
@@ -198,6 +208,7 @@ export class LoadSummary extends React.Component {
                             />
                         </Row>
                         <Row>
+                            <span>Total</span>
                             <CustomTable
                             name={this.props.name + "-totalLoadsTable"}
                             displayHeader={false}
@@ -218,7 +229,7 @@ export class LoadSummary extends React.Component {
                         <Row>
                             <ReportCard
                             name={this.props.name + "-engineeringCheck"}
-                            title="Engineering Check"
+                            title="Engineering Checks"
                             dataMapping={this.props.dataMapping['engineeringCheck']}
                             data={this.getEngineeringCheckTable()}
                             />

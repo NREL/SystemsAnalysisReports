@@ -32,6 +32,16 @@ export const designPsychrometricsMapping = {
 };
 
 export const zoneLoadSummaryMapping = {
+    "headerTable":{
+        "columns": [
+            {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant", "decimals": 0},
+            {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed", "decimals": 0},
+            {"displayName": "Latent (W)", "jsonKey": "latent", "decimals": 0},
+            {"displayName": "Total (W)", "jsonKey": "total", "decimals": 0},
+            {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total", "decimals": 1},
+        ],
+        "rows": []
+    },
     "envelopeLoadsTable":{
         "columns": [
             {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant", "decimals": 0},
@@ -55,7 +65,7 @@ export const zoneLoadSummaryMapping = {
             {"displayName": "Interior Floor", "jsonKey": "interzone_floor"},
             {"displayName": "Slab", "jsonKey": "ground_contact_floor"},
             {"displayName": "Other - Floor", "jsonKey": "other_floor"},
-            {"displayName": "Total", "jsonKey": "total"},
+            {"displayName": "Subtotal", "jsonKey": "subtotal"},
         ]
     },
     "internalGainsTable":{
@@ -71,7 +81,7 @@ export const zoneLoadSummaryMapping = {
             {"displayName": "Lights", "jsonKey": "lights"},
             {"displayName": "Return Air - Lights", "jsonKey": "return_air_lights"},
             {"displayName": "Equipment", "jsonKey": "equipment"},
-            {"displayName": "Total", "jsonKey": "total"},
+            {"displayName": "Subtotal", "jsonKey": "subtotal"},
         ]
     },
     "systemLoadsTable":{
@@ -91,7 +101,7 @@ export const zoneLoadSummaryMapping = {
             {"displayName": "Zone Ventilation", "jsonKey": "zone_ventilation"},
             {"displayName": "Transfer Air", "jsonKey": "interzone_mixing"},
             {"displayName": "DOAS Direct to Zone", "jsonKey": "doas_direct_to_zone"},
-            {"displayName": "Total", "jsonKey": "total"},
+            {"displayName": "Subtotal", "jsonKey": "subtotal"},
         ]
     },
     "totalLoadsTable":{
@@ -135,12 +145,13 @@ export const zoneLoadSummaryMapping = {
         {
             "label": null,
             "items": [
+
+                {"displayName": "Capacity per Floor Area", "jsonKey": "total_cap_per_floor_area", "unitLabel": "W/m2", "decimals": 1},
+                {"displayName": "Floor Area per Capacity", "jsonKey": "floor_area_per_total_cap", "unitLabel": "m2/W", "decimals": 2},
                 {"displayName": "Airflow per Floor Area", "jsonKey": "airflow_per_floor_area", "unitLabel": "m3/s-m2", "decimals": 4},
                 {"displayName": "Airflow per Capacity", "jsonKey": "airflow_per_total_cap", "unitLabel": "m3/s-W", "decimals": 4},
-                {"displayName": "Floor Area per Capacity", "jsonKey": "floor_area_per_total_cap", "unitLabel": "m2/W", "decimals": 2},
-                {"displayName": "Number of People", "jsonKey": "number_of_people", "unitLabel": null, "decimals": 0},
                 {"displayName": "Outdoor Air Percentage", "jsonKey": "oa_percent", "unitLabel": "%", "decimals": 1},
-                {"displayName": "Capacity per Floor Area", "jsonKey": "total_cap_per_floor_area", "unitLabel": "W/m2", "decimals": 1},
+                {"displayName": "Number of People", "jsonKey": "number_of_people", "unitLabel": null, "decimals": 0},
             ]
         }
     ],
@@ -188,6 +199,16 @@ export const zoneLoadSummaryMapping = {
 };
 
 export const systemLoadSummaryMapping = {
+    "headerTable":{
+        "columns": [
+            {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant", "decimals": 0},
+            {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed", "decimals": 0},
+            {"displayName": "Latent (W)", "jsonKey": "latent", "decimals": 0},
+            {"displayName": "Total (W)", "jsonKey": "total", "decimals": 0},
+            {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total", "decimals": 1},
+        ],
+        "rows": []
+    },
     "envelopeLoadsTable":{
         "columns": [
             {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant", "decimals": 0},
@@ -211,7 +232,7 @@ export const systemLoadSummaryMapping = {
             {"displayName": "Interior Floor", "jsonKey": "interzone_floor"},
             {"displayName": "Slab", "jsonKey": "ground_contact_floor"},
             {"displayName": "Other - Floor", "jsonKey": "other_floor"},
-            {"displayName": "Total", "jsonKey": "total"},
+            {"displayName": "Subtotal", "jsonKey": "subtotal"},
         ]
     },
     "internalGainsTable":{
@@ -227,7 +248,7 @@ export const systemLoadSummaryMapping = {
             {"displayName": "Lights", "jsonKey": "lights"},
             {"displayName": "Return Air - Lights", "jsonKey": "return_air_lights"},
             {"displayName": "Equipment", "jsonKey": "equipment"},
-            {"displayName": "Total", "jsonKey": "total"},
+            {"displayName": "Subtotal", "jsonKey": "subtotal"},
         ]
     },
     "systemLoadsTable":{
@@ -248,7 +269,7 @@ export const systemLoadSummaryMapping = {
             {"displayName": "Fan Heat", "jsonKey": "fan_heat"},
             {"displayName": "Transfer Air", "jsonKey": "interzone_mixing"},
             {"displayName": "DOAS Direct to Zone", "jsonKey": "doas_direct_to_zone"},
-            {"displayName": "Total", "jsonKey": "total"},
+            {"displayName": "Subtotal", "jsonKey": "subtotal"},
         ]
     },
     "totalLoadsTable":{

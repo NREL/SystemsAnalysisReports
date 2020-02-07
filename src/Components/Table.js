@@ -10,7 +10,9 @@ export class CustomTable extends React.Component {
         if (rowData) {
             return (
                 <tr key={ this.props.name + '-' + rowKey }>
-                <td width="200">{ row['displayName']}</td>
+                <td width="25%">
+                    { ( ['subtotal', 'grand_total'].includes(rowKey) ? <i>{row['displayName']}</i> : row['displayName']) }
+                </td>
                 { columns.map((column) => {
                     var dataValue = null;
                     var decimals = 1;
@@ -32,9 +34,16 @@ export class CustomTable extends React.Component {
                     return (
                         <td
                         key={ this.props.name + '-' + rowKey + '-' + column['jsonKey'] }
-                        width="80"
+                        width="15%"
                         >
-                            { ( Object.keys(rowData).includes(column['jsonKey']) ) ? dataValue : null }
+                            { 
+                            ( Object.keys(rowData).includes(column['jsonKey']) ) ? 
+                                (
+                                    ['subtotal', 'grand_total'].includes(rowKey) ? <i>{dataValue}</i> : dataValue
+                                ) 
+                                :
+                                 null 
+                            }
                         </td>
                     )
                 })}
@@ -52,11 +61,11 @@ export class CustomTable extends React.Component {
             <Table striped bordered hover responsive size="sm" className="App-table">
             <thead style={headerStyle}>
             <tr key={ this.props.name + '-header' }>
-                <th  key={ this.props.name + '-label-header' } width="300"></th>
+                <th  key={ this.props.name + '-label-header' } width="25%"></th>
                 { dataMapping['columns'].map((column) => (
                     <th
                     key={ this.props.name + '-' + column['displayName'] + '-header' }
-                    width="100"
+                    width="15%"
                     >
                     { column['displayName'] }
                     </th>

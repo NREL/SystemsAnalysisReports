@@ -26,13 +26,9 @@ export function shiftReturnAirLoads(data) {
         "percent_grand_total": 0.0
     };
 
-    // Initialize total load
-    var totalLoad = 0;
-
     // Loop for row in data
     Object.keys(data).map((rowName) => {
         const returnAirLoad = JSON.parse(JSON.stringify(data))[rowName]['sensible_return_air'];
-        //const totalLoad = JSON.parse(JSON.stringify(data))[rowName]['total'];
 
         // If loads exist
         if (returnAirLoad > 0) {
@@ -55,8 +51,7 @@ export function shiftReturnAirLoads(data) {
         data[rowName]["total"] += data[rowName]["sensible_delayed"]
         data[rowName]["total"] += data[rowName]["latent"]
         data[rowName]["total"] += data[rowName]["sensible_return_air"]
-        totalLoad += data[rowName]["total"];  // Calculate the row total
-        
+
         return data
     })
 
