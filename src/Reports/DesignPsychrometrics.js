@@ -1,5 +1,6 @@
 import React from 'react';
 import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
 import { ObjectSelectionDropDown } from '../Components/ObjectSelectionDropdown';
@@ -64,31 +65,33 @@ export class DesignPsychrometrics extends React.Component {
         const data = this.props.data[this.state.object_selection];
 
         return (
-            <Tab.Container id={this.props.name + '-container'}>
+        <Tab.Container id={this.props.name + '-container'}>
             <Row>
-                <ObjectSelectionDropDown
-                name={this.props.name + "-objectDropdown"}
-                objectList={this.state.object_list}
-                objectSelection={this.state.object_selection}
-                handleObjectSelect={this.handleObjectSelect.bind(this)}
-                />
+                <Col className='text-left'>
+                    <ObjectSelectionDropDown
+                    name={this.props.name + "-objectDropdown"}
+                    objectList={this.state.object_list}
+                    objectSelection={this.state.object_selection}
+                    handleObjectSelect={this.handleObjectSelect.bind(this)}
+                    />
+                </Col>
             </Row>
             <Row>
                 <Col>
-                <CustomTable
-                name={this.props.name + "-statePointTable"}
-                displayHeader={true}
-                dataMapping={this.props.dataMapping['componentTable']}
-                data={this.formatTableData(this.props.dataMapping['componentTable'], data)}
-                />
+                    <CustomTable
+                    name={this.props.name + "-statePointTable"}
+                    displayHeader={true}
+                    dataMapping={this.props.dataMapping['componentTable']}
+                    data={this.formatTableData(this.props.dataMapping['componentTable'], data)}
+                    />
                 </Col>
                 <Col>
-                <ReportCard
-                name={this.props.name + "-conditionsTimePeak"}
-                title="Summary"
-                dataMapping={this.props.dataMapping['componentChecks']}
-                data={data}
-                />
+                    <ReportCard
+                    name={this.props.name + "-conditionsTimePeak"}
+                    title="Summary"
+                    dataMapping={this.props.dataMapping['componentChecks']}
+                    data={data}
+                    />
                 </Col>
           </Row>
         </Tab.Container>

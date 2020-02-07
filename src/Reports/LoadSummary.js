@@ -157,20 +157,21 @@ export class LoadSummary extends React.Component {
         return (
             <Tab.Container id={this.props.name + '-container'} activeKey={this.state.heating_cooling_selection} defaultActiveKey="cooling">
                 <Row>
-                        {this.getObjectList() ? <ObjectSelectionDropDown
-                        name={this.props.name + "-objectDropdown"}
-                        objectList={this.getObjectList()}
-                        objectSelection={this.state.object_selection}
-                        handleObjectSelect={this.handleObjectSelect.bind(this)}
-                        /> : null}
-                        <Nav variant="pills" onSelect={this.handleHeatingCoolingSelect.bind(this)} className="App-buttons">
-                            <Nav.Item>
-                            <Nav.Link eventKey="cooling">Cooling</Nav.Link>
-                            </Nav.Item>
-                            <Nav.Item>
-                            <Nav.Link eventKey="heating">Heating</Nav.Link>
-                            </Nav.Item>
-                        </Nav>
+                    {this.getObjectList() ? <ObjectSelectionDropDown
+                    name={this.props.name + "-objectDropdown"}
+                    objectList={this.getObjectList()}
+                    objectSelection={this.state.object_selection}
+                    handleObjectSelect={this.handleObjectSelect.bind(this)}
+                    /> : null}
+
+                    <Nav variant="pills" onSelect={this.handleHeatingCoolingSelect.bind(this)} className="App-buttons">
+                        <Nav.Item>
+                        <Nav.Link eventKey="cooling">Cooling</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                        <Nav.Link eventKey="heating">Heating</Nav.Link>
+                        </Nav.Item>
+                    </Nav>
                 </Row>
                 <Row>
                     <Col>
