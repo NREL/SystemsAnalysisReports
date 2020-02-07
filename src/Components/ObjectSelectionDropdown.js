@@ -3,8 +3,8 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import FormControl from 'react-bootstrap/FormControl';
 import Pagination from 'rc-pagination';
 import 'rc-pagination/assets/index.css';
-import en_US from 'rc-pagination/es/locale/en_US';
 import './ObjectSelectionDropdown.css';
+import en_US from '../constants/paginationLocale';
 import { OBJECT_SELECTION_PAGINATION_ITEMS } from '../constants/settings';
 
 export class ObjectSelectionDropDown extends React.Component {
