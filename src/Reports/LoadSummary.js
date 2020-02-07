@@ -197,6 +197,14 @@ export class LoadSummary extends React.Component {
                             data={this.formatTableData(this.props.dataMapping['systemLoadsTable'], loadData)}
                             />
                         </Row>
+                        <Row>
+                            <CustomTable
+                            name={this.props.name + "-totalLoadsTable"}
+                            displayHeader={false}
+                            dataMapping={this.props.dataMapping['totalLoadsTable']}
+                            data={this.formatTableData(this.props.dataMapping['totalLoadsTable'], loadData)}
+                            />
+                        </Row>
                     </Col>
                     <Col>
                         <Row>

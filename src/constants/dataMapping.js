@@ -94,6 +94,19 @@ export const zoneLoadSummaryMapping = {
             {"displayName": "Total", "jsonKey": "total"},
         ]
     },
+    "totalLoadsTable":{
+        "columns": [
+            {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant", "decimals": 0},
+            {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed", "decimals": 0},
+            {"displayName": "Latent (W)", "jsonKey": "latent", "decimals": 0},
+            {"displayName": "Total (W)", "jsonKey": "total", "decimals": 0},
+            {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total", "decimals": 1},
+        ],
+        "rows": [
+
+            {"displayName": "Grand Total", "jsonKey": "grand_total"},
+        ]
+    },
     "peakConditions": [
         {
             "Label": null,
@@ -236,6 +249,19 @@ export const systemLoadSummaryMapping = {
             {"displayName": "Transfer Air", "jsonKey": "interzone_mixing"},
             {"displayName": "DOAS Direct to Zone", "jsonKey": "doas_direct_to_zone"},
             {"displayName": "Total", "jsonKey": "total"},
+        ]
+    },
+    "totalLoadsTable":{
+        "columns": [
+            {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant", "decimals": 0},
+            {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed", "decimals": 0},
+            {"displayName": "Latent (W)", "jsonKey": "latent", "decimals": 0},
+            {"displayName": "Total (W)", "jsonKey": "total", "decimals": 0},
+            {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total", "decimals": 1},
+        ],
+        "rows": [
+
+            {"displayName": "Grand Total", "jsonKey": "grand_total"},
         ]
     },
     "peakConditions": [
