@@ -27,12 +27,3 @@
 .App-table {
   font-size: 9px;
 }
-
-.App-chart-title {
-  align-items: center;
-  justify-content: center;
-};
-
-.recharts-wrapper {
-  margin : 0 auto;
-}
