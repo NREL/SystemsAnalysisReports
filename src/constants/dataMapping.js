@@ -146,10 +146,11 @@ export const zoneLoadSummaryMapping = {
         {
             "label": null,
             "items": [
-
+                {"displayName": "Peak Load", "jsonKey": "peak_total_load", "unitLabel": "W", "decimals": 1},
                 {"displayName": "Capacity per Floor Area", "jsonKey": "total_cap_per_floor_area", "unitLabel": "W/m2", "decimals": 1},
                 {"displayName": "Floor Area per Capacity", "jsonKey": "floor_area_per_total_cap", "unitLabel": "m2/W", "decimals": 2},
                 {"displayName": "Outdoor Air Percentage", "jsonKey": "oa_percent", "unitLabel": "%", "decimals": 1},
+                {"displayName": "Supply Airflow", "jsonKey": "fan_flow", "unitLabel": "m3/s", "decimals": 2},
                 {"displayName": "Airflow per Floor Area", "jsonKey": "airflow_per_floor_area", "unitLabel": "m3/s-m2", "decimals": 4},
                 {"displayName": "Airflow per Capacity", "jsonKey": "airflow_per_total_cap", "unitLabel": "m3/s-W", "decimals": 4},
                 {"displayName": "Number of People", "jsonKey": "number_of_people", "unitLabel": null, "decimals": 0},
@@ -303,9 +304,11 @@ export const systemLoadSummaryMapping = {
         {
             "label": null,
             "items": [
+                {"displayName": "Peak Load", "jsonKey": "peak_total_load", "unitLabel": "W", "decimals": 1},
                 {"displayName": "Capacity per Floor Area", "jsonKey": "total_cap_per_floor_area", "unitLabel": "W/m2", "decimals": 1},
                 {"displayName": "Floor Area per Capacity", "jsonKey": "floor_area_per_total_cap", "unitLabel": "m2/W", "decimals": 2},
                 {"displayName": "Outdoor Air Percentage", "jsonKey": "oa_percent", "unitLabel": "%", "decimals": 1},
+                {"displayName": "Supply Airflow", "jsonKey": "fan_flow", "unitLabel": "m3/s", "decimals": 2},
                 {"displayName": "Airflow per Floor Area", "jsonKey": "airflow_per_floor_area", "unitLabel": "m3/s-m2", "decimals": 4},
                 {"displayName": "Airflow per Capacity", "jsonKey": "airflow_per_total_cap", "unitLabel": "m3/s-W", "decimals": 4},
                 {"displayName": "Number of People", "jsonKey": "number_of_people", "unitLabel": null, "decimals": 0},

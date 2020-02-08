@@ -138,6 +138,7 @@ export const formatData = (data) => new Promise((resolve, reject) => {
 
     // Adjust Zone Loads By Component
     newData['zone_loads_by_components'].map((loadObject) => {
+        // Get cooling values
         peak_estimate_diff = loadObject['cooling_peak_condition_table']['peak_estimate_diff'];
         sizing_factor_diff = loadObject['cooling_peak_condition_table']['sf_diff'];
 
@@ -149,6 +150,15 @@ export const formatData = (data) => new Promise((resolve, reject) => {
         loadObject['cooling_peak_load_component_table'] = updateGrandTotalLoad(loadObject['cooling_peak_load_component_table']);
         loadObject['cooling_peak_load_component_table'] = updatePercentTotalLoad(loadObject['cooling_peak_load_component_table']);
 
+        //Update engineering checks
+        loadObject['cooling_engineering_check_table']['peak_total_load'] = loadObject['cooling_peak_load_component_table']['grand_total']['total'];
+        loadObject['cooling_engineering_check_table']['fan_flow'] = loadObject['cooling_peak_condition_table']['fan_flow'];
+
+
+        // Get heating values
+        peak_estimate_diff = loadObject['heating_peak_condition_table']['peak_estimate_diff'];
+        sizing_factor_diff = loadObject['heating_peak_condition_table']['sf_diff'];
+
         //Update heating load tables
         loadObject['heating_peak_load_component_table'] = shiftReturnAirLoads(loadObject['heating_peak_load_component_table']);
         loadObject['heating_peak_load_component_table'] = shiftReturnAirLoads(loadObject['heating_peak_load_component_table']);
@@ -157,11 +167,20 @@ export const formatData = (data) => new Promise((resolve, reject) => {
         loadObject['heating_peak_load_component_table'] = updateGrandTotalLoad(loadObject['heating_peak_load_component_table']);
         loadObject['heating_peak_load_component_table'] = updatePercentTotalLoad(loadObject['heating_peak_load_component_table']);
 
+        //Update engineering checks
+        loadObject['heating_peak_load_component_table']['peak_total_load'] = loadObject['heating_peak_load_component_table']['grand_total']['total'];
+        loadObject['heating_peak_load_component_table']['fan_flow'] = loadObject['heating_peak_condition_table']['fan_flow'];
+
+
         return loadObject;
     })
 
     // Adjust Systems Checksums
     newData['system_checksums'].map((loadObject) => {
+        // Get cooling values
+        peak_estimate_diff = loadObject['cooling_peak_condition_table']['peak_estimate_diff'];
+        sizing_factor_diff = loadObject['cooling_peak_condition_table']['sf_diff'];
+
         //Update cooling load tables
         loadObject['cooling_peak_load_component_table'] = shiftReturnAirLoads(loadObject['cooling_peak_load_component_table']);
         loadObject['cooling_peak_load_component_table'] = shiftReturnAirLoads(loadObject['cooling_peak_load_component_table']);
@@ -170,6 +189,15 @@ export const formatData = (data) => new Promise((resolve, reject) => {
         loadObject['cooling_peak_load_component_table'] = updateGrandTotalLoad(loadObject['cooling_peak_load_component_table']);
         loadObject['cooling_peak_load_component_table'] = updatePercentTotalLoad(loadObject['cooling_peak_load_component_table']);
 
+        //Update engineering checks
+        loadObject['cooling_engineering_check_table']['peak_total_load'] = loadObject['cooling_peak_load_component_table']['grand_total']['total'];
+        loadObject['cooling_engineering_check_table']['fan_flow'] = loadObject['cooling_peak_condition_table']['fan_flow'];
+
+
+        // Get heating values
+        peak_estimate_diff = loadObject['heating_peak_condition_table']['peak_estimate_diff'];
+        sizing_factor_diff = loadObject['heating_peak_condition_table']['sf_diff'];
+
         //Update heating load tables
         loadObject['heating_peak_load_component_table'] = shiftReturnAirLoads(loadObject['heating_peak_load_component_table']);
         loadObject['heating_peak_load_component_table'] = shiftReturnAirLoads(loadObject['heating_peak_load_component_table']);
@@ -178,7 +206,10 @@ export const formatData = (data) => new Promise((resolve, reject) => {
         loadObject['heating_peak_load_component_table'] = updateGrandTotalLoad(loadObject['heating_peak_load_component_table']);
         loadObject['heating_peak_load_component_table'] = updatePercentTotalLoad(loadObject['heating_peak_load_component_table']);
 
-
+        //Update engineering checks
+        loadObject['heating_peak_load_component_table']['peak_total_load'] = loadObject['heating_peak_load_component_table']['grand_total']['total'];
+        loadObject['heating_peak_load_component_table']['fan_flow'] = loadObject['heating_peak_condition_table']['fan_flow'];
+        
         return loadObject;
     })
 
