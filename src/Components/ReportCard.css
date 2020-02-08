@@ -3,7 +3,7 @@
     margin-right: 10px;
     margin-top: 0px;
     margin-bottom: 10px;
-    width: 20em;
+    width: 275px;
   }
   
   .App-card-header {
@@ -14,4 +14,8 @@
   .App-card-body {
     font-size: 11px;
     line-height: 0.4;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    padding-left: 0px;
+    padding-right: 0px;
   }

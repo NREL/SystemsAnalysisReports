@@ -292,11 +292,38 @@ export const systemLoadSummaryMapping = {
     },
     "peakConditions": [
         {
+            "Label": null,
+            "items": [
+                {"displayName": "Time at Peak", "jsonKey": "time_of_peak_load", "unitLabel": null}
+            ]
+        },
+        {
             "label": "Outside",
             "items": [
                 {"displayName": "DB", "jsonKey": "oa_drybulb", "unitLabel": "C", "decimals": 1},
                 {"displayName": "HR", "jsonKey": "oa_hr", "unitLabel": "kg/kg", "decimals": 4},
                 {"displayName": "WB", "jsonKey": "oa_wetbulb", "unitLabel": "C", "decimals": 1}
+            ]
+        }
+    ],
+    "temperatures": [
+        {
+            "label": null,
+            "items": [
+                {"displayName": "Outside Air", "jsonKey": "oa_drybulb", "unitLabel": "C", "decimals": 1},
+                {"displayName": "Return", "jsonKey": "zone_drybulb", "unitLabel": "C", "decimals": 1},
+                {"displayName": "Mixed Air", "jsonKey": "mat", "unitLabel": "C", "decimals": 1},
+                {"displayName": "Supply", "jsonKey": "sat", "unitLabel": "C", "decimals": 1},
+                
+            ]
+        }
+    ],
+    "airflows": [
+        {
+            "label": null,
+            "items": [
+                {"displayName": "Outside Air", "jsonKey": "oa_flow", "unitLabel": "C", "decimals": 1},
+                {"displayName": "Supply", "jsonKey": "fan_flow", "unitLabel": "C", "decimals": 1}
             ]
         }
     ],

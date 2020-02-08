@@ -174,7 +174,7 @@ export class LoadSummary extends React.Component {
                     </Nav>
                 </Row>
                 <Row>
-                    <Col>
+                    <Col md={6}>
                         <Row>
                             <TableHeader
                             name={this.props.name + "-headerTable"}
@@ -227,6 +227,26 @@ export class LoadSummary extends React.Component {
                             data={peakConditionsData}
                             />
                         </Row>
+                        { this.props.name === 'systemLoadSummary' ? (
+                            <Row>
+                                <ReportCard
+                                name={this.props.name + "-temperatures"}
+                                title="Temperatures"
+                                dataMapping={this.props.dataMapping['temperatures']}
+                                data={peakConditionsData}
+                                />
+                            </Row>
+                        ) : null }
+                        { this.props.name === 'systemLoadSummary' ? (
+                            <Row>
+                                <ReportCard
+                                name={this.props.name + "-airflows"}
+                                title="Airflows"
+                                dataMapping={this.props.dataMapping['temperatures']}
+                                data={peakConditionsData}
+                                />
+                            </Row>
+                        ) : null }
                         <Row>
                             <ReportCard
                             name={this.props.name + "-engineeringCheck"}
@@ -235,6 +255,8 @@ export class LoadSummary extends React.Component {
                             data={this.getEngineeringCheckTable()}
                             />
                         </Row>
+                    </Col>
+                    <Col>
                         <Row>
                             <CustomPieChart
                             name={this.props.name + "-peakLoadsChart"}
