@@ -43,18 +43,18 @@ function getDesignPsychrometricObject() {
 
 function getCoolingPeakConditionObject() {
   return {
-    "estimate_instant_delayed_sensible": getRandomArbitrary(1000.0, 5000.0),
+    "estimate_instant_delayed_sensible": 83112.90, ////getRandomArbitrary(1000.0, 5000.0),
     "fan_flow": getRandomArbitrary(0.5, 1.0),
     "mat": getRandomArbitrary(10, 25),
     "oa_drybulb": getRandomArbitrary(10, 25),
     "oa_flow": getRandomArbitrary(0.5, 1.0),
     "oa_hr": getRandomArbitrary(0.001, 0.010),
     "oa_wetbulb": getRandomArbitrary(10, 25),
-    "peak_estimate_diff": getRandomArbitrary(0.5, 2.0),
+    "peak_estimate_diff": -9416.3, //getRandomArbitrary(0.5, 2.0),
     "sat": getRandomArbitrary(10, 25),
-    "sensible_peak": getRandomArbitrary(1000.0, 5000.0),
-    "sensible_peak_sf": getRandomArbitrary(1000.0, 5000.0),
-    "sf_diff": getRandomArbitrary(0.5, 2.0),
+    "sensible_peak": 73696.57, //getRandomArbitrary(1000.0, 5000.0),
+    "sensible_peak_sf": 110544.86, //getRandomArbitrary(1000.0, 5000.0),
+    "sf_diff": 36848.29, //getRandomArbitrary(0.5, 2.0),
     "time_of_peak_load": "7/21 16:45:00",
     "zone_drybulb": getRandomArbitrary(10, 25),
     "zone_hr": getRandomArbitrary(0.001, 0.010),

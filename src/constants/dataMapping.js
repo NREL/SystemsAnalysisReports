@@ -113,7 +113,8 @@ export const zoneLoadSummaryMapping = {
             {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total", "decimals": 1},
         ],
         "rows": [
-
+            {"displayName": "Sizing Factor Adjustment (W)", "jsonKey": "sizing_factor_diff"},
+            {"displayName": "Time Delay Correction (W)", "jsonKey": "peak_estimate_diff"},
             {"displayName": "Grand Total", "jsonKey": "grand_total"},
         ]
     },
@@ -148,9 +149,9 @@ export const zoneLoadSummaryMapping = {
 
                 {"displayName": "Capacity per Floor Area", "jsonKey": "total_cap_per_floor_area", "unitLabel": "W/m2", "decimals": 1},
                 {"displayName": "Floor Area per Capacity", "jsonKey": "floor_area_per_total_cap", "unitLabel": "m2/W", "decimals": 2},
+                {"displayName": "Outdoor Air Percentage", "jsonKey": "oa_percent", "unitLabel": "%", "decimals": 1},
                 {"displayName": "Airflow per Floor Area", "jsonKey": "airflow_per_floor_area", "unitLabel": "m3/s-m2", "decimals": 4},
                 {"displayName": "Airflow per Capacity", "jsonKey": "airflow_per_total_cap", "unitLabel": "m3/s-W", "decimals": 4},
-                {"displayName": "Outdoor Air Percentage", "jsonKey": "oa_percent", "unitLabel": "%", "decimals": 1},
                 {"displayName": "Number of People", "jsonKey": "number_of_people", "unitLabel": null, "decimals": 0},
             ]
         }
@@ -183,17 +184,19 @@ export const zoneLoadSummaryMapping = {
         ],
         "Lights": [
             "lights",
+            "return_air_lights",
         ],
         "People": [
             "people",
         ],
         "HVAC": [
-            "doas_direct_to_zone",
-            "hvac_equipment_loss",
             "power_generation_equipment",
             "refrigeration",
             "water_use_equipment",
-            "zone_ventilation",
+            "hvac_equipment_loss",
+            "return_air_other",
+            "transfer_air",
+            "doas_direct_to_zone",
         ]
     }
 };
@@ -281,7 +284,8 @@ export const systemLoadSummaryMapping = {
             {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total", "decimals": 1},
         ],
         "rows": [
-
+            {"displayName": "Sizing Factor Adjustment (W)", "jsonKey": "sizing_factor_diff"},
+            {"displayName": "Time Delay Correction (W)", "jsonKey": "peak_estimate_diff"},
             {"displayName": "Grand Total", "jsonKey": "grand_total"},
         ]
     },
@@ -293,26 +297,18 @@ export const systemLoadSummaryMapping = {
                 {"displayName": "HR", "jsonKey": "oa_hr", "unitLabel": "kg/kg", "decimals": 4},
                 {"displayName": "WB", "jsonKey": "oa_wetbulb", "unitLabel": "C", "decimals": 1}
             ]
-        },
-        {
-            "label": "Zone",
-            "items": [
-                {"displayName": "DB", "jsonKey": "zone_drybulb", "unitLabel": "C", "decimals": 1},
-                {"displayName": "HR", "jsonKey": "zone_hr", "unitLabel": "kg/kg", "decimals": 4},
-                {"displayName": "WB", "jsonKey": "zone_rh", "unitLabel": "C", "decimals": 1}
-            ]
         }
     ],
     "engineeringCheck": [
         {
             "label": null,
             "items": [
+                {"displayName": "Capacity per Floor Area", "jsonKey": "total_cap_per_floor_area", "unitLabel": "W/m2", "decimals": 1},
+                {"displayName": "Floor Area per Capacity", "jsonKey": "floor_area_per_total_cap", "unitLabel": "m2/W", "decimals": 2},
+                {"displayName": "Outdoor Air Percentage", "jsonKey": "oa_percent", "unitLabel": "%", "decimals": 1},
                 {"displayName": "Airflow per Floor Area", "jsonKey": "airflow_per_floor_area", "unitLabel": "m3/s-m2", "decimals": 4},
                 {"displayName": "Airflow per Capacity", "jsonKey": "airflow_per_total_cap", "unitLabel": "m3/s-W", "decimals": 4},
-                {"displayName": "Floor Area per Capacity", "jsonKey": "floor_area_per_total_cap", "unitLabel": "m2/W", "decimals": 2},
                 {"displayName": "Number of People", "jsonKey": "number_of_people", "unitLabel": null, "decimals": 0},
-                {"displayName": "Outdoor Air Percentage", "jsonKey": "oa_percent", "unitLabel": "%", "decimals": 1},
-                {"displayName": "Capacity per Floor Area", "jsonKey": "total_cap_per_floor_area", "unitLabel": "W/m2", "decimals": 1},
             ]
         }
     ],
@@ -344,17 +340,20 @@ export const systemLoadSummaryMapping = {
         ],
         "Lights": [
             "lights",
+            "return_air_lights"
         ],
         "People": [
             "people",
         ],
         "HVAC": [
-            "doas_direct_to_zone",
-            "hvac_equipment_loss",
             "power_generation_equipment",
             "refrigeration",
             "water_use_equipment",
+            "hvac_equipment_loss",
             "zone_ventilation",
+            "return_air_other",
+            "transfer_air",
+            "doas_direct_to_zone",
         ]
     }
 };
