@@ -2,6 +2,12 @@ This project provides output reports for Revit Systems Analysis.
 
 ## Available Scripts
 
+For testing, you can create some simulated data by running the following command.
+
+### `node ./scripts/generateJSON.js`
+
+Move the created data.json file into the /src folder.
+
 In the project directory, you can run:
 
 ### `npm start`
