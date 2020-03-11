@@ -45,31 +45,13 @@ class SystemsAnalysisReport < OpenStudio::Measure::ReportingMeasure
   def run(runner, user_arguments)
     super(runner, user_arguments)
 
+    bundle_js_path = './resources/build/bundle.js'
+    output_path =
     model, sql_file = self.get_model_and_sql_file(runner)
-    eplus_out_container = EPlusOut::Container.default_configuration(sql_file)
-    systems_analysis_report_container = SystemsAnalysisReport::Container.default_configuration(model, eplus_out_container)
+    container = SystemsAnalysisReport.container(model, sql_file)
+    data = container.json_generator.generate
+    SystemsAnalysisReport::Strategies::HtmlInjector.(bundle_js_path, data)
 
-    # Instantiate all needed dependencies (gateways, repositories, etc.)
-    # generate the report json
-    # inject json into the html_file
-
-    # get the last model and sql file
-    model = runner.lastOpenStudioModel
-    if model.empty?
-      runner.registerError('Cannot find last model.')
-      return false
-    end
-    model = model.get
-
-    sql_file = runner.lastEnergyPlusSqlFile
-    if sql_file.empty?
-      runner.registerError('Cannot find last sql file.')
-      return false
-    end
-    sql_file = sql_file.get
-    model.setSqlFile(sql_file)
-
-    # close the sql file
     sql_file.close
 
     return true
@@ -88,11 +70,6 @@ class SystemsAnalysisReport < OpenStudio::Measure::ReportingMeasure
     end
 
     return model.get, sql_file.get
-  end
-
-  def self.create_application(sql_file, model)
-    container = Canister.new
-    container.register()
   end
 end
 
