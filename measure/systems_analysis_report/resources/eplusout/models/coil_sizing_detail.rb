@@ -88,10 +88,14 @@ module EPlusOut
                                   :zone_sensible_heat_gain_at_ideal_loads_peak) do
       include Models::Model
 
+      Cpa = 1006 # J/(kg * C) Specific heat of air
+      Hwe = 2501000 # J/kg heat of water evaporation
+      Cpw = 1860 # J/kg Specific heat of water vapor
+
       def sensible_load
         moist_air_heat_capacity * standard_air_density_adjusted_for_elevation *
-            outdoor_air_volume_flow_rate_at_ideal_loads_peak * outdoor_air_drybulb_at_ideal_loads_peak *
-            zone_air_drybulb_at_ideal_loads_peak
+            outdoor_air_volume_flow_rate_at_ideal_loads_peak * (outdoor_air_drybulb_at_ideal_loads_peak -
+            zone_air_drybulb_at_ideal_loads_peak)
       end
 
       def latent_load
@@ -106,8 +110,9 @@ module EPlusOut
             (h_oa - h_zone)
       end
 
-      def calculate_enthalpy(t_db, w)
-        (1.006 * t_db + w * (2501 + 1.86 * t_db)) * 1000
+      private
+      def calculate_enthalpy(temperature_dry_bulb, humidity_ratio)
+        (Cpa * temperature_dry_bulb + humidity_ratio * (Hwe + Cpw * temperature_dry_bulb))
       end
     end
   end
