@@ -1,6 +1,5 @@
 module EPlusOut
   module Models
-
     CoilSizingDetail = Struct.new(:name,
                                   :autosized_coil_airflow,
                                   :autosized_coil_capacity,
@@ -88,6 +87,28 @@ module EPlusOut
                                   :zone_names,
                                   :zone_sensible_heat_gain_at_ideal_loads_peak) do
       include Models::Model
+
+      def sensible_load
+        moist_air_heat_capacity * standard_air_density_adjusted_for_elevation *
+            outdoor_air_volume_flow_rate_at_ideal_loads_peak * outdoor_air_drybulb_at_ideal_loads_peak *
+            zone_air_drybulb_at_ideal_loads_peak
+      end
+
+      def latent_load
+        total_load - sensible_load
+      end
+
+      def total_load
+        h_oa = calculate_enthalpy(outdoor_air_drybulb_at_ideal_loads_peak, outdoor_air_humidity_ratio_at_ideal_loads_peak)
+        h_zone = calculate_enthalpy(zone_air_drybulb_at_ideal_loads_peak, zone_air_humidity_ratio_at_ideal_loads_peak)
+
+        standard_air_density_adjusted_for_elevation * outdoor_air_volume_flow_rate_at_ideal_loads_peak *
+            (h_oa - h_zone)
+      end
+
+      def calculate_enthalpy(t_db, w)
+        (1.006 * t_db + w * (2501 + 1.86 * t_db)) * 1000
+      end
     end
   end
 end

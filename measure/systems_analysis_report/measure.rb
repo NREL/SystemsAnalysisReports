@@ -46,7 +46,6 @@ class SystemsAnalysisReport < OpenStudio::Measure::ReportingMeasure
     super(runner, user_arguments)
 
     bundle_js_path = './resources/build/bundle.js'
-    output_path =
     model, sql_file = self.get_model_and_sql_file(runner)
     container = SystemsAnalysisReport.container(model, sql_file)
     data = container.json_generator.generate

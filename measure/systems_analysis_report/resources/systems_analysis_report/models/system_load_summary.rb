@@ -1,10 +1,9 @@
 module SystemsAnalysisReport
   module Models
-    SystemLoadSummary = Struct.new(:name, :cooling_peak_condition, :engineering_check_for_cooling, :engineering_check_for_heating,
-                                   :estimated_cooling_peak_load_component_table, :estimated_heating_peak_load_component_table,
-                                   :heating_peak_condition) do
+    SystemLoadSummary = Struct.new(:name, :peak_condition, :engineering_check, :estimated_peak_load_component_table,
+                                   :temperature, :airflow) do
 
-      include SystemsAnalysisReport::Models::Model
+      include Models::Model
     end
   end
 end

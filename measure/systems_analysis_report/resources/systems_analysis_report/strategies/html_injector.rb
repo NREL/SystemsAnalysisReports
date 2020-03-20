@@ -10,5 +10,5 @@ module SystemsAnalysisReport
   end
 end
 
-path = "/Users/npflaum/Documents/GitHub/SystemsAnalysisReports/build/bundle.js"
-SystemsAnalysisReport::Strategies::HtmlInjector.(path, "test")
+# path = "/Users/npflaum/Documents/GitHub/SystemsAnalysisReports/build/bundle.js"
+# SystemsAnalysisReport::Strategies::HtmlInjector.(path, "test")

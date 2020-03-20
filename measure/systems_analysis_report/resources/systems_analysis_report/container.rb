@@ -14,8 +14,20 @@ module SystemsAnalysisReport
           c.eplusout.heating_peak_conditions
       )
     end
+    container.register(:system_load_summary_repo) do |c|
+      Repositories::SystemLoadSummaryRepo.new(
+          c.eplusout.cooling_peak_conditions,
+          c.eplusout.engineering_check_for_coolings,
+          c.eplusout.engineering_check_for_heatings,
+          c.eplusout.estimated_cooling_peak_load_component_tables,
+          c.eplusout.estimated_heating_peak_load_component_tables,
+          c.eplusout.heating_peak_conditions,
+          c.eplusout.coil_sizing_details
+      )
+    end
     container.register(:design_psychrometric_service) { |c| Services::DesignPsychrometricService.new(c.design_psychrometric_repo)}
     container.register(:zone_load_summary_service) { |c| Services::ZoneLoadSummaryService.new(c.zone_load_summary_repo)}
-    container.register(:json_generator) { |c| ReportGenerators::JSONGenerator.new(model, c.zone_load_summary_service, c.design_psychrometric_service)}
+    container.register(:system_load_summary_service) { |c| Services::SystemLoadSummaryService.new(c.system_load_summary_repo)}
+    container.register(:json_generator) { |c| ReportGenerators::JSONGenerator.new(model, c.zone_load_summary_service, c.system_load_summary_service, c.design_psychrometric_service)}
   end
 end

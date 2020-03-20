@@ -16,17 +16,21 @@ module SystemsAnalysisReport
       end
 
       def find(name)
-        result = SystemsAnalysisReport::Models::ZoneLoadSummary.new
-        result.name = name
+        cooling_peak_condition = @cooling_peak_conditions.find_by_name(name)
+        engineering_check_for_cooling = @engineering_check_for_coolings.find_by_name(name)
+        estimated_cooling_peak_load_component_table = @estimated_cooling_peak_load_component_tables.find_by_name(name)
+        cooling = SystemsAnalysisReport::Models::ZoneLoadSummary.new(cooling_peak_condition,
+                                                                     engineering_check_for_cooling,
+                                                                     estimated_cooling_peak_load_component_table)
 
-        result.cooling_peak_condition = @cooling_peak_conditions.find_by_name(name)
-        result.heating_peak_condition = @heating_peak_conditions.find_by_name(name)
-        result.engineering_check_for_cooling = @engineering_check_for_coolings.find_by_name(name)
-        result.engineering_check_for_heating = @engineering_check_for_heatings.find_by_name(name)
-        result.estimated_cooling_peak_load_component_table = @estimated_cooling_peak_load_component_tables.find_by_name(name)
-        result.estimated_heating_peak_load_component_table = @estimated_heating_peak_load_component_tables.find_by_name(name)
+        heating_peak_condition = @heating_peak_conditions.find_by_name(name)
+        engineering_check_for_heating = @engineering_check_for_heatings.find_by_name(name)
+        estimated_heating_peak_load_component_table = @estimated_heating_peak_load_component_tables.find_by_name(name)
+        heating = SystemsAnalysisReport::Models::ZoneLoadSummary.new(heating_peak_condition,
+                                                                     engineering_check_for_heating,
+                                                                     estimated_heating_peak_load_component_table)
 
-        result
+        Models::CoolingAndHeating.new(name, cooling, heating)
       end
     end
   end
