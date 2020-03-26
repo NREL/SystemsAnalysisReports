@@ -20,12 +20,10 @@ export class ObjectSelectionDropDown extends React.Component {
         // Get the string name of the object given an id
         if (this.props.objectList) {
             for (var i = 0; i < this.props.objectList.length; i++) {
-                if (this.props.objectList[i] && this.props.objectList[i].id) {
+                if (this.props.objectList[i]) {
                     if (this.props.objectList[i].id.toString() === id.toString()) {
                         return this.props.objectList[i].name
                     }
-                } else {
-                    return null
                 }
             }
         } else {

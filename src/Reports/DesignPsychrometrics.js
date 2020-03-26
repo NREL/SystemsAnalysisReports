@@ -30,12 +30,27 @@ export class DesignPsychrometrics extends React.Component {
     getObjectList() {
         // Get a list of object names, ids, and cad_object, ids
         var object_list = []
-        for (var i = 0; i < this.props.data.length; i++) {
-            object_list.push({id: i, cad_object_id: this.props.data[i].cad_object_id, name: this.props.data[i].name});
-        }
 
-        this.setState({object_list: object_list}) // Update state with list of objects
-        this.setState({num_objects: object_list.length});  // Update state with number of objects
+        if (this.props.data) {
+            const objList = Object.keys(this.props.data);
+            for (var i = 0; i < objList.length; i++) {
+                const objName = objList[i];
+                object_list.push({id: i, cad_object_id: this.props.data[objName].cad_object_id, name: this.props.data[objName].name});
+            }
+            
+            this.setState({object_list: object_list}) // Update state with list of objects
+            this.setState({num_objects: object_list.length});  // Update state with number of objects
+        }
+    }
+
+    getObjectName(id) {
+        // Get the string name of the object given an id
+        const objectList = this.state.object_list;
+        for (var i = 0; i < objectList.length; i++) {
+            if (objectList[i].id.toString() === id.toString()) {
+                return objectList[i].name
+            }
+        }
     }
 
     formatTableData(dataMapping, data) {
@@ -65,7 +80,8 @@ export class DesignPsychrometrics extends React.Component {
     }
 
     render() {
-        const data = this.props.data[this.state.object_selection];
+        const objectName = this.getObjectName(this.state.object_selection);
+        const data = this.props.data[objectName];
 
         return (
         <Tab.Container id={this.props.name + '-container'}>

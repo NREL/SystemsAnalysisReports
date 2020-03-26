@@ -60,7 +60,7 @@ export class Navigation extends React.Component {
                     <LoadSummary
                         name="systemLoadSummary"
                         dataMapping={systemLoadSummaryMapping}
-                        data={data['system_checksums']}
+                        data={data['system_load_summarys']}
                         />
                     </Tab>
                     <Tab eventKey="design_psychrometrics" title="Design Psychrometrics">
