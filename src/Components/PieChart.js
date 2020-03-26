@@ -26,12 +26,12 @@ export class CustomPieChart extends React.Component {
                         label
                     >
                     {
-                        data.map((entry, index) => (
+                        ( data ? data.map((entry, index) => (
                             <Cell
                             key={this.props.name + '-' + index.toString()}
                             fill={colors[index % colors.length]}
                             />
-                        ))
+                        )) : null)
                     }
                     </Pie>
                     <Legend iconSize="12" formatter={renderLegendText}/>

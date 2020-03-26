@@ -40,24 +40,28 @@ export class DesignPsychrometrics extends React.Component {
 
     formatTableData(dataMapping, data) {
         // This function formats the data that will be displayed in the table.
-        var newData = {};
+        if(data) {
+            var newData = {};
 
-        // Loop for each row
-        dataMapping['rows'].map((row) => {
-            var rowKey = row['jsonKey'];
-            newData[rowKey] = {};
-            
-            // Loop for each column
-            dataMapping['columns'].map((column) => {
-                var colKey = column['jsonKey'];
-                var dataKey = rowKey + '_' + colKey; // The jsonKey for retrieving data
-                newData[rowKey][colKey] = data[dataKey];
+            // Loop for each row
+            dataMapping['rows'].map((row) => {
+                var rowKey = row['jsonKey'];
+                newData[rowKey] = {};
+                
+                // Loop for each column
+                dataMapping['columns'].map((column) => {
+                    var colKey = column['jsonKey'];
+                    var dataKey = rowKey + '_' + colKey; // The jsonKey for retrieving data
+                    newData[rowKey][colKey] = data[dataKey];
+                    return newData
+                })
                 return newData
             })
-            return newData
-        })
 
-        return newData
+            return newData
+        } else {
+            return null
+        }
     }
 
     render() {

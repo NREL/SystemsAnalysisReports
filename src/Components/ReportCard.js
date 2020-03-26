@@ -25,12 +25,17 @@ export class ReportCard extends React.Component {
                                     if (Object.keys(item).includes('decimals')) {
                                         decimals = item['decimals'];
                                     }
-                                    if ( isNumeric(data[item["jsonKey"]]) ) {
-                                        // Set value to display with decimal value truncation
-                                        dataValue = numberWithCommas(data[item["jsonKey"]].toFixed(decimals));
+                                    
+                                    if (data) {
+                                        if ( isNumeric(data[item["jsonKey"]]) ) {
+                                            // Set value to display with decimal value truncation
+                                            dataValue = numberWithCommas(data[item["jsonKey"]].toFixed(decimals));
+                                        } else {
+                                            // Set value to null if none exists in data
+                                            dataValue = data[item["jsonKey"]];
+                                        }
                                     } else {
-                                        // Set value to null if none exists in data
-                                        dataValue = data[item["jsonKey"]];
+                                        dataValue = null
                                     }
                                     
                                     // Set formatting for the unit labels

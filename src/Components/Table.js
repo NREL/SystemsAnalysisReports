@@ -5,50 +5,53 @@ import { numberWithCommas } from '../functions/numericFunctions';
 export class CustomTable extends React.Component {
     addDataRow(row, columns, data) {
         const rowKey = row['jsonKey'];
-        var rowData = data[rowKey];
+        
+        if (data) {
+            var rowData = data[rowKey];
 
-        if (rowData) {
-            return (
-                <tr key={ this.props.name + '-' + rowKey }>
-                <td width="25%">
-                    { ( ['subtotal', 'grand_total'].includes(rowKey) ? <i>{row['displayName']}</i> : row['displayName']) }
-                </td>
-                { columns.map((column) => {
-                    var dataValue = null;
-                    var decimals = 1;
+            if (rowData) {
+                return (
+                    <tr key={ this.props.name + '-' + rowKey }>
+                    <td width="25%">
+                        { ( ['subtotal', 'grand_total'].includes(rowKey) ? <i>{row['displayName']}</i> : row['displayName']) }
+                    </td>
+                    { columns.map((column) => {
+                        var dataValue = null;
+                        var decimals = 1;
 
-                    if (Object.keys(rowData).includes(column['jsonKey'])) {
-                        // Truncate numeric value based on desired decimals
-                        if (Object.keys(column).includes('decimals')) {
-                            decimals = column['decimals'];
-                        }
-                        if ( rowData[column['jsonKey']] ) {
-                            // Set value to display with decimal value truncation
-                            dataValue = numberWithCommas(rowData[column['jsonKey']].toFixed(decimals));
-                        } else {
-                            // Set value to null if none exists in data
-                            dataValue = null;
-                        }
-                    }
-
-                    return (
-                        <td
-                        key={ this.props.name + '-' + rowKey + '-' + column['jsonKey'] }
-                        width="15%"
-                        >
-                            { 
-                            ( Object.keys(rowData).includes(column['jsonKey']) ) ? 
-                                (
-                                    ['subtotal', 'grand_total'].includes(rowKey) ? <i>{dataValue}</i> : dataValue
-                                ) 
-                                :
-                                 null 
+                        if (Object.keys(rowData).includes(column['jsonKey'])) {
+                            // Truncate numeric value based on desired decimals
+                            if (Object.keys(column).includes('decimals')) {
+                                decimals = column['decimals'];
                             }
-                        </td>
-                    )
-                })}
-                </tr>
-            );
+                            if ( rowData[column['jsonKey']] ) {
+                                // Set value to display with decimal value truncation
+                                dataValue = numberWithCommas(rowData[column['jsonKey']].toFixed(decimals));
+                            } else {
+                                // Set value to null if none exists in data
+                                dataValue = null;
+                            }
+                        }
+
+                        return (
+                            <td
+                            key={ this.props.name + '-' + rowKey + '-' + column['jsonKey'] }
+                            width="15%"
+                            >
+                                { 
+                                ( Object.keys(rowData).includes(column['jsonKey']) ) ? 
+                                    (
+                                        ['subtotal', 'grand_total'].includes(rowKey) ? <i>{dataValue}</i> : dataValue
+                                    ) 
+                                    :
+                                    null 
+                                }
+                            </td>
+                        )
+                    })}
+                    </tr>
+                );
+            }
         }
     }
 

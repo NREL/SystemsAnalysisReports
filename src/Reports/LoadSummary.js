@@ -21,12 +21,13 @@ export class LoadSummary extends React.Component {
             engineering_check_table: "cooling_engineering_check_table",
             peak_condition_table: "cooling_peak_condition_table",
             peak_load_component_table: "cooling_peak_load_component_table",
-            object_selection: 0,
+            object_selection: null,
         };
     } 
 
     componentDidMount() {
-        this.getObjectList()
+        const objectList = this.getObjectList()
+        this.handleObjectSelect(objectList[0]);
     }
 
     handleObjectSelect(eventKey) {
@@ -58,8 +59,13 @@ export class LoadSummary extends React.Component {
     getObjectList() {
         // Get a list of object names, ids, and cad_object, ids
         var object_list = []
-        for (var i = 0; i < this.props.data.length; i++) {
-            object_list.push({id: i, cad_object_id: this.props.data[i].cad_object_id, name: this.props.data[i].name});
+
+        if (this.props.data) {
+            const objList = Object.keys(this.props.data);
+            for (var i = 0; i < objList.length; i++) {
+                const objName = objList[i];
+                object_list.push({id: i, cad_object_id: this.props.data[objName].cad_object_id, name: this.props.data[objName].name});
+            }
         }
 
         return object_list
@@ -76,31 +82,65 @@ export class LoadSummary extends React.Component {
 
     getLoadComponents() {
         // Get data for peak_load_component_table
-        return this.props.data[this.state.object_selection][this.state.peak_load_component_table];
+        if (this.props.data && this.state.object_selection) {
+            if (this.props.data[this.state.object_selection]) {
+                return this.props.data[this.state.object_selection][this.state.peak_load_component_table]
+            } else {
+                return null
+            }
+        } else {
+            return null
+        }
     }
 
     getPeakConditionTable() {
         // Get data for peak_condition_table
-        return this.props.data[this.state.object_selection][this.state.peak_condition_table];
+        if (this.props.data && this.state.object_selection) {
+            if (this.props.data[this.state.object_selection]) {
+                return this.props.data[this.state.object_selection][this.state.peak_condition_table]
+            } else {
+                return null
+            }
+        } else {
+            return null
+        }
     }
 
     getEngineeringCheckTable() {
         // Get data for engineering_check_table
-        return this.props.data[this.state.object_selection][this.state.engineering_check_table];
+        if (this.props.data && this.state.object_selection) {  
+            if (this.props.data[this.state.object_selection]) {
+                return this.props.data[this.state.object_selection][this.state.engineering_check_table]
+            } else {
+                return null
+            }
+        } else {
+            return null
+        }
     }
 
     getHeatingAndCoolingLoads() {
         // Assumes that Cooling Peak Condition Table - Sensible Peak Load is the appropriate total load value.
         // Investigate further whether this should be a calculated value from the subcomponents.
-        const data = this.props.data[this.state.object_selection];
-        const peakCoolingLoad = data['cooling_peak_condition_table']['sensible_peak'];
-        const peakHeatingLoad = data['heating_peak_condition_table']['sensible_peak'];
-        const output = [ 
-            {'name': 'Cooling', 'value': parseInt(Math.abs(peakCoolingLoad))}, 
-            {'name': 'Heating', 'value': parseInt(Math.abs(peakHeatingLoad))}
-        ]
+        
+        if (this.props.data) {
+            const data = this.props.data[this.state.object_selection];
 
-        return output
+            if (data) {
+                const peakCoolingLoad = data['cooling']['peak_condition']['sensible_peak'];
+                const peakHeatingLoad = data['heating']['peak_condition']['sensible_peak'];
+                const output = [ 
+                    {'name': 'Cooling', 'value': parseInt(Math.abs(peakCoolingLoad))}, 
+                    {'name': 'Heating', 'value': parseInt(Math.abs(peakHeatingLoad))}
+                ]
+
+                return output
+            } else {
+                return null
+            }
+        } else {
+            return null
+        }
     }
 
     formatTableData(dataMapping, data) {
@@ -117,24 +157,29 @@ export class LoadSummary extends React.Component {
           };
 
         // Loop and calculate the table subtotals for each column
-        dataMapping['rows'].map((row) => {
-            Object.keys(totals).map((colName) => {
-                var rowName = row['jsonKey'];
-                if (Object.keys(newData).includes(rowName) && rowName !== "total") {
-                    totals[colName] += newData[rowName][colName]
-                }
+        if (newData) {
+            dataMapping['rows'].map((row) => {
+                Object.keys(totals 
+                    ).map((colName) => {
+                    var rowName = row['jsonKey'];
+                    if (Object.keys(newData).includes(rowName) && rowName !== "total") {
+                        totals[colName] += newData[rowName][colName]
+                    }
+                    return totals
+                })
                 return totals
-            })
-            return totals
-        });
+            });
 
-        // Add total row to the data object
-        newData["subtotal"] = totals;
+            // Add total row to the data object
+            newData["subtotal"] = totals;
+        }
 
         return newData
     }
 
     formatLoadComponentChartData(dataMapping, data) {
+
+        if (data) {
         // This function formats the data that will be displayed in a chart.
         var newData = [];
 
@@ -148,6 +193,10 @@ export class LoadSummary extends React.Component {
         })
 
         return newData
+
+        } else {
+            return null
+        }
     }
 
     render() {

@@ -28,29 +28,31 @@ export function shiftReturnAirLoads(data) {
 
     // Loop for row in data
     Object.keys(data).map((rowName) => {
-        const returnAirLoad = JSON.parse(JSON.stringify(data))[rowName]['sensible_return_air'];
+        if (rowName !== 'name') {
+            const returnAirLoad = JSON.parse(JSON.stringify(data))[rowName]['sensible_return_air'];
 
-        // If loads exist
-        if (returnAirLoad > 0) {
-        // Determine type of load (lighting or other)
-        if ( rowName === 'lights') {
-            // Lighting loads
-            data["return_air_lights"]["sensible_instant"] = returnAirLoad;     
-        } else {
-            // Increment all other loads
-            data["return_air_other"]["sensible_instant"] += returnAirLoad;                   
+            // If loads exist
+            if (returnAirLoad > 0) {
+            // Determine type of load (lighting or other)
+            if ( rowName === 'lights') {
+                // Lighting loads
+                data["return_air_lights"]["sensible_instant"] = returnAirLoad;     
+            } else {
+                // Increment all other loads
+                data["return_air_other"]["sensible_instant"] += returnAirLoad;                   
+            }
+
+            // Remove sensible_return air load and reduce total load
+            data[rowName]["sensible_return_air"] = 0; 
+            }
+
+            // Recalculate total
+            data[rowName]["total"] = 0
+            data[rowName]["total"] += data[rowName]["sensible_instant"]
+            data[rowName]["total"] += data[rowName]["sensible_delayed"]
+            data[rowName]["total"] += data[rowName]["latent"]
+            data[rowName]["total"] += data[rowName]["sensible_return_air"]
         }
-
-        // Remove sensible_return air load and reduce total load
-        data[rowName]["sensible_return_air"] = 0; 
-        }
-
-        // Recalculate total
-        data[rowName]["total"] = 0
-        data[rowName]["total"] += data[rowName]["sensible_instant"]
-        data[rowName]["total"] += data[rowName]["sensible_delayed"]
-        data[rowName]["total"] += data[rowName]["latent"]
-        data[rowName]["total"] += data[rowName]["sensible_return_air"]
 
         return data
     })
@@ -123,7 +125,10 @@ export function updatePercentTotalLoad(data) {
 
     // Loop for percent grand total
     Object.keys(data).map((rowName) => {
-        data[rowName]["percent_grand_total"] = (data[rowName]["total"]/totalLoad)*100.0;
+        if (rowName !== 'name') {
+            data[rowName]["percent_grand_total"] = (data[rowName]["total"]/totalLoad)*100.0;
+        }
+
         return data
     })
 
@@ -137,78 +142,82 @@ export const formatData = (data) => new Promise((resolve, reject) => {
     var sizing_factor_diff = 0;
 
     // Adjust Zone Loads By Component
-    newData['zone_loads_by_components'].map((loadObject) => {
+    Object.keys(newData['zone_load_summarys']).map((objKey) => {
+        var loadObject = newData['zone_load_summarys'][objKey];
+
         // Get cooling values
-        peak_estimate_diff = loadObject['cooling_peak_condition_table']['peak_estimate_diff'];
-        sizing_factor_diff = loadObject['cooling_peak_condition_table']['sf_diff'];
+        peak_estimate_diff = 0 //loadObject['cooling']['peak_condition']['peak_estimate_diff'];
+        sizing_factor_diff = 0 //loadObject['cooling']['peak_condition']['sf_diff'];
 
         //Update cooling load tables
-        loadObject['cooling_peak_load_component_table'] = shiftReturnAirLoads(loadObject['cooling_peak_load_component_table']);
-        loadObject['cooling_peak_load_component_table'] = shiftReturnAirLoads(loadObject['cooling_peak_load_component_table']);
-        loadObject['cooling_peak_load_component_table'] = addEstimatedDifference(peak_estimate_diff, loadObject['cooling_peak_load_component_table']);
-        loadObject['cooling_peak_load_component_table'] = addSizingFactorAdjustment(sizing_factor_diff, loadObject['cooling_peak_load_component_table']);
-        loadObject['cooling_peak_load_component_table'] = updateGrandTotalLoad(loadObject['cooling_peak_load_component_table']);
-        loadObject['cooling_peak_load_component_table'] = updatePercentTotalLoad(loadObject['cooling_peak_load_component_table']);
+        loadObject['cooling']['estimated_peak_load_component_table'] = shiftReturnAirLoads(loadObject['cooling']['estimated_peak_load_component_table']);
+        loadObject['cooling']['estimated_peak_load_component_table'] = shiftReturnAirLoads(loadObject['cooling']['estimated_peak_load_component_table']);
+        loadObject['cooling']['estimated_peak_load_component_table'] = addEstimatedDifference(peak_estimate_diff, loadObject['cooling']['estimated_peak_load_component_table']);
+        loadObject['cooling']['estimated_peak_load_component_table'] = addSizingFactorAdjustment(sizing_factor_diff, loadObject['cooling']['estimated_peak_load_component_table']);
+        loadObject['cooling']['estimated_peak_load_component_table'] = updateGrandTotalLoad(loadObject['cooling']['estimated_peak_load_component_table']);
+        loadObject['cooling']['estimated_peak_load_component_table'] = updatePercentTotalLoad(loadObject['cooling']['estimated_peak_load_component_table']);
 
         //Update engineering checks
-        loadObject['cooling_engineering_check_table']['peak_total_load'] = loadObject['cooling_peak_load_component_table']['grand_total']['total'];
-        loadObject['cooling_engineering_check_table']['fan_flow'] = loadObject['cooling_peak_condition_table']['fan_flow'];
+        loadObject['cooling']['engineering_check']['peak_total_load'] = loadObject['cooling']['estimated_peak_load_component_table']['grand_total']['total'];
+        loadObject['cooling']['engineering_check']['fan_flow'] = loadObject['cooling']['peak_condition']['fan_flow'];
 
 
         // Get heating values
-        peak_estimate_diff = loadObject['heating_peak_condition_table']['peak_estimate_diff'];
-        sizing_factor_diff = loadObject['heating_peak_condition_table']['sf_diff'];
+        peak_estimate_diff = 0 //loadObject['heating']['peak_condition']['peak_estimate_diff'];
+        sizing_factor_diff = 0 //loadObject['heating']['peak_condition']['sf_diff'];
 
         //Update heating load tables
-        loadObject['heating_peak_load_component_table'] = shiftReturnAirLoads(loadObject['heating_peak_load_component_table']);
-        loadObject['heating_peak_load_component_table'] = shiftReturnAirLoads(loadObject['heating_peak_load_component_table']);
-        loadObject['heating_peak_load_component_table'] = addEstimatedDifference(peak_estimate_diff, loadObject['heating_peak_load_component_table']);
-        loadObject['heating_peak_load_component_table'] = addSizingFactorAdjustment(sizing_factor_diff, loadObject['heating_peak_load_component_table']);
-        loadObject['heating_peak_load_component_table'] = updateGrandTotalLoad(loadObject['heating_peak_load_component_table']);
-        loadObject['heating_peak_load_component_table'] = updatePercentTotalLoad(loadObject['heating_peak_load_component_table']);
+        loadObject['heating']['estimated_peak_load_component_table'] = shiftReturnAirLoads(loadObject['heating']['estimated_peak_load_component_table']);
+        loadObject['heating']['estimated_peak_load_component_table'] = shiftReturnAirLoads(loadObject['heating']['estimated_peak_load_component_table']);
+        loadObject['heating']['estimated_peak_load_component_table'] = addEstimatedDifference(peak_estimate_diff, loadObject['heating']['estimated_peak_load_component_table']);
+        loadObject['heating']['estimated_peak_load_component_table'] = addSizingFactorAdjustment(sizing_factor_diff, loadObject['heating']['estimated_peak_load_component_table']);
+        loadObject['heating']['estimated_peak_load_component_table'] = updateGrandTotalLoad(loadObject['heating']['estimated_peak_load_component_table']);
+        loadObject['heating']['estimated_peak_load_component_table'] = updatePercentTotalLoad(loadObject['heating']['estimated_peak_load_component_table']);
 
         //Update engineering checks
-        loadObject['heating_peak_load_component_table']['peak_total_load'] = loadObject['heating_peak_load_component_table']['grand_total']['total'];
-        loadObject['heating_peak_load_component_table']['fan_flow'] = loadObject['heating_peak_condition_table']['fan_flow'];
+        loadObject['heating']['estimated_peak_load_component_table']['peak_total_load'] = loadObject['heating']['estimated_peak_load_component_table']['grand_total']['total'];
+        loadObject['heating']['estimated_peak_load_component_table']['fan_flow'] = loadObject['heating']['peak_condition']['fan_flow'];
 
 
         return loadObject;
     })
 
     // Adjust Systems Checksums
-    newData['system_checksums'].map((loadObject) => {
+    Object.keys(newData['system_load_summarys']).map((objKey) => {
+        var loadObject = newData['system_load_summarys'][objKey];
+
         // Get cooling values
-        peak_estimate_diff = loadObject['cooling_peak_condition_table']['peak_estimate_diff'];
-        sizing_factor_diff = loadObject['cooling_peak_condition_table']['sf_diff'];
+        peak_estimate_diff = 0 //loadObject['cooling']['peak_condition']['peak_estimate_diff'];
+        sizing_factor_diff = 0 //loadObject['cooling']['peak_condition']['sf_diff'];
 
         //Update cooling load tables
-        loadObject['cooling_peak_load_component_table'] = shiftReturnAirLoads(loadObject['cooling_peak_load_component_table']);
-        loadObject['cooling_peak_load_component_table'] = shiftReturnAirLoads(loadObject['cooling_peak_load_component_table']);
-        loadObject['cooling_peak_load_component_table'] = addEstimatedDifference(peak_estimate_diff, loadObject['cooling_peak_load_component_table']);
-        loadObject['cooling_peak_load_component_table'] = addSizingFactorAdjustment(sizing_factor_diff, loadObject['cooling_peak_load_component_table']);
-        loadObject['cooling_peak_load_component_table'] = updateGrandTotalLoad(loadObject['cooling_peak_load_component_table']);
-        loadObject['cooling_peak_load_component_table'] = updatePercentTotalLoad(loadObject['cooling_peak_load_component_table']);
+        loadObject['cooling']['estimated_peak_load_component_table'] = shiftReturnAirLoads(loadObject['cooling']['estimated_peak_load_component_table']);
+        loadObject['cooling']['estimated_peak_load_component_table'] = shiftReturnAirLoads(loadObject['cooling']['estimated_peak_load_component_table']);
+        loadObject['cooling']['estimated_peak_load_component_table'] = addEstimatedDifference(peak_estimate_diff, loadObject['cooling']['estimated_peak_load_component_table']);
+        loadObject['cooling']['estimated_peak_load_component_table'] = addSizingFactorAdjustment(sizing_factor_diff, loadObject['cooling']['estimated_peak_load_component_table']);
+        loadObject['cooling']['estimated_peak_load_component_table'] = updateGrandTotalLoad(loadObject['cooling']['estimated_peak_load_component_table']);
+        loadObject['cooling']['estimated_peak_load_component_table'] = updatePercentTotalLoad(loadObject['cooling']['estimated_peak_load_component_table']);
 
         //Update engineering checks
-        loadObject['cooling_engineering_check_table']['peak_total_load'] = loadObject['cooling_peak_load_component_table']['grand_total']['total'];
-        loadObject['cooling_engineering_check_table']['fan_flow'] = loadObject['cooling_peak_condition_table']['fan_flow'];
+        loadObject['cooling']['engineering_check']['peak_total_load'] = loadObject['cooling']['estimated_peak_load_component_table']['grand_total']['total'];
+        loadObject['cooling']['engineering_check']['fan_flow'] = loadObject['cooling']['peak_condition']['fan_flow'];
 
 
         // Get heating values
-        peak_estimate_diff = loadObject['heating_peak_condition_table']['peak_estimate_diff'];
-        sizing_factor_diff = loadObject['heating_peak_condition_table']['sf_diff'];
+        peak_estimate_diff = loadObject['heating']['peak_condition']['peak_estimate_diff'];
+        sizing_factor_diff = loadObject['heating']['peak_condition']['sf_diff'];
 
         //Update heating load tables
-        loadObject['heating_peak_load_component_table'] = shiftReturnAirLoads(loadObject['heating_peak_load_component_table']);
-        loadObject['heating_peak_load_component_table'] = shiftReturnAirLoads(loadObject['heating_peak_load_component_table']);
-        loadObject['heating_peak_load_component_table'] = addEstimatedDifference(peak_estimate_diff, loadObject['heating_peak_load_component_table']);
-        loadObject['heating_peak_load_component_table'] = addSizingFactorAdjustment(sizing_factor_diff, loadObject['heating_peak_load_component_table']);
-        loadObject['heating_peak_load_component_table'] = updateGrandTotalLoad(loadObject['heating_peak_load_component_table']);
-        loadObject['heating_peak_load_component_table'] = updatePercentTotalLoad(loadObject['heating_peak_load_component_table']);
+        loadObject['heating']['estimated_peak_load_component_table'] = shiftReturnAirLoads(loadObject['heating']['estimated_peak_load_component_table']);
+        loadObject['heating']['estimated_peak_load_component_table'] = shiftReturnAirLoads(loadObject['heating']['estimated_peak_load_component_table']);
+        loadObject['heating']['estimated_peak_load_component_table'] = addEstimatedDifference(peak_estimate_diff, loadObject['heating']['estimated_peak_load_component_table']);
+        loadObject['heating']['estimated_peak_load_component_table'] = addSizingFactorAdjustment(sizing_factor_diff, loadObject['heating']['estimated_peak_load_component_table']);
+        loadObject['heating']['estimated_peak_load_component_table'] = updateGrandTotalLoad(loadObject['heating']['estimated_peak_load_component_table']);
+        loadObject['heating']['estimated_peak_load_component_table'] = updatePercentTotalLoad(loadObject['heating']['estimated_peak_load_component_table']);
 
         //Update engineering checks
-        loadObject['heating_peak_load_component_table']['peak_total_load'] = loadObject['heating_peak_load_component_table']['grand_total']['total'];
-        loadObject['heating_peak_load_component_table']['fan_flow'] = loadObject['heating_peak_condition_table']['fan_flow'];
+        loadObject['heating']['estimated_peak_load_component_table']['peak_total_load'] = loadObject['heating']['estimated_peak_load_component_table']['grand_total']['total'];
+        loadObject['heating']['estimated_peak_load_component_table']['fan_flow'] = loadObject['heating']['peak_condition']['fan_flow'];
         
         return loadObject;
     })

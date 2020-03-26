@@ -53,10 +53,10 @@ export class Navigation extends React.Component {
                     <LoadSummary
                         name="zoneLoadSummary"
                         dataMapping={zoneLoadSummaryMapping}
-                        data={data['zone_loads_by_components']}
+                        data={data['zone_load_summarys']}
                         />
                     </Tab>
-                    <Tab eventKey="system_load_summary" title="System Load Summary">
+                    <Tab eventKey="system_load_summarys" title="System Load Summary">
                     <LoadSummary
                         name="systemLoadSummary"
                         dataMapping={systemLoadSummaryMapping}
