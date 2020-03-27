@@ -65,6 +65,7 @@ export const zoneLoadSummaryMapping = {
             {"displayName": "Interior Floor", "jsonKey": "interzone_floor"},
             {"displayName": "Slab", "jsonKey": "ground_contact_floor"},
             {"displayName": "Other - Floor", "jsonKey": "other_floor"},
+            {"displayName": "Infiltration", "jsonKey": "infiltration"},
             {"displayName": "Subtotal", "jsonKey": "subtotal"},
         ]
     },
@@ -138,7 +139,7 @@ export const zoneLoadSummaryMapping = {
             "items": [
                 {"displayName": "DB", "jsonKey": "zone_dry_bulb_temperature", "unitLabel": "C", "decimals": 1},
                 {"displayName": "HR", "jsonKey": "zone_humidity_ratio_at_peak", "unitLabel": "kg/kg", "decimals": 4},
-                {"displayName": "WB", "jsonKey": "zone_relative_humidity", "unitLabel": "C", "decimals": 1}
+                {"displayName": "RH", "jsonKey": "zone_relative_humidity", "unitLabel": "%", "decimals": 1}
             ]
         }
     ],
@@ -147,8 +148,8 @@ export const zoneLoadSummaryMapping = {
             "label": null,
             "items": [
                 {"displayName": "Peak Load", "jsonKey": "peak_total_load", "unitLabel": "W", "decimals": 1},
-                {"displayName": "Capacity per Floor Area", "jsonKey": "total_cap_per_floor_area", "unitLabel": "W/m2", "decimals": 1},
-                {"displayName": "Floor Area per Capacity", "jsonKey": "floor_area_per_total_cap", "unitLabel": "m2/W", "decimals": 2},
+                {"displayName": "Capacity per Floor Area", "jsonKey": "total_capacity_per_floor_area", "unitLabel": "W/m2", "decimals": 1},
+                {"displayName": "Floor Area per Capacity", "jsonKey": "floor_area_per_total_capacity", "unitLabel": "m2/W", "decimals": 2},
                 {"displayName": "Outdoor Air Percentage", "jsonKey": "outside_air_percent", "unitLabel": "%", "decimals": 1},
                 {"displayName": "Supply Airflow", "jsonKey": "fan_flow", "unitLabel": "m3/s", "decimals": 2},
                 {"displayName": "Airflow per Floor Area", "jsonKey": "airflow_per_floor_area", "unitLabel": "m3/s-m2", "decimals": 4},
@@ -332,8 +333,8 @@ export const systemLoadSummaryMapping = {
             "label": null,
             "items": [
                 {"displayName": "Peak Load", "jsonKey": "peak_total_load", "unitLabel": "W", "decimals": 1},
-                {"displayName": "Capacity per Floor Area", "jsonKey": "total_cap_per_floor_area", "unitLabel": "W/m2", "decimals": 1},
-                {"displayName": "Floor Area per Capacity", "jsonKey": "floor_area_per_total_cap", "unitLabel": "m2/W", "decimals": 2},
+                {"displayName": "Capacity per Floor Area", "jsonKey": "total_capacity_per_floor_area", "unitLabel": "W/m2", "decimals": 1},
+                {"displayName": "Floor Area per Capacity", "jsonKey": "floor_area_per_total_capacity", "unitLabel": "m2/W", "decimals": 2},
                 {"displayName": "Outdoor Air Percentage", "jsonKey": "outside_air_percent", "unitLabel": "%", "decimals": 1},
                 {"displayName": "Supply Airflow", "jsonKey": "fan_flow", "unitLabel": "m3/s", "decimals": 2},
                 {"displayName": "Airflow per Floor Area", "jsonKey": "airflow_per_floor_area", "unitLabel": "m3/s-m2", "decimals": 4},
