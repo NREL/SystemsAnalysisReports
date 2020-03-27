@@ -62,7 +62,7 @@ export function shiftReturnAirLoads(data) {
 
 export function addSizingFactorAdjustment(sizing_factor_diff, data) {
     // Initialize data objects
-    data['sizing_factor_diff'] = {
+    data['difference_due_to_sizing_factor'] = {
         "latent": 0.0,
         "related_area": 0.0,
         "sensible_delayed": 0.0,
@@ -77,7 +77,7 @@ export function addSizingFactorAdjustment(sizing_factor_diff, data) {
 
 export function addEstimatedDifference(peak_diff, data) {
     // Initialize data objects
-    data['peak_estimate_diff'] = {
+    data['difference_between_peak_and_estimated_sensible_load'] = {
         "latent": 0.0,
         "related_area": 0.0,
         "sensible_delayed": peak_diff,
@@ -138,7 +138,7 @@ export function updatePercentTotalLoad(data) {
 export const formatData = (data) => new Promise((resolve, reject) => {
     // This function formats the data that will be displayed in the table.
     var newData = data;
-    var peak_estimate_diff = 0;
+    var difference_between_peak_and_estimated_sensible_load = 0;
     var sizing_factor_diff = 0;
 
     // Adjust Zone Loads By Component
@@ -146,13 +146,13 @@ export const formatData = (data) => new Promise((resolve, reject) => {
         var loadObject = newData['zone_load_summarys'][objKey];
 
         // Get cooling values
-        peak_estimate_diff = 0 //loadObject['cooling']['peak_condition']['peak_estimate_diff'];
-        sizing_factor_diff = 0 //loadObject['cooling']['peak_condition']['sf_diff'];
+        difference_between_peak_and_estimated_sensible_load = loadObject['cooling']['peak_condition']['difference_between_peak_and_estimated_sensible_load'];
+        sizing_factor_diff = loadObject['cooling']['peak_condition']['difference_due_to_sizing_factor'];
 
         //Update cooling load tables
         loadObject['cooling']['estimated_peak_load_component_table'] = shiftReturnAirLoads(loadObject['cooling']['estimated_peak_load_component_table']);
         loadObject['cooling']['estimated_peak_load_component_table'] = shiftReturnAirLoads(loadObject['cooling']['estimated_peak_load_component_table']);
-        loadObject['cooling']['estimated_peak_load_component_table'] = addEstimatedDifference(peak_estimate_diff, loadObject['cooling']['estimated_peak_load_component_table']);
+        loadObject['cooling']['estimated_peak_load_component_table'] = addEstimatedDifference(difference_between_peak_and_estimated_sensible_load, loadObject['cooling']['estimated_peak_load_component_table']);
         loadObject['cooling']['estimated_peak_load_component_table'] = addSizingFactorAdjustment(sizing_factor_diff, loadObject['cooling']['estimated_peak_load_component_table']);
         loadObject['cooling']['estimated_peak_load_component_table'] = updateGrandTotalLoad(loadObject['cooling']['estimated_peak_load_component_table']);
         loadObject['cooling']['estimated_peak_load_component_table'] = updatePercentTotalLoad(loadObject['cooling']['estimated_peak_load_component_table']);
@@ -163,13 +163,13 @@ export const formatData = (data) => new Promise((resolve, reject) => {
 
 
         // Get heating values
-        peak_estimate_diff = 0 //loadObject['heating']['peak_condition']['peak_estimate_diff'];
-        sizing_factor_diff = 0 //loadObject['heating']['peak_condition']['sf_diff'];
+        difference_between_peak_and_estimated_sensible_load = loadObject['heating']['peak_condition']['difference_between_peak_and_estimated_sensible_load'];
+        sizing_factor_diff = loadObject['heating']['peak_condition']['difference_due_to_sizing_factor'];
 
         //Update heating load tables
         loadObject['heating']['estimated_peak_load_component_table'] = shiftReturnAirLoads(loadObject['heating']['estimated_peak_load_component_table']);
         loadObject['heating']['estimated_peak_load_component_table'] = shiftReturnAirLoads(loadObject['heating']['estimated_peak_load_component_table']);
-        loadObject['heating']['estimated_peak_load_component_table'] = addEstimatedDifference(peak_estimate_diff, loadObject['heating']['estimated_peak_load_component_table']);
+        loadObject['heating']['estimated_peak_load_component_table'] = addEstimatedDifference(difference_between_peak_and_estimated_sensible_load, loadObject['heating']['estimated_peak_load_component_table']);
         loadObject['heating']['estimated_peak_load_component_table'] = addSizingFactorAdjustment(sizing_factor_diff, loadObject['heating']['estimated_peak_load_component_table']);
         loadObject['heating']['estimated_peak_load_component_table'] = updateGrandTotalLoad(loadObject['heating']['estimated_peak_load_component_table']);
         loadObject['heating']['estimated_peak_load_component_table'] = updatePercentTotalLoad(loadObject['heating']['estimated_peak_load_component_table']);
@@ -187,13 +187,13 @@ export const formatData = (data) => new Promise((resolve, reject) => {
         var loadObject = newData['system_load_summarys'][objKey];
 
         // Get cooling values
-        peak_estimate_diff = 0 //loadObject['cooling']['peak_condition']['peak_estimate_diff'];
-        sizing_factor_diff = 0 //loadObject['cooling']['peak_condition']['sf_diff'];
+        difference_between_peak_and_estimated_sensible_load = loadObject['cooling']['peak_condition']['difference_between_peak_and_estimated_sensible_load'];
+        sizing_factor_diff = loadObject['cooling']['peak_condition']['difference_due_to_sizing_factor'];
 
         //Update cooling load tables
         loadObject['cooling']['estimated_peak_load_component_table'] = shiftReturnAirLoads(loadObject['cooling']['estimated_peak_load_component_table']);
         loadObject['cooling']['estimated_peak_load_component_table'] = shiftReturnAirLoads(loadObject['cooling']['estimated_peak_load_component_table']);
-        loadObject['cooling']['estimated_peak_load_component_table'] = addEstimatedDifference(peak_estimate_diff, loadObject['cooling']['estimated_peak_load_component_table']);
+        loadObject['cooling']['estimated_peak_load_component_table'] = addEstimatedDifference(difference_between_peak_and_estimated_sensible_load, loadObject['cooling']['estimated_peak_load_component_table']);
         loadObject['cooling']['estimated_peak_load_component_table'] = addSizingFactorAdjustment(sizing_factor_diff, loadObject['cooling']['estimated_peak_load_component_table']);
         loadObject['cooling']['estimated_peak_load_component_table'] = updateGrandTotalLoad(loadObject['cooling']['estimated_peak_load_component_table']);
         loadObject['cooling']['estimated_peak_load_component_table'] = updatePercentTotalLoad(loadObject['cooling']['estimated_peak_load_component_table']);
@@ -204,13 +204,13 @@ export const formatData = (data) => new Promise((resolve, reject) => {
 
 
         // Get heating values
-        peak_estimate_diff = loadObject['heating']['peak_condition']['peak_estimate_diff'];
-        sizing_factor_diff = loadObject['heating']['peak_condition']['sf_diff'];
+        difference_between_peak_and_estimated_sensible_load = loadObject['heating']['peak_condition']['difference_between_peak_and_estimated_sensible_load'];
+        sizing_factor_diff = loadObject['heating']['peak_condition']['difference_due_to_sizing_factor'];
 
         //Update heating load tables
         loadObject['heating']['estimated_peak_load_component_table'] = shiftReturnAirLoads(loadObject['heating']['estimated_peak_load_component_table']);
         loadObject['heating']['estimated_peak_load_component_table'] = shiftReturnAirLoads(loadObject['heating']['estimated_peak_load_component_table']);
-        loadObject['heating']['estimated_peak_load_component_table'] = addEstimatedDifference(peak_estimate_diff, loadObject['heating']['estimated_peak_load_component_table']);
+        loadObject['heating']['estimated_peak_load_component_table'] = addEstimatedDifference(difference_between_peak_and_estimated_sensible_load, loadObject['heating']['estimated_peak_load_component_table']);
         loadObject['heating']['estimated_peak_load_component_table'] = addSizingFactorAdjustment(sizing_factor_diff, loadObject['heating']['estimated_peak_load_component_table']);
         loadObject['heating']['estimated_peak_load_component_table'] = updateGrandTotalLoad(loadObject['heating']['estimated_peak_load_component_table']);
         loadObject['heating']['estimated_peak_load_component_table'] = updatePercentTotalLoad(loadObject['heating']['estimated_peak_load_component_table']);

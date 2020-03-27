@@ -114,8 +114,8 @@ export const zoneLoadSummaryMapping = {
             {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total", "decimals": 1},
         ],
         "rows": [
-            {"displayName": "Sizing Factor Adjustment (W)", "jsonKey": "sizing_factor_diff"},
-            {"displayName": "Time Delay Correction (W)", "jsonKey": "peak_estimate_diff"},
+            {"displayName": "Sizing Factor Adjustment (W)", "jsonKey": "difference_due_to_sizing_factor"},
+            {"displayName": "Time Delay Correction (W)", "jsonKey": "difference_between_peak_and_estimated_sensible_load"},
             {"displayName": "Grand Total", "jsonKey": "grand_total"},
         ]
     },
@@ -286,8 +286,8 @@ export const systemLoadSummaryMapping = {
             {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total", "decimals": 1},
         ],
         "rows": [
-            {"displayName": "Sizing Factor Adjustment (W)", "jsonKey": "sizing_factor_diff"},
-            {"displayName": "Time Delay Correction (W)", "jsonKey": "peak_estimate_diff"},
+            {"displayName": "Sizing Factor Adjustment (W)", "jsonKey": "difference_due_to_sizing_factor"},
+            {"displayName": "Time Delay Correction (W)", "jsonKey": "difference_between_peak_and_estimated_sensible_load"},
             {"displayName": "Grand Total", "jsonKey": "grand_total"},
         ]
     },
