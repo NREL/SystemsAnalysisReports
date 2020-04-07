@@ -1,11 +1,11 @@
 module SystemsAnalysisReport
   module Mappers
     class Mapper
-      def mapping
+      def klass
         raise NotImplementedError, "Must be implemented by the subclass"
       end
 
-      def klass
+      def mapping
         raise NotImplementedError, "Must be implemented by the subclass"
       end
 

@@ -3,7 +3,7 @@ module SystemsAnalysisReport
     class DesignPsychrometricRepo
       attr_reader :coil_sizing_details, :mapper
 
-      def initialize(coil_sizing_details, mapper=Mappers::CoilSizingDetailToDesignPsychrometricMapper.new)
+      def initialize(coil_sizing_details, mapper=Mappers::DesignPsychrometricMapper.new)
         @coil_sizing_details = coil_sizing_details
         @mapper = mapper
       end

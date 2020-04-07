@@ -9,7 +9,7 @@ describe CoolingCoilNameGetter do
       coil_1 = OpenStudio::Model::CoilCoolingDXSingleSpeed.new(model)
       coil_2 = OpenStudio::Model::CoilCoolingDXTwoSpeed.new(model)
 
-      expected = [coil_1, coil_2]
+      expected = [coil_1.name.get, coil_2.name.get]
 
       result = CoolingCoilNameGetter.(model)
 

@@ -1,6 +1,6 @@
 module SystemsAnalysisReport
   module Mappers
-    class CoilSizingDetailToDesignPsychrometricMapper < Mapper
+    class DesignPsychrometricMapper < Mapper
       def klass
         Models::DesignPsychrometric
       end

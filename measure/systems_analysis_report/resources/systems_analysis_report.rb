@@ -5,18 +5,23 @@ require_relative 'canister'
 
 require_relative 'systems_analysis_report/container'
 
-require_relative 'systems_analysis_report/factories/system_load_summary_factory'
-
 require_relative 'systems_analysis_report/mappers/mapper'
 require_relative 'systems_analysis_report/mappers/system_airflow_mapper'
 require_relative 'systems_analysis_report/mappers/system_temperature_mapper'
 require_relative 'systems_analysis_report/mappers/system_estimated_peak_load_component_table_mapper.rb'
+require_relative 'systems_analysis_report/mappers/estimated_peak_load_component_table_to_peak_load_component_table.rb'
+require_relative 'systems_analysis_report/mappers/system_load_summary_mapper'
+require_relative 'systems_analysis_report/mappers/ventilation_peak_load_component_mapper'
+require_relative 'systems_analysis_report/mappers/supply_fan_heat_peak_load_mapper'
+require_relative 'systems_analysis_report/mappers/time_delay_correction_peak_load_mapper'
+require_relative 'systems_analysis_report/mappers/sizing_factor_correction_peak_load_mapper'
 
-require_relative 'systems_analysis_report/mappers/coil_sizing_detail_to_design_psychrometric_mapper'
+require_relative 'systems_analysis_report/mappers/design_psychrometric_mapper'
 
 require_relative 'systems_analysis_report/models/model'
 require_relative 'systems_analysis_report/models/cooling_and_heating'
 require_relative 'systems_analysis_report/models/design_psychrometric'
+require_relative 'systems_analysis_report/models/peak_load_component_table'
 require_relative 'systems_analysis_report/models/report'
 require_relative 'systems_analysis_report/models/system_airflow'
 require_relative 'systems_analysis_report/models/system_temperature'

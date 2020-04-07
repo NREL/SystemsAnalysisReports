@@ -33,9 +33,9 @@ module EPlusOut
       end
 
       def cast_type(value, type)
-        if type == "double"
-          value = value.to_f
-        end
+        return nil if value.empty?
+
+        return value.to_f if type=="double"
 
         value
       end

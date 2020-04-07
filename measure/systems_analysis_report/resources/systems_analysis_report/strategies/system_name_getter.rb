@@ -63,15 +63,3 @@ module SystemsAnalysisReport
     end
   end
 end
-#
-# model = OpenStudio::Model::Model.new
-# cooling_coil = OpenStudio::Model::CoilCoolingDXSingleSpeed.new(model)
-# cooling_coil2 = OpenStudio::Model::CoilCoolingDXSingleSpeed.new(model)
-# heating_coil = OpenStudio::Model::CoilHeatingGas.new(model)
-# air_loop = OpenStudio::Model::AirLoopHVAC.new(model)
-# cooling_coil.addToNode(air_loop.supplyOutletNode)
-# cooling_coil2.addToNode(air_loop.supplyOutletNode)
-# heating_coil.addToNode(air_loop.supplyOutletNode)
-#
-# puts SystemsAnalysisReport::Strategies::SystemNameGetter.(model).inspect
-# puts SystemsAnalysisReport::Strategies::SystemNameGetter.get_air_loop_hvac_first_heating_coil_names(air_loop)
