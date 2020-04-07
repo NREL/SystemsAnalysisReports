@@ -1,13 +1,15 @@
 module SystemsAnalysisReport
   module Mappers
-    class SystemAirflowMapper
-      def self.call(peak_condition)
-        if peak_condition
-          main_fan = peak_condition.main_fan_air_flow
-          ventilation = peak_condition.outside_air_flow
-        end
+    class SystemAirflowMapper < Mapper
+      def klass
+        Models::SystemAirflow
+      end
 
-        SystemsAnalysisReport::Models::SystemAirflow.new(main_fan, ventilation)
+      def mapping
+        [
+            [:main_fan_air_flow, :main_fan],
+            [:outside_air_flow, :ventilation]
+        ]
       end
     end
   end

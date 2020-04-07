@@ -3,7 +3,7 @@ module SystemsAnalysisReport
     class SystemLoadSummaryMapper
       attr_reader :temperature_mapper, :airflow_mapper, :estimated_peak_load_component_table_mapper
 
-      def initialize(temperature_mapper=Mappers::SystemTemperatureMapper, airflow_mapper=Mappers::SystemAirflowMapper,
+      def initialize(temperature_mapper=Mappers::SystemTemperatureMapper, airflow_mapper=Mappers::SystemAirflowMapper.new,
                      estimated_peak_load_component_table_mapper=Mappers::SystemEstimatedPeakLoadComponentTableMapper.new)
         @temperature_mapper = temperature_mapper
         @airflow_mapper = airflow_mapper

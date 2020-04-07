@@ -2,7 +2,7 @@ module SystemsAnalysisReport
   module Mappers
     class VentilationPeakLoadComponentMapper < Mapper
       def klass
-        EPlusOut::Models::EstimatedPeakLoadComponent
+        Models::PeakLoadComponent
       end
 
       def mapping
