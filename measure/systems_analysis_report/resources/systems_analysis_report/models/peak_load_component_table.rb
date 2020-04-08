@@ -19,7 +19,6 @@ module SystemsAnalysisReport
         :interzone_mixing,
         :interzone_wall,
         :lights,
-        :lights_return_air,
         :opaque_door,
         :other_floor,
         :other_roof,
@@ -27,6 +26,8 @@ module SystemsAnalysisReport
         :people,
         :power_generation_equipment,
         :refrigeration,
+        :return_air_other,
+        :return_air_lights,
         :roof,
         :supply_fan_heat,
         :sizing_factor_correction,
@@ -35,6 +36,8 @@ module SystemsAnalysisReport
         :zone_ventilation
     ) do
 
+      include Models::Model
+
       def add_load(key, load)
         self[key] = load
       end
@@ -42,6 +45,10 @@ module SystemsAnalysisReport
       def normalize
         recalculate_grand_total
         recalculate_percent_grand_totals
+      end
+
+      def excluded_members(excluded=[])
+        self.members.reject { |member| excluded.include? member }
       end
 
       private
@@ -56,15 +63,10 @@ module SystemsAnalysisReport
         load_members = excluded_members([:name, :grand_total])
         sensible_instant = load_members.inject(0) { |sum, member| sum + (self[member] ? self[member].sensible_instant.to_f : 0)}
         sensible_delayed = load_members.inject(0) { |sum, member| sum + (self[member] ? self[member].sensible_delayed.to_f : 0)}
-        sensible_return_air = load_members.inject(0) { |sum, member| sum + (self[member] ? self[member].sensible_return_air.to_f : 0)}
         latent = load_members.inject(0) { |sum, member| sum + (self[member] ? self[member].latent.to_f : 0)}
         total = load_members.inject(0) { |sum, member| sum + (self[member] ? self[member].total.to_f : 0)}
 
-        self[:grand_total] = EPlusOut::Models::EstimatedPeakLoadComponent.new(nil, latent, nil, sensible_delayed, sensible_instant, sensible_return_air, total)
-      end
-
-      def excluded_members(excluded=[])
-        self.members.reject { |member| excluded.include? member }
+        self[:grand_total] = EPlusOut::Models::EstimatedPeakLoadComponent.new(sensible_instant, sensible_delayed, latent, total)
       end
     end
   end

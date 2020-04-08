@@ -22,12 +22,12 @@ module SystemsAnalysisReport
         cooling_peak_condition = @cooling_peak_conditions.find_by_name(name)
         engineering_check_for_cooling = @engineering_check_for_coolings.find_by_name(name)
         estimated_cooling_peak_load_component_table = @estimated_cooling_peak_load_component_tables.find_by_name(name)
-        cooling_coil = @coil_sizing_details.find_by_name(cooling_coil)
+        cooling_coil = @coil_sizing_details.find_by_name(cooling_coil) if cooling_coil
 
         heating_peak_condition = @heating_peak_conditions.find_by_name(name)
         engineering_check_for_heating = @engineering_check_for_heatings.find_by_name(name)
         estimated_heating_peak_load_component_table = @estimated_heating_peak_load_component_tables.find_by_name(name)
-        heating_coil = @coil_sizing_details.find_by_name(heating_coil)
+        heating_coil = @coil_sizing_details.find_by_name(heating_coil)  if heating_coil
 
         cooling = @load_summary_mapper.(cooling_peak_condition, engineering_check_for_cooling,
             estimated_cooling_peak_load_component_table, cooling_coil

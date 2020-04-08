@@ -48,6 +48,10 @@ module EPlusOut
         recalculate_percent_grand_totals
       end
 
+      def excluded_members(excluded=[])
+        self.members.reject { |member| excluded.include? member }
+      end
+
       private
       def recalculate_percent_grand_totals
         excluded_members([:name, :grand_total]).map { |member| self[member].update_percent_grand_total(self.grand_total.total) }
@@ -62,10 +66,6 @@ module EPlusOut
         total = load_members.inject(0) { |sum, member| sum += self[member].total.to_f }
 
         self[:grand_total] = EstimatedPeakLoadComponent.new(nil, latent, nil, sensible_delayed, sensible_instant, sensible_return_air, total)
-      end
-
-      def excluded_members(excluded=[])
-        self.members.reject { |member| excluded.include? member }
       end
     end
   end
