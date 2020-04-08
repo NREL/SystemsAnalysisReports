@@ -66,7 +66,7 @@ module SystemsAnalysisReport
         latent = load_members.inject(0) { |sum, member| sum + (self[member] ? self[member].latent.to_f : 0)}
         total = load_members.inject(0) { |sum, member| sum + (self[member] ? self[member].total.to_f : 0)}
 
-        self[:grand_total] = EPlusOut::Models::EstimatedPeakLoadComponent.new(sensible_instant, sensible_delayed, latent, total)
+        self[:grand_total] = Models::PeakLoadComponent.new(sensible_instant, sensible_delayed, latent, total)
       end
     end
   end

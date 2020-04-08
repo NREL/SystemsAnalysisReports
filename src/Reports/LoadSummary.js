@@ -96,6 +96,26 @@ export class LoadSummary extends React.Component {
         }
     }
 
+    getTemperaturesTable() {
+        // Get data for peak_condition_table
+        if (this.props.data) {
+            const objectName = this.getObjectName(this.state.object_selection);
+            return this.props.data[objectName][this.state.heating_cooling_selection]['temperature']
+        } else {
+            return null
+        }
+    }
+
+    getAirflowsTable() {
+        // Get data for peak_condition_table
+        if (this.props.data) {
+            const objectName = this.getObjectName(this.state.object_selection);
+            return this.props.data[objectName][this.state.heating_cooling_selection]['airflow']
+        } else {
+            return null
+        }
+    }
+
     getEngineeringCheckTable() {
         // Get data for engineering_check_table
         if (this.props.data) {  
@@ -275,7 +295,7 @@ export class LoadSummary extends React.Component {
                                 name={this.props.name + "-temperatures"}
                                 title="Temperatures"
                                 dataMapping={this.props.dataMapping['temperatures']}
-                                data={peakConditionsData}
+                                data={this.getTemperaturesTable()}
                                 />
                             </Row>
                         ) : null }
@@ -284,8 +304,8 @@ export class LoadSummary extends React.Component {
                                 <ReportCard
                                 name={this.props.name + "-airflows"}
                                 title="Airflows"
-                                dataMapping={this.props.dataMapping['temperatures']}
-                                data={peakConditionsData}
+                                dataMapping={this.props.dataMapping['airflows']}
+                                data={this.getAirflowsTable()}
                                 />
                             </Row>
                         ) : null }

@@ -16,6 +16,8 @@ module SystemsAnalysisReport
           result.send("#{param[1]}=", from.send(param[0]))
         end
 
+        result.validate
+
         return result
       end
     end

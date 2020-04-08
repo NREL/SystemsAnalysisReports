@@ -28,6 +28,15 @@ module SystemsAnalysisReport
             [:supply_fan_air_heat_gain_at_ideal_loads_peak, :supply_fan_temperature_difference]
         ]
       end
+
+      def call(from)
+        result = super(from)
+        fan_temp_diff = from.supply_fan_air_heat_gain_at_ideal_loads_peak / (from.supply_fan_maximum_air_mass_flow_rate *
+            from.moist_air_heat_capacity)
+
+        result.supply_fan_temperature_difference = fan_temp_diff
+        result
+      end
     end
   end
 end

@@ -12,6 +12,7 @@ module SystemsAnalysisReport
         }
         result = Models::PeakLoadComponent.new
         result.sensible_instant = sensible_return_air
+        result.validate
         result
       end
     end

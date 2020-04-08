@@ -12,11 +12,11 @@ module SystemsAnalysisReport
         self.percent_grand_total = (self.total / grand_total * 100)
       end
 
-      private
       def validate
         update_total
       end
 
+      private
       def update_total
         self.total = [self.sensible_instant, self.sensible_delayed, self.latent].inject(0) {
             |sum, val| val ? sum + val : sum

@@ -9,6 +9,11 @@ module SystemsAnalysisReport
                                      :leaving_coil_dry_bulb_temperature, :leaving_coil_humidity_ratio, :supply_fan_temperature_difference) do
 
       include Models::Model
+
+      def validate
+
+      end
+
     end
   end
 end

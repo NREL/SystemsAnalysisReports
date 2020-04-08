@@ -20,11 +20,11 @@ export const designPsychrometricsMapping = {
             "items": [
                 {"displayName": "System Name", "jsonKey": "name", "unitLabel": null},
                 {"displayName": "Time of Peak", "jsonKey": "time_of_peak", "unitLabel": null},
-                {"displayName": "Coil Air Flow Rate", "jsonKey": "coil_air_flow", "unitLabel": "m3/s", "decimals": 3},
+                {"displayName": "Coil Air Flow Rate", "jsonKey": "coil_air_flow_rate", "unitLabel": "m3/s", "decimals": 3},
                 {"displayName": "Zone Space Sensible Load", "jsonKey": "zone_sensible_load", "unitLabel": "W", "decimals": 0},
-                {"displayName": "Outdoor Air Flow Rate", "jsonKey": "oa_flow_rate", "unitLabel": "m3/s", "decimals": 3},
-                {"displayName": "Percent Outdoor Air", "jsonKey": "percent_oa", "unitLabel": "%", "decimals": 1},
-                {"displayName": "Air Specific Heat", "jsonKey": "air_specific_heat", "unitLabel": "J-kg/K", "decimals": 2}, 
+                {"displayName": "Outdoor Air Flow Rate", "jsonKey": "outdoor_air_flow_rate", "unitLabel": "m3/s", "decimals": 3},
+                {"displayName": "Percent Outdoor Air", "jsonKey": "percent_outdoor_air", "unitLabel": "%", "decimals": 1},
+                {"displayName": "Air Specific Heat", "jsonKey": "air_specific_heat", "unitLabel": "J-kg/K", "decimals": 2},
                 {"displayName": "Air Density", "jsonKey": "air_density", "unitLabel": "kg/m3", "decimals": 2},           
             ]
         }
@@ -147,11 +147,9 @@ export const zoneLoadSummaryMapping = {
         {
             "label": null,
             "items": [
-                {"displayName": "Peak Load", "jsonKey": "peak_total_load", "unitLabel": "W", "decimals": 1},
                 {"displayName": "Capacity per Floor Area", "jsonKey": "total_capacity_per_floor_area", "unitLabel": "W/m2", "decimals": 1},
                 {"displayName": "Floor Area per Capacity", "jsonKey": "floor_area_per_total_capacity", "unitLabel": "m2/W", "decimals": 2},
                 {"displayName": "Outdoor Air Percentage", "jsonKey": "outside_air_percent", "unitLabel": "%", "decimals": 1},
-                {"displayName": "Supply Airflow", "jsonKey": "fan_flow", "unitLabel": "m3/s", "decimals": 2},
                 {"displayName": "Airflow per Floor Area", "jsonKey": "airflow_per_floor_area", "unitLabel": "m3/s-m2", "decimals": 4},
                 {"displayName": "Airflow per Capacity", "jsonKey": "airflow_per_total_capacity", "unitLabel": "m3/s-W", "decimals": 4},
                 {"displayName": "Number of People", "jsonKey": "number_of_people", "unitLabel": null, "decimals": 0},
@@ -237,6 +235,7 @@ export const systemLoadSummaryMapping = {
             {"displayName": "Interior Floor", "jsonKey": "interzone_floor"},
             {"displayName": "Slab", "jsonKey": "ground_contact_floor"},
             {"displayName": "Other - Floor", "jsonKey": "other_floor"},
+            {"displayName": "Infiltration", "jsonKey": "infiltration"},
             {"displayName": "Subtotal", "jsonKey": "subtotal"},
         ]
     },
@@ -271,9 +270,11 @@ export const systemLoadSummaryMapping = {
             {"displayName": "Refrigeration", "jsonKey": "refrigeration"},
             {"displayName": "Water Use Equipment", "jsonKey": "water_use_equipment"},
             {"displayName": "HVAC Equipment Loss", "jsonKey": "hvac_equipment_loss"},
-            {"displayName": "Fan Heat", "jsonKey": "fan_heat"},
+            {"displayName": "Fan Heat", "jsonKey": "supply_fan_heat"},
             {"displayName": "Transfer Air", "jsonKey": "interzone_mixing"},
             {"displayName": "DOAS Direct to Zone", "jsonKey": "doas_direct_to_zone"},
+            {"displayName": "Time Delay Correction", "jsonKey": "time_delay_correction"},
+            {"displayName": "Sizing Factor Correction", "jsonKey": "sizing_factor_correction"},
             {"displayName": "Subtotal", "jsonKey": "subtotal"},
         ]
     },
@@ -311,11 +312,10 @@ export const systemLoadSummaryMapping = {
         {
             "label": null,
             "items": [
-                {"displayName": "Outside Air", "jsonKey": "outside_dry_bulb_temperature", "unitLabel": "C", "decimals": 1},
-                {"displayName": "Return", "jsonKey": "zone_dry_bulb_temperature", "unitLabel": "C", "decimals": 1},
-                {"displayName": "Mixed Air", "jsonKey": "mat", "unitLabel": "C", "decimals": 1},
-                {"displayName": "Supply", "jsonKey": "sat", "unitLabel": "C", "decimals": 1},
-                
+                {"displayName": "Return", "jsonKey": "return", "unitLabel": "C", "decimals": 1},
+                {"displayName": "Mixed Air", "jsonKey": "mixed_air", "unitLabel": "C", "decimals": 1},
+                {"displayName": "Supply", "jsonKey": "supply", "unitLabel": "C", "decimals": 1},
+                {"displayName": "Fan Heat TD", "jsonKey": "fan_heat_temperature_difference", "unitLabel": "C", "decimals": 1},
             ]
         }
     ],
@@ -323,8 +323,8 @@ export const systemLoadSummaryMapping = {
         {
             "label": null,
             "items": [
-                {"displayName": "Outside Air", "jsonKey": "oa_flow", "unitLabel": "C", "decimals": 1},
-                {"displayName": "Supply", "jsonKey": "fan_flow", "unitLabel": "C", "decimals": 1}
+                {"displayName": "Main Fan", "jsonKey": "main_fan", "unitLabel": "m3/s", "decimals": 1},
+                {"displayName": "Ventilation", "jsonKey": "ventilation", "unitLabel": "m3/s", "decimals": 1}
             ]
         }
     ],
@@ -332,11 +332,9 @@ export const systemLoadSummaryMapping = {
         {
             "label": null,
             "items": [
-                {"displayName": "Peak Load", "jsonKey": "peak_total_load", "unitLabel": "W", "decimals": 1},
                 {"displayName": "Capacity per Floor Area", "jsonKey": "total_capacity_per_floor_area", "unitLabel": "W/m2", "decimals": 1},
                 {"displayName": "Floor Area per Capacity", "jsonKey": "floor_area_per_total_capacity", "unitLabel": "m2/W", "decimals": 2},
                 {"displayName": "Outdoor Air Percentage", "jsonKey": "outside_air_percent", "unitLabel": "%", "decimals": 1},
-                {"displayName": "Supply Airflow", "jsonKey": "fan_flow", "unitLabel": "m3/s", "decimals": 2},
                 {"displayName": "Airflow per Floor Area", "jsonKey": "airflow_per_floor_area", "unitLabel": "m3/s-m2", "decimals": 4},
                 {"displayName": "Airflow per Capacity", "jsonKey": "airflow_per_total_capacity", "unitLabel": "m3/s-W", "decimals": 4},
                 {"displayName": "Number of People", "jsonKey": "number_of_people", "unitLabel": null, "decimals": 0},

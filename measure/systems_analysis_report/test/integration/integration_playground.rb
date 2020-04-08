@@ -8,4 +8,3 @@ report = container.json_generator.generate
 open('sample.json', 'w') do |f|
   f.puts report.to_json
 end
-# puts zone_load_summarys_repo.find("ZONE EQUIPMENT 1-1").to_json
