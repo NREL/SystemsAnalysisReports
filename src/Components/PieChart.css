@@ -1,0 +1,14 @@
+
+.App-chart-container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.App-chart-title {
+    align-items: center;
+    justify-content: center;
+  };
+  
+  .recharts-wrapper {
+    margin : 0 auto;
+  }
