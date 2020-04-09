@@ -3,8 +3,8 @@
 
 const fs = require('fs');
 
-const numCoils = 5;
-const numSystems = 10;
+const numCoils = 10;
+const numSystems = 100;
 const numZones = 1000;
 
 function getRandomInt(max) {
@@ -21,87 +21,87 @@ function getDesignPsychrometricObject() {
     "name": "Coil " + i.toString(),
     "air_density": getRandomArbitrary(0.8, 1.2),
     "air_specific_heat": getRandomArbitrary(0.9, 1.1),
-    "coil_air_flow": getRandomArbitrary(0.5, 1.5),
-    "entering_coil_drybulb": getRandomArbitrary(10, 25),
-    "entering_coil_hr": getRandomArbitrary(0.001, 0.010),
-    "leaving_coil_drybulb": getRandomArbitrary(10, 25),
-    "leaving_coil_hr": getRandomArbitrary(0.001, 0.010),
-    "oa_drybulb": getRandomArbitrary(0, 40),
-    "oa_flow_rate": getRandomArbitrary(0.5, 1.0),
-    "oa_hr": getRandomArbitrary(0.001, 0.010),
-    "percent_oa": getRandomArbitrary(0.0, 1.0),
-    "return_air_drybulb": getRandomArbitrary(10, 25),
-    "return_air_hr": getRandomArbitrary(0.001, 0.010),
-    "supply_fan_temp_diff": getRandomArbitrary(0.5, 2.0),
+    "coil_air_flow_rate": getRandomArbitrary(0.5, 1.5),
+    "entering_coil_dry_bulb_temperature": getRandomArbitrary(10, 25),
+    "entering_coil_humidity_ratio": getRandomArbitrary(0.001, 0.010),
+    "leaving_coil_dry_bulb_temperature": getRandomArbitrary(10, 25),
+    "leaving_coil_humidity_ratio": getRandomArbitrary(0.001, 0.010),
+    "outdoor_air_dry_bulb_temperature": getRandomArbitrary(0, 40),
+    "outdoor_air_flow_rate": getRandomArbitrary(0.5, 1.0),
+    "outdoor_air_humidity_ratio": getRandomArbitrary(0.001, 0.010),
+    "percent_outdoor_air": getRandomArbitrary(0.0, 1.0),
+    "return_air_dry_bulb_temperature": getRandomArbitrary(10, 25),
+    "return_air_humidity_ratio": getRandomArbitrary(0.001, 0.010),
+    "supply_fan_temperature_difference": getRandomArbitrary(0.5, 2.0),
     "time_of_peak": "8/21 12:00:00",
-    "zone_drybulb": getRandomArbitrary(10, 25),
-    "zone_hr": getRandomArbitrary(0.001, 0.010),
-    "zone_rh": getRandomArbitrary(10.0, 60.0),
+    "zone_dry_bulb_temperature": getRandomArbitrary(10, 25),
+    "zone_humidity_ratio": getRandomArbitrary(0.001, 0.010),
+    "zone_relative_humidity": getRandomArbitrary(10.0, 60.0),
     "zone_sensible_load": getRandomArbitrary(1000.0, 5000.0),
   }
 }
 
 function getCoolingPeakConditionObject() {
   return {
-    "estimate_instant_delayed_sensible": 83112.90, ////getRandomArbitrary(1000.0, 5000.0),
-    "fan_flow": getRandomArbitrary(0.5, 1.0),
-    "mat": getRandomArbitrary(10, 25),
-    "oa_drybulb": getRandomArbitrary(10, 25),
-    "oa_flow": getRandomArbitrary(0.5, 1.0),
-    "oa_hr": getRandomArbitrary(0.001, 0.010),
-    "oa_wetbulb": getRandomArbitrary(10, 25),
-    "peak_estimate_diff": -9416.3, //getRandomArbitrary(0.5, 2.0),
-    "sat": getRandomArbitrary(10, 25),
-    "sensible_peak": 73696.57, //getRandomArbitrary(1000.0, 5000.0),
-    "sensible_peak_sf": 110544.86, //getRandomArbitrary(1000.0, 5000.0),
-    "sf_diff": 36848.29, //getRandomArbitrary(0.5, 2.0),
-    "time_of_peak_load": "7/21 16:45:00",
-    "zone_drybulb": getRandomArbitrary(10, 25),
-    "zone_hr": getRandomArbitrary(0.001, 0.010),
-    "zone_rh": getRandomArbitrary(10.0, 60.0),
+    "difference_between_peak_and_estimated_sensible_load": getRandomArbitrary(1000.0, 5000.0),
+    "difference_due_to_sizing_factor": 0.0,
+    "estimate_instant_delayed_sensible_load": getRandomArbitrary(1000.0, 5000.0),
+    "main_fan_air_flow": getRandomArbitrary(0.5, 1.0),
+    "mixed_air_temperature": getRandomArbitrary(10, 25),
+    "outside_dry_bulb_temperature": getRandomArbitrary(10, 25),
+    "outside_wet_bulb_temperature": getRandomArbitrary(10, 25),
+    "outside_air_flow": getRandomArbitrary(0.5, 1.0),
+    "outside_humidity_ratio_at_peak": getRandomArbitrary(0.001, 0.010),
+    "peak_sensible_load": getRandomArbitrary(1000.0, 5000.0),
+    "peak_sensible_load_with_sizing_factor": getRandomArbitrary(1000.0, 5000.0),
+    "supply_air_temperature": getRandomArbitrary(10, 25),
+    "time_of_peak_load": "6/21 14:00:00",
+    "zone_dry_bulb_temperature": getRandomArbitrary(10, 25),
+    "zone_humidity_ratio_at_peak": getRandomArbitrary(0.001, 0.010),
+    "zone_relative_humidity": getRandomArbitrary(10, 50),
   }
 }
 
 function getHeatingPeakConditionObject() {
   return {
-    "estimate_instant_delayed_sensible": -getRandomArbitrary(1000.0, 5000.0),
-    "fan_flow": getRandomArbitrary(0.5, 1.0),
-    "mat": getRandomArbitrary(10, 25),
-    "oa_drybulb": getRandomArbitrary(10, 25),
-    "oa_flow": getRandomArbitrary(0.5, 1.0),
-    "oa_hr": getRandomArbitrary(0.001, 0.010),
-    "oa_wetbulb": getRandomArbitrary(10, 25),
-    "peak_estimate_diff": getRandomArbitrary(0.5, 2.0),
-    "sat": getRandomArbitrary(10, 25),
-    "sensible_peak": -getRandomArbitrary(1000.0, 5000.0),
-    "sensible_peak_sf": -getRandomArbitrary(1000.0, 5000.0),
-    "sf_diff": getRandomArbitrary(0.5, 2.0),
-    "time_of_peak_load": "1/21 2:15:00",
-    "zone_drybulb": getRandomArbitrary(10, 25),
-    "zone_hr": getRandomArbitrary(0.001, 0.010),
-    "zone_rh": getRandomArbitrary(10.0, 60.0),
+    "difference_between_peak_and_estimated_sensible_load": -getRandomArbitrary(1000.0, 5000.0),
+    "difference_due_to_sizing_factor": 0.0,
+    "estimate_instant_delayed_sensible_load": -getRandomArbitrary(1000.0, 5000.0),
+    "main_fan_air_flow": getRandomArbitrary(0.5, 1.0),
+    "mixed_air_temperature": getRandomArbitrary(10, 25),
+    "outside_dry_bulb_temperature": getRandomArbitrary(10, 25),
+    "outside_wet_bulb_temperature": getRandomArbitrary(10, 25),
+    "outside_air_flow": getRandomArbitrary(0.5, 1.0),
+    "outside_humidity_ratio_at_peak": getRandomArbitrary(0.001, 0.010),
+    "peak_sensible_load": -getRandomArbitrary(1000.0, 5000.0),
+    "peak_sensible_load_with_sizing_factor": -getRandomArbitrary(1000.0, 5000.0),
+    "supply_air_temperature": getRandomArbitrary(10, 25),
+    "time_of_peak_load": "6/21 14:00:00",
+    "zone_dry_bulb_temperature": getRandomArbitrary(10, 25),
+    "zone_humidity_ratio_at_peak": getRandomArbitrary(0.001, 0.010),
+    "zone_relative_humidity": getRandomArbitrary(10, 50),
   }
 }
 
 function getSystemEngineeringChecksumsObject() {
   return {
     "airflow_per_floor_area": getRandomArbitrary(0.01, 0.05),
-    "airflow_per_total_cap": getRandomArbitrary(0.1, 0.9),
-    "floor_area_per_total_cap": getRandomArbitrary(0.1, 0.9),
+    "airflow_per_total_capacity": getRandomArbitrary(0.1, 0.9),
+    "floor_area_per_total_capacity": getRandomArbitrary(0.1, 0.9),
     "number_of_people": getRandomArbitrary(0, 20),
-    "oa_percent": getRandomArbitrary(0, 1.0),
-    "total_cap_per_floor_area": getRandomArbitrary(10.0, 100.0),
+    "outside_air_percent": getRandomArbitrary(0, 1.0),
+    "total_capacity_per_floor_area": getRandomArbitrary(10.0, 100.0),
   }
 }
 
 function getZoneEngineeringChecksumsObject() {
   return {
     "airflow_per_floor_area": getRandomArbitrary(0.01, 0.05),
-    "airflow_per_total_cap": getRandomArbitrary(0.1, 0.9),
-    "floor_area_per_total_cap": getRandomArbitrary(0.1, 0.9),
+    "airflow_per_total_capacity": getRandomArbitrary(0.1, 0.9),
+    "floor_area_per_total_capacity": getRandomArbitrary(0.1, 0.9),
     "number_of_people": getRandomArbitrary(0, 20),
-    "oa_percent": getRandomArbitrary(0, 1.0),
-    "total_cap_per_floor_area": getRandomArbitrary(10.0, 100.0),
+    "outside_air_percent": getRandomArbitrary(0, 1.0),
+    "total_capacity_per_floor_area": getRandomArbitrary(10.0, 100.0),
   }
 }
 
@@ -113,6 +113,24 @@ function getLoadComponentObject() {
     "sensible_delayed": getRandomArbitrary(0.0, 10000.0),
     "sensible_instant": getRandomArbitrary(0.0, 10000.0),
     "sensible_return_air": getRandomArbitrary(0.0, 10000.0),
+  }
+}
+
+
+function getTemperatureObject() {
+  return {
+    "supply": getRandomArbitrary(10, 25),
+    "return": getRandomArbitrary(10, 25),
+    "mixed_air": getRandomArbitrary(10, 25),
+    "fan_heat_temperature_difference": getRandomArbitrary(10, 25),
+  }
+}
+
+
+function getAirflowObject() {
+  return {
+    "main_fan": getRandomArbitrary(0.1, 0.9),
+    "ventilation": getRandomArbitrary(0.1, 0.9),
   }
 }
 
@@ -144,7 +162,11 @@ function getSystemLoadComponents() {
     "refrigeration": getLoadComponentObject(),
     "roof": getLoadComponentObject(),
     "water_use_equipment": getLoadComponentObject(),
-    "zone_ventilation": getLoadComponentObject()
+    "zone_ventilation": getLoadComponentObject(),
+    "return_air_lights": getLoadComponentObject(),
+    "return_air_other": getLoadComponentObject(),
+    "difference_due_to_sizing_factor": getLoadComponentObject(),
+    "difference_between_peak_and_estimated_sensible_load": getLoadComponentObject()
   }
 }
 
@@ -174,65 +196,91 @@ function getZoneLoadComponents() {
     "power_generation_equipment": getLoadComponentObject(),
     "refrigeration": getLoadComponentObject(),
     "roof": getLoadComponentObject(),
-    "water_use_equipment": getLoadComponentObject()
+    "water_use_equipment": getLoadComponentObject(),
+    "return_air_lights": getLoadComponentObject(),
+    "return_air_other": getLoadComponentObject(),
+    "difference_due_to_sizing_factor": getLoadComponentObject(),
+    "difference_between_peak_and_estimated_sensible_load": getLoadComponentObject()
   }
 }
 
 // Initialize JSON Object
-jsonData = {};
+var jsonData = {};
 
 // Design Psychrometrics
-jsonData['design_psychrometrics'] = [];
+jsonData['design_psychrometrics'] = {};
 for (var i=1; i<=numCoils; i++) {
-  jsonData['design_psychrometrics'].push(getDesignPsychrometricObject());
+
+  var coilName = "Coil " + i.toString();
+  var designPsychrometrics = {};
+  designPsychrometrics = getDesignPsychrometricObject();
+  jsonData['design_psychrometrics'][coilName] = designPsychrometrics;
 }
 
 // System Checksums
-jsonData['system_checksums'] = [];
+jsonData['system_load_summarys'] = {};
 for (var i=1; i<=numSystems; i++) {
-  var systemChecksums = {
+  var sysName = "System " + i.toString();
+  var systemLoadSummary = {
     "cad_object_id": i.toString(),
-    "name": "System " + i.toString(),
-    "cooling_engineering_check_table":{},
-    "cooling_peak_condition_table":{},
-    "cooling_peak_load_component_table":{},
-    "heating_engineering_check_table":{},
-    "heating_peak_condition_table":{},
-    "heating_peak_load_component_table":{}
+    "name": sysName,
+    "cooling": {
+        "engineering_check":{},
+        "peak_condition":{},
+        "estimated_peak_load_component_table":{},
+        "temperature": {},
+        "airflow": {}
+    },
+    "heating": {
+      "engineering_check":{},
+      "peak_condition":{},
+      "estimated_peak_load_component_table":{},
+      "temperature": {},
+      "airflow": {}
+    }
   }
 
-  systemChecksums["cooling_engineering_check_table"] = getSystemEngineeringChecksumsObject()
-  systemChecksums["cooling_peak_condition_table"] = getCoolingPeakConditionObject()
-  systemChecksums["cooling_peak_load_component_table"] = getSystemLoadComponents()
-  systemChecksums["heating_engineering_check_table"] = getSystemEngineeringChecksumsObject()
-  systemChecksums["heating_peak_condition_table"] = getHeatingPeakConditionObject()
-  systemChecksums["heating_peak_load_component_table"] = getSystemLoadComponents()
+  systemLoadSummary["cooling"]["engineering_check"] = getSystemEngineeringChecksumsObject()
+  systemLoadSummary["cooling"]["peak_condition"] = getCoolingPeakConditionObject()
+  systemLoadSummary["cooling"]["estimated_peak_load_component_table"] = getSystemLoadComponents()
+  systemLoadSummary["cooling"]["temperature"] = getTemperatureObject()
+  systemLoadSummary["cooling"]["airflow"] = getAirflowObject()
+  systemLoadSummary["heating"]["engineering_check"] = getSystemEngineeringChecksumsObject()
+  systemLoadSummary["heating"]["peak_condition"] = getHeatingPeakConditionObject()
+  systemLoadSummary["heating"]["estimated_peak_load_component_table"] = getSystemLoadComponents()
+  systemLoadSummary["heating"]["temperature"] = getTemperatureObject()
+  systemLoadSummary["heating"]["airflow"] = getAirflowObject()
 
-  jsonData['system_checksums'].push(systemChecksums);
+  jsonData['system_load_summarys'][sysName] = systemLoadSummary;
 }
 
-// zone_loads_by_components
-jsonData['zone_loads_by_components'] = [];
+// Zone Load Summary
+jsonData['zone_load_summarys'] = {};
 for (var i=1; i<=numZones; i++) {
-  var zoneChecksums = {
+  var zoneName = "Zone " + i.toString();
+  var zoneLoadSummary = {
     "cad_object_id": i.toString(),
-    "name": "Zone " + i.toString(),
-    "cooling_engineering_check_table":{},
-    "cooling_peak_condition_table":{},
-    "cooling_peak_load_component_table":{},
-    "heating_engineering_check_table":{},
-    "heating_peak_condition_table":{},
-    "heating_peak_load_component_table":{}
+    "name": zoneName,
+    "cooling": {
+        "engineering_check":{},
+        "peak_condition":{},
+        "estimated_peak_load_component_table":{}
+    },
+    "heating": {
+      "engineering_check":{},
+      "peak_condition":{},
+      "estimated_peak_load_component_table":{}
+    }
   }
 
-  zoneChecksums["cooling_engineering_check_table"] = getZoneEngineeringChecksumsObject()
-  zoneChecksums["cooling_peak_condition_table"] = getCoolingPeakConditionObject()
-  zoneChecksums["cooling_peak_load_component_table"] = getZoneLoadComponents()
-  zoneChecksums["heating_engineering_check_table"] = getZoneEngineeringChecksumsObject()
-  zoneChecksums["heating_peak_condition_table"] = getHeatingPeakConditionObject()
-  zoneChecksums["heating_peak_load_component_table"] = getZoneLoadComponents()
+  zoneLoadSummary["cooling"]["engineering_check"] = getZoneEngineeringChecksumsObject()
+  zoneLoadSummary["cooling"]["peak_condition"] = getCoolingPeakConditionObject()
+  zoneLoadSummary["cooling"]["estimated_peak_load_component_table"] = getZoneLoadComponents()
+  zoneLoadSummary["heating"]["engineering_check"] = getZoneEngineeringChecksumsObject()
+  zoneLoadSummary["heating"]["peak_condition"] = getHeatingPeakConditionObject()
+  zoneLoadSummary["heating"]["estimated_peak_load_component_table"] = getZoneLoadComponents()
 
-  jsonData['zone_loads_by_components'].push(zoneChecksums);
+  jsonData['zone_load_summarys'][zoneName] = zoneLoadSummary;
 }
 
 //console.log(JSON.stringify(jsonData));
