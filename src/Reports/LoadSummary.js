@@ -17,12 +17,22 @@ export class LoadSummary extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            data_exists: false,
             heating_cooling_selection: "cooling",
             engineering_check_table: "engineering_check",
             peak_condition_table: "peak_condition",
             peak_load_component_table: "estimated_peak_load_component_table",
             object_selection: 0,
         };
+    }
+
+    componentDidMount() {
+        // Set data_exists state to false if data object is empty
+        if (this.props.data && Object.keys(this.props.data).length === 0) {
+            this.setState({ data_exists: false })
+        } else {
+            this.setState({ data_exists: true })
+        }
     }
 
     handleObjectSelect(eventKey) {
@@ -72,7 +82,7 @@ export class LoadSummary extends React.Component {
 
     getLoadComponents() {
         // Get data for peak_load_component_table
-        if (this.props.data) {
+        if (this.props.data && Object.keys(this.props.data).length !== 0) {
             const objectName = this.getObjectName(this.state.object_selection);
             return this.props.data[objectName][this.state.heating_cooling_selection]['estimated_peak_load_component_table']
         } else {
@@ -82,7 +92,7 @@ export class LoadSummary extends React.Component {
 
     getPeakConditionTable() {
         // Get data for peak_condition_table
-        if (this.props.data) {
+        if (this.props.data && Object.keys(this.props.data).length !== 0) {
             const objectName = this.getObjectName(this.state.object_selection);
             return this.props.data[objectName][this.state.heating_cooling_selection]['peak_condition']
         } else {
@@ -92,7 +102,7 @@ export class LoadSummary extends React.Component {
 
     getTemperaturesTable() {
         // Get data for peak_condition_table
-        if (this.props.data) {
+        if (this.props.data && Object.keys(this.props.data).length !== 0) {
             const objectName = this.getObjectName(this.state.object_selection);
             return this.props.data[objectName][this.state.heating_cooling_selection]['temperature']
         } else {
@@ -102,7 +112,7 @@ export class LoadSummary extends React.Component {
 
     getAirflowsTable() {
         // Get data for peak_condition_table
-        if (this.props.data) {
+        if (this.props.data && Object.keys(this.props.data).length !== 0) {
             const objectName = this.getObjectName(this.state.object_selection);
             return this.props.data[objectName][this.state.heating_cooling_selection]['airflow']
         } else {
@@ -112,7 +122,7 @@ export class LoadSummary extends React.Component {
 
     getEngineeringCheckTable() {
         // Get data for engineering_check_table
-        if (this.props.data) {  
+        if (this.props.data && Object.keys(this.props.data).length !== 0) {  
             const objectName = this.getObjectName(this.state.object_selection);
             return this.props.data[objectName][this.state.heating_cooling_selection]['engineering_check']
         } else {
@@ -208,130 +218,133 @@ export class LoadSummary extends React.Component {
 
     render() {
         const loadData = this.getLoadComponents();
-        const peakConditionsData = this.getPeakConditionTable();
 
         return (
-            <Tab.Container id={this.props.name + '-container'} activeKey={this.state.heating_cooling_selection} defaultActiveKey="cooling">
-                <Row>
-                    {this.getObjectList() ? <ObjectSelectionDropDown
-                    name={this.props.name + "-objectDropdown"}
-                    objectList={this.getObjectList()}
-                    objectSelection={this.state.object_selection}
-                    handleObjectSelect={this.handleObjectSelect.bind(this)}
-                    /> : null}
+            ( this.state.data_exists ?
+                <Tab.Container id={this.props.name + '-container'} activeKey={this.state.heating_cooling_selection} defaultActiveKey="cooling">
+                    <Row>
+                        {this.getObjectList() ? <ObjectSelectionDropDown
+                        name={this.props.name + "-objectDropdown"}
+                        objectList={this.getObjectList()}
+                        objectSelection={this.state.object_selection}
+                        handleObjectSelect={this.handleObjectSelect.bind(this)}
+                        /> : null}
 
-                    <Nav variant="pills" onSelect={this.handleHeatingCoolingSelect.bind(this)} className="App-buttons">
-                        <Nav.Item>
-                        <Nav.Link eventKey="cooling">Cooling</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                        <Nav.Link eventKey="heating">Heating</Nav.Link>
-                        </Nav.Item>
-                    </Nav>
+                        <Nav variant="pills" onSelect={this.handleHeatingCoolingSelect.bind(this)} className="App-buttons">
+                            <Nav.Item>
+                            <Nav.Link eventKey="cooling">Cooling</Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item>
+                            <Nav.Link eventKey="heating">Heating</Nav.Link>
+                            </Nav.Item>
+                        </Nav>
+                    </Row>
+                    <Row>
+                        <Col md={6}>
+                            <Row>
+                                <TableHeader
+                                name={this.props.name + "-headerTable"}
+                                dataMapping={this.props.dataMapping['headerTable']}
+                                />
+                            </Row>
+                            <Row>
+                                <span>Envelope</span>
+                                <CustomTable
+                                name={this.props.name + "-envelopeTable"}
+                                displayHeader={false}
+                                dataMapping={this.props.dataMapping['envelopeLoadsTable']}
+                                data={this.formatTableData(this.props.dataMapping['envelopeLoadsTable'], loadData)}
+                                />
+                            </Row>
+                            <Row>
+                                <span>Internal Gains</span>
+                                <CustomTable
+                                name={this.props.name + "-internalGainTable"}
+                                displayHeader={false}
+                                dataMapping={this.props.dataMapping['internalGainsTable']}
+                                data={this.formatTableData(this.props.dataMapping['internalGainsTable'], loadData)}
+                                />
+                            </Row>
+                            <Row>
+                                <span>Systems</span>
+                                <CustomTable
+                                name={this.props.name + "-systemLoadsTable"}
+                                displayHeader={false}
+                                dataMapping={this.props.dataMapping['systemLoadsTable']}
+                                data={this.formatTableData(this.props.dataMapping['systemLoadsTable'], loadData)}
+                                />
+                            </Row>
+                            <Row>
+                                <span>Total</span>
+                                <CustomTable
+                                name={this.props.name + "-totalLoadsTable"}
+                                displayHeader={false}
+                                dataMapping={this.props.dataMapping['totalLoadsTable']}
+                                data={this.formatTableData(this.props.dataMapping['totalLoadsTable'], loadData)}
+                                />
+                            </Row>
+                        </Col>
+                        <Col>
+                            <Row>
+                                <ReportCard
+                                name={this.props.name + "-conditionsTimePeak"}
+                                title="Conditions at Time of Peak"
+                                dataMapping={this.props.dataMapping['peakConditions']}
+                                data={this.getPeakConditionTable()}
+                                />
+                            </Row>
+                            { this.props.name === 'systemLoadSummary' ? (
+                                <Row>
+                                    <ReportCard
+                                    name={this.props.name + "-temperatures"}
+                                    title="Temperatures"
+                                    dataMapping={this.props.dataMapping['temperatures']}
+                                    data={this.getTemperaturesTable()}
+                                    />
+                                </Row>
+                            ) : null }
+                            { this.props.name === 'systemLoadSummary' ? (
+                                <Row>
+                                    <ReportCard
+                                    name={this.props.name + "-airflows"}
+                                    title="Airflows"
+                                    dataMapping={this.props.dataMapping['airflows']}
+                                    data={this.getAirflowsTable()}
+                                    />
+                                </Row>
+                            ) : null }
+                            <Row>
+                                <ReportCard
+                                name={this.props.name + "-engineeringCheck"}
+                                title="Engineering Checks"
+                                dataMapping={this.props.dataMapping['engineeringCheck']}
+                                data={this.getEngineeringCheckTable()}
+                                />
+                            </Row>
+                        </Col>
+                        <Col>
+                            <Row>
+                                <CustomPieChart
+                                name={this.props.name + "-peakLoadsChart"}
+                                title={"Peak Loads [W]"}
+                                colors={COOLINGHEATINGCOLORS}
+                                data={this.getHeatingAndCoolingLoads()}
+                                />
+                            </Row>
+                            <Row>
+                                <CustomPieChart
+                                name={this.props.name + "-loadComponentsChart"}
+                                title={ this.state.heating_cooling_selection === 'cooling' ? 'Cooling Load Components [W]' : 'Heating Load Components [W]'}
+                                colors={EQUIDISTANTCOLORS}
+                                data={this.formatLoadComponentChartData(this.props.dataMapping['componentPieChart'], loadData)}
+                                /> 
+                            </Row>
+                        </Col>
                 </Row>
-                <Row>
-                    <Col md={6}>
-                        <Row>
-                            <TableHeader
-                            name={this.props.name + "-headerTable"}
-                            dataMapping={this.props.dataMapping['headerTable']}
-                            />
-                        </Row>
-                        <Row>
-                            <span>Envelope</span>
-                            <CustomTable
-                            name={this.props.name + "-envelopeTable"}
-                            displayHeader={false}
-                            dataMapping={this.props.dataMapping['envelopeLoadsTable']}
-                            data={this.formatTableData(this.props.dataMapping['envelopeLoadsTable'], loadData)}
-                            />
-                        </Row>
-                        <Row>
-                            <span>Internal Gains</span>
-                            <CustomTable
-                            name={this.props.name + "-internalGainTable"}
-                            displayHeader={false}
-                            dataMapping={this.props.dataMapping['internalGainsTable']}
-                            data={this.formatTableData(this.props.dataMapping['internalGainsTable'], loadData)}
-                            />
-                        </Row>
-                        <Row>
-                            <span>Systems</span>
-                            <CustomTable
-                            name={this.props.name + "-systemLoadsTable"}
-                            displayHeader={false}
-                            dataMapping={this.props.dataMapping['systemLoadsTable']}
-                            data={this.formatTableData(this.props.dataMapping['systemLoadsTable'], loadData)}
-                            />
-                        </Row>
-                        <Row>
-                            <span>Total</span>
-                            <CustomTable
-                            name={this.props.name + "-totalLoadsTable"}
-                            displayHeader={false}
-                            dataMapping={this.props.dataMapping['totalLoadsTable']}
-                            data={this.formatTableData(this.props.dataMapping['totalLoadsTable'], loadData)}
-                            />
-                        </Row>
-                    </Col>
-                    <Col>
-                        <Row>
-                            <ReportCard
-                            name={this.props.name + "-conditionsTimePeak"}
-                            title="Conditions at Time of Peak"
-                            dataMapping={this.props.dataMapping['peakConditions']}
-                            data={peakConditionsData}
-                            />
-                        </Row>
-                        { this.props.name === 'systemLoadSummary' ? (
-                            <Row>
-                                <ReportCard
-                                name={this.props.name + "-temperatures"}
-                                title="Temperatures"
-                                dataMapping={this.props.dataMapping['temperatures']}
-                                data={this.getTemperaturesTable()}
-                                />
-                            </Row>
-                        ) : null }
-                        { this.props.name === 'systemLoadSummary' ? (
-                            <Row>
-                                <ReportCard
-                                name={this.props.name + "-airflows"}
-                                title="Airflows"
-                                dataMapping={this.props.dataMapping['airflows']}
-                                data={this.getAirflowsTable()}
-                                />
-                            </Row>
-                        ) : null }
-                        <Row>
-                            <ReportCard
-                            name={this.props.name + "-engineeringCheck"}
-                            title="Engineering Checks"
-                            dataMapping={this.props.dataMapping['engineeringCheck']}
-                            data={this.getEngineeringCheckTable()}
-                            />
-                        </Row>
-                    </Col>
-                    <Col>
-                        <Row>
-                            <CustomPieChart
-                            name={this.props.name + "-peakLoadsChart"}
-                            title={"Peak Loads [W]"}
-                            colors={COOLINGHEATINGCOLORS}
-                            data={this.getHeatingAndCoolingLoads()}
-                            />
-                        </Row>
-                        <Row>
-                            <CustomPieChart
-                            name={this.props.name + "-loadComponentsChart"}
-                            title={ this.state.heating_cooling_selection === 'cooling' ? 'Cooling Load Components [W]' : 'Heating Load Components [W]'}
-                            colors={EQUIDISTANTCOLORS}
-                            data={this.formatLoadComponentChartData(this.props.dataMapping['componentPieChart'], loadData)}
-                            /> 
-                        </Row>
-                    </Col>
-              </Row>
-            </Tab.Container>
+                </Tab.Container> 
+            : 
+                <h1>No {this.props.name === 'zoneLoadSummary' ? 'zones': 'systems' } found.</h1> 
+            )
         );
     }
 }

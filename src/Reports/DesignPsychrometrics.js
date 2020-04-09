@@ -10,6 +10,7 @@ export class DesignPsychrometrics extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            data_exists: false,
             object_selection: 0,
             num_objects: 0,
             object_list: [],
@@ -18,6 +19,13 @@ export class DesignPsychrometrics extends React.Component {
 
     componentDidMount() {
         this.getObjectList()
+
+        // Set data_exists state to false if data object is empty
+        if (this.props.data && Object.keys(this.props.data).length === 0) {
+            this.setState({ data_exists: false })
+        } else {
+            this.setState({ data_exists: true })
+        }
     }
 
     handleObjectSelect(eventKey) {
@@ -84,36 +92,40 @@ export class DesignPsychrometrics extends React.Component {
         const data = this.props.data[objectName];
 
         return (
-        <Tab.Container id={this.props.name + '-container'}>
-            <Row>
-                <Col className='text-left'>
-                    <ObjectSelectionDropDown
-                    name={this.props.name + "-objectDropdown"}
-                    objectList={this.state.object_list}
-                    objectSelection={this.state.object_selection}
-                    handleObjectSelect={this.handleObjectSelect.bind(this)}
-                    />
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <CustomTable
-                    name={this.props.name + "-statePointTable"}
-                    displayHeader={true}
-                    dataMapping={this.props.dataMapping['componentTable']}
-                    data={this.formatTableData(this.props.dataMapping['componentTable'], data)}
-                    />
-                </Col>
-                <Col>
-                    <ReportCard
-                    name={this.props.name + "-conditionsTimePeak"}
-                    title="Summary"
-                    dataMapping={this.props.dataMapping['componentChecks']}
-                    data={data}
-                    />
-                </Col>
-          </Row>
-        </Tab.Container>
+            ( this.state.data_exists ?
+                <Tab.Container id={this.props.name + '-container'}>
+                    <Row>
+                        <Col className='text-left'>
+                            <ObjectSelectionDropDown
+                            name={this.props.name + "-objectDropdown"}
+                            objectList={this.state.object_list}
+                            objectSelection={this.state.object_selection}
+                            handleObjectSelect={this.handleObjectSelect.bind(this)}
+                            />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <CustomTable
+                            name={this.props.name + "-statePointTable"}
+                            displayHeader={true}
+                            dataMapping={this.props.dataMapping['componentTable']}
+                            data={this.formatTableData(this.props.dataMapping['componentTable'], data)}
+                            />
+                        </Col>
+                        <Col>
+                            <ReportCard
+                            name={this.props.name + "-conditionsTimePeak"}
+                            title="Summary"
+                            dataMapping={this.props.dataMapping['componentChecks']}
+                            data={data}
+                            />
+                        </Col>
+                </Row>
+                </Tab.Container>
+            : 
+                <h1>No system coils found.</h1> 
+            )
         );
     }
 }
