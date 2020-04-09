@@ -113,6 +113,7 @@ function getLoadComponentObject() {
     "sensible_delayed": getRandomArbitrary(0.0, 10000.0),
     "sensible_instant": getRandomArbitrary(0.0, 10000.0),
     "sensible_return_air": getRandomArbitrary(0.0, 10000.0),
+    "total": getRandomArbitrary(0.0, 10000.0),
   }
 }
 
