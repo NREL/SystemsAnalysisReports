@@ -10,7 +10,7 @@ import {
     zoneLoadSummaryMapping,
     systemLoadSummaryMapping
 } from '../constants/dataMapping';
-import { loadData, formatData } from '../functions/dataFormatting';
+import { loadData } from '../functions/dataFormatting';
 
 export class Navigation extends React.Component {
     constructor(props) {
@@ -24,9 +24,7 @@ export class Navigation extends React.Component {
     componentDidMount() {
     // Function to load data asyncronously
     loadData(this.props.data).then(data => {
-        formatData(data).then(data => {
-            this.setState({ loading: false, data: data })
-        })
+        this.setState({ loading: false, data: data })
     })
     }
 

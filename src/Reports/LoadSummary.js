@@ -37,16 +37,10 @@ export class LoadSummary extends React.Component {
         if (eventKey === "heating") {
             this.setState({
                 heating_cooling_selection: "heating",
-                //engineering_check_table: "heating_engineering_check_table",
-                //peak_condition_table: "heating_peak_condition_table",
-                //peak_load_component_table: "heating_peak_load_component_table"
             });
         } else {
             this.setState({
                 heating_cooling_selection: "cooling",
-                //engineering_check_table: "cooling_engineering_check_table",
-                //peak_condition_table: "cooling_peak_condition_table",
-                //peak_load_component_table: "cooling_peak_load_component_table"
             });           
         }
     }

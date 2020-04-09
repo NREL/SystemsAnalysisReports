@@ -89,7 +89,7 @@ function getSystemEngineeringChecksumsObject() {
     "airflow_per_total_capacity": getRandomArbitrary(0.1, 0.9),
     "floor_area_per_total_capacity": getRandomArbitrary(0.1, 0.9),
     "number_of_people": getRandomArbitrary(0, 20),
-    "outside_air_percent": getRandomArbitrary(0, 1.0),
+    "outside_air_percent": getRandomArbitrary(0, 100.0),
     "total_capacity_per_floor_area": getRandomArbitrary(10.0, 100.0),
   }
 }
@@ -100,7 +100,7 @@ function getZoneEngineeringChecksumsObject() {
     "airflow_per_total_capacity": getRandomArbitrary(0.1, 0.9),
     "floor_area_per_total_capacity": getRandomArbitrary(0.1, 0.9),
     "number_of_people": getRandomArbitrary(0, 20),
-    "outside_air_percent": getRandomArbitrary(0, 1.0),
+    "outside_air_percent": getRandomArbitrary(0, 100.0),
     "total_capacity_per_floor_area": getRandomArbitrary(10.0, 100.0),
   }
 }
@@ -108,7 +108,7 @@ function getZoneEngineeringChecksumsObject() {
 function getLoadComponentObject() {
   return {
     "latent": getRandomArbitrary(0.0, 10000.0),
-    "percent_grand_total": getRandomArbitrary(0.0, 10000.0),
+    "percent_grand_total": getRandomArbitrary(0.0, 100.0),
     "related_area": getRandomArbitrary(0.0, 10000.0),
     "sensible_delayed": getRandomArbitrary(0.0, 10000.0),
     "sensible_instant": getRandomArbitrary(0.0, 10000.0),
