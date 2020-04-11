@@ -157,7 +157,7 @@ export const zoneLoadSummaryMapping = {
         }
     ],
     "componentPieChart": {
-        "Envelope": [
+        "Conduction": [
             "infiltration",
             "ground_contact_floor",
             "ground_contact_wall",
@@ -169,34 +169,37 @@ export const zoneLoadSummaryMapping = {
             "roof",
             "exterior_floor",
             "exterior_wall",
-        ],
-        "Solar": [
-            "fenestration_solar",
-        ],
-        "Interzone": [
             "interzone_ceiling",
             "interzone_floor",
             "interzone_mixing",
             "interzone_wall",
+        ],
+        "Solar": [
+            "fenestration_solar",
         ],
         "Equipment": [
             "equipment",
         ],
         "Lights": [
             "lights",
-            "return_air_lights",
+            "return_air_lights"
         ],
         "People": [
             "people",
         ],
-        "HVAC": [
+        "Outdoor Air": [
+            "zone_ventilation",
+            "doas_direct_to_zone",
+        ],
+        "Other": [
             "power_generation_equipment",
             "refrigeration",
             "water_use_equipment",
             "hvac_equipment_loss",
             "return_air_other",
             "transfer_air",
-            "doas_direct_to_zone",
+            "time_delay_correction",
+            "difference_between_peak_and_estimated_sensible_load"
         ]
     }
 };
@@ -342,7 +345,7 @@ export const systemLoadSummaryMapping = {
         }
     ],
     "componentPieChart": {
-        "Envelope": [
+        "Conduction": [
             "infiltration",
             "ground_contact_floor",
             "ground_contact_wall",
@@ -354,15 +357,13 @@ export const systemLoadSummaryMapping = {
             "roof",
             "exterior_floor",
             "exterior_wall",
-        ],
-        "Solar": [
-            "fenestration_solar",
-        ],
-        "Interzone": [
             "interzone_ceiling",
             "interzone_floor",
             "interzone_mixing",
             "interzone_wall",
+        ],
+        "Solar": [
+            "fenestration_solar",
         ],
         "Equipment": [
             "equipment",
@@ -374,15 +375,19 @@ export const systemLoadSummaryMapping = {
         "People": [
             "people",
         ],
-        "HVAC": [
+        "Outdoor Air": [
+            "zone_ventilation",
+            "doas_direct_to_zone",
+        ],
+        "Other": [
             "power_generation_equipment",
             "refrigeration",
             "water_use_equipment",
             "hvac_equipment_loss",
-            "zone_ventilation",
             "return_air_other",
             "transfer_air",
-            "doas_direct_to_zone",
+            "time_delay_correction",
+            "difference_between_peak_and_estimated_sensible_load"
         ]
     }
 };
