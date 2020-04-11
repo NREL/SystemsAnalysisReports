@@ -130,7 +130,7 @@ export class LoadSummary extends React.Component {
         }
     }
 
-    getHeatingAndCoolingLoads() {
+    getHeatingAndCoolingPeakLoads() {
         // Assumes that Cooling Peak Condition Table - Sensible Peak Load is the appropriate total load value.
         // Investigate further whether this should be a calculated value from the subcomponents.
         
@@ -140,8 +140,8 @@ export class LoadSummary extends React.Component {
             //const data = this.props.data[this.state.object_selection];
 
             if (data) {
-                const peakCoolingLoad = data['cooling']['peak_condition']['peak_sensible_load'];
-                const peakHeatingLoad = data['heating']['peak_condition']['peak_sensible_load'];
+                const peakCoolingLoad = data['cooling']['estimated_peak_load_component_table']['grand_total']['total'];
+                const peakHeatingLoad = data['heating']['estimated_peak_load_component_table']['grand_total']['total'];
                 const output = [ 
                     {'name': 'Cooling', 'value': parseInt(Math.abs(peakCoolingLoad))}, 
                     {'name': 'Heating', 'value': parseInt(Math.abs(peakHeatingLoad))}
@@ -328,7 +328,7 @@ export class LoadSummary extends React.Component {
                                 name={this.props.name + "-peakLoadsChart"}
                                 title={"Peak Loads [W]"}
                                 colors={COOLINGHEATINGCOLORS}
-                                data={this.getHeatingAndCoolingLoads()}
+                                data={this.getHeatingAndCoolingPeakLoads()}
                                 />
                             </Row>
                             <Row>
