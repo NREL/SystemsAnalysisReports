@@ -117,6 +117,19 @@ function getLoadComponentObject() {
   }
 }
 
+
+function getNullLatentLoadComponentObject() {
+  return {
+    "latent": null,
+    "percent_grand_total": getRandomArbitrary(0.0, 100.0),
+    "related_area": getRandomArbitrary(0.0, 10000.0),
+    "sensible_delayed": getRandomArbitrary(0.0, 10000.0),
+    "sensible_instant": getRandomArbitrary(0.0, 10000.0),
+    "sensible_return_air": getRandomArbitrary(0.0, 10000.0),
+    "total": getRandomArbitrary(0.0, 10000.0),
+  }
+}
+
 function getTemperatureObject() {
   return {
     "supply": getRandomArbitrary(10, 25),
@@ -173,8 +186,8 @@ function getSystemLoadComponents() {
 function getZoneLoadComponents() {
   return {
     "doas_direct_to_zone": getLoadComponentObject(),
-    "equipment": getLoadComponentObject(),
-    "exterior_floor": getLoadComponentObject(),
+    "equipment": getNullLatentLoadComponentObject(),
+    "exterior_floor": getNullLatentLoadComponentObject(),
     "exterior_wall": getLoadComponentObject(),
     "fenestration_conduction": getLoadComponentObject(),
     "fenestration_solar": getLoadComponentObject(),
@@ -183,9 +196,9 @@ function getZoneLoadComponents() {
     "ground_contact_wall": getLoadComponentObject(),
     "hvac_equipment_loss": getLoadComponentObject(),
     "infiltration": getLoadComponentObject(),
-    "interzone_ceiling": getLoadComponentObject(),
-    "interzone_floor": getLoadComponentObject(),
-    "interzone_mixing": getLoadComponentObject(),
+    "interzone_ceiling": getNullLatentLoadComponentObject(),
+    "interzone_floor": getNullLatentLoadComponentObject(),
+    "interzone_mixing": getNullLatentLoadComponentObject(),
     "interzone_wall": getLoadComponentObject(),
     "lights": getLoadComponentObject(),
     "opaque_door": getLoadComponentObject(),

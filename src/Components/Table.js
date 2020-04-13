@@ -29,7 +29,7 @@ export class CustomTable extends React.Component {
                                 dataValue = numberWithCommas(rowData[column['jsonKey']].toFixed(decimals));
                             } else {
                                 // Set value to null if none exists in data
-                                dataValue = null;
+                                dataValue = '-';
                             }
                         }
 
@@ -44,7 +44,7 @@ export class CustomTable extends React.Component {
                                         ['subtotal', 'grand_total'].includes(rowKey) ? <i>{dataValue}</i> : dataValue
                                     ) 
                                     :
-                                    null 
+                                    '-' 
                                 }
                             </td>
                         )
