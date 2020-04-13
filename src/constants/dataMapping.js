@@ -114,8 +114,8 @@ export const zoneLoadSummaryMapping = {
             {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total", "decimals": 1},
         ],
         "rows": [
-            {"displayName": "Sizing Factor Adjustment (W)", "jsonKey": "difference_due_to_sizing_factor"},
-            {"displayName": "Time Delay Correction (W)", "jsonKey": "difference_between_peak_and_estimated_sensible_load"},
+            {"displayName": "Sizing Factor Adjustment", "jsonKey": "difference_due_to_sizing_factor"},
+            {"displayName": "Time Delay Correction", "jsonKey": "difference_between_peak_and_estimated_sensible_load"},
             {"displayName": "Grand Total", "jsonKey": "grand_total"},
         ]
     },
@@ -157,7 +157,7 @@ export const zoneLoadSummaryMapping = {
         }
     ],
     "componentPieChart": {
-        "Envelope": [
+        "Conduction": [
             "infiltration",
             "ground_contact_floor",
             "ground_contact_wall",
@@ -169,34 +169,37 @@ export const zoneLoadSummaryMapping = {
             "roof",
             "exterior_floor",
             "exterior_wall",
-        ],
-        "Solar": [
-            "fenestration_solar",
-        ],
-        "Interzone": [
             "interzone_ceiling",
             "interzone_floor",
             "interzone_mixing",
             "interzone_wall",
+        ],
+        "Solar": [
+            "fenestration_solar",
         ],
         "Equipment": [
             "equipment",
         ],
         "Lights": [
             "lights",
-            "return_air_lights",
+            "return_air_lights"
         ],
         "People": [
             "people",
         ],
-        "HVAC": [
+        "Outdoor Air": [
+            "zone_ventilation",
+            "doas_direct_to_zone",
+        ],
+        "Other": [
             "power_generation_equipment",
             "refrigeration",
             "water_use_equipment",
             "hvac_equipment_loss",
             "return_air_other",
             "transfer_air",
-            "doas_direct_to_zone",
+            "time_delay_correction",
+            "difference_between_peak_and_estimated_sensible_load"
         ]
     }
 };
@@ -270,11 +273,9 @@ export const systemLoadSummaryMapping = {
             {"displayName": "Refrigeration", "jsonKey": "refrigeration"},
             {"displayName": "Water Use Equipment", "jsonKey": "water_use_equipment"},
             {"displayName": "HVAC Equipment Loss", "jsonKey": "hvac_equipment_loss"},
-            {"displayName": "Fan Heat", "jsonKey": "supply_fan_heat"},
+            //{"displayName": "Fan Heat", "jsonKey": "supply_fan_heat"},
             {"displayName": "Transfer Air", "jsonKey": "interzone_mixing"},
             {"displayName": "DOAS Direct to Zone", "jsonKey": "doas_direct_to_zone"},
-            {"displayName": "Time Delay Correction", "jsonKey": "time_delay_correction"},
-            {"displayName": "Sizing Factor Correction", "jsonKey": "sizing_factor_correction"},
             {"displayName": "Subtotal", "jsonKey": "subtotal"},
         ]
     },
@@ -287,8 +288,8 @@ export const systemLoadSummaryMapping = {
             {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total", "decimals": 1},
         ],
         "rows": [
-            {"displayName": "Sizing Factor Adjustment (W)", "jsonKey": "difference_due_to_sizing_factor"},
-            {"displayName": "Time Delay Correction (W)", "jsonKey": "difference_between_peak_and_estimated_sensible_load"},
+            {"displayName": "Sizing Factor Adjustment", "jsonKey": "difference_due_to_sizing_factor"},
+            {"displayName": "Time Delay Correction", "jsonKey": "difference_between_peak_and_estimated_sensible_load"},
             {"displayName": "Grand Total", "jsonKey": "grand_total"},
         ]
     },
@@ -342,7 +343,7 @@ export const systemLoadSummaryMapping = {
         }
     ],
     "componentPieChart": {
-        "Envelope": [
+        "Conduction": [
             "infiltration",
             "ground_contact_floor",
             "ground_contact_wall",
@@ -354,15 +355,13 @@ export const systemLoadSummaryMapping = {
             "roof",
             "exterior_floor",
             "exterior_wall",
-        ],
-        "Solar": [
-            "fenestration_solar",
-        ],
-        "Interzone": [
             "interzone_ceiling",
             "interzone_floor",
             "interzone_mixing",
             "interzone_wall",
+        ],
+        "Solar": [
+            "fenestration_solar",
         ],
         "Equipment": [
             "equipment",
@@ -374,15 +373,19 @@ export const systemLoadSummaryMapping = {
         "People": [
             "people",
         ],
-        "HVAC": [
+        "Outdoor Air": [
+            "zone_ventilation",
+            "doas_direct_to_zone",
+        ],
+        "Other": [
             "power_generation_equipment",
             "refrigeration",
             "water_use_equipment",
             "hvac_equipment_loss",
-            "zone_ventilation",
             "return_air_other",
             "transfer_air",
-            "doas_direct_to_zone",
+            "time_delay_correction",
+            "difference_between_peak_and_estimated_sensible_load"
         ]
     }
 };

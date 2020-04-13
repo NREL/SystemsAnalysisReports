@@ -10,11 +10,3 @@ test('data loads asynchronously', () => {
         expect(Object.keys(data).length).toBe(3)
     });
 });
-
-test('data formatting completes', () => {
-    loadData(jsonData).then(data => {
-        formatData(data).then(data => {
-            expect(Object.keys(data).length).toBe(3)
-        })
-    })
-});

@@ -89,7 +89,7 @@ function getSystemEngineeringChecksumsObject() {
     "airflow_per_total_capacity": getRandomArbitrary(0.1, 0.9),
     "floor_area_per_total_capacity": getRandomArbitrary(0.1, 0.9),
     "number_of_people": getRandomArbitrary(0, 20),
-    "outside_air_percent": getRandomArbitrary(0, 1.0),
+    "outside_air_percent": getRandomArbitrary(0, 100.0),
     "total_capacity_per_floor_area": getRandomArbitrary(10.0, 100.0),
   }
 }
@@ -100,7 +100,7 @@ function getZoneEngineeringChecksumsObject() {
     "airflow_per_total_capacity": getRandomArbitrary(0.1, 0.9),
     "floor_area_per_total_capacity": getRandomArbitrary(0.1, 0.9),
     "number_of_people": getRandomArbitrary(0, 20),
-    "outside_air_percent": getRandomArbitrary(0, 1.0),
+    "outside_air_percent": getRandomArbitrary(0, 100.0),
     "total_capacity_per_floor_area": getRandomArbitrary(10.0, 100.0),
   }
 }
@@ -108,14 +108,39 @@ function getZoneEngineeringChecksumsObject() {
 function getLoadComponentObject() {
   return {
     "latent": getRandomArbitrary(0.0, 10000.0),
-    "percent_grand_total": getRandomArbitrary(0.0, 10000.0),
+    "percent_grand_total": getRandomArbitrary(0.0, 100.0),
     "related_area": getRandomArbitrary(0.0, 10000.0),
     "sensible_delayed": getRandomArbitrary(0.0, 10000.0),
     "sensible_instant": getRandomArbitrary(0.0, 10000.0),
     "sensible_return_air": getRandomArbitrary(0.0, 10000.0),
+    "total": getRandomArbitrary(0.0, 10000.0),
   }
 }
 
+
+function getNullLatentLoadComponentObject() {
+  return {
+    "latent": null,
+    "percent_grand_total": getRandomArbitrary(0.0, 100.0),
+    "related_area": getRandomArbitrary(0.0, 10000.0),
+    "sensible_delayed": getRandomArbitrary(0.0, 10000.0),
+    "sensible_instant": getRandomArbitrary(0.0, 10000.0),
+    "sensible_return_air": getRandomArbitrary(0.0, 10000.0),
+    "total": getRandomArbitrary(0.0, 10000.0),
+  }
+}
+
+function getZeroLoadComponentObject() {
+  return {
+    "latent": getRandomArbitrary(0.0, 10000.0),
+    "percent_grand_total": getRandomArbitrary(0.0, 100.0),
+    "related_area": getRandomArbitrary(0.0, 10000.0),
+    "sensible_delayed": 0.1,
+    "sensible_instant": 0.0,
+    "sensible_return_air": getRandomArbitrary(0.0, 10000.0),
+    "total": getRandomArbitrary(0.0, 10000.0),
+  }
+}
 
 function getTemperatureObject() {
   return {
@@ -140,11 +165,11 @@ function getSystemLoadComponents() {
     "equipment": getLoadComponentObject(),
     "exterior_floor": getLoadComponentObject(),
     "exterior_wall": getLoadComponentObject(),
-    "fan_heat": getLoadComponentObject(),
+    //"fan_heat": getLoadComponentObject(),
     "fenestration_conduction": getLoadComponentObject(),
     "fenestration_solar": getLoadComponentObject(),
     "grand_total": getLoadComponentObject(),
-    "ground_contact_floor": getLoadComponentObject(),
+    "ground_contact_floor": getNullLatentLoadComponentObject(),
     "ground_contact_wall": getLoadComponentObject(),
     "hvac_equipment_loss": getLoadComponentObject(),
     "infiltration": getLoadComponentObject(),
@@ -155,7 +180,7 @@ function getSystemLoadComponents() {
     "lights": getLoadComponentObject(),
     "opaque_door": getLoadComponentObject(),
     "other_floor": getLoadComponentObject(),
-    "other_roof": getLoadComponentObject(),
+    "other_roof": getZeroLoadComponentObject(),
     "other_wall": getLoadComponentObject(),
     "people": getLoadComponentObject(),
     "power_generation_equipment": getLoadComponentObject(),
@@ -165,16 +190,16 @@ function getSystemLoadComponents() {
     "zone_ventilation": getLoadComponentObject(),
     "return_air_lights": getLoadComponentObject(),
     "return_air_other": getLoadComponentObject(),
-    "difference_due_to_sizing_factor": getLoadComponentObject(),
-    "difference_between_peak_and_estimated_sensible_load": getLoadComponentObject()
+    "difference_due_to_sizing_factor": getLoadComponentObject()
+    //"difference_between_peak_and_estimated_sensible_load": getLoadComponentObject()
   }
 }
 
 function getZoneLoadComponents() {
   return {
     "doas_direct_to_zone": getLoadComponentObject(),
-    "equipment": getLoadComponentObject(),
-    "exterior_floor": getLoadComponentObject(),
+    "equipment": getNullLatentLoadComponentObject(),
+    "exterior_floor": getNullLatentLoadComponentObject(),
     "exterior_wall": getLoadComponentObject(),
     "fenestration_conduction": getLoadComponentObject(),
     "fenestration_solar": getLoadComponentObject(),
@@ -183,9 +208,9 @@ function getZoneLoadComponents() {
     "ground_contact_wall": getLoadComponentObject(),
     "hvac_equipment_loss": getLoadComponentObject(),
     "infiltration": getLoadComponentObject(),
-    "interzone_ceiling": getLoadComponentObject(),
-    "interzone_floor": getLoadComponentObject(),
-    "interzone_mixing": getLoadComponentObject(),
+    "interzone_ceiling": getNullLatentLoadComponentObject(),
+    "interzone_floor": getNullLatentLoadComponentObject(),
+    "interzone_mixing": getNullLatentLoadComponentObject(),
     "interzone_wall": getLoadComponentObject(),
     "lights": getLoadComponentObject(),
     "opaque_door": getLoadComponentObject(),
@@ -199,7 +224,7 @@ function getZoneLoadComponents() {
     "water_use_equipment": getLoadComponentObject(),
     "return_air_lights": getLoadComponentObject(),
     "return_air_other": getLoadComponentObject(),
-    "difference_due_to_sizing_factor": getLoadComponentObject(),
+    //"difference_due_to_sizing_factor": getLoadComponentObject(),
     "difference_between_peak_and_estimated_sensible_load": getLoadComponentObject()
   }
 }

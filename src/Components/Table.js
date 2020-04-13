@@ -1,6 +1,6 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table'
-import { numberWithCommas } from '../functions/numericFunctions';
+import { isNumeric, numberWithCommas } from '../functions/numericFunctions';
 
 export class CustomTable extends React.Component {
     addDataRow(row, columns, data) {
@@ -9,7 +9,7 @@ export class CustomTable extends React.Component {
         if (data) {
             var rowData = data[rowKey];
 
-            if (rowData) {
+            //if (rowData) {
                 return (
                     <tr key={ this.props.name + '-' + rowKey }>
                     <td width="25%">
@@ -18,19 +18,24 @@ export class CustomTable extends React.Component {
                     { columns.map((column) => {
                         var dataValue = null;
                         var decimals = 1;
+                        
+                        if (rowData) {
+                            if (Object.keys(rowData).includes(column['jsonKey'])) {
+                                // Truncate numeric value based on desired decimals
+                                if (Object.keys(column).includes('decimals')) {
+                                    decimals = column['decimals'];
+                                }
 
-                        if (Object.keys(rowData).includes(column['jsonKey'])) {
-                            // Truncate numeric value based on desired decimals
-                            if (Object.keys(column).includes('decimals')) {
-                                decimals = column['decimals'];
+                                if ( isNumeric(rowData[column['jsonKey']]) ) {
+                                    // Set value to display with decimal value truncation
+                                    dataValue = numberWithCommas(rowData[column['jsonKey']].toFixed(decimals));
+                                } else {
+                                    // Set value to null if none exists in data
+                                    dataValue = '-';
+                                }
                             }
-                            if ( rowData[column['jsonKey']] ) {
-                                // Set value to display with decimal value truncation
-                                dataValue = numberWithCommas(rowData[column['jsonKey']].toFixed(decimals));
-                            } else {
-                                // Set value to null if none exists in data
-                                dataValue = null;
-                            }
+                        } else {
+                            dataValue = '-'
                         }
 
                         return (
@@ -38,20 +43,14 @@ export class CustomTable extends React.Component {
                             key={ this.props.name + '-' + rowKey + '-' + column['jsonKey'] }
                             width="15%"
                             >
-                                { 
-                                ( Object.keys(rowData).includes(column['jsonKey']) ) ? 
-                                    (
-                                        ['subtotal', 'grand_total'].includes(rowKey) ? <i>{dataValue}</i> : dataValue
-                                    ) 
-                                    :
-                                    null 
-                                }
+                                {  ['subtotal', 'grand_total'].includes(rowKey) ? <i>{dataValue}</i> : dataValue }
                             </td>
                         )
+                        
                     })}
                     </tr>
                 );
-            }
+            //}
         }
     }
 
