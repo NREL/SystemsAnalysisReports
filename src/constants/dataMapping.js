@@ -273,7 +273,7 @@ export const systemLoadSummaryMapping = {
             {"displayName": "Refrigeration", "jsonKey": "refrigeration"},
             {"displayName": "Water Use Equipment", "jsonKey": "water_use_equipment"},
             {"displayName": "HVAC Equipment Loss", "jsonKey": "hvac_equipment_loss"},
-            {"displayName": "Fan Heat", "jsonKey": "supply_fan_heat"},
+            //{"displayName": "Fan Heat", "jsonKey": "supply_fan_heat"},
             {"displayName": "Transfer Air", "jsonKey": "interzone_mixing"},
             {"displayName": "DOAS Direct to Zone", "jsonKey": "doas_direct_to_zone"},
             {"displayName": "Time Delay Correction", "jsonKey": "time_delay_correction"},

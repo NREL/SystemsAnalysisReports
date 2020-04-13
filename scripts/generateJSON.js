@@ -117,7 +117,6 @@ function getLoadComponentObject() {
   }
 }
 
-
 function getTemperatureObject() {
   return {
     "supply": getRandomArbitrary(10, 25),
@@ -141,7 +140,7 @@ function getSystemLoadComponents() {
     "equipment": getLoadComponentObject(),
     "exterior_floor": getLoadComponentObject(),
     "exterior_wall": getLoadComponentObject(),
-    "fan_heat": getLoadComponentObject(),
+    //"fan_heat": getLoadComponentObject(),
     "fenestration_conduction": getLoadComponentObject(),
     "fenestration_solar": getLoadComponentObject(),
     "grand_total": getLoadComponentObject(),
