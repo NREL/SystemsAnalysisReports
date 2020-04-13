@@ -130,6 +130,18 @@ function getNullLatentLoadComponentObject() {
   }
 }
 
+function getZeroLoadComponentObject() {
+  return {
+    "latent": getRandomArbitrary(0.0, 10000.0),
+    "percent_grand_total": getRandomArbitrary(0.0, 100.0),
+    "related_area": getRandomArbitrary(0.0, 10000.0),
+    "sensible_delayed": 0.1,
+    "sensible_instant": 0.0,
+    "sensible_return_air": getRandomArbitrary(0.0, 10000.0),
+    "total": getRandomArbitrary(0.0, 10000.0),
+  }
+}
+
 function getTemperatureObject() {
   return {
     "supply": getRandomArbitrary(10, 25),
@@ -157,7 +169,7 @@ function getSystemLoadComponents() {
     "fenestration_conduction": getLoadComponentObject(),
     "fenestration_solar": getLoadComponentObject(),
     "grand_total": getLoadComponentObject(),
-    "ground_contact_floor": getLoadComponentObject(),
+    "ground_contact_floor": getNullLatentLoadComponentObject(),
     "ground_contact_wall": getLoadComponentObject(),
     "hvac_equipment_loss": getLoadComponentObject(),
     "infiltration": getLoadComponentObject(),
@@ -168,7 +180,7 @@ function getSystemLoadComponents() {
     "lights": getLoadComponentObject(),
     "opaque_door": getLoadComponentObject(),
     "other_floor": getLoadComponentObject(),
-    "other_roof": getLoadComponentObject(),
+    "other_roof": getZeroLoadComponentObject(),
     "other_wall": getLoadComponentObject(),
     "people": getLoadComponentObject(),
     "power_generation_equipment": getLoadComponentObject(),
@@ -178,8 +190,8 @@ function getSystemLoadComponents() {
     "zone_ventilation": getLoadComponentObject(),
     "return_air_lights": getLoadComponentObject(),
     "return_air_other": getLoadComponentObject(),
-    "difference_due_to_sizing_factor": getLoadComponentObject(),
-    "difference_between_peak_and_estimated_sensible_load": getLoadComponentObject()
+    "difference_due_to_sizing_factor": getLoadComponentObject()
+    //"difference_between_peak_and_estimated_sensible_load": getLoadComponentObject()
   }
 }
 
@@ -212,7 +224,7 @@ function getZoneLoadComponents() {
     "water_use_equipment": getLoadComponentObject(),
     "return_air_lights": getLoadComponentObject(),
     "return_air_other": getLoadComponentObject(),
-    "difference_due_to_sizing_factor": getLoadComponentObject(),
+    //"difference_due_to_sizing_factor": getLoadComponentObject(),
     "difference_between_peak_and_estimated_sensible_load": getLoadComponentObject()
   }
 }

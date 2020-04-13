@@ -114,8 +114,8 @@ export const zoneLoadSummaryMapping = {
             {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total", "decimals": 1},
         ],
         "rows": [
-            {"displayName": "Sizing Factor Adjustment (W)", "jsonKey": "difference_due_to_sizing_factor"},
-            {"displayName": "Time Delay Correction (W)", "jsonKey": "difference_between_peak_and_estimated_sensible_load"},
+            {"displayName": "Sizing Factor Adjustment", "jsonKey": "difference_due_to_sizing_factor"},
+            {"displayName": "Time Delay Correction", "jsonKey": "difference_between_peak_and_estimated_sensible_load"},
             {"displayName": "Grand Total", "jsonKey": "grand_total"},
         ]
     },
@@ -276,8 +276,6 @@ export const systemLoadSummaryMapping = {
             //{"displayName": "Fan Heat", "jsonKey": "supply_fan_heat"},
             {"displayName": "Transfer Air", "jsonKey": "interzone_mixing"},
             {"displayName": "DOAS Direct to Zone", "jsonKey": "doas_direct_to_zone"},
-            {"displayName": "Time Delay Correction", "jsonKey": "time_delay_correction"},
-            {"displayName": "Sizing Factor Correction", "jsonKey": "sizing_factor_correction"},
             {"displayName": "Subtotal", "jsonKey": "subtotal"},
         ]
     },
@@ -290,8 +288,8 @@ export const systemLoadSummaryMapping = {
             {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total", "decimals": 1},
         ],
         "rows": [
-            {"displayName": "Sizing Factor Adjustment (W)", "jsonKey": "difference_due_to_sizing_factor"},
-            {"displayName": "Time Delay Correction (W)", "jsonKey": "difference_between_peak_and_estimated_sensible_load"},
+            {"displayName": "Sizing Factor Adjustment", "jsonKey": "difference_due_to_sizing_factor"},
+            {"displayName": "Time Delay Correction", "jsonKey": "difference_between_peak_and_estimated_sensible_load"},
             {"displayName": "Grand Total", "jsonKey": "grand_total"},
         ]
     },
