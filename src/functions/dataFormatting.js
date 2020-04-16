@@ -17,16 +17,18 @@ export const loadData = (data) => new Promise((resolve, reject) => {
     };
 
     // Loop for row in data
-    Object.keys(data).map((rowName) => {
-        if (rowName !== 'grand_total') {
-            Object.keys(data[rowName]).map((colName) => {
-                data['grand_total'][colName] += data[rowName][colName];
+    if (data) {
+      Object.keys(data).map((rowName) => {
+          if (data[rowName] && rowName !== 'grand_total') {
+              Object.keys(data[rowName]).map((colName) => {
+                  data['grand_total'][colName] += data[rowName][colName];
 
-                return data
-            })
-        }
-        return data
-    })
+                  return data
+              })
+          }
+          return data
+      })
+  }
 
     return data;
 }
@@ -36,13 +38,15 @@ export function updatePercentTotalLoad(data) {
   const totalLoad = JSON.parse(JSON.stringify(data))['grand_total']['total'];
 
   // Loop for percent grand total
-  Object.keys(data).map((rowName) => {
-      if (rowName !== 'name') {
-          data[rowName]["percent_grand_total"] = (data[rowName]["total"]/totalLoad)*100.0;
-      }
+  if (data) {
+    Object.keys(data).map((rowName) => {
+        if (data[rowName] && rowName !== 'name') {
+            data[rowName]["percent_grand_total"] = (data[rowName]["total"]/totalLoad)*100.0;
+        }
 
-      return data
-  })
+        return data
+    })
+  }
 
   return data;
 }
