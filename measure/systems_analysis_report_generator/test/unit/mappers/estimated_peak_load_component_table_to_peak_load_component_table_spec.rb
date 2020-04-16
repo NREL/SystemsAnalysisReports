@@ -11,7 +11,7 @@ describe EstimatedPeakLoadComponentTableToPeakLoadComponentTable do
 
       result = EstimatedPeakLoadComponentTableToPeakLoadComponentTable.new.(estimated_peak_load_component_table)
 
-      result.values.must_equal SystemsAnalysisReport::Models::PeakLoadComponentTable
+      result.values.must_equal SystemsAnalysisReport::Models::SystemPeakLoadComponentTable
     end
   end
 end
