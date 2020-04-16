@@ -8,10 +8,8 @@ export const loadData = (data) => new Promise((resolve, reject) => {
     // Initialize data objects
     data['grand_total'] = {
         "latent": 0.0,
-        "related_area": 0.0,
         "sensible_delayed": 0.0,
         "sensible_instant": 0.0,
-        "sensible_return_air": 0.0,
         "total": 0.0,
         "percent_grand_total": 0.0
     };

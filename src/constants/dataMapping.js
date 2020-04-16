@@ -114,8 +114,8 @@ export const zoneLoadSummaryMapping = {
             {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total", "decimals": 1},
         ],
         "rows": [
-            {"displayName": "Sizing Factor Adjustment", "jsonKey": "difference_due_to_sizing_factor"},
-            {"displayName": "Time Delay Correction", "jsonKey": "difference_between_peak_and_estimated_sensible_load"},
+            {"displayName": "Sizing Factor Adjustment", "jsonKey": "sizing_factor_correction"},
+            {"displayName": "Time Delay Correction", "jsonKey": "time_delay_correction"},
             {"displayName": "Grand Total", "jsonKey": "grand_total"},
         ]
     },
@@ -271,7 +271,7 @@ export const systemLoadSummaryMapping = {
             {"displayName": "Transfer Air", "jsonKey": "interzone_mixing"},
             {"displayName": "DOAS Direct to Zone", "jsonKey": "doas_direct_to_zone"},
             {"displayName": "Return Air - Other", "jsonKey": "return_air_other"},
-            {"displayName": "Supply Fan Heat", "jsonKey": "supply_fan_air_heat_gain_at_ideal_loads_peak"},
+            {"displayName": "Supply Fan Heat", "jsonKey": "supply_fan_heat"},
             {"displayName": "Power Generation Equipment", "jsonKey": "power_generation_equipment"},
             {"displayName": "Refrigeration", "jsonKey": "refrigeration"},
             {"displayName": "Water Use Equipment", "jsonKey": "water_use_equipment"},
@@ -288,8 +288,8 @@ export const systemLoadSummaryMapping = {
             {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total", "decimals": 1},
         ],
         "rows": [
-            {"displayName": "Sizing Factor Adjustment", "jsonKey": "difference_due_to_sizing_factor"},
-            {"displayName": "Time Delay Correction", "jsonKey": "difference_between_peak_and_estimated_sensible_load"},
+            {"displayName": "Sizing Factor Adjustment", "jsonKey": "sizing_factor_correction"},
+            {"displayName": "Time Delay Correction", "jsonKey": "time_delay_correction"},
             {"displayName": "Grand Total", "jsonKey": "grand_total"},
         ]
     },
