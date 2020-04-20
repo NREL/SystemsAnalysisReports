@@ -174,7 +174,7 @@ export class LoadSummary extends React.Component {
                     Object.keys(totals 
                         ).map((colName) => {
                         var rowName = row['jsonKey'];
-                        if (Object.keys(newData).includes(rowName) && rowName !== "total") {
+                        if (Object.keys(newData).includes(rowName) && rowName !== "total" && newData[rowName]) {
                             totals[colName] += newData[rowName][colName]
                         }
                         return totals
