@@ -174,7 +174,7 @@ export class LoadSummary extends React.Component {
                     Object.keys(totals 
                         ).map((colName) => {
                         var rowName = row['jsonKey'];
-                        if (Object.keys(newData).includes(rowName) && rowName !== "total") {
+                        if (Object.keys(newData).includes(rowName) && rowName !== "total" && newData[rowName]) {
                             totals[colName] += newData[rowName][colName]
                         }
                         return totals
@@ -202,7 +202,7 @@ export class LoadSummary extends React.Component {
         Object.keys(dataMapping).map((group) => {
             var total = 0;
             // Loop again to total the loads for each load group
-            dataMapping[group].map((loadComponent) => ( Object.keys(data).includes(loadComponent) ? total += data[loadComponent]['total'] : null ))
+            dataMapping[group].map((loadComponent) => ( Object.keys(data).includes(loadComponent) ? total += Math.abs(data[loadComponent]['total']) : null ))
             newData.push({'name': group, 'value': parseInt(total)})
             return newData
         })
