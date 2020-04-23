@@ -25,16 +25,16 @@ module EPlusOut
       end
 
       def find_by_name(name)
-        object = nil
+        result = nil
 
         data = @gateway.where(clauses_with_name(name), order_by:order_by, distinct: false)
 
-        if data
-          object = @mapper.(data)
-          object.name = name
+        unless data.empty?
+          result = @mapper.(data)
+          result.name = name
         end
 
-        return object
+        return result
       end
 
       def all
