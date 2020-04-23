@@ -147,12 +147,12 @@ export const zoneLoadSummaryMapping = {
         {
             "label": null,
             "items": [
-                {"displayName": "Capacity per Floor Area", "jsonKey": "total_capacity_per_floor_area", "unitLabel": "W/m2", "decimals": 1},
-                {"displayName": "Floor Area per Capacity", "jsonKey": "floor_area_per_total_capacity", "unitLabel": "m2/W", "decimals": 2},
-                {"displayName": "Outdoor Air Percentage", "jsonKey": "outside_air_percent", "unitLabel": "%", "decimals": 1},
-                {"displayName": "Airflow per Floor Area", "jsonKey": "airflow_per_floor_area", "unitLabel": "m3/s-m2", "decimals": 4},
-                {"displayName": "Airflow per Capacity", "jsonKey": "airflow_per_total_capacity", "unitLabel": "m3/s-W", "decimals": 4},
-                {"displayName": "Number of People", "jsonKey": "number_of_people", "unitLabel": null, "decimals": 0},
+                {"displayName": "Capacity per Floor Area", "jsonKey": "total_capacity_per_floor_area", "unitLabel": "W/m2", "decimals": 2},
+                {"displayName": "Floor Area per Capacity", "jsonKey": "floor_area_per_total_capacity", "unitLabel": "m2/W", "decimals": 4},
+                {"displayName": "Outdoor Air Percentage", "jsonKey": "outside_air_percent", "unitLabel": "%", "decimals": 2},
+                {"displayName": "Airflow per Floor Area", "jsonKey": "airflow_per_floor_area", "unitLabel": "m3/s-m2", "decimals": 6},
+                {"displayName": "Airflow per Capacity", "jsonKey": "airflow_per_total_capacity", "unitLabel": "m3/s-W", "decimals": 6},
+                {"displayName": "Number of People", "jsonKey": "number_of_people", "unitLabel": null, "decimals": 1},
             ]
         }
     ],
@@ -333,12 +333,12 @@ export const systemLoadSummaryMapping = {
         {
             "label": null,
             "items": [
-                {"displayName": "Capacity per Floor Area", "jsonKey": "total_capacity_per_floor_area", "unitLabel": "W/m2", "decimals": 1},
-                {"displayName": "Floor Area per Capacity", "jsonKey": "floor_area_per_total_capacity", "unitLabel": "m2/W", "decimals": 2},
-                {"displayName": "Outdoor Air Percentage", "jsonKey": "outside_air_percent", "unitLabel": "%", "decimals": 1},
-                {"displayName": "Airflow per Floor Area", "jsonKey": "airflow_per_floor_area", "unitLabel": "m3/s-m2", "decimals": 4},
-                {"displayName": "Airflow per Capacity", "jsonKey": "airflow_per_total_capacity", "unitLabel": "m3/s-W", "decimals": 4},
-                {"displayName": "Number of People", "jsonKey": "number_of_people", "unitLabel": null, "decimals": 0},
+                {"displayName": "Capacity per Floor Area", "jsonKey": "total_capacity_per_floor_area", "unitLabel": "W/m2", "decimals": 2},
+                {"displayName": "Floor Area per Capacity", "jsonKey": "floor_area_per_total_capacity", "unitLabel": "m2/W", "decimals": 4},
+                {"displayName": "Outdoor Air Percentage", "jsonKey": "outside_air_percent", "unitLabel": "%", "decimals": 2},
+                {"displayName": "Airflow per Floor Area", "jsonKey": "airflow_per_floor_area", "unitLabel": "m3/s-m2", "decimals": 6},
+                {"displayName": "Airflow per Capacity", "jsonKey": "airflow_per_total_capacity", "unitLabel": "m3/s-W", "decimals": 6},
+                {"displayName": "Number of People", "jsonKey": "number_of_people", "unitLabel": null, "decimals": 1},
             ]
         }
     ],
