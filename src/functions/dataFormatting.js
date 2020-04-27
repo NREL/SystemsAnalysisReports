@@ -1,8 +1,10 @@
 export const loadData = (data) => new Promise((resolve, reject) => {
-    setTimeout(() => resolve(JSON.parse(JSON.stringify(data))), 1);
+  // function loads the data from JSON data file usign Promise.  
+  
+  setTimeout(() => resolve(JSON.parse(JSON.stringify(data))), 1);
   });
 
-  export function updateGrandTotalLoad(data) {
+export function updateGrandTotalLoad(data) {
     // This function updates the grand total loads.
 
     // Initialize data objects
@@ -87,3 +89,8 @@ export const formatData = (data) => new Promise((resolve, reject) => {
 
   resolve(newData);
 })
+
+export function changeUnitSystem(data, value) {
+  // function changes the data beteween SI and IP unit systems.
+  return data
+}
