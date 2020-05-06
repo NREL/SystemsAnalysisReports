@@ -25,6 +25,10 @@ module EPlusOut
         return result
       end
 
+      def size
+        param_map.size
+      end
+
       private
       def klass
         EPlusOut::Models::EstimatedPeakLoadComponent
