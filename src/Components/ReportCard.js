@@ -3,6 +3,7 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import './ReportCard.css';
+import { getUnitLabel } from '../functions/dataFormatting';
 import { formatUnitLabels } from '../functions/textFunctions';
 import { isNumeric, numberWithCommas } from '../functions/numericFunctions';
 
@@ -36,10 +37,10 @@ export class ReportCard extends React.Component {
                                         }
                                     } else {
                                         dataValue = null
-                                    }
-                                    
+                                    }             
+
                                     // Set formatting for the unit labels
-                                    const unitLabel = formatUnitLabels(item["unitLabel"]);
+                                    const unitLabel = formatUnitLabels(getUnitLabel(this.props.unitSystem, item["type"]));
 
                                     return (
                                         <p key={ this.props.name + '-' + item["jsonKey"] }>

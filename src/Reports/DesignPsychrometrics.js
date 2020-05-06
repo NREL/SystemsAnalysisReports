@@ -109,6 +109,7 @@ export class DesignPsychrometrics extends React.Component {
                             <CustomTable
                             name={this.props.name + "-statePointTable"}
                             displayHeader={true}
+                            unitSystem={this.props.unitSystem}
                             dataMapping={this.props.dataMapping['componentTable']}
                             data={this.formatTableData(this.props.dataMapping['componentTable'], data)}
                             />
@@ -117,6 +118,7 @@ export class DesignPsychrometrics extends React.Component {
                             <ReportCard
                             name={this.props.name + "-conditionsTimePeak"}
                             title="Summary"
+                            unitSystem={this.props.unitSystem}
                             dataMapping={this.props.dataMapping['componentChecks']}
                             data={data}
                             />

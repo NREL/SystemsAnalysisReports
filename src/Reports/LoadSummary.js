@@ -12,6 +12,7 @@ import {
     EQUIDISTANTCOLORS,
     COOLINGHEATINGCOLORS
 } from '../constants/settings';
+import { getUnitLabel } from '../functions/dataFormatting';
 
 export class LoadSummary extends React.Component {
     constructor(props) {
@@ -242,6 +243,7 @@ export class LoadSummary extends React.Component {
     }
 
     render() {
+        const { unitSystem } = this.props;
         const loadData = this.getLoadComponents();
 
         return (
@@ -269,6 +271,7 @@ export class LoadSummary extends React.Component {
                             <Row>
                                 <TableHeader
                                 name={this.props.name + "-headerTable"}
+                                unitSystem={this.props.unitSystem}
                                 dataMapping={this.props.dataMapping['headerTable']}
                                 />
                             </Row>
@@ -277,6 +280,7 @@ export class LoadSummary extends React.Component {
                                 <CustomTable
                                 name={this.props.name + "-envelopeTable"}
                                 displayHeader={false}
+                                unitSystem={this.props.unitSystem}
                                 dataMapping={this.props.dataMapping['envelopeLoadsTable']}
                                 data={this.formatTableData(this.props.dataMapping['envelopeLoadsTable'], loadData)}
                                 />
@@ -286,6 +290,7 @@ export class LoadSummary extends React.Component {
                                 <CustomTable
                                 name={this.props.name + "-internalGainTable"}
                                 displayHeader={false}
+                                unitSystem={this.props.unitSystem}
                                 dataMapping={this.props.dataMapping['internalGainsTable']}
                                 data={this.formatTableData(this.props.dataMapping['internalGainsTable'], loadData)}
                                 />
@@ -295,6 +300,7 @@ export class LoadSummary extends React.Component {
                                 <CustomTable
                                 name={this.props.name + "-systemLoadsTable"}
                                 displayHeader={false}
+                                unitSystem={this.props.unitSystem}
                                 dataMapping={this.props.dataMapping['systemLoadsTable']}
                                 data={this.formatTableData(this.props.dataMapping['systemLoadsTable'], loadData)}
                                 />
@@ -304,6 +310,7 @@ export class LoadSummary extends React.Component {
                                 <CustomTable
                                 name={this.props.name + "-totalLoadsTable"}
                                 displayHeader={false}
+                                unitSystem={this.props.unitSystem}
                                 dataMapping={this.props.dataMapping['totalLoadsTable']}
                                 data={this.formatTableData(this.props.dataMapping['totalLoadsTable'], loadData)}
                                 />
@@ -314,6 +321,7 @@ export class LoadSummary extends React.Component {
                                 <ReportCard
                                 name={this.props.name + "-conditionsTimePeak"}
                                 title="Conditions at Time of Peak"
+                                unitSystem={this.props.unitSystem}
                                 dataMapping={this.props.dataMapping['peakConditions']}
                                 data={this.getPeakConditionTable()}
                                 />
@@ -323,6 +331,7 @@ export class LoadSummary extends React.Component {
                                     <ReportCard
                                     name={this.props.name + "-temperatures"}
                                     title="Temperatures"
+                                    unitSystem={this.props.unitSystem}
                                     dataMapping={this.props.dataMapping['temperatures']}
                                     data={this.getTemperaturesTable()}
                                     />
@@ -333,6 +342,7 @@ export class LoadSummary extends React.Component {
                                     <ReportCard
                                     name={this.props.name + "-airflows"}
                                     title="Airflows"
+                                    unitSystem={this.props.unitSystem}
                                     dataMapping={this.props.dataMapping['airflows']}
                                     data={this.getAirflowsTable()}
                                     />
@@ -342,6 +352,7 @@ export class LoadSummary extends React.Component {
                                 <ReportCard
                                 name={this.props.name + "-engineeringCheck"}
                                 title="Engineering Checks"
+                                unitSystem={this.props.unitSystem}
                                 dataMapping={this.props.dataMapping['engineeringCheck']}
                                 data={this.getEngineeringCheckTable()}
                                 />
@@ -351,7 +362,7 @@ export class LoadSummary extends React.Component {
                             <Row>
                                 <CustomPieChart
                                 name={this.props.name + "-peakLoadsChart"}
-                                title={"Peak Loads [W]"}
+                                title={"Peak Loads Load Components [" + getUnitLabel(unitSystem, "heat_transfer_rate") + "]"}
                                 colors={COOLINGHEATINGCOLORS}
                                 data={this.getHeatingAndCoolingPeakLoads()}
                                 />
@@ -359,16 +370,16 @@ export class LoadSummary extends React.Component {
                             <Row>
                                 <CustomPieChart
                                 name={this.props.name + "-loadComponentsChart"}
-                                title={ this.state.heating_cooling_selection === 'cooling' ? 'Cooling Load Components [W]' : 'Heating Load Components [W]'}
+                                title={ (this.state.heating_cooling_selection === "cooling" ? "Cooling" : "Heating") + " Load Components [" + getUnitLabel(unitSystem, "heat_transfer_rate") + "]"}
                                 colors={EQUIDISTANTCOLORS}
-                                data={this.formatLoadComponentChartData(this.props.dataMapping['componentPieChart'], loadData)}
+                                data={this.formatLoadComponentChartData(this.props.dataMapping["componentPieChart"], loadData)}
                                 /> 
                             </Row>
                         </Col>
                 </Row>
                 </Tab.Container> 
             : 
-                <h1>No {this.props.name === 'zoneLoadSummary' ? 'zones': 'systems' } found.</h1> 
+                <h1>No {this.props.name === "zoneLoadSummary" ? "zones": "systems" } found.</h1> 
             )
         );
     }

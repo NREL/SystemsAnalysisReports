@@ -1,5 +1,6 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table'
+import { getUnitLabel } from '../functions/dataFormatting';
 import { isNumeric, numberWithCommas } from '../functions/numericFunctions';
 
 export class CustomTable extends React.Component {
@@ -54,8 +55,18 @@ export class CustomTable extends React.Component {
         }
     }
 
+    getHeader(unitSystem, column) {
+        var header = ""
+        header = column['displayName']
+        if (column["type"]) {
+            header += ' [' + getUnitLabel(unitSystem, column["type"]) + ']'
+        }
+
+        return header
+    }
+
     render() {
-        var { displayHeader, dataMapping, data } = this.props;
+        var { displayHeader, unitSystem, dataMapping, data } = this.props;
 
         const headerStyle = displayHeader === true ? null : {"display":"none"};
 
@@ -69,7 +80,7 @@ export class CustomTable extends React.Component {
                     key={ this.props.name + '-' + column['displayName'] + '-header' }
                     width="15%"
                     >
-                    { column['displayName'] }
+                    { this.getHeader(unitSystem, column) }
                     </th>
                 ))
                 }

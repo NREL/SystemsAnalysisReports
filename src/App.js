@@ -12,7 +12,7 @@ import {
   zoneLoadSummaryMapping,
   systemLoadSummaryMapping
 } from './constants/dataMapping';
-import { changeUnitSystem, loadData, formatData } from './functions/dataFormatting';
+import { loadData, formatData } from './functions/dataFormatting';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -42,7 +42,8 @@ export default class App extends React.Component {
 
   handleUnitSystemSelection(value) {
       if (this.state.data && value) {
-          this.setState({ unit_system: value, data: changeUnitSystem(this.state.data, value) }) 
+          //this.setState({ unit_system: value, data: changeUnitSystem(this.state.data, value) }) 
+          this.setState({ unit_system: value }) 
       }
   }
 
@@ -50,7 +51,9 @@ export default class App extends React.Component {
     if (value === 'zone_load_summary') {
       return(
         <LoadSummary
+        key="zoneLoadSummary"
         name="zoneLoadSummary"
+        unitSystem={this.state.unit_system}
         dataMapping={zoneLoadSummaryMapping}
         data={data['zone_load_summarys']}
         />
@@ -59,7 +62,9 @@ export default class App extends React.Component {
     } else if (value === 'system_load_summarys') {
       return(
         <LoadSummary
+        key="systemLoadSummary"
         name="systemLoadSummary"
+        unitSystem={this.state.unit_system}
         dataMapping={systemLoadSummaryMapping}
         data={data['system_load_summarys']}
         />
@@ -67,7 +72,9 @@ export default class App extends React.Component {
     } else if (value === 'design_psychrometrics') {
       return(
         <DesignPsychrometrics
+        key="designPsychrometrics"
         name="designPsychrometrics"
+        unitSystem={this.state.unit_system}
         dataMapping={designPsychrometricsMapping}
         data={data['design_psychrometrics']}
         />

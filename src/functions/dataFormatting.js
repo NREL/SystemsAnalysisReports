@@ -1,3 +1,5 @@
+import unitConversions from '../constants/unitConversions';
+
 export const loadData = (data) => new Promise((resolve, reject) => {
   // function loads the data from JSON data file usign Promise.  
   
@@ -82,15 +84,25 @@ export const formatData = (data) => new Promise((resolve, reject) => {
     loadObject['heating']['estimated_peak_load_component_table'] = updateGrandTotalLoad(loadObject['heating']['estimated_peak_load_component_table']);
     loadObject['heating']['estimated_peak_load_component_table'] = updatePercentTotalLoad(loadObject['heating']['estimated_peak_load_component_table']);
 
-    console.log(loadObject);
-
     return loadObject;
   })
 
   resolve(newData);
 })
 
-export function changeUnitSystem(data, value) {
+export function changeUnitSystem(data, selection) {
   // function changes the data beteween SI and IP unit systems.
+  console.log(selection);
+  console.log(data);
+  console.log(unitConversions);
+
   return data
+}
+
+export function getUnitLabel(unitSystem, type) {
+  if (unitSystem && type) {
+      return unitConversions[unitSystem][type]["label"]
+  } else {
+    return null
+  }
 }
