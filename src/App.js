@@ -41,8 +41,7 @@ export default class App extends React.Component {
   }
 
   handleUnitSystemSelection(value) {
-      if (this.state.data && value) {
-          //this.setState({ unit_system: value, data: changeUnitSystem(this.state.data, value) }) 
+      if (value) {
           this.setState({ unit_system: value }) 
       }
   }

@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import './ReportCard.css';
-import { getUnitLabel } from '../functions/dataFormatting';
+import { convertDataUnit, getUnitLabel } from '../functions/dataFormatting';
 import { formatUnitLabels } from '../functions/textFunctions';
 import { isNumeric, numberWithCommas } from '../functions/numericFunctions';
 
@@ -20,17 +20,15 @@ export class ReportCard extends React.Component {
                                 { colData["label"] && <p><b>{ colData["label"] }</b></p> }
                                 { colData["items"].map((item) => {
                                     var dataValue = null;
-                                    var decimals = 1;
 
-                                    // Truncate numeric value based on desired decimals
-                                    if (Object.keys(item).includes('decimals')) {
-                                        decimals = item['decimals'];
-                                    }
                                     
                                     if (data) {
                                         if ( isNumeric(data[item["jsonKey"]]) ) {
-                                            // Set value to display with decimal value truncation
-                                            dataValue = numberWithCommas(data[item["jsonKey"]].toFixed(decimals));
+                                            // convert unit system
+                                            dataValue = convertDataUnit(this.props.unitSystem, item["type"], data[item["jsonKey"]])
+
+                                            // Set value to display as number with commas
+                                            dataValue = numberWithCommas(dataValue);
                                         } else {
                                             // Set value to null if none exists in data
                                             dataValue = data[item["jsonKey"]];

@@ -23,7 +23,7 @@ export const designPsychrometricsMapping = {
                 {"displayName": "Coil Air Flow Rate", "jsonKey": "coil_air_flow_rate", "type": "flow_rate"},
                 {"displayName": "Zone Space Sensible Load", "jsonKey": "zone_sensible_load", "type": "heat_transfer_rate"},
                 {"displayName": "Outdoor Air Flow Rate", "jsonKey": "outdoor_air_flow_rate", "type": "flow_rate"},
-                {"displayName": "Percent Outdoor Air", "jsonKey": "percent_outdoor_air", "type": "percent"},
+                {"displayName": "Percent Outdoor Air", "jsonKey": "percent_outdoor_air", "type": "outdoor_air_percentage"},
                 {"displayName": "Air Specific Heat", "jsonKey": "air_specific_heat", "type": "specific_heat"},
                 {"displayName": "Air Density", "jsonKey": "air_density", "type": "density"},           
             ]

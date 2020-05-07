@@ -1,10 +1,10 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table'
-import { getUnitLabel } from '../functions/dataFormatting';
+import { convertDataUnit, getUnitLabel } from '../functions/dataFormatting';
 import { isNumeric, numberWithCommas } from '../functions/numericFunctions';
 
 export class CustomTable extends React.Component {
-    addDataRow(row, columns, data) {
+    addDataRow(unitSystem, row, columns, data) {
         const rowKey = row['jsonKey'];
         
         if (data) {
@@ -18,18 +18,18 @@ export class CustomTable extends React.Component {
                     </td>
                     { columns.map((column) => {
                         var dataValue = null;
-                        var decimals = 1;
                         
                         if (rowData) {
                             if (Object.keys(rowData).includes(column['jsonKey'])) {
-                                // Truncate numeric value based on desired decimals
-                                if (Object.keys(column).includes('decimals')) {
-                                    decimals = column['decimals'];
-                                }
-
                                 if ( isNumeric(rowData[column['jsonKey']]) ) {
-                                    // Set value to display with decimal value truncation
-                                    dataValue = numberWithCommas(rowData[column['jsonKey']].toFixed(decimals));
+                                    const type = column["type"];
+
+                                    // convert unit system
+                                    dataValue = convertDataUnit(unitSystem, type, rowData[column['jsonKey']])
+
+                                    // Set value to display as number with commas
+                                    dataValue = numberWithCommas(dataValue);
+
                                 } else {
                                     // Set value to null if none exists in data
                                     dataValue = '-';
@@ -87,7 +87,7 @@ export class CustomTable extends React.Component {
             </tr>
             </thead>
             <tbody>
-                { dataMapping['rows'].map((row) => this.addDataRow(row, dataMapping['columns'], data)) }
+                { dataMapping['rows'].map((row) => this.addDataRow(unitSystem, row, dataMapping['columns'], data)) }
             </tbody>
             </Table>
         );
