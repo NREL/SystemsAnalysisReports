@@ -20,8 +20,8 @@ export const designPsychrometricsMapping = {
             "items": [
                 {"displayName": "System Name", "jsonKey": "name", "type": null},
                 {"displayName": "Time of Peak", "jsonKey": "time_of_peak", "type": null},
-                {"displayName": "Coil Air Flow Rate", "jsonKey": "coil_air_flow_rate", "type": "flow_rate"},
                 {"displayName": "Zone Space Sensible Load", "jsonKey": "zone_sensible_load", "type": "heat_transfer_rate"},
+                {"displayName": "Coil Air Flow Rate", "jsonKey": "coil_air_flow_rate", "type": "flow_rate"},
                 {"displayName": "Outdoor Air Flow Rate", "jsonKey": "outdoor_air_flow_rate", "type": "flow_rate"},
                 {"displayName": "Percent Outdoor Air", "jsonKey": "percent_outdoor_air", "type": "outdoor_air_percentage"},
                 {"displayName": "Air Specific Heat", "jsonKey": "air_specific_heat", "type": "specific_heat"},
@@ -316,7 +316,7 @@ export const systemLoadSummaryMapping = {
                 {"displayName": "Return", "jsonKey": "return", "type": "temperature"},
                 {"displayName": "Mixed Air", "jsonKey": "mixed_air", "type": "temperature"},
                 {"displayName": "Supply", "jsonKey": "supply","type": "temperature"},
-                {"displayName": "Fan Heat TD", "jsonKey": "fan_heat_temperature_difference", "type": "temperature"},
+                {"displayName": "Fan Heat TD", "jsonKey": "fan_heat_temperature_difference", "type": "temperature_difference"},
             ]
         }
     ],
