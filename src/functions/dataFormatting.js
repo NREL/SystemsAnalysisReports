@@ -1,5 +1,6 @@
 import { isNumeric } from '../functions/numericFunctions';
 import unitConversions from '../constants/unitConversions';
+import locales from '../constants/locales';
 
 export const loadData = (data) => new Promise((resolve, reject) => {
   // function loads the data from JSON data file usign Promise.  
@@ -129,6 +130,18 @@ export function getUnitLabel(unitSystem, type) {
 
   if (unitSystem && type) {
       return unitConversions[unitSystem][type]["label"]
+  } else {
+    return null
+  }
+}
+
+export function getLocaleLabel(locale, key) {
+  // Function provides the label for a specific locale.
+  // Requires the local (i.e. "en" or "de"), the label key (e.g. "zone_load_summary"). 
+  // Returns the label (e.g. "Zone Load Summary").
+
+  if (locale && key) {
+      return locales[locale][key]
   } else {
     return null
   }

@@ -24,6 +24,11 @@
   padding-left: 5px;
 }
 
+.App-button-group {
+  display:flex;
+  flex-direction:row;
+}
+
 .App-table {
   font-size: 9px;
 }
