@@ -12,7 +12,7 @@ import {
     EQUIDISTANTCOLORS,
     COOLINGHEATINGCOLORS
 } from '../constants/settings';
-import { getUnitLabel } from '../functions/dataFormatting';
+import { convertDataUnit, getUnitLabel } from '../functions/dataFormatting';
 
 export class LoadSummary extends React.Component {
     constructor(props) {
@@ -154,7 +154,7 @@ export class LoadSummary extends React.Component {
         }
     }
 
-    getHeatingAndCoolingPeakLoads() {
+    getHeatingAndCoolingPeakLoads(unitSystem) {
         // Assumes that Cooling Peak Condition Table - Sensible Peak Load is the appropriate total load value.
         // Investigate further whether this should be a calculated value from the subcomponents.
         
@@ -162,11 +162,12 @@ export class LoadSummary extends React.Component {
             const objectName = this.getObjectName(this.state.object_selection);
             if (objectName) {
                 const data = this.props.data[objectName]
-                //const data = this.props.data[this.state.object_selection];
 
                 if (data) {
-                    const peakCoolingLoad = data['cooling']['estimated_peak_load_component_table']['grand_total']['total'];
-                    const peakHeatingLoad = data['heating']['estimated_peak_load_component_table']['grand_total']['total'];
+                    // get load and convert unit system
+                    const peakCoolingLoad = convertDataUnit(unitSystem, 'heat_transfer_rate', data['cooling']['estimated_peak_load_component_table']['grand_total']['total']);
+                    const peakHeatingLoad = convertDataUnit(unitSystem, 'heat_transfer_rate', data['heating']['estimated_peak_load_component_table']['grand_total']['total']);
+
                     const output = [ 
                         {'name': 'Cooling', 'value': parseInt(Math.abs(peakCoolingLoad))}, 
                         {'name': 'Heating', 'value': parseInt(Math.abs(peakHeatingLoad))}
@@ -220,7 +221,7 @@ export class LoadSummary extends React.Component {
         }
     }
 
-    formatLoadComponentChartData(dataMapping, data) {
+    formatLoadComponentChartData(unitSystem, dataMapping, data) {
 
         if (data) {
         // This function formats the data that will be displayed in a chart.
@@ -231,7 +232,9 @@ export class LoadSummary extends React.Component {
             var total = 0;
             // Loop again to total the loads for each load group
             dataMapping[group].map((loadComponent) => ( Object.keys(data).includes(loadComponent) ? total += Math.abs(data[loadComponent]['total']) : null ))
-            newData.push({'name': group, 'value': parseInt(total)})
+
+            // Convert unit system and add value to array
+            newData.push({'name': group, 'value': parseInt(convertDataUnit(unitSystem, 'heat_transfer_rate', total))})
             return newData
         })
 
@@ -364,7 +367,7 @@ export class LoadSummary extends React.Component {
                                 name={this.props.name + "-peakLoadsChart"}
                                 title={"Peak Loads Load Components [" + getUnitLabel(unitSystem, "heat_transfer_rate") + "]"}
                                 colors={COOLINGHEATINGCOLORS}
-                                data={this.getHeatingAndCoolingPeakLoads()}
+                                data={this.getHeatingAndCoolingPeakLoads(unitSystem)}
                                 />
                             </Row>
                             <Row>
@@ -372,7 +375,7 @@ export class LoadSummary extends React.Component {
                                 name={this.props.name + "-loadComponentsChart"}
                                 title={ (this.state.heating_cooling_selection === "cooling" ? "Cooling" : "Heating") + " Load Components [" + getUnitLabel(unitSystem, "heat_transfer_rate") + "]"}
                                 colors={EQUIDISTANTCOLORS}
-                                data={this.formatLoadComponentChartData(this.props.dataMapping["componentPieChart"], loadData)}
+                                data={this.formatLoadComponentChartData(unitSystem, this.props.dataMapping["componentPieChart"], loadData)}
                                 /> 
                             </Row>
                         </Col>
