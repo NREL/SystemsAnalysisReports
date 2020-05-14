@@ -99,8 +99,8 @@ export class DesignPsychrometrics extends React.Component {
                             <ObjectSelectionDropDown
                             name={this.props.name + "-objectDropdown"}
                             objectList={this.state.object_list}
-                            objectSelection={this.state.object_selection}
-                            handleObjectSelect={this.handleObjectSelect.bind(this)}
+                            objectSelection={this.props.objectSelection}
+                            handleObjectSelect={this.props.handleObjectSelect}
                             />
                         </Col>
                     </Row>

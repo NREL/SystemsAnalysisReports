@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Col from 'react-bootstrap/Col'
 import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row'
 import Tab from 'react-bootstrap/Tab';
+import { Context } from '../store/index';
 import { ObjectSelectionDropDown } from '../Components/ObjectSelectionDropdown';
 import { ReportCard } from '../Components/ReportCard';
 import { CustomTable } from '../Components/Table';
@@ -12,84 +13,79 @@ import {
     EQUIDISTANTCOLORS,
     COOLINGHEATINGCOLORS
 } from '../constants/settings';
+import { isNumeric } from '../functions/numericFunctions';
 import { convertDataUnit, getUnitLabel } from '../functions/dataFormatting';
 
-export class LoadSummary extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            data_exists: false,
-            heating_cooling_selection: "cooling",
-            engineering_check_table: "engineering_check",
-            peak_condition_table: "peak_condition",
-            peak_load_component_table: "estimated_peak_load_component_table",
-            object_selection: 0,
-        };
-    }
+export function LoadSummary(props) {
+    const { 
+        name,
+        activeSelection,
+        handleObjectSelect,
+        dataMapping,
+        data
+    } = props;
+    
+    const { 
+        sectionSelection, 
+        unitSystem, 
+        zoneId, setZoneId 
+    } = useContext(Context);
+    const [ dataExists, setDataExists ] = useState(false);
+    const [ heatingCoolingSelection, setHeatingCoolingSelection ] = useState("cooling");
+    const [ objectSelection, setObjectSelection ] = useState(0);
 
-    componentDidMount() {
+    useEffect(() => {
         // Set data_exists state to false if data object is empty
-        if (this.props.data && Object.keys(this.props.data).length === 0) {
-            this.setState({ data_exists: false })
+        if (data && Object.keys(data).length === 0) {
+            setDataExists(false);
         } else {
-            this.setState({ data_exists: true })
+            setDataExists(true);
         }
-    }
+    }, [data]);
 
-    handleObjectSelect(eventKey) {
-        // Update state when user selects a object from dropdown
-        this.setState({
-            object_selection: eventKey,
-        });
-    }
-
-    handleHeatingCoolingSelect(eventKey) {
+    const handleHeatingCoolingSelect = (eventKey) => {
         // Update state when user selects either "heating" or "cooling"
         if (eventKey === "heating") {
-            this.setState({
-                heating_cooling_selection: "heating",
-            });
+            setHeatingCoolingSelection("heating");
         } else {
-            this.setState({
-                heating_cooling_selection: "cooling",
-            });           
+            setHeatingCoolingSelection("cooling");          
         }
     }
 
-    getObjectList() {
+    const getObjectList = (data) => {
         // Get a list of object names, ids, and cad_object, ids
         var object_list = [];
 
-        if (this.props.data) {
-            const objList = Object.keys(this.props.data);
+        if (data) {
+            const objList = Object.keys(data);
             for (var i = 0; i < objList.length; i++) {
                 const objName = objList[i];
-                object_list.push({id: i, cad_object_id: this.props.data[objName].cad_object_id, name: this.props.data[objName].name});
+                object_list.push({id: i, cad_object_id: data[objName].cad_object_id, name: data[objName].name});
             }
         }
 
         return object_list
     }
 
-    getObjectName(id) {
+    const getObjectName = (objectList, id) => {
         // Get the string name of the object given an id
-        const objectList = this.getObjectList();
-        for (var i = 0; i < objectList.length; i++) {
-            if (objectList[i].id.toString() === id.toString()) {
-                return objectList[i].name
+        if ( isNumeric(id) && objectList && objectList.length > 0 ) {
+            for (var i = 0; i < objectList.length; i++) {
+                if (
+                    Object.keys(objectList[i]).includes("id") && 
+                    objectList[i].id.toString() === id.toString()
+                    ) {
+                    return objectList[i].name
+                }
             }
-        }
-
-        // if none exists reset the index to 0
-        //this.handleObjectSelect(0);
+        } else return null
     }
 
-    getLoadComponents() {
+    const getLoadComponents = (objectName, heatingCoolingSelection, data) => {
         // Get data for peak_load_component_table
-        if (this.props.data && Object.keys(this.props.data).length !== 0) {
-            const objectName = this.getObjectName(this.state.object_selection);
+        if (data && Object.keys(data).length !== 0) {
             if (objectName) {
-                return this.props.data[objectName][this.state.heating_cooling_selection]['estimated_peak_load_component_table']
+                return data[objectName][heatingCoolingSelection]['estimated_peak_load_component_table']
             } else { 
                 return null 
             }
@@ -98,12 +94,11 @@ export class LoadSummary extends React.Component {
         }
     }
 
-    getPeakConditionTable() {
+    const getPeakConditionTable = (objectName, heatingCoolingSelection, data) => {
         // Get data for peak_condition_table
-        if (this.props.data && Object.keys(this.props.data).length !== 0) {
-            const objectName = this.getObjectName(this.state.object_selection);
+        if (data && Object.keys(data).length !== 0) {
             if (objectName) {
-                return this.props.data[objectName][this.state.heating_cooling_selection]['peak_condition']
+                return data[objectName][heatingCoolingSelection]['peak_condition']
             } else { 
                 return null 
             }
@@ -112,12 +107,11 @@ export class LoadSummary extends React.Component {
         }
     }
 
-    getTemperaturesTable() {
+    const getTemperaturesTable = (objectName, heatingCoolingSelection, data) => {
         // Get data for peak_condition_table
-        if (this.props.data && Object.keys(this.props.data).length !== 0) {
-            const objectName = this.getObjectName(this.state.object_selection);
+        if (data && Object.keys(data).length !== 0) {
             if (objectName) {
-                return this.props.data[objectName][this.state.heating_cooling_selection]['temperature']
+                return data[objectName][heatingCoolingSelection]['temperature']
             } else { 
                 return null 
             }
@@ -126,26 +120,24 @@ export class LoadSummary extends React.Component {
         }
     }
 
-    getAirflowsTable() {
+    const getAirflowsTable = (objectName, heatingCoolingSelection, data) => {
         // Get data for peak_condition_table
-        if (this.props.data && Object.keys(this.props.data).length !== 0) {
-            const objectName = this.getObjectName(this.state.object_selection);
+        if (data && Object.keys(data).length !== 0) {
             if (objectName) {
-                return this.props.data[objectName][this.state.heating_cooling_selection]['airflow']
+                return data[objectName][heatingCoolingSelection]['airflow']
             } else { 
-                return null 
+                return null
             }
         } else {
             return null
         }
     }
 
-    getEngineeringCheckTable() {
+    const getEngineeringCheckTable = (objectName, heatingCoolingSelection, data) => {
         // Get data for engineering_check_table
-        if (this.props.data && Object.keys(this.props.data).length !== 0) {  
-            const objectName = this.getObjectName(this.state.object_selection);
+        if (data && Object.keys(data).length !== 0) {  
             if (objectName) {
-                return this.props.data[objectName][this.state.heating_cooling_selection]['engineering_check']
+                return data[objectName][heatingCoolingSelection]['engineering_check']
             } else { 
                 return null 
             }
@@ -154,19 +146,18 @@ export class LoadSummary extends React.Component {
         }
     }
 
-    getHeatingAndCoolingPeakLoads(unitSystem) {
+    const getHeatingAndCoolingPeakLoads = (unitSystem, objectName, data) => {
         // Assumes that Cooling Peak Condition Table - Sensible Peak Load is the appropriate total load value.
         // Investigate further whether this should be a calculated value from the subcomponents.
         
-        if (this.props.data) {
-            const objectName = this.getObjectName(this.state.object_selection);
+        if (data) {
             if (objectName) {
-                const data = this.props.data[objectName]
+                const objectData = data[objectName]
 
-                if (data) {
+                if (objectData) {
                     // get load and convert unit system
-                    const peakCoolingLoad = convertDataUnit(unitSystem, 'heat_transfer_rate', data['cooling']['estimated_peak_load_component_table']['grand_total']['total']);
-                    const peakHeatingLoad = convertDataUnit(unitSystem, 'heat_transfer_rate', data['heating']['estimated_peak_load_component_table']['grand_total']['total']);
+                    const peakCoolingLoad = convertDataUnit(unitSystem, 'heat_transfer_rate', objectData['cooling']['estimated_peak_load_component_table']['grand_total']['total']);
+                    const peakHeatingLoad = convertDataUnit(unitSystem, 'heat_transfer_rate', objectData['heating']['estimated_peak_load_component_table']['grand_total']['total']);
 
                     const output = [ 
                         {'name': 'Cooling', 'value': parseInt(Math.abs(peakCoolingLoad))}, 
@@ -185,7 +176,7 @@ export class LoadSummary extends React.Component {
         }
     }
 
-    formatTableData(dataMapping, data) {
+    const formatTableData = (dataMapping, data) => {
         // This function formats the data that will be displayed in the table.
         if (data) {
             var newData = JSON.parse(JSON.stringify(data));
@@ -221,7 +212,7 @@ export class LoadSummary extends React.Component {
         }
     }
 
-    formatLoadComponentChartData(unitSystem, dataMapping, data) {
+    const formatLoadComponentChartData = (unitSystem, dataMapping, data) => {
 
         if (data) {
         // This function formats the data that will be displayed in a chart.
@@ -245,145 +236,144 @@ export class LoadSummary extends React.Component {
         }
     }
 
-    render() {
-        const { unitSystem } = this.props;
-        const loadData = this.getLoadComponents();
+    const objectList = getObjectList(data);
+    const objectName = getObjectName(objectList,activeSelection);
+    const loadData = getLoadComponents(objectName, heatingCoolingSelection, data);
 
-        return (
-            ( this.state.data_exists ?
-                <Tab.Container id={this.props.name + '-container'} activeKey={this.state.heating_cooling_selection} defaultActiveKey="cooling">
-                    <Row>
-                        {this.getObjectList() ? <ObjectSelectionDropDown
-                        name={this.props.name + "-objectDropdown"}
-                        objectList={this.getObjectList()}
-                        objectSelection={this.state.object_selection}
-                        handleObjectSelect={this.handleObjectSelect.bind(this)}
-                        /> : null}
+    return (
+        ( dataExists ?
+            <Tab.Container id={name + '-container'} activeKey={heatingCoolingSelection} defaultActiveKey="cooling">
+                <Row>
+                    {getObjectList(data) ? <ObjectSelectionDropDown
+                    name={name + "-objectDropdown"}
+                    objectList={getObjectList(data)}
+                    objectSelection={activeSelection}
+                    handleObjectSelect={handleObjectSelect}
+                    /> : null}
 
-                        <Nav variant="pills" onSelect={this.handleHeatingCoolingSelect.bind(this)} className="App-buttons">
-                            <Nav.Item>
-                            <Nav.Link eventKey="cooling">Cooling</Nav.Link>
-                            </Nav.Item>
-                            <Nav.Item>
-                            <Nav.Link eventKey="heating">Heating</Nav.Link>
-                            </Nav.Item>
-                        </Nav>
-                    </Row>
-                    <Row>
-                        <Col md={6}>
-                            <Row>
-                                <TableHeader
-                                name={this.props.name + "-headerTable"}
-                                unitSystem={this.props.unitSystem}
-                                dataMapping={this.props.dataMapping['headerTable']}
-                                />
-                            </Row>
-                            <Row>
-                                <span>Envelope</span>
-                                <CustomTable
-                                name={this.props.name + "-envelopeTable"}
-                                displayHeader={false}
-                                unitSystem={this.props.unitSystem}
-                                dataMapping={this.props.dataMapping['envelopeLoadsTable']}
-                                data={this.formatTableData(this.props.dataMapping['envelopeLoadsTable'], loadData)}
-                                />
-                            </Row>
-                            <Row>
-                                <span>Internal Gains</span>
-                                <CustomTable
-                                name={this.props.name + "-internalGainTable"}
-                                displayHeader={false}
-                                unitSystem={this.props.unitSystem}
-                                dataMapping={this.props.dataMapping['internalGainsTable']}
-                                data={this.formatTableData(this.props.dataMapping['internalGainsTable'], loadData)}
-                                />
-                            </Row>
-                            <Row>
-                                <span>Systems</span>
-                                <CustomTable
-                                name={this.props.name + "-systemLoadsTable"}
-                                displayHeader={false}
-                                unitSystem={this.props.unitSystem}
-                                dataMapping={this.props.dataMapping['systemLoadsTable']}
-                                data={this.formatTableData(this.props.dataMapping['systemLoadsTable'], loadData)}
-                                />
-                            </Row>
-                            <Row>
-                                <span>Total</span>
-                                <CustomTable
-                                name={this.props.name + "-totalLoadsTable"}
-                                displayHeader={false}
-                                unitSystem={this.props.unitSystem}
-                                dataMapping={this.props.dataMapping['totalLoadsTable']}
-                                data={this.formatTableData(this.props.dataMapping['totalLoadsTable'], loadData)}
-                                />
-                            </Row>
-                        </Col>
-                        <Col>
-                            <Row>
-                                <ReportCard
-                                name={this.props.name + "-conditionsTimePeak"}
-                                title="Conditions at Time of Peak"
-                                unitSystem={this.props.unitSystem}
-                                dataMapping={this.props.dataMapping['peakConditions']}
-                                data={this.getPeakConditionTable()}
-                                />
-                            </Row>
-                            { this.props.name === 'systemLoadSummary' ? (
-                                <Row>
-                                    <ReportCard
-                                    name={this.props.name + "-temperatures"}
-                                    title="Temperatures"
-                                    unitSystem={this.props.unitSystem}
-                                    dataMapping={this.props.dataMapping['temperatures']}
-                                    data={this.getTemperaturesTable()}
-                                    />
-                                </Row>
-                            ) : null }
-                            { this.props.name === 'systemLoadSummary' ? (
-                                <Row>
-                                    <ReportCard
-                                    name={this.props.name + "-airflows"}
-                                    title="Airflows"
-                                    unitSystem={this.props.unitSystem}
-                                    dataMapping={this.props.dataMapping['airflows']}
-                                    data={this.getAirflowsTable()}
-                                    />
-                                </Row>
-                            ) : null }
-                            <Row>
-                                <ReportCard
-                                name={this.props.name + "-engineeringCheck"}
-                                title="Engineering Checks"
-                                unitSystem={this.props.unitSystem}
-                                dataMapping={this.props.dataMapping['engineeringCheck']}
-                                data={this.getEngineeringCheckTable()}
-                                />
-                            </Row>
-                        </Col>
-                        <Col>
-                            <Row>
-                                <CustomPieChart
-                                name={this.props.name + "-peakLoadsChart"}
-                                title={"Peak Loads Load Components [" + getUnitLabel(unitSystem, "heat_transfer_rate") + "]"}
-                                colors={COOLINGHEATINGCOLORS}
-                                data={this.getHeatingAndCoolingPeakLoads(unitSystem)}
-                                />
-                            </Row>
-                            <Row>
-                                <CustomPieChart
-                                name={this.props.name + "-loadComponentsChart"}
-                                title={ (this.state.heating_cooling_selection === "cooling" ? "Cooling" : "Heating") + " Load Components [" + getUnitLabel(unitSystem, "heat_transfer_rate") + "]"}
-                                colors={EQUIDISTANTCOLORS}
-                                data={this.formatLoadComponentChartData(unitSystem, this.props.dataMapping["componentPieChart"], loadData)}
-                                /> 
-                            </Row>
-                        </Col>
+                    <Nav variant="pills" onSelect={handleHeatingCoolingSelect} className="App-buttons">
+                        <Nav.Item>
+                        <Nav.Link eventKey="cooling">Cooling</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                        <Nav.Link eventKey="heating">Heating</Nav.Link>
+                        </Nav.Item>
+                    </Nav>
                 </Row>
-                </Tab.Container> 
-            : 
-                <h1>No {this.props.name === "zoneLoadSummary" ? "zones": "systems" } found.</h1> 
-            )
-        );
-    }
+                <Row>
+                    <Col md={6}>
+                        <Row>
+                            <TableHeader
+                            name={name + "-headerTable"}
+                            unitSystem={unitSystem}
+                            dataMapping={dataMapping['headerTable']}
+                            />
+                        </Row>
+                        <Row>
+                            <span>Envelope</span>
+                            <CustomTable
+                            name={name + "-envelopeTable"}
+                            displayHeader={false}
+                            unitSystem={unitSystem}
+                            dataMapping={dataMapping['envelopeLoadsTable']}
+                            data={formatTableData(dataMapping['envelopeLoadsTable'], loadData)}
+                            />
+                        </Row>
+                        <Row>
+                            <span>Internal Gains</span>
+                            <CustomTable
+                            name={name + "-internalGainTable"}
+                            displayHeader={false}
+                            unitSystem={unitSystem}
+                            dataMapping={dataMapping['internalGainsTable']}
+                            data={formatTableData(dataMapping['internalGainsTable'], loadData)}
+                            />
+                        </Row>
+                        <Row>
+                            <span>Systems</span>
+                            <CustomTable
+                            name={name + "-systemLoadsTable"}
+                            displayHeader={false}
+                            unitSystem={unitSystem}
+                            dataMapping={dataMapping['systemLoadsTable']}
+                            data={formatTableData(dataMapping['systemLoadsTable'], loadData)}
+                            />
+                        </Row>
+                        <Row>
+                            <span>Total</span>
+                            <CustomTable
+                            name={name + "-totalLoadsTable"}
+                            displayHeader={false}
+                            unitSystem={unitSystem}
+                            dataMapping={dataMapping['totalLoadsTable']}
+                            data={formatTableData(dataMapping['totalLoadsTable'], loadData)}
+                            />
+                        </Row>
+                    </Col>
+                    <Col>
+                        <Row>
+                            <ReportCard
+                            name={name + "-conditionsTimePeak"}
+                            title="Conditions at Time of Peak"
+                            unitSystem={unitSystem}
+                            dataMapping={dataMapping['peakConditions']}
+                            data={getPeakConditionTable(objectName, heatingCoolingSelection, data)}
+                            />
+                        </Row>
+                        { name === 'systemLoadSummary' ? (
+                            <Row>
+                                <ReportCard
+                                name={name + "-temperatures"}
+                                title="Temperatures"
+                                unitSystem={unitSystem}
+                                dataMapping={dataMapping['temperatures']}
+                                data={getTemperaturesTable(objectName, heatingCoolingSelection, data)}
+                                />
+                            </Row>
+                        ) : null }
+                        { name === 'systemLoadSummary' ? (
+                            <Row>
+                                <ReportCard
+                                name={name + "-airflows"}
+                                title="Airflows"
+                                unitSystem={unitSystem}
+                                dataMapping={dataMapping['airflows']}
+                                data={getAirflowsTable(objectName, heatingCoolingSelection, data)}
+                                />
+                            </Row>
+                        ) : null }
+                        <Row>
+                            <ReportCard
+                            name={name + "-engineeringCheck"}
+                            title="Engineering Checks"
+                            unitSystem={unitSystem}
+                            dataMapping={dataMapping['engineeringCheck']}
+                            data={getEngineeringCheckTable(objectName, heatingCoolingSelection, data)}
+                            />
+                        </Row>
+                    </Col>
+                    <Col>
+                        <Row>
+                            <CustomPieChart
+                            name={name + "-peakLoadsChart"}
+                            title={"Peak Loads Load Components [" + getUnitLabel(unitSystem, "heat_transfer_rate") + "]"}
+                            colors={COOLINGHEATINGCOLORS}
+                            data={getHeatingAndCoolingPeakLoads(unitSystem, objectName, data)}
+                            />
+                        </Row>
+                        <Row>
+                            <CustomPieChart
+                            name={name + "-loadComponentsChart"}
+                            title={ (heatingCoolingSelection === "cooling" ? "Cooling" : "Heating") + " Load Components [" + getUnitLabel(unitSystem, "heat_transfer_rate") + "]"}
+                            colors={EQUIDISTANTCOLORS}
+                            data={formatLoadComponentChartData(unitSystem, dataMapping["componentPieChart"], loadData)}
+                            /> 
+                        </Row>
+                    </Col>
+            </Row>
+            </Tab.Container> 
+        : 
+            <h1>No {name === "zoneLoadSummary" ? "zones": "systems" } found.</h1> 
+        )
+    );
 }
