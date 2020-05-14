@@ -3,12 +3,12 @@ import Col from 'react-bootstrap/Col'
 import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row'
 import Tab from 'react-bootstrap/Tab';
-import { Context } from '../store/index';
 import { ObjectSelectionDropDown } from '../Components/ObjectSelectionDropdown';
 import { ReportCard } from '../Components/ReportCard';
 import { CustomTable } from '../Components/Table';
 import TableHeader from '../Components/TableHeader';
 import { CustomPieChart } from '../Components/PieChart';
+import { Context } from '../store/index';
 import { 
     EQUIDISTANTCOLORS,
     COOLINGHEATINGCOLORS
