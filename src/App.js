@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Spinner from 'react-bootstrap/Spinner';
 import Container from 'react-bootstrap/Container';
@@ -6,8 +6,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
+//import html2canvas from 'html2canvas';
+//import jsPDF from 'jspdf';
 import { LoadSummary } from './Reports/LoadSummary';
 import { Context } from './store/index';
 import { DesignPsychrometrics } from './Reports/DesignPsychrometrics';import './App.css';
@@ -22,14 +22,16 @@ export default function App(props) {
     const { 
         sectionSelection, setSectionSelection, 
         unitSystem, setUnitSystem, 
-        zoneId, setZoneId 
+        zoneId, setZoneId,
+        setPdfPrint,
     } = useContext(Context);
     const [ loading, setLoading ] = useState(true);
     const [ data, setData ] = useState(null);
     const [ systemId, setSystemId ] = useState(0);
     const [ coilId, setCoilId ] = useState(0);
-    const [ zonesObjectList, setZonesObjectList ] = useState([]);
-    const appRef = useRef(null);
+    //const [ zonesObjectList, setZonesObjectList ] = useState([]);
+    //const [ pdf, setPdf ] = useState(new jsPDF());
+    //const appRef = useRef(null);
     const { json } = props;
 
     useEffect(() => {
@@ -44,11 +46,11 @@ export default function App(props) {
         })
       });//, [json]);
 
-    useEffect(() => {
+    /*useEffect(() => {
         if(data) {
             setZonesObjectList(getObjectList(data['zone_load_summarys']));
         }
-    }, [data]);
+    }, [data]);*/
 
     const handleSectionSelection = (value) => {
         if (value) {
@@ -62,6 +64,7 @@ export default function App(props) {
         }
     }
 
+    /*
     const handlePrintClick = async () => {
         if (appRef) {
             console.log('PDF being created...');
@@ -88,6 +91,10 @@ export default function App(props) {
         } else {
             console.log('No PDF')
         }
+    } */
+
+    const handlePrintClick = () => {
+        setPdfPrint(true);
     } 
 
     const handleZoneSelection = (event) => {
@@ -108,7 +115,7 @@ export default function App(props) {
         }
     }
     
-    const getObjectList = (data) => {
+    /*const getObjectList = (data) => {
         // Get a list of object names, ids, and cad_object, ids
         var object_list = [];
 
@@ -121,7 +128,7 @@ export default function App(props) {
         }
 
         return object_list
-    }
+    }*/
 
     const renderActiveSection = (value, data) => {
         if (value === 'zone_load_summary') {
@@ -183,13 +190,13 @@ export default function App(props) {
         )
     } else {
         //const zonesObjectList = getObjectList(data['zone_load_summarys']);
-        const systemsObjectList = getObjectList(data['system_load_summarys']);
-        const coilsObjectList = getObjectList(data['design_psychrometrics']);
+        //const systemsObjectList = getObjectList(data['system_load_summarys']);
+        //const coilsObjectList = getObjectList(data['design_psychrometrics']);
 
         //console.log(appRef);
 
         return(
-          <div className="App" id="app" ref={appRef}>
+          <div className="App" id="app">
             <header className="App-header">
               <p>
                 Revit Systems Analysis - Loads Report

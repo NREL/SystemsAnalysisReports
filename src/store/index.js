@@ -9,6 +9,7 @@ export const Provider = ({ children }) => {
   const [ sectionSelection, setSectionSelection ] = useState('zone_load_summary');
   const [ unitSystem, setUnitSystem ] = useState('si');
   const [ zoneId, setZoneId ] = useState(0);
+  const [ pdfPrint, setPdfPrint ] = useState(false);
 
   // Make the context object:
   const mainContext = {
@@ -17,7 +18,9 @@ export const Provider = ({ children }) => {
     unitSystem,
     setUnitSystem,
     zoneId,
-    setZoneId
+    setZoneId,
+    pdfPrint,
+    setPdfPrint
   };
 
   // pass the value in provider and return

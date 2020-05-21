@@ -1,8 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import ReactDOM from 'react-dom';
 import Col from 'react-bootstrap/Col'
 import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row'
 import Tab from 'react-bootstrap/Tab';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 import { ObjectSelectionDropDown } from '../Components/ObjectSelectionDropdown';
 import { ReportCard } from '../Components/ReportCard';
 import { CustomTable } from '../Components/Table';
@@ -18,6 +22,7 @@ import { convertDataUnit, getUnitLabel } from '../functions/dataFormatting';
 
 export function LoadSummary(props) {
     const { 
+        printRef,
         name,
         activeSelection,
         handleObjectSelect,
@@ -28,11 +33,15 @@ export function LoadSummary(props) {
     const { 
         sectionSelection, 
         unitSystem, 
-        zoneId, setZoneId 
+        zoneId, setZoneId,
+        pdfPrint, setPdfPrint,
     } = useContext(Context);
     const [ dataExists, setDataExists ] = useState(false);
     const [ heatingCoolingSelection, setHeatingCoolingSelection ] = useState("cooling");
     const [ objectSelection, setObjectSelection ] = useState(0);
+    const tableRef = useRef(null);
+    const chartRef = useRef(null);
+    const cardRef = useRef(null);
 
     useEffect(() => {
         // Set data_exists state to false if data object is empty
@@ -42,6 +51,74 @@ export function LoadSummary(props) {
             setDataExists(true);
         }
     }, [data]);
+
+    useEffect(() => {
+        if (pdfPrint && sectionSelection==='zone_load_summary') {
+            const getPdf = async () => {
+                console.log('PDF being created...');
+                const doc = new jsPDF({orientation: 'portrait', compress: true});
+
+                //for (var i = 0; i < 2; i++) {
+                for (var i = 0; i < objectList.length; i++) {
+                    setZoneId(i);
+                    if (i>0) { doc.addPage() }
+
+                    // Write Charts
+                    await html2canvas(chartRef.current, {
+                        width: 800,
+                        height: 800,
+                        }).then(canvas => {
+                            var imgData = canvas.toDataURL('image/png');
+                            var imgProps= doc.getImageProperties(imgData);
+                            //var pdfWidth = doc.internal.pageSize.getWidth();
+                            //var pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+                            var pdfWidth = doc.internal.pageSize.getWidth()*0.3;
+                            var pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+                            console.log(pdfWidth);
+                            console.log(pdfHeight);
+                            doc.addImage(imgData, 'PNG', 10, 100, 150, 150);
+                        })
+
+
+                    // Write Cards
+                    await html2canvas(cardRef.current, {
+                        width: 800,
+                        height: 800,
+                        }).then(canvas => {
+                            var imgData = canvas.toDataURL('image/png');
+                            doc.addImage(imgData, 'PNG', 100, 100, 150, 150);
+                        }) 
+                    
+
+                    // Example usage of columns property. Note that America will not be included even though it exist in the body since there is no column specified for it.
+                    doc.autoTable({
+                        columnStyles: { europe: { halign: 'center' } }, // European countries centered
+                        body: [
+                        { europe: 'Sweden', america: 'Canada', asia: 'China' },
+                        { europe: 'Norway', america: 'Mexico', asia: 'Japan' },
+                        { europe: 'Norway', america: 'Mexico', asia: 'Japan' },
+                        { europe: 'Norway', america: 'Mexico', asia: 'Japan' },
+                        { europe: 'Norway', america: 'Mexico', asia: 'Japan' },
+                        { europe: 'Norway', america: 'Mexico', asia: 'Japan' },
+                        { europe: 'Norway', america: 'Mexico', asia: 'Japan' },
+                        { europe: 'Norway', america: 'Mexico', asia: 'Japan' },
+                        { europe: 'Norway', america: 'Mexico', asia: 'Japan' },
+                        ],
+                        columns: [
+                        { header: 'Europe', dataKey: 'europe' },
+                        { header: 'Asia', dataKey: 'asia' },
+                        ],
+                    })
+                }
+
+                //doc.output('dataurlnewwindow');
+                doc.save('download.pdf');
+            }
+
+            getPdf();
+            setPdfPrint(false);
+        }
+    }, [pdfPrint, sectionSelection, setZoneId]);
 
     const handleHeatingCoolingSelect = (eventKey) => {
         // Update state when user selects either "heating" or "cooling"
@@ -242,7 +319,7 @@ export function LoadSummary(props) {
 
     return (
         ( dataExists ?
-            <div id={name + '-loadsummaryreport'} height="500px" width="50px">
+            <div id={name + '-loadsummaryreport'}  height="500px" width="50px">
             <Tab.Container id={name + '-container'} activeKey={heatingCoolingSelection} defaultActiveKey="cooling">
                 <Row>
                     {objectList ? <ObjectSelectionDropDown
@@ -262,7 +339,7 @@ export function LoadSummary(props) {
                     </Nav>
                 </Row>
                 <Row>
-                    <Col md={6}>
+                    <Col md={6} ref={tableRef}>
                         <Row>
                             <TableHeader
                             name={name + "-headerTable"}
@@ -311,7 +388,7 @@ export function LoadSummary(props) {
                             />
                         </Row>
                     </Col>
-                    <Col>
+                    <Col ref={cardRef}>
                         <Row>
                             <ReportCard
                             name={name + "-conditionsTimePeak"}
@@ -354,6 +431,7 @@ export function LoadSummary(props) {
                         </Row>
                     </Col>
                     <Col>
+                        <div ref={chartRef}>
                         <Row>
                             <CustomPieChart
                             name={name + "-peakLoadsChart"}
@@ -370,6 +448,7 @@ export function LoadSummary(props) {
                             data={formatLoadComponentChartData(unitSystem, dataMapping["componentPieChart"], loadData)}
                             /> 
                         </Row>
+                        </div>
                     </Col>
                 </Row>
             </Tab.Container>
