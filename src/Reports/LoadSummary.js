@@ -242,11 +242,12 @@ export function LoadSummary(props) {
 
     return (
         ( dataExists ?
+            <div id={name + '-loadsummaryreport'} height="500px" width="50px">
             <Tab.Container id={name + '-container'} activeKey={heatingCoolingSelection} defaultActiveKey="cooling">
                 <Row>
-                    {getObjectList(data) ? <ObjectSelectionDropDown
+                    {objectList ? <ObjectSelectionDropDown
                     name={name + "-objectDropdown"}
-                    objectList={getObjectList(data)}
+                    objectList={objectList}
                     objectSelection={activeSelection}
                     handleObjectSelect={handleObjectSelect}
                     /> : null}
@@ -370,8 +371,9 @@ export function LoadSummary(props) {
                             /> 
                         </Row>
                     </Col>
-            </Row>
-            </Tab.Container> 
+                </Row>
+            </Tab.Container>
+            </div>
         : 
             <h1>No {name === "zoneLoadSummary" ? "zones": "systems" } found.</h1> 
         )

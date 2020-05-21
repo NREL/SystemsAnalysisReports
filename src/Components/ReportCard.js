@@ -9,9 +9,9 @@ import { isNumeric, numberWithCommas } from '../functions/numericFunctions';
 
 export class ReportCard extends React.Component {
     render() {
-        var { data, dataMapping } = this.props;
+        var { data, dataMapping, name } = this.props;
         return (
-            <Card className="App-card">
+            <Card className="App-card" id={name}>
             <Card.Header className="App-card-header">{this.props.title}</Card.Header>
             <Card.Body className="App-card-body">
                 <Container>

@@ -1,10 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Spinner from 'react-bootstrap/Spinner';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Dropdown from 'react-bootstrap/Dropdown';
+import Button from 'react-bootstrap/Button';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 import { LoadSummary } from './Reports/LoadSummary';
 import { Context } from './store/index';
 import { DesignPsychrometrics } from './Reports/DesignPsychrometrics';import './App.css';
@@ -25,6 +28,8 @@ export default function App(props) {
     const [ data, setData ] = useState(null);
     const [ systemId, setSystemId ] = useState(0);
     const [ coilId, setCoilId ] = useState(0);
+    const [ zonesObjectList, setZonesObjectList ] = useState([]);
+    const appRef = useRef(null);
     const { json } = props;
 
     useEffect(() => {
@@ -37,7 +42,13 @@ export default function App(props) {
                 };
             })
         })
-      }, [json]);
+      });//, [json]);
+
+    useEffect(() => {
+        if(data) {
+            setZonesObjectList(getObjectList(data['zone_load_summarys']));
+        }
+    }, [data]);
 
     const handleSectionSelection = (value) => {
         if (value) {
@@ -50,6 +61,34 @@ export default function App(props) {
             setUnitSystem(value);
         }
     }
+
+    const handlePrintClick = async () => {
+        if (appRef) {
+            console.log('PDF being created...');
+            const pdf = new jsPDF({orientation: 'portrait'});
+
+            console.log(zonesObjectList.length);
+            for (var i = 0; i < 4; i++) {
+            //for (var i = 0; i < zonesObjectList.length; i++) {
+                setZoneId(i);
+                if (i>0) { pdf.addPage() }
+                await html2canvas(appRef.current, {
+                    //scale: 0.5,
+                    }).then(canvas => {
+                        var imgData = canvas.toDataURL('image/png');
+                        var imgProps= pdf.getImageProperties(imgData);
+                        var pdfWidth = pdf.internal.pageSize.getWidth();
+                        var pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+                        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+                    })
+            }
+
+            //pdf.output('dataurlnewwindow');
+            pdf.save('download.pdf');
+        } else {
+            console.log('No PDF')
+        }
+    } 
 
     const handleZoneSelection = (event) => {
         if (event) {
@@ -69,10 +108,26 @@ export default function App(props) {
         }
     }
     
+    const getObjectList = (data) => {
+        // Get a list of object names, ids, and cad_object, ids
+        var object_list = [];
+
+        if (data) {
+            const objList = Object.keys(data);
+            for (var i = 0; i < objList.length; i++) {
+                const objName = objList[i];
+                object_list.push({id: i, cad_object_id: data[objName].cad_object_id, name: data[objName].name});
+            }
+        }
+
+        return object_list
+    }
+
     const renderActiveSection = (value, data) => {
         if (value === 'zone_load_summary') {
             return(
             <LoadSummary
+            id="zoneLoadSummary"
             key="zoneLoadSummary"
             name="zoneLoadSummary"
             activeSelection={zoneId}
@@ -86,6 +141,7 @@ export default function App(props) {
         } else if (value === 'system_load_summarys') {
             return(
             <LoadSummary
+            id="systemLoadSummary"
             key="systemLoadSummary"
             name="systemLoadSummary"
             activeSelection={systemId}
@@ -98,6 +154,7 @@ export default function App(props) {
         } else if (value === 'design_psychrometrics') {
             return(
             <DesignPsychrometrics
+            id="designPsychrometrics"
             key="designPsychrometrics"
             name="designPsychrometrics"
             objectSelection={coilId}
@@ -114,7 +171,7 @@ export default function App(props) {
             </div>
             )
         }
-    }    
+    }
 
     if( loading ) { // if your component doesn't have to wait for an async action, remove this block 
         return(
@@ -125,8 +182,14 @@ export default function App(props) {
             </div>
         )
     } else {
+        //const zonesObjectList = getObjectList(data['zone_load_summarys']);
+        const systemsObjectList = getObjectList(data['system_load_summarys']);
+        const coilsObjectList = getObjectList(data['design_psychrometrics']);
+
+        //console.log(appRef);
+
         return(
-          <div className="App">
+          <div className="App" id="app" ref={appRef}>
             <header className="App-header">
               <p>
                 Revit Systems Analysis - Loads Report
@@ -149,16 +212,19 @@ export default function App(props) {
                         </Nav>
                     </Col>
                     <Col lg={1}>
-                        <Dropdown onSelect={handleUnitSystemSelection}>
-                            <Dropdown.Toggle id="dropdown-unit-selection"  variant="info">
-                            { unitSystem === 'si' ? 'SI' : 'IP'  }
-                            </Dropdown.Toggle>
-            
-                            <Dropdown.Menu>
-                            <Dropdown.Item eventKey="ip">IP</Dropdown.Item>
-                            <Dropdown.Item eventKey="si">SI</Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown> 
+                        <div className='App-button-group'>
+                            <Dropdown onSelect={handleUnitSystemSelection}>
+                                <Dropdown.Toggle id="dropdown-unit-selection"  variant="info">
+                                { unitSystem === 'si' ? 'SI' : 'IP'  }
+                                </Dropdown.Toggle>
+                
+                                <Dropdown.Menu>
+                                <Dropdown.Item eventKey="ip">IP</Dropdown.Item>
+                                <Dropdown.Item eventKey="si">SI</Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
+                            <Button onClick={handlePrintClick}>PDF</Button>
+                        </div>
                     </Col>
                 </Row>
                 <Row>
