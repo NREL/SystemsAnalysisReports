@@ -18,14 +18,16 @@ import {
     COOLINGHEATINGCOLORS
 } from '../constants/settings';
 import { isNumeric } from '../functions/numericFunctions';
-import { convertDataUnit, getUnitLabel } from '../functions/dataFormatting';
+import { getObjectName, convertDataUnit, getUnitLabel } from '../functions/dataFormatting';
+import { getLoadSummaryPDF } from './getLoadSummaryPDF';
 
 export function LoadSummary(props) {
     const { 
-        printRef,
+        //printRef,
         name,
         activeSelection,
         handleObjectSelect,
+        objectList,
         dataMapping,
         data
     } = props;
@@ -36,89 +38,19 @@ export function LoadSummary(props) {
         zoneId, setZoneId,
         pdfPrint, setPdfPrint,
     } = useContext(Context);
-    const [ dataExists, setDataExists ] = useState(false);
     const [ heatingCoolingSelection, setHeatingCoolingSelection ] = useState("cooling");
-    const [ objectSelection, setObjectSelection ] = useState(0);
     const tableRef = useRef(null);
     const chartRef = useRef(null);
+    const chart1Ref = useRef(null);
+    const chart2Ref = useRef(null);
     const cardRef = useRef(null);
 
     useEffect(() => {
-        // Set data_exists state to false if data object is empty
-        if (data && Object.keys(data).length === 0) {
-            setDataExists(false);
-        } else {
-            setDataExists(true);
-        }
-    }, [data]);
-
-    useEffect(() => {
         if (pdfPrint && sectionSelection==='zone_load_summary') {
-            const getPdf = async () => {
-                console.log('PDF being created...');
-                const doc = new jsPDF({orientation: 'portrait', compress: true});
-
-                //for (var i = 0; i < 2; i++) {
-                for (var i = 0; i < objectList.length; i++) {
-                    setZoneId(i);
-                    if (i>0) { doc.addPage() }
-
-                    // Write Charts
-                    await html2canvas(chartRef.current, {
-                        width: 800,
-                        height: 800,
-                        }).then(canvas => {
-                            var imgData = canvas.toDataURL('image/png');
-                            var imgProps= doc.getImageProperties(imgData);
-                            //var pdfWidth = doc.internal.pageSize.getWidth();
-                            //var pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-                            var pdfWidth = doc.internal.pageSize.getWidth()*0.3;
-                            var pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-                            console.log(pdfWidth);
-                            console.log(pdfHeight);
-                            doc.addImage(imgData, 'PNG', 10, 100, 150, 150);
-                        })
-
-
-                    // Write Cards
-                    await html2canvas(cardRef.current, {
-                        width: 800,
-                        height: 800,
-                        }).then(canvas => {
-                            var imgData = canvas.toDataURL('image/png');
-                            doc.addImage(imgData, 'PNG', 100, 100, 150, 150);
-                        }) 
-                    
-
-                    // Example usage of columns property. Note that America will not be included even though it exist in the body since there is no column specified for it.
-                    doc.autoTable({
-                        columnStyles: { europe: { halign: 'center' } }, // European countries centered
-                        body: [
-                        { europe: 'Sweden', america: 'Canada', asia: 'China' },
-                        { europe: 'Norway', america: 'Mexico', asia: 'Japan' },
-                        { europe: 'Norway', america: 'Mexico', asia: 'Japan' },
-                        { europe: 'Norway', america: 'Mexico', asia: 'Japan' },
-                        { europe: 'Norway', america: 'Mexico', asia: 'Japan' },
-                        { europe: 'Norway', america: 'Mexico', asia: 'Japan' },
-                        { europe: 'Norway', america: 'Mexico', asia: 'Japan' },
-                        { europe: 'Norway', america: 'Mexico', asia: 'Japan' },
-                        { europe: 'Norway', america: 'Mexico', asia: 'Japan' },
-                        ],
-                        columns: [
-                        { header: 'Europe', dataKey: 'europe' },
-                        { header: 'Asia', dataKey: 'asia' },
-                        ],
-                    })
-                }
-
-                //doc.output('dataurlnewwindow');
-                doc.save('download.pdf');
-            }
-
-            getPdf();
-            setPdfPrint(false);
+            console.log('pdf print.');
+            getLoadSummaryPDF(objectList, chartRef, chart1Ref, chart2Ref, cardRef, setPdfPrint, setZoneId, dataMapping, data)
         }
-    }, [pdfPrint, sectionSelection, setZoneId]);
+    }, [pdfPrint, sectionSelection]);
 
     const handleHeatingCoolingSelect = (eventKey) => {
         // Update state when user selects either "heating" or "cooling"
@@ -127,35 +59,6 @@ export function LoadSummary(props) {
         } else {
             setHeatingCoolingSelection("cooling");          
         }
-    }
-
-    const getObjectList = (data) => {
-        // Get a list of object names, ids, and cad_object, ids
-        var object_list = [];
-
-        if (data) {
-            const objList = Object.keys(data);
-            for (var i = 0; i < objList.length; i++) {
-                const objName = objList[i];
-                object_list.push({id: i, cad_object_id: data[objName].cad_object_id, name: data[objName].name});
-            }
-        }
-
-        return object_list
-    }
-
-    const getObjectName = (objectList, id) => {
-        // Get the string name of the object given an id
-        if ( isNumeric(id) && objectList && objectList.length > 0 ) {
-            for (var i = 0; i < objectList.length; i++) {
-                if (
-                    Object.keys(objectList[i]).includes("id") && 
-                    objectList[i].id.toString() === id.toString()
-                    ) {
-                    return objectList[i].name
-                }
-            }
-        } else return null
     }
 
     const getLoadComponents = (objectName, heatingCoolingSelection, data) => {
@@ -313,148 +216,149 @@ export function LoadSummary(props) {
         }
     }
 
-    const objectList = getObjectList(data);
-    const objectName = getObjectName(objectList,activeSelection);
-    const loadData = getLoadComponents(objectName, heatingCoolingSelection, data);
+    if (data && Object.keys(data).length !== 0) {
+        const objectName = getObjectName(objectList,activeSelection);
+        const loadData = getLoadComponents(objectName, heatingCoolingSelection, data);
 
-    return (
-        ( dataExists ?
-            <div id={name + '-loadsummaryreport'}  height="500px" width="50px">
-            <Tab.Container id={name + '-container'} activeKey={heatingCoolingSelection} defaultActiveKey="cooling">
-                <Row>
-                    {objectList ? <ObjectSelectionDropDown
-                    name={name + "-objectDropdown"}
-                    objectList={objectList}
-                    objectSelection={activeSelection}
-                    handleObjectSelect={handleObjectSelect}
-                    /> : null}
+        return (
+                <div id={name + '-loadsummaryreport'}  height="500px" width="50px">
+                <Tab.Container id={name + '-container'} activeKey={heatingCoolingSelection} defaultActiveKey="cooling">
+                    <Row>
+                        {objectList ? <ObjectSelectionDropDown
+                        name={name + "-objectDropdown"}
+                        objectList={objectList}
+                        objectSelection={activeSelection}
+                        handleObjectSelect={handleObjectSelect}
+                        /> : null}
 
-                    <Nav variant="pills" onSelect={handleHeatingCoolingSelect} className="App-buttons">
-                        <Nav.Item>
-                        <Nav.Link eventKey="cooling">Cooling</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                        <Nav.Link eventKey="heating">Heating</Nav.Link>
-                        </Nav.Item>
-                    </Nav>
-                </Row>
-                <Row>
-                    <Col md={6} ref={tableRef}>
-                        <Row>
-                            <TableHeader
-                            name={name + "-headerTable"}
-                            unitSystem={unitSystem}
-                            dataMapping={dataMapping['headerTable']}
-                            />
-                        </Row>
-                        <Row>
-                            <span>Envelope</span>
-                            <CustomTable
-                            name={name + "-envelopeTable"}
-                            displayHeader={false}
-                            unitSystem={unitSystem}
-                            dataMapping={dataMapping['envelopeLoadsTable']}
-                            data={formatTableData(dataMapping['envelopeLoadsTable'], loadData)}
-                            />
-                        </Row>
-                        <Row>
-                            <span>Internal Gains</span>
-                            <CustomTable
-                            name={name + "-internalGainTable"}
-                            displayHeader={false}
-                            unitSystem={unitSystem}
-                            dataMapping={dataMapping['internalGainsTable']}
-                            data={formatTableData(dataMapping['internalGainsTable'], loadData)}
-                            />
-                        </Row>
-                        <Row>
-                            <span>Systems</span>
-                            <CustomTable
-                            name={name + "-systemLoadsTable"}
-                            displayHeader={false}
-                            unitSystem={unitSystem}
-                            dataMapping={dataMapping['systemLoadsTable']}
-                            data={formatTableData(dataMapping['systemLoadsTable'], loadData)}
-                            />
-                        </Row>
-                        <Row>
-                            <span>Total</span>
-                            <CustomTable
-                            name={name + "-totalLoadsTable"}
-                            displayHeader={false}
-                            unitSystem={unitSystem}
-                            dataMapping={dataMapping['totalLoadsTable']}
-                            data={formatTableData(dataMapping['totalLoadsTable'], loadData)}
-                            />
-                        </Row>
-                    </Col>
-                    <Col ref={cardRef}>
-                        <Row>
-                            <ReportCard
-                            name={name + "-conditionsTimePeak"}
-                            title="Conditions at Time of Peak"
-                            unitSystem={unitSystem}
-                            dataMapping={dataMapping['peakConditions']}
-                            data={getPeakConditionTable(objectName, heatingCoolingSelection, data)}
-                            />
-                        </Row>
-                        { name === 'systemLoadSummary' ? (
+                        <Nav variant="pills" onSelect={handleHeatingCoolingSelect} className="App-buttons">
+                            <Nav.Item>
+                            <Nav.Link eventKey="cooling">Cooling</Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item>
+                            <Nav.Link eventKey="heating">Heating</Nav.Link>
+                            </Nav.Item>
+                        </Nav>
+                    </Row>
+                    <Row>
+                        <Col md={6} ref={tableRef}>
                             <Row>
-                                <ReportCard
-                                name={name + "-temperatures"}
-                                title="Temperatures"
+                                <TableHeader
+                                name={name + "-headerTable"}
                                 unitSystem={unitSystem}
-                                dataMapping={dataMapping['temperatures']}
-                                data={getTemperaturesTable(objectName, heatingCoolingSelection, data)}
+                                dataMapping={dataMapping['headerTable']}
                                 />
                             </Row>
-                        ) : null }
-                        { name === 'systemLoadSummary' ? (
                             <Row>
-                                <ReportCard
-                                name={name + "-airflows"}
-                                title="Airflows"
+                                <span>Envelope</span>
+                                <CustomTable
+                                name={name + "-envelopeTable"}
+                                displayHeader={false}
                                 unitSystem={unitSystem}
-                                dataMapping={dataMapping['airflows']}
-                                data={getAirflowsTable(objectName, heatingCoolingSelection, data)}
+                                dataMapping={dataMapping['envelopeLoadsTable']}
+                                data={formatTableData(dataMapping['envelopeLoadsTable'], loadData)}
                                 />
                             </Row>
-                        ) : null }
-                        <Row>
-                            <ReportCard
-                            name={name + "-engineeringCheck"}
-                            title="Engineering Checks"
-                            unitSystem={unitSystem}
-                            dataMapping={dataMapping['engineeringCheck']}
-                            data={getEngineeringCheckTable(objectName, heatingCoolingSelection, data)}
-                            />
-                        </Row>
-                    </Col>
-                    <Col>
-                        <div ref={chartRef}>
-                        <Row>
-                            <CustomPieChart
-                            name={name + "-peakLoadsChart"}
-                            title={"Peak Loads Load Components [" + getUnitLabel(unitSystem, "heat_transfer_rate") + "]"}
-                            colors={COOLINGHEATINGCOLORS}
-                            data={getHeatingAndCoolingPeakLoads(unitSystem, objectName, data)}
-                            />
-                        </Row>
-                        <Row>
-                            <CustomPieChart
-                            name={name + "-loadComponentsChart"}
-                            title={ (heatingCoolingSelection === "cooling" ? "Cooling" : "Heating") + " Load Components [" + getUnitLabel(unitSystem, "heat_transfer_rate") + "]"}
-                            colors={EQUIDISTANTCOLORS}
-                            data={formatLoadComponentChartData(unitSystem, dataMapping["componentPieChart"], loadData)}
-                            /> 
-                        </Row>
-                        </div>
-                    </Col>
-                </Row>
-            </Tab.Container>
-            </div>
-        : 
-            <h1>No {name === "zoneLoadSummary" ? "zones": "systems" } found.</h1> 
-        )
-    );
+                            <Row>
+                                <span>Internal Gains</span>
+                                <CustomTable
+                                name={name + "-internalGainTable"}
+                                displayHeader={false}
+                                unitSystem={unitSystem}
+                                dataMapping={dataMapping['internalGainsTable']}
+                                data={formatTableData(dataMapping['internalGainsTable'], loadData)}
+                                />
+                            </Row>
+                            <Row>
+                                <span>Systems</span>
+                                <CustomTable
+                                name={name + "-systemLoadsTable"}
+                                displayHeader={false}
+                                unitSystem={unitSystem}
+                                dataMapping={dataMapping['systemLoadsTable']}
+                                data={formatTableData(dataMapping['systemLoadsTable'], loadData)}
+                                />
+                            </Row>
+                            <Row>
+                                <span>Total</span>
+                                <CustomTable
+                                name={name + "-totalLoadsTable"}
+                                displayHeader={false}
+                                unitSystem={unitSystem}
+                                dataMapping={dataMapping['totalLoadsTable']}
+                                data={formatTableData(dataMapping['totalLoadsTable'], loadData)}
+                                />
+                            </Row>
+                        </Col>
+                        <Col ref={cardRef}>
+                            <Row>
+                                <ReportCard
+                                name={name + "-conditionsTimePeak"}
+                                title="Conditions at Time of Peak"
+                                unitSystem={unitSystem}
+                                dataMapping={dataMapping['peakConditions']}
+                                data={getPeakConditionTable(objectName, heatingCoolingSelection, data)}
+                                />
+                            </Row>
+                            { name === 'systemLoadSummary' ? (
+                                <Row>
+                                    <ReportCard
+                                    name={name + "-temperatures"}
+                                    title="Temperatures"
+                                    unitSystem={unitSystem}
+                                    dataMapping={dataMapping['temperatures']}
+                                    data={getTemperaturesTable(objectName, heatingCoolingSelection, data)}
+                                    />
+                                </Row>
+                            ) : null }
+                            { name === 'systemLoadSummary' ? (
+                                <Row>
+                                    <ReportCard
+                                    name={name + "-airflows"}
+                                    title="Airflows"
+                                    unitSystem={unitSystem}
+                                    dataMapping={dataMapping['airflows']}
+                                    data={getAirflowsTable(objectName, heatingCoolingSelection, data)}
+                                    />
+                                </Row>
+                            ) : null }
+                            <Row>
+                                <ReportCard
+                                name={name + "-engineeringCheck"}
+                                title="Engineering Checks"
+                                unitSystem={unitSystem}
+                                dataMapping={dataMapping['engineeringCheck']}
+                                data={getEngineeringCheckTable(objectName, heatingCoolingSelection, data)}
+                                />
+                            </Row>
+                        </Col>
+                        <Col>
+                            <div ref={chartRef}>
+                            <Row>
+                                <CustomPieChart
+                                pdfRef={chart1Ref}
+                                name={name + "-peakLoadsChart"}
+                                title={"Peak Loads Load Components [" + getUnitLabel(unitSystem, "heat_transfer_rate") + "]"}
+                                colors={COOLINGHEATINGCOLORS}
+                                data={getHeatingAndCoolingPeakLoads(unitSystem, objectName, data)}
+                                />
+                            </Row>
+                            <Row>
+                                <CustomPieChart
+                                pdfRef={chart2Ref}
+                                name={name + "-loadComponentsChart"}
+                                title={ (heatingCoolingSelection === "cooling" ? "Cooling" : "Heating") + " Load Components [" + getUnitLabel(unitSystem, "heat_transfer_rate") + "]"}
+                                colors={EQUIDISTANTCOLORS}
+                                data={formatLoadComponentChartData(unitSystem, dataMapping["componentPieChart"], loadData)}
+                                /> 
+                            </Row>
+                            </div>
+                        </Col>
+                    </Row>
+                </Tab.Container>
+                </div>
+        );
+    } else {
+        return( <h1>No {name === "zoneLoadSummary" ? "zones": "systems" } found.</h1> )
+    }
 }

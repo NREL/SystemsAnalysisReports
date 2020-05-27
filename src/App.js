@@ -35,6 +35,17 @@ export default function App(props) {
     const { json } = props;
 
     useEffect(() => {
+        console.log('hi');
+        fetchData();
+      }, [json]);
+
+    /*useEffect(() => {
+        if(data) {
+            setZonesObjectList(getObjectList(data['zone_load_summarys']));
+        }
+    }, [data]);*/
+    
+    const fetchData = async () => {
         // Function to load data asyncronously
         loadData(json).then(rawData => {
             formatData(rawData).then(formatData => {
@@ -44,13 +55,7 @@ export default function App(props) {
                 };
             })
         })
-      });//, [json]);
-
-    /*useEffect(() => {
-        if(data) {
-            setZonesObjectList(getObjectList(data['zone_load_summarys']));
-        }
-    }, [data]);*/
+    } 
 
     const handleSectionSelection = (value) => {
         if (value) {
@@ -115,7 +120,7 @@ export default function App(props) {
         }
     }
     
-    /*const getObjectList = (data) => {
+    const getObjectList = (data) => {
         // Get a list of object names, ids, and cad_object, ids
         var object_list = [];
 
@@ -128,10 +133,13 @@ export default function App(props) {
         }
 
         return object_list
-    }*/
+    }
 
     const renderActiveSection = (value, data) => {
         if (value === 'zone_load_summary') {
+            const activeData = data['zone_load_summarys'];
+            const objectList = getObjectList(activeData);
+
             return(
             <LoadSummary
             id="zoneLoadSummary"
@@ -139,13 +147,17 @@ export default function App(props) {
             name="zoneLoadSummary"
             activeSelection={zoneId}
             handleObjectSelect={handleZoneSelection}
+            objectList={objectList}
             unitSystem={unitSystem}
             dataMapping={zoneLoadSummaryMapping}
-            data={data['zone_load_summarys']}
+            data={activeData}
             />
         
             )
         } else if (value === 'system_load_summarys') {
+            const activeData = data['system_load_summarys'];
+            const objectList = getObjectList(activeData);
+
             return(
             <LoadSummary
             id="systemLoadSummary"
@@ -153,12 +165,16 @@ export default function App(props) {
             name="systemLoadSummary"
             activeSelection={systemId}
             handleObjectSelect={handleSystemSelection}
+            objectList={objectList}
             unitSystem={unitSystem}
             dataMapping={systemLoadSummaryMapping}
-            data={data['system_load_summarys']}
+            data={activeData}
             />
             )
         } else if (value === 'design_psychrometrics') {
+            const activeData = data['design_psychrometrics'];
+            const objectList = getObjectList(activeData);
+
             return(
             <DesignPsychrometrics
             id="designPsychrometrics"
@@ -166,9 +182,10 @@ export default function App(props) {
             name="designPsychrometrics"
             objectSelection={coilId}
             handleObjectSelect={handleCoilSelection}
+            objectList={objectList}
             unitSystem={unitSystem}
             dataMapping={designPsychrometricsMapping}
-            data={data['design_psychrometrics']}
+            data={activeData}
             />
             )
         } else {
