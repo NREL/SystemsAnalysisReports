@@ -1,9 +1,9 @@
 export const designPsychrometricsMapping = {
     "componentTable":{
         "columns": [
-            {"displayName": "Dry Bulb Temperature [C]", "jsonKey": "dry_bulb_temperature", "decimals": 1},
-            {"displayName": "Humidity Ratio [kg/kg]", "jsonKey": "humidity_ratio", "decimals": 4},
-            {"displayName": "Temperature Difference [C]", "jsonKey": "temperature_difference", "decimals": 1},
+            {"displayName": "Dry Bulb Temperature", "jsonKey": "dry_bulb_temperature", "type": "temperature"},
+            {"displayName": "Humidity Ratio", "jsonKey": "humidity_ratio", "type": "humidity_ratio"},
+            {"displayName": "Temperature Difference", "jsonKey": "temperature_difference", "type": "temperature_difference"},
         ],
         "rows": [
             {"displayName": "Zone", "jsonKey": "zone"},
@@ -18,14 +18,14 @@ export const designPsychrometricsMapping = {
         {
             "label": null,
             "items": [
-                {"displayName": "System Name", "jsonKey": "name", "unitLabel": null},
-                {"displayName": "Time of Peak", "jsonKey": "time_of_peak", "unitLabel": null},
-                {"displayName": "Coil Air Flow Rate", "jsonKey": "coil_air_flow_rate", "unitLabel": "m3/s", "decimals": 3},
-                {"displayName": "Zone Space Sensible Load", "jsonKey": "zone_sensible_load", "unitLabel": "W", "decimals": 0},
-                {"displayName": "Outdoor Air Flow Rate", "jsonKey": "outdoor_air_flow_rate", "unitLabel": "m3/s", "decimals": 3},
-                {"displayName": "Percent Outdoor Air", "jsonKey": "percent_outdoor_air", "unitLabel": "%", "decimals": 1},
-                {"displayName": "Air Specific Heat", "jsonKey": "air_specific_heat", "unitLabel": "J-kg/K", "decimals": 2},
-                {"displayName": "Air Density", "jsonKey": "air_density", "unitLabel": "kg/m3", "decimals": 2},           
+                {"displayName": "System Name", "jsonKey": "name", "type": null},
+                {"displayName": "Time of Peak", "jsonKey": "time_of_peak", "type": null},
+                {"displayName": "Zone Space Sensible Load", "jsonKey": "zone_sensible_load", "type": "heat_transfer_rate"},
+                {"displayName": "Coil Air Flow Rate", "jsonKey": "coil_air_flow_rate", "type": "flow_rate"},
+                {"displayName": "Outdoor Air Flow Rate", "jsonKey": "outdoor_air_flow_rate", "type": "flow_rate"},
+                {"displayName": "Percent Outdoor Air", "jsonKey": "percent_outdoor_air", "type": "outdoor_air_percentage"},
+                {"displayName": "Air Specific Heat", "jsonKey": "air_specific_heat", "type": "specific_heat"},
+                {"displayName": "Air Density", "jsonKey": "air_density", "type": "density"},           
             ]
         }
     ]
@@ -34,21 +34,21 @@ export const designPsychrometricsMapping = {
 export const zoneLoadSummaryMapping = {
     "headerTable":{
         "columns": [
-            {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant", "decimals": 0},
-            {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed", "decimals": 0},
-            {"displayName": "Latent (W)", "jsonKey": "latent", "decimals": 0},
-            {"displayName": "Total (W)", "jsonKey": "total", "decimals": 0},
-            {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total", "decimals": 1},
-        ],
+            {"displayName": "Instant Sensible", "jsonKey": "sensible_instant", "type": "heat_transfer_rate"},
+            {"displayName": "Delayed Sensible", "jsonKey": "sensible_delayed", "type": "heat_transfer_rate"},
+            {"displayName": "Latent", "jsonKey": "latent", "type": "heat_transfer_rate"},
+            {"displayName": "Total", "jsonKey": "total", "type": "heat_transfer_rate"},
+            {"displayName": "Percent of Total", "jsonKey": "percent_grand_total", "type": "percent"}
+         ],
         "rows": []
     },
     "envelopeLoadsTable":{
         "columns": [
-            {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant", "decimals": 0},
-            {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed", "decimals": 0},
-            {"displayName": "Latent (W)", "jsonKey": "latent", "decimals": 0},
-            {"displayName": "Total (W)", "jsonKey": "total", "decimals": 0},
-            {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total", "decimals": 1},
+            {"displayName": "Instant Sensible", "jsonKey": "sensible_instant", "type": "heat_transfer_rate"},
+            {"displayName": "Delayed Sensible", "jsonKey": "sensible_delayed", "type": "heat_transfer_rate"},
+            {"displayName": "Latent", "jsonKey": "latent", "type": "heat_transfer_rate"},
+            {"displayName": "Total", "jsonKey": "total", "type": "heat_transfer_rate"},
+            {"displayName": "Percent of Total", "jsonKey": "percent_grand_total", "type": "percent"},
         ],
         "rows": [
             {"displayName": "Roof", "jsonKey": "roof"},
@@ -71,11 +71,11 @@ export const zoneLoadSummaryMapping = {
     },
     "internalGainsTable":{
         "columns": [
-            {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant", "decimals": 0},
-            {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed", "decimals": 0},
-            {"displayName": "Latent (W)", "jsonKey": "latent", "decimals": 0},
-            {"displayName": "Total (W)", "jsonKey": "total", "decimals": 0},
-            {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total", "decimals": 1},
+            {"displayName": "Instant Sensible", "jsonKey": "sensible_instant", "type": "heat_transfer_rate"},
+            {"displayName": "Delayed Sensible", "jsonKey": "sensible_delayed", "type": "heat_transfer_rate"},
+            {"displayName": "Latent", "jsonKey": "latent", "type": "heat_transfer_rate"},
+            {"displayName": "Total", "jsonKey": "total", "type": "heat_transfer_rate"},
+            {"displayName": "Percent of Total", "jsonKey": "percent_grand_total", "type": "percent"},
         ],
         "rows": [
             {"displayName": "People", "jsonKey": "people"},
@@ -87,11 +87,11 @@ export const zoneLoadSummaryMapping = {
     },
     "systemLoadsTable":{
         "columns": [
-            {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant", "decimals": 0},
-            {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed", "decimals": 0},
-            {"displayName": "Latent (W)", "jsonKey": "latent", "decimals": 0},
-            {"displayName": "Total (W)", "jsonKey": "total", "decimals": 0},
-            {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total", "decimals": 1},
+            {"displayName": "Instant Sensible", "jsonKey": "sensible_instant", "type": "heat_transfer_rate"},
+            {"displayName": "Delayed Sensible", "jsonKey": "sensible_delayed", "type": "heat_transfer_rate"},
+            {"displayName": "Latent", "jsonKey": "latent", "type": "heat_transfer_rate"},
+            {"displayName": "Total", "jsonKey": "total", "type": "heat_transfer_rate"},
+            {"displayName": "Percent of Total", "jsonKey": "percent_grand_total", "type": "percent"},
         ],
         "rows": [
             {"displayName": "Zone Ventilation", "jsonKey": "zone_ventilation"},
@@ -107,11 +107,11 @@ export const zoneLoadSummaryMapping = {
     },
     "totalLoadsTable":{
         "columns": [
-            {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant", "decimals": 0},
-            {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed", "decimals": 0},
-            {"displayName": "Latent (W)", "jsonKey": "latent", "decimals": 0},
-            {"displayName": "Total (W)", "jsonKey": "total", "decimals": 0},
-            {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total", "decimals": 1},
+            {"displayName": "Instant Sensible", "jsonKey": "sensible_instant", "type": "heat_transfer_rate"},
+            {"displayName": "Delayed Sensible", "jsonKey": "sensible_delayed", "type": "heat_transfer_rate"},
+            {"displayName": "Latent", "jsonKey": "latent", "type": "heat_transfer_rate"},
+            {"displayName": "Total", "jsonKey": "total", "type": "heat_transfer_rate"},
+            {"displayName": "Percent of Total", "jsonKey": "percent_grand_total", "type": "percent"},
         ],
         "rows": [
             {"displayName": "Sizing Factor Adjustment", "jsonKey": "sizing_factor_correction"},
@@ -129,17 +129,17 @@ export const zoneLoadSummaryMapping = {
         {
             "label": "Outside",
             "items": [
-                {"displayName": "DB", "jsonKey": "outside_dry_bulb_temperature", "unitLabel": "C", "decimals": 1},
-                {"displayName": "HR", "jsonKey": "outside_humidity_ratio_at_peak", "unitLabel": "kg/kg", "decimals": 4},
-                {"displayName": "WB", "jsonKey": "outside_wet_bulb_temperature", "unitLabel": "C", "decimals": 1}
+                {"displayName": "DB", "jsonKey": "outside_dry_bulb_temperature", "type": "temperature"},
+                {"displayName": "HR", "jsonKey": "outside_humidity_ratio_at_peak", "type": "humidity_ratio"},
+                {"displayName": "WB", "jsonKey": "outside_wet_bulb_temperature", "type": "temperature"}
             ]
         },
         {
             "label": "Zone",
             "items": [
-                {"displayName": "DB", "jsonKey": "zone_dry_bulb_temperature", "unitLabel": "C", "decimals": 1},
-                {"displayName": "HR", "jsonKey": "zone_humidity_ratio_at_peak", "unitLabel": "kg/kg", "decimals": 4},
-                {"displayName": "RH", "jsonKey": "zone_relative_humidity", "unitLabel": "%", "decimals": 1}
+                {"displayName": "DB", "jsonKey": "zone_dry_bulb_temperature", "type": "temperature"},
+                {"displayName": "HR", "jsonKey": "zone_humidity_ratio_at_peak", "type": "humidity_ratio"},
+                {"displayName": "RH", "jsonKey": "zone_relative_humidity", "type": "percent"}
             ]
         }
     ],
@@ -147,12 +147,12 @@ export const zoneLoadSummaryMapping = {
         {
             "label": null,
             "items": [
-                {"displayName": "Capacity per Floor Area", "jsonKey": "total_capacity_per_floor_area", "unitLabel": "W/m2", "decimals": 2},
-                {"displayName": "Floor Area per Capacity", "jsonKey": "floor_area_per_total_capacity", "unitLabel": "m2/W", "decimals": 4},
-                {"displayName": "Outdoor Air Percentage", "jsonKey": "outside_air_percent", "unitLabel": "%", "decimals": 2},
-                {"displayName": "Airflow per Floor Area", "jsonKey": "airflow_per_floor_area", "unitLabel": "m3/s-m2", "decimals": 6},
-                {"displayName": "Airflow per Capacity", "jsonKey": "airflow_per_total_capacity", "unitLabel": "m3/s-W", "decimals": 6},
-                {"displayName": "Number of People", "jsonKey": "number_of_people", "unitLabel": null, "decimals": 1},
+                {"displayName": "Capacity per Floor Area", "jsonKey": "total_capacity_per_floor_area", "type": "heat_transfer_rate_per_area"},
+                {"displayName": "Floor Area per Capacity", "jsonKey": "floor_area_per_total_capacity", "type": "area_per_heat_transfer_rate"},
+                {"displayName": "Outdoor Air Percentage", "jsonKey": "outside_air_percent", "type": "outdoor_air_percentage"},
+                {"displayName": "Airflow per Floor Area", "jsonKey": "airflow_per_floor_area", "type": "flow_rate_per_area"},
+                {"displayName": "Airflow per Capacity", "jsonKey": "airflow_per_total_capacity", "type": "flow_rate_per_heat_transfer_rate"},
+                {"displayName": "Number of People", "jsonKey": "number_of_people", "type": "people"},
             ]
         }
     ],
@@ -207,21 +207,21 @@ export const zoneLoadSummaryMapping = {
 export const systemLoadSummaryMapping = {
     "headerTable":{
         "columns": [
-            {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant", "decimals": 0},
-            {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed", "decimals": 0},
-            {"displayName": "Latent (W)", "jsonKey": "latent", "decimals": 0},
-            {"displayName": "Total (W)", "jsonKey": "total", "decimals": 0},
-            {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total", "decimals": 1},
+            {"displayName": "Instant Sensible", "jsonKey": "sensible_instant", "type": "heat_transfer_rate"},
+            {"displayName": "Delayed Sensible", "jsonKey": "sensible_delayed", "type": "heat_transfer_rate"},
+            {"displayName": "Latent", "jsonKey": "latent", "type": "heat_transfer_rate"},
+            {"displayName": "Total", "jsonKey": "total", "type": "heat_transfer_rate"},
+            {"displayName": "Percent of Total", "jsonKey": "percent_grand_total", "type": "percent"},
         ],
         "rows": []
     },
     "envelopeLoadsTable":{
         "columns": [
-            {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant", "decimals": 0},
-            {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed", "decimals": 0},
-            {"displayName": "Latent (W)", "jsonKey": "latent", "decimals": 0},
-            {"displayName": "Total (W)", "jsonKey": "total", "decimals": 0},
-            {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total", "decimals": 1},
+            {"displayName": "Instant Sensible", "jsonKey": "sensible_instant", "type": "heat_transfer_rate"},
+            {"displayName": "Delayed Sensible", "jsonKey": "sensible_delayed", "type": "heat_transfer_rate"},
+            {"displayName": "Latent", "jsonKey": "latent", "type": "heat_transfer_rate"},
+            {"displayName": "Total", "jsonKey": "total", "type": "heat_transfer_rate"},
+            {"displayName": "Percent of Total", "jsonKey": "percent_grand_total", "type": "percent"},
         ],
         "rows": [
             {"displayName": "Roof", "jsonKey": "roof"},
@@ -244,11 +244,11 @@ export const systemLoadSummaryMapping = {
     },
     "internalGainsTable":{
         "columns": [
-            {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant", "decimals": 0},
-            {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed", "decimals": 0},
-            {"displayName": "Latent (W)", "jsonKey": "latent", "decimals": 0},
-            {"displayName": "Total (W)", "jsonKey": "total", "decimals": 0},
-            {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total", "decimals": 1},
+            {"displayName": "Instant Sensible", "jsonKey": "sensible_instant", "type": "heat_transfer_rate"},
+            {"displayName": "Delayed Sensible", "jsonKey": "sensible_delayed", "type": "heat_transfer_rate"},
+            {"displayName": "Latent", "jsonKey": "latent", "type": "heat_transfer_rate"},
+            {"displayName": "Total", "jsonKey": "total", "type": "heat_transfer_rate"},
+            {"displayName": "Percent of Total", "jsonKey": "percent_grand_total", "type": "percent"},
         ],
         "rows": [
             {"displayName": "People", "jsonKey": "people"},
@@ -260,11 +260,11 @@ export const systemLoadSummaryMapping = {
     },
     "systemLoadsTable":{
         "columns": [
-            {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant", "decimals": 0},
-            {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed", "decimals": 0},
-            {"displayName": "Latent (W)", "jsonKey": "latent", "decimals": 0},
-            {"displayName": "Total (W)", "jsonKey": "total", "decimals": 0},
-            {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total", "decimals": 1},
+            {"displayName": "Instant Sensible", "jsonKey": "sensible_instant", "type": "heat_transfer_rate"},
+            {"displayName": "Delayed Sensible", "jsonKey": "sensible_delayed", "type": "heat_transfer_rate"},
+            {"displayName": "Latent", "jsonKey": "latent", "type": "heat_transfer_rate"},
+            {"displayName": "Total", "jsonKey": "total", "type": "heat_transfer_rate"},
+            {"displayName": "Percent of Total", "jsonKey": "percent_grand_total", "type": "percent"},
         ],
         "rows": [
             {"displayName": "Zone Ventilation", "jsonKey": "zone_ventilation"},
@@ -281,11 +281,11 @@ export const systemLoadSummaryMapping = {
     },
     "totalLoadsTable":{
         "columns": [
-            {"displayName": "Instant Sensible (W)", "jsonKey": "sensible_instant", "decimals": 0},
-            {"displayName": "Delayed Sensible (W)", "jsonKey": "sensible_delayed", "decimals": 0},
-            {"displayName": "Latent (W)", "jsonKey": "latent", "decimals": 0},
-            {"displayName": "Total (W)", "jsonKey": "total", "decimals": 0},
-            {"displayName": "Percent of Total (%)", "jsonKey": "percent_grand_total", "decimals": 1},
+            {"displayName": "Instant Sensible", "jsonKey": "sensible_instant", "type": "heat_transfer_rate"},
+            {"displayName": "Delayed Sensible", "jsonKey": "sensible_delayed", "type": "heat_transfer_rate"},
+            {"displayName": "Latent", "jsonKey": "latent", "type": "heat_transfer_rate"},
+            {"displayName": "Total", "jsonKey": "total", "type": "heat_transfer_rate"},
+            {"displayName": "Percent of Total", "jsonKey": "percent_grand_total", "type": "percent"},
         ],
         "rows": [
             {"displayName": "Sizing Factor Adjustment", "jsonKey": "sizing_factor_correction"},
@@ -297,15 +297,15 @@ export const systemLoadSummaryMapping = {
         {
             "Label": null,
             "items": [
-                {"displayName": "Time at Peak", "jsonKey": "time_of_peak_load", "unitLabel": null}
+                {"displayName": "Time at Peak", "jsonKey": "time_of_peak_load", "type": null}
             ]
         },
         {
             "label": "Outside",
             "items": [
-                {"displayName": "DB", "jsonKey": "outside_dry_bulb_temperature", "unitLabel": "C", "decimals": 1},
-                {"displayName": "HR", "jsonKey": "outside_humidity_ratio_at_peak", "unitLabel": "kg/kg", "decimals": 4},
-                {"displayName": "WB", "jsonKey": "outside_wet_bulb_temperature", "unitLabel": "C", "decimals": 1}
+                {"displayName": "DB", "jsonKey": "outside_dry_bulb_temperature", "type": "temperature"},
+                {"displayName": "HR", "jsonKey": "outside_humidity_ratio_at_peak", "type": "humidity_ratio"},
+                {"displayName": "WB", "jsonKey": "outside_wet_bulb_temperature", "type": "temperature"}
             ]
         }
     ],
@@ -313,10 +313,10 @@ export const systemLoadSummaryMapping = {
         {
             "label": null,
             "items": [
-                {"displayName": "Return", "jsonKey": "return", "unitLabel": "C", "decimals": 1},
-                {"displayName": "Mixed Air", "jsonKey": "mixed_air", "unitLabel": "C", "decimals": 1},
-                {"displayName": "Supply", "jsonKey": "supply", "unitLabel": "C", "decimals": 1},
-                {"displayName": "Fan Heat TD", "jsonKey": "fan_heat_temperature_difference", "unitLabel": "C", "decimals": 1},
+                {"displayName": "Return", "jsonKey": "return", "type": "temperature"},
+                {"displayName": "Mixed Air", "jsonKey": "mixed_air", "type": "temperature"},
+                {"displayName": "Supply", "jsonKey": "supply","type": "temperature"},
+                {"displayName": "Fan Heat TD", "jsonKey": "fan_heat_temperature_difference", "type": "temperature_difference"},
             ]
         }
     ],
@@ -324,8 +324,8 @@ export const systemLoadSummaryMapping = {
         {
             "label": null,
             "items": [
-                {"displayName": "Main Fan", "jsonKey": "main_fan", "unitLabel": "m3/s", "decimals": 1},
-                {"displayName": "Ventilation", "jsonKey": "ventilation", "unitLabel": "m3/s", "decimals": 1}
+                {"displayName": "Main Fan", "jsonKey": "main_fan", "type": "flow_rate"},
+                {"displayName": "Ventilation", "jsonKey": "ventilation", "type": "flow_rate"}
             ]
         }
     ],
@@ -333,12 +333,12 @@ export const systemLoadSummaryMapping = {
         {
             "label": null,
             "items": [
-                {"displayName": "Capacity per Floor Area", "jsonKey": "total_capacity_per_floor_area", "unitLabel": "W/m2", "decimals": 2},
-                {"displayName": "Floor Area per Capacity", "jsonKey": "floor_area_per_total_capacity", "unitLabel": "m2/W", "decimals": 4},
-                {"displayName": "Outdoor Air Percentage", "jsonKey": "outside_air_percent", "unitLabel": "%", "decimals": 2},
-                {"displayName": "Airflow per Floor Area", "jsonKey": "airflow_per_floor_area", "unitLabel": "m3/s-m2", "decimals": 6},
-                {"displayName": "Airflow per Capacity", "jsonKey": "airflow_per_total_capacity", "unitLabel": "m3/s-W", "decimals": 6},
-                {"displayName": "Number of People", "jsonKey": "number_of_people", "unitLabel": null, "decimals": 1},
+                {"displayName": "Capacity per Floor Area", "jsonKey": "total_capacity_per_floor_area", "type": "heat_transfer_rate_per_area"},
+                {"displayName": "Floor Area per Capacity", "jsonKey": "floor_area_per_total_capacity", "type": "area_per_heat_transfer_rate"},
+                {"displayName": "Outdoor Air Percentage", "jsonKey": "outside_air_percent", "type": "outdoor_air_percentage"},
+                {"displayName": "Airflow per Floor Area", "jsonKey": "airflow_per_floor_area", "type": "flow_rate_per_area"},
+                {"displayName": "Airflow per Capacity", "jsonKey": "airflow_per_total_capacity", "type": "flow_rate_per_heat_transfer_rate"},
+                {"displayName": "Number of People", "jsonKey": "number_of_people", "type": "people"},
             ]
         }
     ],

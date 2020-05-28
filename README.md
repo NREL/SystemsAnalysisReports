@@ -31,3 +31,7 @@ It bundles React in production mode and optimizes the build for the best perform
 The build is minified.  the data.json file is included in the bundle.js.<br />
 
 This build can be run statically without the need for any web server.<br />
+
+### `unit conversions`
+
+Unit conversions use the library [convert-units](https://github.com/ben-ng/convert-units).

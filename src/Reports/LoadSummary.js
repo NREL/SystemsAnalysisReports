@@ -12,6 +12,7 @@ import {
     EQUIDISTANTCOLORS,
     COOLINGHEATINGCOLORS
 } from '../constants/settings';
+import { convertDataUnit, getUnitLabel } from '../functions/dataFormatting';
 
 export class LoadSummary extends React.Component {
     constructor(props) {
@@ -78,13 +79,20 @@ export class LoadSummary extends React.Component {
                 return objectList[i].name
             }
         }
+
+        // if none exists reset the index to 0
+        //this.handleObjectSelect(0);
     }
 
     getLoadComponents() {
         // Get data for peak_load_component_table
         if (this.props.data && Object.keys(this.props.data).length !== 0) {
             const objectName = this.getObjectName(this.state.object_selection);
-            return this.props.data[objectName][this.state.heating_cooling_selection]['estimated_peak_load_component_table']
+            if (objectName) {
+                return this.props.data[objectName][this.state.heating_cooling_selection]['estimated_peak_load_component_table']
+            } else { 
+                return null 
+            }
         } else {
             return null
         }
@@ -94,7 +102,11 @@ export class LoadSummary extends React.Component {
         // Get data for peak_condition_table
         if (this.props.data && Object.keys(this.props.data).length !== 0) {
             const objectName = this.getObjectName(this.state.object_selection);
-            return this.props.data[objectName][this.state.heating_cooling_selection]['peak_condition']
+            if (objectName) {
+                return this.props.data[objectName][this.state.heating_cooling_selection]['peak_condition']
+            } else { 
+                return null 
+            }
         } else {
             return null
         }
@@ -104,7 +116,11 @@ export class LoadSummary extends React.Component {
         // Get data for peak_condition_table
         if (this.props.data && Object.keys(this.props.data).length !== 0) {
             const objectName = this.getObjectName(this.state.object_selection);
-            return this.props.data[objectName][this.state.heating_cooling_selection]['temperature']
+            if (objectName) {
+                return this.props.data[objectName][this.state.heating_cooling_selection]['temperature']
+            } else { 
+                return null 
+            }
         } else {
             return null
         }
@@ -114,7 +130,11 @@ export class LoadSummary extends React.Component {
         // Get data for peak_condition_table
         if (this.props.data && Object.keys(this.props.data).length !== 0) {
             const objectName = this.getObjectName(this.state.object_selection);
-            return this.props.data[objectName][this.state.heating_cooling_selection]['airflow']
+            if (objectName) {
+                return this.props.data[objectName][this.state.heating_cooling_selection]['airflow']
+            } else { 
+                return null 
+            }
         } else {
             return null
         }
@@ -124,32 +144,41 @@ export class LoadSummary extends React.Component {
         // Get data for engineering_check_table
         if (this.props.data && Object.keys(this.props.data).length !== 0) {  
             const objectName = this.getObjectName(this.state.object_selection);
-            return this.props.data[objectName][this.state.heating_cooling_selection]['engineering_check']
+            if (objectName) {
+                return this.props.data[objectName][this.state.heating_cooling_selection]['engineering_check']
+            } else { 
+                return null 
+            }
         } else {
             return null
         }
     }
 
-    getHeatingAndCoolingPeakLoads() {
+    getHeatingAndCoolingPeakLoads(unitSystem) {
         // Assumes that Cooling Peak Condition Table - Sensible Peak Load is the appropriate total load value.
         // Investigate further whether this should be a calculated value from the subcomponents.
         
         if (this.props.data) {
             const objectName = this.getObjectName(this.state.object_selection);
-            const data = this.props.data[objectName]
-            //const data = this.props.data[this.state.object_selection];
+            if (objectName) {
+                const data = this.props.data[objectName]
 
-            if (data) {
-                const peakCoolingLoad = data['cooling']['estimated_peak_load_component_table']['grand_total']['total'];
-                const peakHeatingLoad = data['heating']['estimated_peak_load_component_table']['grand_total']['total'];
-                const output = [ 
-                    {'name': 'Cooling', 'value': parseInt(Math.abs(peakCoolingLoad))}, 
-                    {'name': 'Heating', 'value': parseInt(Math.abs(peakHeatingLoad))}
-                ]
+                if (data) {
+                    // get load and convert unit system
+                    const peakCoolingLoad = convertDataUnit(unitSystem, 'heat_transfer_rate', data['cooling']['estimated_peak_load_component_table']['grand_total']['total']);
+                    const peakHeatingLoad = convertDataUnit(unitSystem, 'heat_transfer_rate', data['heating']['estimated_peak_load_component_table']['grand_total']['total']);
 
-                return output
-            } else {
-                return null
+                    const output = [ 
+                        {'name': 'Cooling', 'value': parseInt(Math.abs(peakCoolingLoad))}, 
+                        {'name': 'Heating', 'value': parseInt(Math.abs(peakHeatingLoad))}
+                    ]
+
+                    return output
+                } else {
+                    return null
+                }
+            } else { 
+                return null 
             }
         } else {
             return null
@@ -192,7 +221,7 @@ export class LoadSummary extends React.Component {
         }
     }
 
-    formatLoadComponentChartData(dataMapping, data) {
+    formatLoadComponentChartData(unitSystem, dataMapping, data) {
 
         if (data) {
         // This function formats the data that will be displayed in a chart.
@@ -203,7 +232,9 @@ export class LoadSummary extends React.Component {
             var total = 0;
             // Loop again to total the loads for each load group
             dataMapping[group].map((loadComponent) => ( Object.keys(data).includes(loadComponent) ? total += Math.abs(data[loadComponent]['total']) : null ))
-            newData.push({'name': group, 'value': parseInt(total)})
+
+            // Convert unit system and add value to array
+            newData.push({'name': group, 'value': parseInt(convertDataUnit(unitSystem, 'heat_transfer_rate', total))})
             return newData
         })
 
@@ -215,6 +246,7 @@ export class LoadSummary extends React.Component {
     }
 
     render() {
+        const { unitSystem } = this.props;
         const loadData = this.getLoadComponents();
 
         return (
@@ -242,6 +274,7 @@ export class LoadSummary extends React.Component {
                             <Row>
                                 <TableHeader
                                 name={this.props.name + "-headerTable"}
+                                unitSystem={this.props.unitSystem}
                                 dataMapping={this.props.dataMapping['headerTable']}
                                 />
                             </Row>
@@ -250,6 +283,7 @@ export class LoadSummary extends React.Component {
                                 <CustomTable
                                 name={this.props.name + "-envelopeTable"}
                                 displayHeader={false}
+                                unitSystem={this.props.unitSystem}
                                 dataMapping={this.props.dataMapping['envelopeLoadsTable']}
                                 data={this.formatTableData(this.props.dataMapping['envelopeLoadsTable'], loadData)}
                                 />
@@ -259,6 +293,7 @@ export class LoadSummary extends React.Component {
                                 <CustomTable
                                 name={this.props.name + "-internalGainTable"}
                                 displayHeader={false}
+                                unitSystem={this.props.unitSystem}
                                 dataMapping={this.props.dataMapping['internalGainsTable']}
                                 data={this.formatTableData(this.props.dataMapping['internalGainsTable'], loadData)}
                                 />
@@ -268,6 +303,7 @@ export class LoadSummary extends React.Component {
                                 <CustomTable
                                 name={this.props.name + "-systemLoadsTable"}
                                 displayHeader={false}
+                                unitSystem={this.props.unitSystem}
                                 dataMapping={this.props.dataMapping['systemLoadsTable']}
                                 data={this.formatTableData(this.props.dataMapping['systemLoadsTable'], loadData)}
                                 />
@@ -277,6 +313,7 @@ export class LoadSummary extends React.Component {
                                 <CustomTable
                                 name={this.props.name + "-totalLoadsTable"}
                                 displayHeader={false}
+                                unitSystem={this.props.unitSystem}
                                 dataMapping={this.props.dataMapping['totalLoadsTable']}
                                 data={this.formatTableData(this.props.dataMapping['totalLoadsTable'], loadData)}
                                 />
@@ -287,6 +324,7 @@ export class LoadSummary extends React.Component {
                                 <ReportCard
                                 name={this.props.name + "-conditionsTimePeak"}
                                 title="Conditions at Time of Peak"
+                                unitSystem={this.props.unitSystem}
                                 dataMapping={this.props.dataMapping['peakConditions']}
                                 data={this.getPeakConditionTable()}
                                 />
@@ -296,6 +334,7 @@ export class LoadSummary extends React.Component {
                                     <ReportCard
                                     name={this.props.name + "-temperatures"}
                                     title="Temperatures"
+                                    unitSystem={this.props.unitSystem}
                                     dataMapping={this.props.dataMapping['temperatures']}
                                     data={this.getTemperaturesTable()}
                                     />
@@ -306,6 +345,7 @@ export class LoadSummary extends React.Component {
                                     <ReportCard
                                     name={this.props.name + "-airflows"}
                                     title="Airflows"
+                                    unitSystem={this.props.unitSystem}
                                     dataMapping={this.props.dataMapping['airflows']}
                                     data={this.getAirflowsTable()}
                                     />
@@ -315,6 +355,7 @@ export class LoadSummary extends React.Component {
                                 <ReportCard
                                 name={this.props.name + "-engineeringCheck"}
                                 title="Engineering Checks"
+                                unitSystem={this.props.unitSystem}
                                 dataMapping={this.props.dataMapping['engineeringCheck']}
                                 data={this.getEngineeringCheckTable()}
                                 />
@@ -324,24 +365,24 @@ export class LoadSummary extends React.Component {
                             <Row>
                                 <CustomPieChart
                                 name={this.props.name + "-peakLoadsChart"}
-                                title={"Peak Loads [W]"}
+                                title={"Peak Loads Load Components [" + getUnitLabel(unitSystem, "heat_transfer_rate") + "]"}
                                 colors={COOLINGHEATINGCOLORS}
-                                data={this.getHeatingAndCoolingPeakLoads()}
+                                data={this.getHeatingAndCoolingPeakLoads(unitSystem)}
                                 />
                             </Row>
                             <Row>
                                 <CustomPieChart
                                 name={this.props.name + "-loadComponentsChart"}
-                                title={ this.state.heating_cooling_selection === 'cooling' ? 'Cooling Load Components [W]' : 'Heating Load Components [W]'}
+                                title={ (this.state.heating_cooling_selection === "cooling" ? "Cooling" : "Heating") + " Load Components [" + getUnitLabel(unitSystem, "heat_transfer_rate") + "]"}
                                 colors={EQUIDISTANTCOLORS}
-                                data={this.formatLoadComponentChartData(this.props.dataMapping['componentPieChart'], loadData)}
+                                data={this.formatLoadComponentChartData(unitSystem, this.props.dataMapping["componentPieChart"], loadData)}
                                 /> 
                             </Row>
                         </Col>
                 </Row>
                 </Tab.Container> 
             : 
-                <h1>No {this.props.name === 'zoneLoadSummary' ? 'zones': 'systems' } found.</h1> 
+                <h1>No {this.props.name === "zoneLoadSummary" ? "zones": "systems" } found.</h1> 
             )
         );
     }

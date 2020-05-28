@@ -1,8 +1,13 @@
+import { isNumeric } from '../functions/numericFunctions';
+import unitConversions from '../constants/unitConversions';
+
 export const loadData = (data) => new Promise((resolve, reject) => {
-    setTimeout(() => resolve(JSON.parse(JSON.stringify(data))), 1);
+  // function loads the data from JSON data file usign Promise.  
+  
+  setTimeout(() => resolve(JSON.parse(JSON.stringify(data))), 1);
   });
 
-  export function updateGrandTotalLoad(data) {
+export function updateGrandTotalLoad(data) {
     // This function updates the grand total loads.
 
     // Initialize data objects
@@ -80,10 +85,51 @@ export const formatData = (data) => new Promise((resolve, reject) => {
     loadObject['heating']['estimated_peak_load_component_table'] = updateGrandTotalLoad(loadObject['heating']['estimated_peak_load_component_table']);
     loadObject['heating']['estimated_peak_load_component_table'] = updatePercentTotalLoad(loadObject['heating']['estimated_peak_load_component_table']);
 
-    console.log(loadObject);
-
     return loadObject;
   })
 
   resolve(newData);
 })
+
+export function convertDataUnit(unitSystem, type, value) {
+  // Function to update a value to a new unit system.
+  // Requires the unit sytem (i.e. "ip" or "si"), the type (e.g. "temperature")
+  // and the numeric value (e.g. 4.12).  Returns the converted value.
+
+  if (unitSystem && type && value) {
+    var newValue = value;
+    const dataObject = unitConversions[unitSystem][type];
+
+    if (dataObject["conversion"]) {
+      const conversion = dataObject["conversion"]
+
+      if (Object.keys(conversion).includes("multiply")) {
+        newValue = newValue * conversion["multiply"];
+      }
+
+      if (Object.keys(conversion).includes("add")) {
+        newValue = newValue + conversion["add"];
+      }
+    }
+
+    if (Object.keys(dataObject).includes("decimals") && isNumeric(newValue)) {
+      newValue = newValue.toFixed(dataObject["decimals"]);
+    }
+
+    return newValue
+  } else {
+    return value
+  }
+}
+
+export function getUnitLabel(unitSystem, type) {
+  // Function provides the data label in a specific unit system.
+  // Requires the unit sytem (i.e. "ip" or "si"), the type (e.g. "temperature"). 
+  // Returns the unit label (e.g. "C").
+
+  if (unitSystem && type) {
+      return unitConversions[unitSystem][type]["label"]
+  } else {
+    return null
+  }
+}
