@@ -12,7 +12,7 @@ import {
   zoneLoadSummaryMapping,
   systemLoadSummaryMapping
 } from './constants/dataMapping';
-import { loadData, formatData } from './functions/dataFormatting';
+import { getLocaleLabel, loadData, formatData } from './functions/dataFormatting';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -21,7 +21,8 @@ export default class App extends React.Component {
         loading: true,
         data: null,
         active_section: 'zone_load_summary',
-        unit_system: 'si'
+        unit_system: 'si',
+        locale: 'en'
     };
   } 
 
@@ -44,6 +45,12 @@ export default class App extends React.Component {
       if (value) {
           this.setState({ unit_system: value }) 
       }
+  }
+
+  handleLocaleSelection(value) {
+    if (value) {
+        this.setState({ locale: value }) 
+    }
   }
 
   renderActiveSection(value, data) {
@@ -112,7 +119,7 @@ export default class App extends React.Component {
                       <Col>
                           <Nav variant="tabs" defaultActiveKey="zone_load_summary" id="report-navbar" onSelect={this.handleSectionSelection.bind(this)}>
                           <Nav.Item>
-                              <Nav.Link eventKey="zone_load_summary">Zone Load Summary</Nav.Link>
+                              <Nav.Link eventKey="zone_load_summary">{ getLocaleLabel(this.state.locale, 'zone_load_summary' )}</Nav.Link>
                           </Nav.Item>
                           <Nav.Item>
                               <Nav.Link eventKey="system_load_summarys">System Load Summary</Nav.Link>
@@ -123,6 +130,7 @@ export default class App extends React.Component {
                           </Nav>
                       </Col>
                       <Col lg={1}>
+                        <div className='App-button-group'>
                           <Dropdown onSelect={this.handleUnitSystemSelection.bind(this)}>
                               <Dropdown.Toggle id="dropdown-unit-selection"  variant="info">
                               { this.state.unit_system === 'si' ? 'SI' : 'IP'  }
@@ -133,6 +141,17 @@ export default class App extends React.Component {
                               <Dropdown.Item eventKey="si">SI</Dropdown.Item>
                               </Dropdown.Menu>
                           </Dropdown> 
+                          <Dropdown onSelect={this.handleLocaleSelection.bind(this)}>
+                              <Dropdown.Toggle id="dropdown-locale-selection"  variant="light">
+                              { this.state.locale === 'en' ? 'EN' : 'DE'  }
+                              </Dropdown.Toggle>
+              
+                              <Dropdown.Menu>
+                              <Dropdown.Item eventKey="en">EN</Dropdown.Item>
+                              <Dropdown.Item eventKey="de">DE</Dropdown.Item>
+                              </Dropdown.Menu>
+                          </Dropdown> 
+                        </div>
                       </Col>
                   </Row>
                   <Row>
