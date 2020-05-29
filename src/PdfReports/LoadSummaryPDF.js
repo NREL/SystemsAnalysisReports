@@ -11,14 +11,14 @@ function sleep(ms) {
   }
 
 export const LoadSummaryPDF = async (objectList, chart1Ref, chart2Ref, setPdfPrint, setZoneId, setHeatingCoolingSelection, dataMapping, data) => {
-    //const heatingCoolingSelection = 'cooling';
-    const unitSystem = 'ip';
-    const pageTitle = 'Zone Load Summary';
+    // UPDATES NEEDED HERE!!!
+    const unitSystem = 'ip';  // THIS NEEDS TO BE PASSED FROM FUNCTION ARGUMENTS
+    const pageTitle = 'Zone Load Summary'; // THIS NEEDS TO BE DETERMINED FROM COMPONENT STATE
+
     const cardFontSize = 6;
     const tableBodyStyle = { fontStyle: 'normal', fontSize: 5, textColor: 80, padding: 0, minCellHeight: 0, lineWidth: 0.1, fillColor: 255}
     const tableHeaderStyle =  { fontSize: 5, padding: 0, minCellHeight: 0, lineWidth: 0.1, halign: 'center' };
     const columnStyles = {
-        //name: {cellWidth: 51},
         sensible_instant: {cellWidth: 28, halign: 'center' },
         sensible_delayed: {cellWidth: 28, halign: 'center' },
         latent: {cellWidth: 28, halign: 'center' },
@@ -31,7 +31,7 @@ export const LoadSummaryPDF = async (objectList, chart1Ref, chart2Ref, setPdfPri
     // Default a4 size (210 x 297 mm), units in mm
     const doc = new jsPDF({orientation: 'portrait', format: 'a4', unit: 'mm', compress: true});
 
-    const heatingCoolingOptions = ['cooling'];//, 'heating'];
+    const heatingCoolingOptions = ['cooling', 'heating'];
     for (var j = 0; j < heatingCoolingOptions.length; j++) {
         const heatingCoolingSelection = heatingCoolingOptions[j];
 
@@ -44,8 +44,7 @@ export const LoadSummaryPDF = async (objectList, chart1Ref, chart2Ref, setPdfPri
             setZoneId(i);
             setHeatingCoolingSelection(heatingCoolingSelection);
             const objectName = getObjectName(objectList, objectId);
-            //console.log(objectId);
-            await sleep(1000);
+            await sleep(500);  // Wat for chart to render before creating png image
 
             // Add page, if necessary
             if (!((i===0) && (j===0))) { doc.addPage() }
@@ -137,9 +136,6 @@ export const LoadSummaryPDF = async (objectList, chart1Ref, chart2Ref, setPdfPri
                 height: 800,
                 }).then(canvas => {
                     var imgData = canvas.toDataURL('image/png');
-                    var imgProps= doc.getImageProperties(imgData);
-                    var pdfWidth = doc.internal.pageSize.getWidth()*0.3;
-                    //var pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
                     doc.addImage(imgData, 'PNG', 95, 3, 125, 125);
                 })
 
@@ -149,9 +145,6 @@ export const LoadSummaryPDF = async (objectList, chart1Ref, chart2Ref, setPdfPri
                 height: 800,
                 }).then(canvas => {
                     var imgData = canvas.toDataURL('image/png');
-                    var imgProps= doc.getImageProperties(imgData);
-                    var pdfWidth = doc.internal.pageSize.getWidth()*0.3;
-                    //var pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
                     doc.addImage(imgData, 'PNG', 145, 3, 125, 125);
                 })
 
@@ -165,15 +158,12 @@ export const LoadSummaryPDF = async (objectList, chart1Ref, chart2Ref, setPdfPri
                 alternateRowStyles: { lineWidth: 0, fillColor: [255, 255, 255]},
                 headStyles: tableHeaderStyle,
                 columnStyles: columnStyles,
-                //margin: { top: 0, bottom: 0 },
-                //body: {},
                 body: [{name: null, sensible_instant: null, sensible_delayed: null, latent: null, total: null, percent_grand_total: null}],
                 columns: colLabels,
                 startY: yStart+tableSubHeaderMargin,
             })
 
             // Envelope Loads Table
-            //yStart = 65;
             yStart += 12;
             doc.setFontSize(tableSubHeaderSize);
             doc.text('Envelope', 15, yStart);
@@ -184,9 +174,7 @@ export const LoadSummaryPDF = async (objectList, chart1Ref, chart2Ref, setPdfPri
             doc.autoTable({
                 tableLineWidth: 0.1,
                 bodyStyles: tableBodyStyle,
-                //headStyles: tableHeaderStyle,
                 columnStyles: columnStyles,
-                //margin: { top: 0, bottom: 0 },
                 body: tableData,
                 columns: colLabels,
                 showHead: 'never',
@@ -204,7 +192,6 @@ export const LoadSummaryPDF = async (objectList, chart1Ref, chart2Ref, setPdfPri
 
             doc.autoTable({
                 bodyStyles: tableBodyStyle,
-                //headStyles: tableHeaderStyle,
                 columnStyles: columnStyles,
                 body: tableData,
                 columns: colLabels,
@@ -223,7 +210,6 @@ export const LoadSummaryPDF = async (objectList, chart1Ref, chart2Ref, setPdfPri
 
             doc.autoTable({
                 bodyStyles: tableBodyStyle,
-                //headStyles: tableHeaderStyle,
                 columnStyles: columnStyles,
                 body: tableData,
                 columns: colLabels,
@@ -241,7 +227,6 @@ export const LoadSummaryPDF = async (objectList, chart1Ref, chart2Ref, setPdfPri
 
             doc.autoTable({
                 bodyStyles: tableBodyStyle,
-                //headStyles: tableHeaderStyle,
                 columnStyles: columnStyles,
                 body: tableData,
                 columns: colLabels,
