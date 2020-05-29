@@ -1,16 +1,7 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table'
+import { getHeader } from '../functions/tableFunctions';
 import { getUnitLabel } from '../functions/dataFormatting';
-
-function getHeader(unitSystem, column) {
-    var header = ""
-    header = column['displayName']
-    if (column["type"]) {
-        header += ' [' + getUnitLabel(unitSystem, column["type"]) + ']'
-    }
-
-    return header
-}
 
 export default function TableHeader(props) {
     var { name, unitSystem, dataMapping } = props;

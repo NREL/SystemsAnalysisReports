@@ -1,5 +1,6 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table'
+import { getHeader } from '../functions/tableFunctions';
 import { convertDataUnit, getUnitLabel } from '../functions/dataFormatting';
 import { isNumeric, numberWithCommas } from '../functions/numericFunctions';
 
@@ -55,16 +56,6 @@ export class CustomTable extends React.Component {
         }
     }
 
-    getHeader(unitSystem, column) {
-        var header = ""
-        header = column['displayName']
-        if (column["type"]) {
-            header += ' [' + getUnitLabel(unitSystem, column["type"]) + ']'
-        }
-
-        return header
-    }
-
     render() {
         var { displayHeader, unitSystem, dataMapping, data } = this.props;
 
@@ -80,7 +71,7 @@ export class CustomTable extends React.Component {
                     key={ this.props.name + '-' + column['displayName'] + '-header' }
                     width="15%"
                     >
-                    { this.getHeader(unitSystem, column) }
+                    { getHeader(unitSystem, column) }
                     </th>
                 ))
                 }

@@ -19,7 +19,7 @@ import {
 } from '../constants/settings';
 import { isNumeric } from '../functions/numericFunctions';
 import { getObjectName, convertDataUnit, getUnitLabel } from '../functions/dataFormatting';
-import { getLoadSummaryPDF } from './getLoadSummaryPDF';
+import { LoadSummaryPDF } from '../PdfReports/LoadSummaryPDF';
 
 export function LoadSummary(props) {
     const { 
@@ -39,16 +39,13 @@ export function LoadSummary(props) {
         pdfPrint, setPdfPrint,
     } = useContext(Context);
     const [ heatingCoolingSelection, setHeatingCoolingSelection ] = useState("cooling");
-    const tableRef = useRef(null);
-    const chartRef = useRef(null);
     const chart1Ref = useRef(null);
     const chart2Ref = useRef(null);
-    const cardRef = useRef(null);
 
     useEffect(() => {
         if (pdfPrint && sectionSelection==='zone_load_summary') {
             console.log('pdf print.');
-            getLoadSummaryPDF(objectList, chartRef, chart1Ref, chart2Ref, cardRef, setPdfPrint, setZoneId, dataMapping, data)
+            LoadSummaryPDF(objectList, chart1Ref, chart2Ref, setPdfPrint, setZoneId, setHeatingCoolingSelection, dataMapping, data)
         }
     }, [pdfPrint, sectionSelection]);
 
@@ -241,7 +238,7 @@ export function LoadSummary(props) {
                         </Nav>
                     </Row>
                     <Row>
-                        <Col md={6} ref={tableRef}>
+                        <Col md={6}>
                             <Row>
                                 <TableHeader
                                 name={name + "-headerTable"}
@@ -290,7 +287,7 @@ export function LoadSummary(props) {
                                 />
                             </Row>
                         </Col>
-                        <Col ref={cardRef}>
+                        <Col>
                             <Row>
                                 <ReportCard
                                 name={name + "-conditionsTimePeak"}
@@ -333,7 +330,7 @@ export function LoadSummary(props) {
                             </Row>
                         </Col>
                         <Col>
-                            <div ref={chartRef}>
+                            <div>
                             <Row>
                                 <CustomPieChart
                                 pdfRef={chart1Ref}
