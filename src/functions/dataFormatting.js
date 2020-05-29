@@ -2,6 +2,20 @@ import { isNumeric } from '../functions/numericFunctions';
 import unitConversions from '../constants/unitConversions';
 import locales from '../constants/locales';
 
+export const getObjectName = (objectList, id) => {
+  // Get the string name of the object given an id
+  if ( isNumeric(id) && objectList && objectList.length > 0 ) {
+      for (var i = 0; i < objectList.length; i++) {
+          if (
+              Object.keys(objectList[i]).includes("id") && 
+              objectList[i].id.toString() === id.toString()
+              ) {
+              return objectList[i].name
+          }
+      }
+  } else return null
+}
+
 export const loadData = (data) => new Promise((resolve, reject) => {
   // function loads the data from JSON data file usign Promise.  
   

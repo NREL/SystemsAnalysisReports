@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Spinner from 'react-bootstrap/Spinner';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Dropdown from 'react-bootstrap/Dropdown';
+import Button from 'react-bootstrap/Button';
+//import html2canvas from 'html2canvas';
+//import jsPDF from 'jspdf';
 import { LoadSummary } from './Reports/LoadSummary';
+import { Context } from './store/index';
 import { DesignPsychrometrics } from './Reports/DesignPsychrometrics';import './App.css';
 import {
   designPsychrometricsMapping,
@@ -14,155 +18,220 @@ import {
 } from './constants/dataMapping';
 import { getLocaleLabel, loadData, formatData } from './functions/dataFormatting';
 
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-        loading: true,
-        data: null,
-        active_section: 'zone_load_summary',
-        unit_system: 'si',
-        locale: 'en'
-    };
-  } 
+export default function App(props) {
+    const { 
+        sectionSelection, setSectionSelection, 
+        unitSystem, setUnitSystem,
+        locale, setLocale,
+        zoneId, setZoneId,
+        setPdfPrint,
+    } = useContext(Context);
+    const [ loading, setLoading ] = useState(true);
+    const [ data, setData ] = useState(null);
+    const [ systemId, setSystemId ] = useState(0);
+    const [ coilId, setCoilId ] = useState(0);
+    const { json } = props;
 
-  componentDidMount() {
-      // Function to load data asyncronously
-      loadData(this.props.data).then(data => {
-          formatData(data).then(data => {
-              this.setState({ loading: false, data: data })
-          })
-      })
-  }
-
-  handleSectionSelection(value) {
-    if (this.state.data && value) {
-        this.setState({ active_section: value }) 
-    }
-  }
-
-  handleUnitSystemSelection(value) {
-      if (value) {
-          this.setState({ unit_system: value }) 
-      }
-  }
-
-  handleLocaleSelection(value) {
-    if (value) {
-        this.setState({ locale: value }) 
-    }
-  }
-
-  renderActiveSection(value, data) {
-    if (value === 'zone_load_summary') {
-      return(
-        <LoadSummary
-        key="zoneLoadSummary"
-        name="zoneLoadSummary"
-        unitSystem={this.state.unit_system}
-        dataMapping={zoneLoadSummaryMapping}
-        data={data['zone_load_summarys']}
-        />
+    useEffect(() => {
+        console.log('hi');
+        fetchData();
+      }, [json]);
     
-      )
-    } else if (value === 'system_load_summarys') {
-      return(
-        <LoadSummary
-        key="systemLoadSummary"
-        name="systemLoadSummary"
-        unitSystem={this.state.unit_system}
-        dataMapping={systemLoadSummaryMapping}
-        data={data['system_load_summarys']}
-        />
-      )
-    } else if (value === 'design_psychrometrics') {
-      return(
-        <DesignPsychrometrics
-        key="designPsychrometrics"
-        name="designPsychrometrics"
-        unitSystem={this.state.unit_system}
-        dataMapping={designPsychrometricsMapping}
-        data={data['design_psychrometrics']}
-        />
-      )
-    } else {
-      return(
-        <div>
-            No Section Selected
-        </div>
-      )
+    const fetchData = async () => {
+        // Function to load data asyncronously
+        loadData(json).then(rawData => {
+            formatData(rawData).then(formatData => {
+                if (formatData) {
+                    setData(formatData);
+                    setLoading(false);
+                };
+            })
+        })
+    } 
+
+    const handleSectionSelection = (value) => {
+        if (value) {
+            setSectionSelection(value); 
+        }
     }
-  } 
 
-  render() {
-      const { loading, data } = this.state;
+    const handleUnitSystemSelection = (value) => {
+        if (value) {
+            setUnitSystem(value);
+        }
+    }
 
-      if(loading) { // if your component doesn't have to wait for an async action, remove this block 
-          return(
-              <div className="navigation-container">
-                  <Spinner animation="border" role="status">
-                  <span className="sr-only">Loading...</span>
-                  </Spinner>
-              </div>
-          )
-      } else {
-          return(
-            <div className="App">
-              <header className="App-header">
-                <p>
-                  Revit Systems Analysis - Loads Report
-                </p>
-              </header>
-              <div className="navigation-container">
-                  <Container fluid>
-                  <Row>
-                      <Col>
-                          <Nav variant="tabs" defaultActiveKey="zone_load_summary" id="report-navbar" onSelect={this.handleSectionSelection.bind(this)}>
-                          <Nav.Item>
-                              <Nav.Link eventKey="zone_load_summary">{ getLocaleLabel(this.state.locale, 'zone_load_summary' )}</Nav.Link>
-                          </Nav.Item>
-                          <Nav.Item>
-                              <Nav.Link eventKey="system_load_summarys">System Load Summary</Nav.Link>
-                          </Nav.Item>
-                          <Nav.Item>
-                              <Nav.Link eventKey="design_psychrometrics">Design Psychrometrics</Nav.Link>
-                          </Nav.Item>
-                          </Nav>
-                      </Col>
-                      <Col lg={1}>
+    const handleLocaleSelection = (value) => {
+        if (value) {
+            setLocale(value);
+        }
+    }
+
+    const handlePrintClick = () => {
+        setPdfPrint(true);
+    } 
+
+    const handleZoneSelection = (event) => {
+        if (event) {
+            setZoneId(event);
+        }
+    }
+
+    const handleSystemSelection = (value) => {
+        if (value) {
+            setSystemId(value); 
+        }
+    }
+
+    const handleCoilSelection = (value) => {
+        if (value) {
+            setCoilId(value);
+        }
+    }
+    
+    const getObjectList = (data) => {
+        // Get a list of object names, ids, and cad_object, ids
+        var object_list = [];
+
+        if (data) {
+            const objList = Object.keys(data);
+            for (var i = 0; i < objList.length; i++) {
+                const objName = objList[i];
+                object_list.push({id: i, cad_object_id: data[objName].cad_object_id, name: data[objName].name});
+            }
+        }
+
+        return object_list
+    }
+
+    const renderActiveSection = (value, data) => {
+        if (value === 'zone_load_summary') {
+            const activeData = data['zone_load_summarys'];
+            const objectList = getObjectList(activeData);
+
+            return(
+            <LoadSummary
+            id="zoneLoadSummary"
+            key="zoneLoadSummary"
+            name="zoneLoadSummary"
+            activeSelection={zoneId}
+            handleObjectSelect={handleZoneSelection}
+            objectList={objectList}
+            unitSystem={unitSystem}
+            dataMapping={zoneLoadSummaryMapping}
+            data={activeData}
+            />
+        
+            )
+        } else if (value === 'system_load_summarys') {
+            const activeData = data['system_load_summarys'];
+            const objectList = getObjectList(activeData);
+
+            return(
+            <LoadSummary
+            id="systemLoadSummary"
+            key="systemLoadSummary"
+            name="systemLoadSummary"
+            activeSelection={systemId}
+            handleObjectSelect={handleSystemSelection}
+            objectList={objectList}
+            unitSystem={unitSystem}
+            dataMapping={systemLoadSummaryMapping}
+            data={activeData}
+            />
+            )
+        } else if (value === 'design_psychrometrics') {
+            const activeData = data['design_psychrometrics'];
+            const objectList = getObjectList(activeData);
+
+            return(
+            <DesignPsychrometrics
+            id="designPsychrometrics"
+            key="designPsychrometrics"
+            name="designPsychrometrics"
+            objectSelection={coilId}
+            handleObjectSelect={handleCoilSelection}
+            objectList={objectList}
+            unitSystem={unitSystem}
+            dataMapping={designPsychrometricsMapping}
+            data={activeData}
+            />
+            )
+        } else {
+            return(
+            <div>
+                No Section Selected
+            </div>
+            )
+        }
+    }
+
+    if( loading ) { // if your component doesn't have to wait for an async action, remove this block 
+        return(
+            <div className="navigation-container">
+                <Spinner animation="border" role="status">
+                <span className="sr-only">Loading...</span>
+                </Spinner>
+            </div>
+        )
+    } else {
+        return(
+          <div className="App" id="app">
+            <header className="App-header">
+              <p>
+                Revit Systems Analysis - Loads Report
+              </p>
+            </header>
+            <div className="navigation-container">
+                <Container fluid>
+                <Row>
+                    <Col>
+                        <Nav variant="tabs" defaultActiveKey="zone_load_summary" id="report-navbar" onSelect={handleSectionSelection}>
+                        <Nav.Item>
+                            <Nav.Link eventKey="zone_load_summary">{ getLocaleLabel(locale, 'zone_load_summary' )}</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link eventKey="system_load_summarys">System Load Summary</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link eventKey="design_psychrometrics">Design Psychrometrics</Nav.Link>
+                        </Nav.Item>
+                        </Nav>
+                    </Col>
+                    <Col lg={2}>
                         <div className='App-button-group'>
-                          <Dropdown onSelect={this.handleUnitSystemSelection.bind(this)}>
-                              <Dropdown.Toggle id="dropdown-unit-selection"  variant="info">
-                              { this.state.unit_system === 'si' ? 'SI' : 'IP'  }
-                              </Dropdown.Toggle>
-              
-                              <Dropdown.Menu>
-                              <Dropdown.Item eventKey="ip">IP</Dropdown.Item>
-                              <Dropdown.Item eventKey="si">SI</Dropdown.Item>
-                              </Dropdown.Menu>
-                          </Dropdown> 
-                          <Dropdown onSelect={this.handleLocaleSelection.bind(this)}>
+                            <Dropdown onSelect={handleUnitSystemSelection}>
+                                <Dropdown.Toggle id="dropdown-unit-selection"  variant="info">
+                                { unitSystem === 'si' ? 'SI' : 'IP'  }
+                                </Dropdown.Toggle>
+                
+                                <Dropdown.Menu>
+                                <Dropdown.Item eventKey="ip">IP</Dropdown.Item>
+                                <Dropdown.Item eventKey="si">SI</Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
+                            <Dropdown onSelect={handleLocaleSelection}>
                               <Dropdown.Toggle id="dropdown-locale-selection"  variant="light">
-                              { this.state.locale === 'en' ? 'EN' : 'DE'  }
+                              { locale === 'en' ? 'EN' : 'DE'  }
                               </Dropdown.Toggle>
               
                               <Dropdown.Menu>
                               <Dropdown.Item eventKey="en">EN</Dropdown.Item>
                               <Dropdown.Item eventKey="de">DE</Dropdown.Item>
                               </Dropdown.Menu>
-                          </Dropdown> 
+                            </Dropdown> 
+                            <Button onClick={handlePrintClick}>PDF</Button>
                         </div>
-                      </Col>
-                  </Row>
-                  <Row>
-                      <Col>
-                        { this.renderActiveSection(this.state.active_section, data) }
-                      </Col>
-                  </Row>
-                  </Container>
-              </div>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                      { renderActiveSection(sectionSelection, data) }
+                    </Col>
+                </Row>
+                </Container>
             </div>
-          );
-      }
-  }
+          </div>
+        );
+    }
 }

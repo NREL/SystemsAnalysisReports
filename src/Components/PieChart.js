@@ -4,7 +4,7 @@ import './PieChart.css';
 
 export class CustomPieChart extends React.Component {
     render() {
-        const { title, colors, data } = this.props;
+        const { title, colors, data, pdfRef } = this.props;
 
         function renderLegendText(value, entry) {
             // Sets the legend font size     
@@ -12,7 +12,7 @@ export class CustomPieChart extends React.Component {
         }
         
         return (
-            <div className="App-chart-container">
+            <div className="App-chart-container" ref={pdfRef}>
                 <span className="App-chart-title">{title}</span>
                 <PieChart width={350} height={300}>
                     <Pie
@@ -24,6 +24,7 @@ export class CustomPieChart extends React.Component {
                         outerRadius={90}
                         fill="#8884d8"
                         label
+                        isAnimationActive ={false}
                     >
                     {
                         ( data ? data.map((entry, index) => (

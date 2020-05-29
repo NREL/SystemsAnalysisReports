@@ -1,7 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from './store/index'
 import './index.css';
 import App from './App';
-import jsonData from './data.json';
+import json from './data.json';
 
-ReactDOM.render(<App data={jsonData} />, document.getElementById('root'));
+ReactDOM.render(
+    <Provider>
+        <App json={json} />
+    </Provider>
+, document.getElementById('root')
+);

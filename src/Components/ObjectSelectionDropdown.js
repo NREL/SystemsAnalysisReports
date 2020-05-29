@@ -6,6 +6,7 @@ import 'rc-pagination/assets/index.css';
 import './ObjectSelectionDropdown.css';
 import en_US from '../constants/paginationLocale';
 import { OBJECT_SELECTION_PAGINATION_ITEMS } from '../constants/settings';
+import { isNumeric } from '../functions/numericFunctions';
 
 export class ObjectSelectionDropDown extends React.Component {
     constructor(props) {
@@ -16,19 +17,18 @@ export class ObjectSelectionDropDown extends React.Component {
         };
     }
 
-    getObjectName(id) {
+    getObjectName(objectList, id) {
         // Get the string name of the object given an id
-        if (this.props.objectList) {
-            for (var i = 0; i < this.props.objectList.length; i++) {
-                if (this.props.objectList[i]) {
-                    if (this.props.objectList[i].id.toString() === id.toString()) {
-                        return this.props.objectList[i].name
-                    }
+        if ( isNumeric(id) && objectList && objectList.length > 0 ) {
+            for (var i = 0; i < objectList.length; i++) {
+                if (
+                    Object.keys(objectList[i]).includes("id") && 
+                    objectList[i].id.toString() === id.toString()
+                    ) {
+                    return objectList[i].name
                 }
             }
-        } else {
-            return null
-        }
+        } else return null
     }
 
     handlePaginationClick(event) {
@@ -98,9 +98,9 @@ export class ObjectSelectionDropDown extends React.Component {
         );
 
         return (
-          <Dropdown onSelect={this.props.handleObjectSelect.bind(this)}>
+          <Dropdown onSelect={this.props.handleObjectSelect}>
           <Dropdown.Toggle id="dropdown-custom-components" variant="secondary"> 
-              { this.getObjectName(this.props.objectSelection) }
+              { this.getObjectName(this.props.objectList, this.props.objectSelection) }
           </Dropdown.Toggle>
 
           <Dropdown.Menu as={CustomMenu}>
