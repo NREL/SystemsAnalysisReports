@@ -36,6 +36,10 @@ module EPlusOut
         @estimated_peak_load_component_mapper = estimated_peak_load_component_mapper
       end
 
+      def size
+        param_map.size * @estimated_peak_load_component_mapper.size
+      end
+
       def call(data)
         result = klass.new
 

@@ -8,6 +8,7 @@ export const Provider = ({ children }) => {
   // Provide global state hooks
   const [ sectionSelection, setSectionSelection ] = useState('zone_load_summary');
   const [ unitSystem, setUnitSystem ] = useState('si');
+  const [ locale, setLocale ] = useState('en');
   const [ zoneId, setZoneId ] = useState(0);
   const [ pdfPrint, setPdfPrint ] = useState(false);
 
@@ -17,6 +18,8 @@ export const Provider = ({ children }) => {
     setSectionSelection,
     unitSystem,
     setUnitSystem,
+    locale,
+    setLocale,
     zoneId,
     setZoneId,
     pdfPrint,

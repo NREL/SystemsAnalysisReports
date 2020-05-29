@@ -11,6 +11,10 @@
         raise NotImplementedError, 'Must be implemented by child class'
       end
 
+      def size
+        return param_map.size
+      end
+
       def call(data)
         result = klass.new
 

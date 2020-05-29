@@ -16,12 +16,13 @@ import {
   zoneLoadSummaryMapping,
   systemLoadSummaryMapping
 } from './constants/dataMapping';
-import { loadData, formatData } from './functions/dataFormatting';
+import { getLocaleLabel, loadData, formatData } from './functions/dataFormatting';
 
 export default function App(props) {
     const { 
         sectionSelection, setSectionSelection, 
-        unitSystem, setUnitSystem, 
+        unitSystem, setUnitSystem,
+        locale, setLocale,
         zoneId, setZoneId,
         setPdfPrint,
     } = useContext(Context);
@@ -29,21 +30,12 @@ export default function App(props) {
     const [ data, setData ] = useState(null);
     const [ systemId, setSystemId ] = useState(0);
     const [ coilId, setCoilId ] = useState(0);
-    //const [ zonesObjectList, setZonesObjectList ] = useState([]);
-    //const [ pdf, setPdf ] = useState(new jsPDF());
-    //const appRef = useRef(null);
     const { json } = props;
 
     useEffect(() => {
         console.log('hi');
         fetchData();
       }, [json]);
-
-    /*useEffect(() => {
-        if(data) {
-            setZonesObjectList(getObjectList(data['zone_load_summarys']));
-        }
-    }, [data]);*/
     
     const fetchData = async () => {
         // Function to load data asyncronously
@@ -69,34 +61,11 @@ export default function App(props) {
         }
     }
 
-    /*
-    const handlePrintClick = async () => {
-        if (appRef) {
-            console.log('PDF being created...');
-            const pdf = new jsPDF({orientation: 'portrait'});
-
-            console.log(zonesObjectList.length);
-            for (var i = 0; i < 4; i++) {
-            //for (var i = 0; i < zonesObjectList.length; i++) {
-                setZoneId(i);
-                if (i>0) { pdf.addPage() }
-                await html2canvas(appRef.current, {
-                    //scale: 0.5,
-                    }).then(canvas => {
-                        var imgData = canvas.toDataURL('image/png');
-                        var imgProps= pdf.getImageProperties(imgData);
-                        var pdfWidth = pdf.internal.pageSize.getWidth();
-                        var pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-                        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-                    })
-            }
-
-            //pdf.output('dataurlnewwindow');
-            pdf.save('download.pdf');
-        } else {
-            console.log('No PDF')
+    const handleLocaleSelection = (value) => {
+        if (value) {
+            setLocale(value);
         }
-    } */
+    }
 
     const handlePrintClick = () => {
         setPdfPrint(true);
@@ -206,12 +175,6 @@ export default function App(props) {
             </div>
         )
     } else {
-        //const zonesObjectList = getObjectList(data['zone_load_summarys']);
-        //const systemsObjectList = getObjectList(data['system_load_summarys']);
-        //const coilsObjectList = getObjectList(data['design_psychrometrics']);
-
-        //console.log(appRef);
-
         return(
           <div className="App" id="app">
             <header className="App-header">
@@ -225,7 +188,7 @@ export default function App(props) {
                     <Col>
                         <Nav variant="tabs" defaultActiveKey="zone_load_summary" id="report-navbar" onSelect={handleSectionSelection}>
                         <Nav.Item>
-                            <Nav.Link eventKey="zone_load_summary">Zone Load Summary</Nav.Link>
+                            <Nav.Link eventKey="zone_load_summary">{ getLocaleLabel(locale, 'zone_load_summary' )}</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
                             <Nav.Link eventKey="system_load_summarys">System Load Summary</Nav.Link>
@@ -235,7 +198,7 @@ export default function App(props) {
                         </Nav.Item>
                         </Nav>
                     </Col>
-                    <Col lg={1}>
+                    <Col lg={2}>
                         <div className='App-button-group'>
                             <Dropdown onSelect={handleUnitSystemSelection}>
                                 <Dropdown.Toggle id="dropdown-unit-selection"  variant="info">
@@ -247,6 +210,16 @@ export default function App(props) {
                                 <Dropdown.Item eventKey="si">SI</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
+                            <Dropdown onSelect={handleLocaleSelection}>
+                              <Dropdown.Toggle id="dropdown-locale-selection"  variant="light">
+                              { locale === 'en' ? 'EN' : 'DE'  }
+                              </Dropdown.Toggle>
+              
+                              <Dropdown.Menu>
+                              <Dropdown.Item eventKey="en">EN</Dropdown.Item>
+                              <Dropdown.Item eventKey="de">DE</Dropdown.Item>
+                              </Dropdown.Menu>
+                            </Dropdown> 
                             <Button onClick={handlePrintClick}>PDF</Button>
                         </div>
                     </Col>
