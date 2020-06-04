@@ -1,5 +1,5 @@
 import React, { useState, createContext } from 'react';
-import config from './config'
+import config from './config.json'
 
 // Uses React Hooks Context API to provide a global store for state
 

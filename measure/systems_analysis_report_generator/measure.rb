@@ -52,7 +52,6 @@ class SystemsAnalysisReportGenerator < OpenStudio::Measure::ReportingMeasure
     data = container.json_generator.generate.to_json
     input_dir = "#{File.dirname(__FILE__)}/resources/build"
     config_path = "#{File.dirname(__FILE__)}/resources/build/reportConfig.json" # check this
-    puts config_path
     config = SystemsAnalysisReport::Config.new({file_path:config_path})
     SystemsAnalysisReport::Strategies::HtmlInjector.(input_dir, data, config)
 

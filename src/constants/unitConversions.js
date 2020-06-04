@@ -1,4 +1,4 @@
-import config from '../store/config.js'
+import config from '../store/config.json'
 
 let conversions = {
     'unitless': {'convert':(value) => {return value}, label:""},
@@ -92,21 +92,21 @@ export var unitConversions = {
         area: {conversion:conversions['ft2'], decimals: 1}
     },
     revit: {
-        heat_transfer_rate: {conversion: conversions[config.units['heat_transfer_rate']], decimals: 0},
-        temperature: {conversion:conversions[config.units['temperature']], decimals: 1},
-        temperature_difference: {conversion:conversions[config.units['temperature_difference']], decimals: 1},
-        humidity_ratio: {conversion:conversions[config.units['humidity_ratio']], decimals: 4},
-        flow_rate: {conversion:conversions[config.units['flow_rate']], decimals: 3},
-        specific_heat: {conversion:conversions[config.units['specific_heat']], decimals: 2},
-        density: {conversion:conversions[config.units['density']], decimals: 2},
-        percent: {conversion:conversions[config.units['percent']], decimals: 1},
-        outdoor_air_percentage: {conversion:conversions[config.units['outdoor_air_percentage']], decimals: 2},
-        heat_transfer_rate_per_area: {conversion:conversions[config.units['heat_transfer_rate_per_area']], decimals: 2},
-        area_per_heat_transfer_rate: {conversion:conversions[config.units['area_per_heat_transfer_rate']], decimals: 4},
-        flow_rate_per_area: {conversion:conversions[config.units['flow_rate_per_area']], decimals: 6},
-        flow_rate_per_heat_transfer_rate: {conversion:conversions[config.units['flow_rate_per_heat_transfer_rate']], decimals: 6},
-        people: {conversion:conversions[config.units['people']], decimals: 1},
-        area: {conversion:conversions[config.units['area']], decimals: 1}
+        heat_transfer_rate: {conversion: conversions[config['units']['heat_transfer_rate']], decimals: 0},
+        temperature: {conversion:conversions[config['units']['temperature']], decimals: 1},
+        temperature_difference: {conversion:conversions[config['units']['temperature_difference']], decimals: 1},
+        humidity_ratio: {conversion:conversions[config['units']['humidity_ratio']], decimals: 4},
+        flow_rate: {conversion:conversions[config['units']['flow_rate']], decimals: 3},
+        specific_heat: {conversion:conversions[config['units']['specific_heat']], decimals: 2},
+        density: {conversion:conversions[config['units']['density']], decimals: 2},
+        percent: {conversion:conversions[config['units']['percent']], decimals: 1},
+        outdoor_air_percentage: {conversion:conversions[config['units']['outdoor_air_percentage']], decimals: 2},
+        heat_transfer_rate_per_area: {conversion:conversions[config['units']['heat_transfer_rate_per_area']], decimals: 2},
+        area_per_heat_transfer_rate: {conversion:conversions[config['units']['area_per_heat_transfer_rate']], decimals: 4},
+        flow_rate_per_area: {conversion:conversions[config['units']['flow_rate_per_area']], decimals: 6},
+        flow_rate_per_heat_transfer_rate: {conversion:conversions[config['units']['flow_rate_per_heat_transfer_rate']], decimals: 6},
+        people: {conversion:conversions[config['units']['people']], decimals: 1},
+        area: {conversion:conversions[config['units']['area']], decimals: 1}
     }
 }
 
