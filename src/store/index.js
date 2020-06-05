@@ -11,6 +11,7 @@ export const Provider = ({ children }) => {
   const [ locale, setLocale ] = useState('en');
   const [ zoneId, setZoneId ] = useState(0);
   const [ pdfPrint, setPdfPrint ] = useState(false);
+  const [ animationEnable, setAnimationEnable ] = useState(true);
 
   // Make the context object:
   const mainContext = {
@@ -23,7 +24,9 @@ export const Provider = ({ children }) => {
     zoneId,
     setZoneId,
     pdfPrint,
-    setPdfPrint
+    setPdfPrint,
+    animationEnable,
+    setAnimationEnable
   };
 
   // pass the value in provider and return

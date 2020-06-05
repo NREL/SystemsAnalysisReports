@@ -37,6 +37,7 @@ export function LoadSummary(props) {
         unitSystem, 
         zoneId, setZoneId,
         pdfPrint, setPdfPrint,
+        setAnimationEnable,
     } = useContext(Context);
     const [ heatingCoolingSelection, setHeatingCoolingSelection ] = useState("cooling");
     const chart1Ref = useRef(null);
@@ -45,7 +46,7 @@ export function LoadSummary(props) {
     useEffect(() => {
         if (pdfPrint && sectionSelection==='zone_load_summary') {
             console.log('pdf print.');
-            LoadSummaryPDF(objectList, chart1Ref, chart2Ref, setPdfPrint, setZoneId, setHeatingCoolingSelection, dataMapping, data)
+            LoadSummaryPDF(objectList, chart1Ref, chart2Ref, setPdfPrint, setZoneId, setHeatingCoolingSelection, setAnimationEnable, dataMapping, data)
         }
     }, [pdfPrint, sectionSelection]);
 

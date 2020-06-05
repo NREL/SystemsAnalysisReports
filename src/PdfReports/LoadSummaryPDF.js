@@ -10,7 +10,7 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-export const LoadSummaryPDF = async (objectList, chart1Ref, chart2Ref, setPdfPrint, setZoneId, setHeatingCoolingSelection, dataMapping, data) => {
+export const LoadSummaryPDF = async (objectList, chart1Ref, chart2Ref, setPdfPrint, setZoneId, setHeatingCoolingSelection, setAnimationEnable, dataMapping, data) => {
     // UPDATES NEEDED HERE!!!
     const unitSystem = 'ip';  // THIS NEEDS TO BE PASSED FROM FUNCTION ARGUMENTS
     const pageTitle = 'Zone Load Summary'; // THIS NEEDS TO BE DETERMINED FROM COMPONENT STATE
@@ -30,6 +30,9 @@ export const LoadSummaryPDF = async (objectList, chart1Ref, chart2Ref, setPdfPri
 
     // Default a4 size (210 x 297 mm), units in mm
     const doc = new jsPDF({orientation: 'portrait', format: 'a4', unit: 'mm', compress: true});
+
+    // Turn off animations
+    setAnimationEnable(false);
 
     const heatingCoolingOptions = ['cooling', 'heating'];
     for (var j = 0; j < heatingCoolingOptions.length; j++) {
@@ -238,6 +241,8 @@ export const LoadSummaryPDF = async (objectList, chart1Ref, chart2Ref, setPdfPri
 
     doc.save('download.pdf');
 
+    // Clean up
+    setAnimationEnable(true);
     setPdfPrint(false);
 }
 
