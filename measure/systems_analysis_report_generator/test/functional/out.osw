@@ -1,19 +1,19 @@
 {
-   "completed_at" : "20200414T172744Z",
-   "completed_status" : "Fail",
+   "completed_at" : "20200604T212211Z",
+   "completed_status" : "Success",
    "current_step" : 1,
-   "hash" : "3B4B0F78",
+   "hash" : "34C60440",
    "measure_paths" : [ "/Users/npflaum/Documents/GitHub/SystemsAnalysisReports/measure/" ],
    "run_directory" : "./run",
-   "seed_file" : "./in.osm",
-   "started_at" : "20200414T172743Z",
+   "seed_file" : "/Users/npflaum/Documents/GitHub/SystemsAnalysisReports/measure/systems_analysis_report_generator/test/functional/run/in.osm",
+   "started_at" : "20200604T212159Z",
    "steps" : [
       {
          "arguments" : {},
          "measure_dir_name" : "systems_analysis_report_generator",
          "name" : "Systems Analysis Report",
          "result" : {
-            "completed_at" : "20200414T172744Z",
+            "completed_at" : "20200604T212207Z",
             "measure_class_name" : "SystemsAnalysisReportGenerator",
             "measure_display_name" : "Systems Analysis Report Generator",
             "measure_name" : "systems_analysis_report_generator",
@@ -23,20 +23,17 @@
             "measure_version_id" : "5c25e45c-b52a-4b2c-8abb-f90129ad5d5a",
             "measure_version_modified" : "20200302T221429Z",
             "measure_xml_checksum" : "9BF1E6AC",
-            "started_at" : "20200414T172744Z",
+            "started_at" : "20200604T212200Z",
             "stderr" : "",
             "stdout" : "",
-            "step_errors" : [
-               "Cannot find last sql file.",
-               "Optional not initialized\n\t/Users/npflaum/Documents/GitHub/SystemsAnalysisReports/measure/systems_analysis_report_generator/measure.rb:73:in `get'\n\t/Users/npflaum/Documents/GitHub/SystemsAnalysisReports/measure/systems_analysis_report_generator/measure.rb:73:in `get_model_and_sql_file'\n\t/Users/npflaum/Documents/GitHub/SystemsAnalysisReports/measure/systems_analysis_report_generator/measure.rb:50:in `run'\n\t:/ruby/2.2.0/gems/openstudio-workflow-1.3.3/lib/openstudio/workflow/util/measure.rb:471:in `apply_measure'\n\t:/ruby/2.2.0/gems/openstudio-workflow-1.3.3/lib/openstudio/workflow/util/measure.rb:74:in `block in apply_measures'\n\t:/ruby/2.2.0/gems/openstudio-workflow-1.3.3/lib/openstudio/workflow/util/measure.rb:32:in `each_index'\n\t:/ruby/2.2.0/gems/openstudio-workflow-1.3.3/lib/openstudio/workflow/util/measure.rb:32:in `apply_measures'\n\t:/ruby/2.2.0/gems/openstudio-workflow-1.3.3/lib/openstudio/workflow/jobs/run_reporting_measures.rb:85:in `perform'\n\t:/ruby/2.2.0/gems/openstudio-workflow-1.3.3/lib/openstudio/workflow/run.rb:269:in `step'\n\t:/ruby/2.2.0/gems/openstudio-workflow-1.3.3/lib/openstudio/workflow/run.rb:216:in `run'\n\t:/openstudio_cli.rb:975:in `execute'\n\t:/openstudio_cli.rb:763:in `execute'\n\t:/openstudio_cli.rb:1746:in `<main>'\n\teval:110:in `eval'\n\teval:110:in `require_embedded_absolute'\n\teval:95:in `block in require'\n\teval:89:in `each'\n\teval:89:in `require'\n\teval:3:in `<main>'"
-            ],
+            "step_errors" : [],
             "step_files" : [],
             "step_info" : [],
-            "step_result" : "Fail",
+            "step_result" : "Success",
             "step_values" : [],
             "step_warnings" : []
          }
       }
    ],
-   "updated_at" : "20200414T172744Z"
+   "updated_at" : "20200604T212211Z"
 }

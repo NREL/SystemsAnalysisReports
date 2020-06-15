@@ -1,5 +1,5 @@
 import { isNumeric } from '../functions/numericFunctions';
-import unitConversions from '../constants/unitConversions';
+import { unitConversions } from '../constants/unitConversions';
 import locales from '../constants/locales';
 
 export const getObjectName = (objectList, id) => {
@@ -116,15 +116,9 @@ export function convertDataUnit(unitSystem, type, value) {
     const dataObject = unitConversions[unitSystem][type];
 
     if (dataObject["conversion"]) {
-      const conversion = dataObject["conversion"]
+      var conversion = dataObject["conversion"]
 
-      if (Object.keys(conversion).includes("multiply")) {
-        newValue = newValue * conversion["multiply"];
-      }
-
-      if (Object.keys(conversion).includes("add")) {
-        newValue = newValue + conversion["add"];
-      }
+      newValue = conversion['convert'](value)
     }
 
     if (Object.keys(dataObject).includes("decimals") && isNumeric(newValue)) {
@@ -143,7 +137,7 @@ export function getUnitLabel(unitSystem, type) {
   // Returns the unit label (e.g. "C").
 
   if (unitSystem && type) {
-      return unitConversions[unitSystem][type]["label"]
+      return unitConversions[unitSystem][type]['conversion']["label"]
   } else {
     return null
   }

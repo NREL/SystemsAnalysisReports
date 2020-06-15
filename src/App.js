@@ -88,6 +88,29 @@ export default function App(props) {
             setCoilId(value);
         }
     }
+
+    const getLanguageLabel = (value) => {
+        let language_displays = {
+            "en-US": "US",
+            "de-DE": "DE",
+            "es-ES": "ES",
+            "fr-FR": "FR",
+            "it-IT": "IT",
+            "nl-NL": "NL",
+            "zh-CN": "CN",
+            "zh-TW": "TW",
+            "ja-JP": "JP",
+            "ko-KR": "KR",
+            "ru-RU": "RU",
+            "cs-CZ": "CZ",
+            "pl-PL": "PL",
+            "hu-HU": "HU",
+            "pt-BR": "BR",
+            "en-GB": "GB"
+        }
+
+        return language_displays[value]
+    }
     
     const getObjectList = (data) => {
         // Get a list of object names, ids, and cad_object, ids
@@ -202,22 +225,38 @@ export default function App(props) {
                         <div className='App-button-group'>
                             <Dropdown onSelect={handleUnitSystemSelection}>
                                 <Dropdown.Toggle id="dropdown-unit-selection"  variant="info">
-                                { unitSystem === 'si' ? 'SI' : 'IP'  }
+                                { unitSystem === 'si' ? 'SI' : unitSystem === 'ip' ? 'IP' : 'Revit' }
                                 </Dropdown.Toggle>
                 
                                 <Dropdown.Menu>
                                 <Dropdown.Item eventKey="ip">IP</Dropdown.Item>
                                 <Dropdown.Item eventKey="si">SI</Dropdown.Item>
+                                <Dropdown.Item eventKey="revit">Revit</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
                             <Dropdown onSelect={handleLocaleSelection}>
                               <Dropdown.Toggle id="dropdown-locale-selection"  variant="light">
-                              { locale === 'en' ? 'EN' : 'DE'  }
+                              { getLanguageLabel(locale)  }
                               </Dropdown.Toggle>
               
                               <Dropdown.Menu>
-                              <Dropdown.Item eventKey="en">EN</Dropdown.Item>
-                              <Dropdown.Item eventKey="de">DE</Dropdown.Item>
+                              <Dropdown.Item eventKey="en-US">US</Dropdown.Item>
+                              <Dropdown.Item eventKey="de-DE">DE</Dropdown.Item>
+                              <Dropdown.Item eventKey="es-ES">ES</Dropdown.Item>
+                              <Dropdown.Item eventKey="fr-FR">FR</Dropdown.Item>
+                              <Dropdown.Item eventKey="it-IT">IT</Dropdown.Item>
+                              <Dropdown.Item eventKey="nl-NL">NL</Dropdown.Item>
+                              <Dropdown.Item eventKey="zh-CN">CN</Dropdown.Item>
+                              <Dropdown.Item eventKey="zh-TW">TW</Dropdown.Item>
+                              <Dropdown.Item eventKey="ja-JP">JP</Dropdown.Item>
+                              <Dropdown.Item eventKey="ko-KR">KR</Dropdown.Item>
+                              <Dropdown.Item eventKey="ru-RU">RU</Dropdown.Item>
+                              <Dropdown.Item eventKey="cs-CZ">CZ</Dropdown.Item>
+                              <Dropdown.Item eventKey="pl-PL">PL</Dropdown.Item>
+                              <Dropdown.Item eventKey="hu-HU">HU</Dropdown.Item>
+                              <Dropdown.Item eventKey="pt-BR">BR</Dropdown.Item>
+                              <Dropdown.Item eventKey="en-GB">GB</Dropdown.Item>
+
                               </Dropdown.Menu>
                             </Dropdown> 
                             <Button onClick={handlePrintClick}>PDF</Button>
