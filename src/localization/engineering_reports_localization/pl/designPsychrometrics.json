@@ -1,0 +1,20 @@
+{
+  "Design Psychrometrics": "Projektowanie parametrów psychrometrycznych",
+  "Zone": "Strefa",
+  "Return Air": "Powietrze recyrkulacyjne",
+  "Outdoor Air": "Powietrze zewnętrzne",
+  "Entering Coil": "Wlot wężownicy",
+  "Leaving Coil": "Wylot wężownicy",
+  "Supply Fan": "Wentylator nawiewowy",
+  "Dry Bulb Temperature": "Temperatura suchego termometru",
+  "Humidity Ratio": "Współczynnik wilgotności",
+  "Temperature Difference": "Różnica temperatur",
+  "System Name": "Nazwa systemu",
+  "Time of Peak": "Czas szczytu",
+  "Coil Air Flow Rate": "Przepływ powietrza wężownicy",
+  "Zone Space Sensible Load": "Jawne obciążenie strefy przestrzeni",
+  "Outdoor Air Flow Rate": "Przepływ powietrza zewnętrznego",
+  "Percent Outdoor Air": "Procent powietrza zewnętrznego",
+  "Air Specific Heat": "Ciepło właściwe powietrza",
+  "Air Density": "Gęstość powietrza"
+}

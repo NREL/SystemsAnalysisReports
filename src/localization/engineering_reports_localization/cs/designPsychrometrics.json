@@ -1,0 +1,20 @@
+{
+  "Design Psychrometrics": "Psychometrie návrhu",
+  "Zone": "Zóna",
+  "Return Air": "Zpětný vzduch",
+  "Outdoor Air": "Venkovní vzduch",
+  "Entering Coil": "Vstupní cívka",
+  "Leaving Coil": "Výstupní cívka",
+  "Supply Fan": "Přívodní ventilátor",
+  "Dry Bulb Temperature": "Teplota suchého teploměru",
+  "Humidity Ratio": "Poměr vlhkosti",
+  "Temperature Difference": "Rozdíl teplot",
+  "System Name": "Název systému",
+  "Time of Peak": "Čas špičky",
+  "Coil Air Flow Rate": "Rychlost proudění vzduchu cívkou",
+  "Zone Space Sensible Load": "Zjevné zatížení prostoru zóny",
+  "Outdoor Air Flow Rate": "Rychlost proudění venkovního vzduchu",
+  "Percent Outdoor Air": "Venkovní vzduch v %",
+  "Air Specific Heat": "Měrné teplo vzduchu",
+  "Air Density": "Hustota vzduchu"
+}
