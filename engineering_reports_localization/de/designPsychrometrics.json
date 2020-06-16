@@ -1,0 +1,20 @@
+{
+  "Design Psychrometrics": "Psychometrischer Entwurf",
+  "Zone": "Zone",
+  "Return Air": "Abluft",
+  "Outdoor Air": "Außenluft",
+  "Entering Coil": "Eintritt Spule",
+  "Leaving Coil": "Austritt Spule",
+  "Supply Fan": "Zulüfter",
+  "Dry Bulb Temperature": "Trockentemperatur",
+  "Humidity Ratio": "Feuchtigkeitsverhältnis",
+  "Temperature Difference": "Temperaturdifferenz",
+  "System Name": "Systemname",
+  "Time of Peak": "Spitzenzeit",
+  "Coil Air Flow Rate": "Volumenstrom Spule",
+  "Zone Space Sensible Load": "Zonenbereich - Wahrnehmbare Last",
+  "Outdoor Air Flow Rate": "Außenluft-Massenstrom",
+  "Percent Outdoor Air": "Prozent Außenluft",
+  "Air Specific Heat": "Luft - Spezifische Wärme",
+  "Air Density": "Luftdichte"
+}
