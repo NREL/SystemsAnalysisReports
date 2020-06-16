@@ -1,12 +1,8 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import ReactDOM from 'react-dom';
 import Col from 'react-bootstrap/Col'
 import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row'
 import Tab from 'react-bootstrap/Tab';
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
-import 'jspdf-autotable';
 import { ObjectSelectionDropDown } from '../Components/ObjectSelectionDropdown';
 import { ReportCard } from '../Components/ReportCard';
 import { CustomTable } from '../Components/Table';
@@ -18,7 +14,7 @@ import {
     COOLINGHEATINGCOLORS
 } from '../constants/settings';
 import { isNumeric } from '../functions/numericFunctions';
-import { getObjectName, convertDataUnit, getUnitLabel } from '../functions/dataFormatting';
+import { getObjectName, convertDataUnit, getUnitLabel, getHeatingAndCoolingPeakLoads, formatLoadComponentChartData } from '../functions/dataFormatting';
 import { LoadSummaryPDF } from '../PdfReports/LoadSummaryPDF';
 
 export function LoadSummary(props) {
@@ -45,7 +41,9 @@ export function LoadSummary(props) {
 
     useEffect(() => {
         if (pdfPrint && sectionSelection==='zone_load_summary') {
-            console.log('pdf print.');
+            console.log('Print pdf report.');
+
+            // Write report
             LoadSummaryPDF(objectList, chart1Ref, chart2Ref, setPdfPrint, setZoneId, setHeatingCoolingSelection, setAnimationEnable, dataMapping, data)
         }
     }, [pdfPrint, sectionSelection]);
@@ -124,36 +122,6 @@ export function LoadSummary(props) {
         }
     }
 
-    const getHeatingAndCoolingPeakLoads = (unitSystem, objectName, data) => {
-        // Assumes that Cooling Peak Condition Table - Sensible Peak Load is the appropriate total load value.
-        // Investigate further whether this should be a calculated value from the subcomponents.
-        
-        if (data) {
-            if (objectName) {
-                const objectData = data[objectName]
-
-                if (objectData) {
-                    // get load and convert unit system
-                    const peakCoolingLoad = convertDataUnit(unitSystem, 'heat_transfer_rate', objectData['cooling']['estimated_peak_load_component_table']['grand_total']['total']);
-                    const peakHeatingLoad = convertDataUnit(unitSystem, 'heat_transfer_rate', objectData['heating']['estimated_peak_load_component_table']['grand_total']['total']);
-
-                    const output = [ 
-                        {'name': 'Cooling', 'value': parseInt(Math.abs(peakCoolingLoad))}, 
-                        {'name': 'Heating', 'value': parseInt(Math.abs(peakHeatingLoad))}
-                    ]
-
-                    return output
-                } else {
-                    return null
-                }
-            } else { 
-                return null 
-            }
-        } else {
-            return null
-        }
-    }
-
     const formatTableData = (dataMapping, data) => {
         // This function formats the data that will be displayed in the table.
         if (data) {
@@ -185,30 +153,6 @@ export function LoadSummary(props) {
             }
 
             return newData
-        } else {
-            return null
-        }
-    }
-
-    const formatLoadComponentChartData = (unitSystem, dataMapping, data) => {
-
-        if (data) {
-        // This function formats the data that will be displayed in a chart.
-        var newData = [];
-
-        // Loop for loadGroups and sum all of the totals
-        Object.keys(dataMapping).map((group) => {
-            var total = 0;
-            // Loop again to total the loads for each load group
-            dataMapping[group].map((loadComponent) => ( Object.keys(data).includes(loadComponent) ? total += Math.abs(data[loadComponent]['total']) : null ))
-
-            // Convert unit system and add value to array
-            newData.push({'name': group, 'value': parseInt(convertDataUnit(unitSystem, 'heat_transfer_rate', total))})
-            return newData
-        })
-
-        return newData
-
         } else {
             return null
         }
@@ -334,8 +278,8 @@ export function LoadSummary(props) {
                             <div>
                             <Row>
                                 <CustomPieChart
-                                pdfRef={chart1Ref}
                                 name={name + "-peakLoadsChart"}
+                                pdfRef={chart1Ref}
                                 title={"Peak Loads Load Components [" + getUnitLabel(unitSystem, "heat_transfer_rate") + "]"}
                                 colors={COOLINGHEATINGCOLORS}
                                 data={getHeatingAndCoolingPeakLoads(unitSystem, objectName, data)}
@@ -343,8 +287,15 @@ export function LoadSummary(props) {
                             </Row>
                             <Row>
                                 <CustomPieChart
-                                pdfRef={chart2Ref}
                                 name={name + "-loadComponentsChart"}
+                                title={ (heatingCoolingSelection === "cooling" ? "Cooling" : "Heating") + " Load Components [" + getUnitLabel(unitSystem, "heat_transfer_rate") + "]"}
+                                colors={EQUIDISTANTCOLORS}
+                                data={formatLoadComponentChartData(unitSystem, dataMapping["componentPieChart"], loadData)}
+                                /> 
+                                <CustomPieChart
+                                pdfRef={chart2Ref}
+                                isHidden={!pdfPrint}
+                                name={name + "-loadComponentsChart2"}
                                 title={ (heatingCoolingSelection === "cooling" ? "Cooling" : "Heating") + " Load Components [" + getUnitLabel(unitSystem, "heat_transfer_rate") + "]"}
                                 colors={EQUIDISTANTCOLORS}
                                 data={formatLoadComponentChartData(unitSystem, dataMapping["componentPieChart"], loadData)}

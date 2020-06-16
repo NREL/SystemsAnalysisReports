@@ -160,3 +160,57 @@ export function getLocaleLabel(locale, key) {
     return null
   }
 }
+
+export const getHeatingAndCoolingPeakLoads = (unitSystem, objectName, data) => {
+  // Assumes that Cooling Peak Condition Table - Sensible Peak Load is the appropriate total load value.
+  // Investigate further whether this should be a calculated value from the subcomponents.
+  
+  if (data) {
+      if (objectName) {
+          const objectData = data[objectName]
+
+          if (objectData) {
+              // get load and convert unit system
+              const peakCoolingLoad = convertDataUnit(unitSystem, 'heat_transfer_rate', objectData['cooling']['estimated_peak_load_component_table']['grand_total']['total']);
+              const peakHeatingLoad = convertDataUnit(unitSystem, 'heat_transfer_rate', objectData['heating']['estimated_peak_load_component_table']['grand_total']['total']);
+
+              const output = [ 
+                  {'name': 'Cooling', 'value': parseInt(Math.abs(peakCoolingLoad))}, 
+                  {'name': 'Heating', 'value': parseInt(Math.abs(peakHeatingLoad))}
+              ]
+
+              return output
+          } else {
+              return null
+          }
+      } else { 
+          return null 
+      }
+  } else {
+      return null
+  }
+}
+
+export const formatLoadComponentChartData = (unitSystem, dataMapping, data) => {
+
+  if (data) {
+  // This function formats the data that will be displayed in a chart.
+  var newData = [];
+
+  // Loop for loadGroups and sum all of the totals
+  Object.keys(dataMapping).map((group) => {
+      var total = 0;
+      // Loop again to total the loads for each load group
+      dataMapping[group].map((loadComponent) => ( Object.keys(data).includes(loadComponent) ? total += Math.abs(data[loadComponent]['total']) : null ))
+
+      // Convert unit system and add value to array
+      newData.push({'name': group, 'value': parseInt(convertDataUnit(unitSystem, 'heat_transfer_rate', total))})
+      return newData
+  })
+
+  return newData
+
+  } else {
+      return null
+  }
+}

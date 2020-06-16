@@ -24,7 +24,7 @@ export default function App(props) {
         unitSystem, setUnitSystem,
         locale, setLocale,
         zoneId, setZoneId,
-        setPdfPrint,
+        pdfPrint, setPdfPrint,
     } = useContext(Context);
     const [ loading, setLoading ] = useState(true);
     const [ data, setData ] = useState(null);
@@ -220,7 +220,18 @@ export default function App(props) {
                               <Dropdown.Item eventKey="de">DE</Dropdown.Item>
                               </Dropdown.Menu>
                             </Dropdown> 
-                            <Button onClick={handlePrintClick}>PDF</Button>
+                            <Button onClick={handlePrintClick} disabled={pdfPrint}>
+                                { pdfPrint ? 
+                                    <Spinner
+                                        as="span"
+                                        animation="border"
+                                        size="sm"
+                                        role="status"
+                                        aria-hidden="true"
+                                    /> : 
+                                    <span>PDF</span>
+                                }
+                            </Button>
                         </div>
                     </Col>
                 </Row>

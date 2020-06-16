@@ -4,7 +4,7 @@ import { Context } from '../store/index';
 import './PieChart.css';
 
 export function CustomPieChart(props) {
-    const { name, title, colors, data, pdfRef } = props;
+    const { name, title, colors, data, pdfRef, isHidden } = props;
     
     const { 
         animationEnable,
@@ -12,13 +12,21 @@ export function CustomPieChart(props) {
 
     const renderLegendText = (value, entry) => {
         // Sets the legend font size     
-      return <span style={{ fontSize: "12px" }}>{value}</span>;
+      return <span style={{ fontSize: "12px" , display: "inline-block"}}>{value}</span>;
+    }
+
+    const displayStyle = (isHidden) => {
+        if (isHidden) {
+            return {display: "none", textAlign: "center"}
+        } else {
+            return {display: "block", textAlign: "center"}
+        }
     }
 
     return (
-        <div className="App-chart-container" ref={pdfRef}>
+        <div ref={pdfRef} className="App-chart-container" style={displayStyle(isHidden)}>
             <span className="App-chart-title">{title}</span>
-            <PieChart width={350} height={300}>
+            <PieChart width={350} height={300} >
                 <Pie
                     data={data}
                     dataKey="value"
@@ -39,7 +47,12 @@ export function CustomPieChart(props) {
                     )) : null)
                 }
                 </Pie>
-                <Legend iconSize="12" formatter={renderLegendText}/>
+                <Legend
+                    width={350}
+                    iconSize="14"
+                    align="center"
+                    formatter={renderLegendText}
+                />
             </PieChart>
         </div>
     );

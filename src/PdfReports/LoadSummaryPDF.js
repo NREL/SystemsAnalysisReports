@@ -1,6 +1,8 @@
-import html2canvas from 'html2canvas';
+import ReactDOM from 'react-dom';
+import domtoimage from 'dom-to-image';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
+//
 import { getHeader } from '../functions/tableFunctions';
 import { getObjectName, convertDataUnit, getUnitLabel } from '../functions/dataFormatting';
 import { isNumeric, numberWithCommas } from '../functions/numericFunctions';
@@ -11,6 +13,8 @@ function sleep(ms) {
   }
 
 export const LoadSummaryPDF = async (objectList, chart1Ref, chart2Ref, setPdfPrint, setZoneId, setHeatingCoolingSelection, setAnimationEnable, dataMapping, data) => {
+    var startTime = new Date().getTime();
+    
     // UPDATES NEEDED HERE!!!
     const unitSystem = 'ip';  // THIS NEEDS TO BE PASSED FROM FUNCTION ARGUMENTS
     const pageTitle = 'Zone Load Summary'; // THIS NEEDS TO BE DETERMINED FROM COMPONENT STATE
@@ -34,7 +38,10 @@ export const LoadSummaryPDF = async (objectList, chart1Ref, chart2Ref, setPdfPri
     // Turn off animations
     setAnimationEnable(false);
 
+    var pageNum = 1;
     const heatingCoolingOptions = ['cooling', 'heating'];
+
+    console.log('Print page ' + pageNum);  // Console log first page
     for (var j = 0; j < heatingCoolingOptions.length; j++) {
         const heatingCoolingSelection = heatingCoolingOptions[j];
 
@@ -44,13 +51,16 @@ export const LoadSummaryPDF = async (objectList, chart1Ref, chart2Ref, setPdfPri
             
             // Set object for loop
             const objectId = i;
-            setZoneId(i);
-            setHeatingCoolingSelection(heatingCoolingSelection);
+            //setZoneId(i);
+            //setHeatingCoolingSelection(heatingCoolingSelection);
             const objectName = getObjectName(objectList, objectId);
-            await sleep(500);  // Wat for chart to render before creating png image
-
+ 
             // Add page, if necessary
-            if (!((i===0) && (j===0))) { doc.addPage() }
+            if (!((i===0) && (j===0))) {
+                pageNum++; // Increment page number
+                console.log('Print page ' + pageNum);  // Console log each new page
+                doc.addPage()
+            }
 
             // Title
             doc.setFontSize(13);
@@ -133,24 +143,47 @@ export const LoadSummaryPDF = async (objectList, chart1Ref, chart2Ref, setPdfPri
             doc.text(cardText, 60, yStart+6);
 
             // Write Heating/Cooling Load Chart
-            yStart = 10;
-            await html2canvas(chart1Ref.current, {
-                width: 800,
-                height: 800,
-                }).then(canvas => {
-                    var imgData = canvas.toDataURL('image/png');
-                    doc.addImage(imgData, 'PNG', 95, 3, 125, 125);
-                })
+            yStart = 5;
+
+            let svg = ReactDOM.findDOMNode(chart1Ref.current);
+            let width = svg.getBoundingClientRect().width;
+            let height = svg.getBoundingClientRect().height;
+
+            await domtoimage.toPng(svg, {
+                width: width,
+                height: height,
+                style: {
+                  'transform': 'scale(1.0)',
+                  'transform-origin': 'top left'
+                }
+            })
+            .then(function (dataUrl) {
+                doc.addImage(dataUrl, 'PNG', 110, yStart, width/8, height/8);
+            })
+            .catch(function (error) {
+                console.error('Chart 1 did not render properly.', error);
+            });
 
             // Write Component Load Chart
-            await html2canvas(chart2Ref.current, {
-                width: 800,
-                height: 800,
-                }).then(canvas => {
-                    var imgData = canvas.toDataURL('image/png');
-                    doc.addImage(imgData, 'PNG', 145, 3, 125, 125);
-                })
+            svg = ReactDOM.findDOMNode(chart2Ref.current);
+            width = svg.getBoundingClientRect().width;
+            height = svg.getBoundingClientRect().height;
 
+            await domtoimage.toPng(svg, {
+                width: width,
+                height: height,
+                style: {
+                  'transform': 'scale(1.0)',
+                  'transform-origin': 'top left'
+                }
+            })
+            .then(function (dataUrl) {
+                doc.addImage(dataUrl, 'PNG', 155, yStart, width/8, height/8);
+            })
+            .catch(function (error) {
+                console.error('Chart 2 did not render properly.', error);
+            });
+            
             // Table Header
             yStart = 58;
             var mapKey = 'envelopeLoadsTable';
@@ -244,6 +277,10 @@ export const LoadSummaryPDF = async (objectList, chart1Ref, chart2Ref, setPdfPri
     // Clean up
     setAnimationEnable(true);
     setPdfPrint(false);
+
+    var endTime = new Date().getTime();
+
+    alert(endTime - startTime);
 }
 
 const formatCardText = (unitSystem, dataMapping, data) => {
