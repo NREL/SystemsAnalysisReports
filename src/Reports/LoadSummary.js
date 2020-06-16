@@ -20,6 +20,7 @@ import {
 import { isNumeric } from '../functions/numericFunctions';
 import { getObjectName, convertDataUnit, getUnitLabel } from '../functions/dataFormatting';
 import { getLoadSummaryPDF } from './getLoadSummaryPDF';
+import { useTranslation } from "react-i18next";
 
 export function LoadSummary(props) {
     const { 
@@ -44,6 +45,7 @@ export function LoadSummary(props) {
     const chart1Ref = useRef(null);
     const chart2Ref = useRef(null);
     const cardRef = useRef(null);
+    const { t } = useTranslation();
 
     useEffect(() => {
         if (pdfPrint && sectionSelection==='zone_load_summary') {
@@ -233,10 +235,10 @@ export function LoadSummary(props) {
 
                         <Nav variant="pills" onSelect={handleHeatingCoolingSelect} className="App-buttons">
                             <Nav.Item>
-                            <Nav.Link eventKey="cooling">Cooling</Nav.Link>
+                            <Nav.Link eventKey="cooling">{t("zoneLoadSummary:Cooling")}</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                            <Nav.Link eventKey="heating">Heating</Nav.Link>
+                            <Nav.Link eventKey="heating">{t('zoneLoadSummary:Heating')}</Nav.Link>
                             </Nav.Item>
                         </Nav>
                     </Row>
@@ -250,8 +252,9 @@ export function LoadSummary(props) {
                                 />
                             </Row>
                             <Row>
-                                <span>Envelope</span>
+                                <span>{t('zoneLoadSummary:Envelope')}</span>
                                 <CustomTable
+                                t={t}
                                 name={name + "-envelopeTable"}
                                 displayHeader={false}
                                 unitSystem={unitSystem}
@@ -260,8 +263,9 @@ export function LoadSummary(props) {
                                 />
                             </Row>
                             <Row>
-                                <span>Internal Gains</span>
+                                <span>{t('zoneLoadSummary:Internal Gains')}</span>
                                 <CustomTable
+                                t={t}
                                 name={name + "-internalGainTable"}
                                 displayHeader={false}
                                 unitSystem={unitSystem}
@@ -270,8 +274,9 @@ export function LoadSummary(props) {
                                 />
                             </Row>
                             <Row>
-                                <span>Systems</span>
+                                <span>{t('zoneLoadSummary:Systems')}</span>
                                 <CustomTable
+                                t={t}
                                 name={name + "-systemLoadsTable"}
                                 displayHeader={false}
                                 unitSystem={unitSystem}
@@ -280,8 +285,9 @@ export function LoadSummary(props) {
                                 />
                             </Row>
                             <Row>
-                                <span>Total</span>
+                                <span>{t('zoneLoadSummary:Total')}</span>
                                 <CustomTable
+                                t={t}
                                 name={name + "-totalLoadsTable"}
                                 displayHeader={false}
                                 unitSystem={unitSystem}
@@ -325,7 +331,7 @@ export function LoadSummary(props) {
                             <Row>
                                 <ReportCard
                                 name={name + "-engineeringCheck"}
-                                title="Engineering Checks"
+                                title={t("Engineering Checks")}
                                 unitSystem={unitSystem}
                                 dataMapping={dataMapping['engineeringCheck']}
                                 data={getEngineeringCheckTable(objectName, heatingCoolingSelection, data)}

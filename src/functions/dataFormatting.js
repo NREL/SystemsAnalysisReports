@@ -143,13 +143,13 @@ export function getUnitLabel(unitSystem, type) {
   }
 }
 
-export function getLocaleLabel(locale, key) {
+export function getLocaleLabel(locale, section, key) {
   // Function provides the label for a specific locale.
   // Requires the local (i.e. "en" or "de"), the label key (e.g. "zone_load_summary"). 
   // Returns the label (e.g. "Zone Load Summary").
 
-  if (locale && key) {
-      return locales[locale][key]
+  if (locale && section && key) {
+      return locales[locale][section][key]
   } else {
     return null
   }
