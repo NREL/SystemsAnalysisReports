@@ -6,18 +6,37 @@ import 'jspdf-autotable';
 import { getHeader } from '../functions/tableFunctions';
 import { getObjectName, convertDataUnit, getUnitLabel } from '../functions/dataFormatting';
 import { isNumeric, numberWithCommas } from '../functions/numericFunctions';
-import { formatUnitLabels } from '../functions/textFunctions';
+import { formatTableData } from '../functions/tableFunctions';
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-export const LoadSummaryPDF = async (objectList, chart1Ref, chart2Ref, setPdfPrint, setZoneId, setHeatingCoolingSelection, setAnimationEnable, setProgressBarValue, dataMapping, data) => {
+export const LoadSummaryPDF = async (
+    unitSystem,
+    sectionSelection,
+    objectList,
+    chart1Ref,
+    chart2Ref,
+    setPdfPrint,
+    setZoneId,
+    setHeatingCoolingSelection,
+    setAnimationEnable,
+    setProgressBarValue,
+    dataMapping,
+    data
+    ) => {
     var startTime = new Date().getTime();
     
-    // UPDATES NEEDED HERE!!!
-    const unitSystem = 'ip';  // THIS NEEDS TO BE PASSED FROM FUNCTION ARGUMENTS
-    const pageTitle = 'Zone Load Summary'; // THIS NEEDS TO BE DETERMINED FROM COMPONENT STATE
+    // Set title for report
+    var pageTitle = null;
+    if (sectionSelection==='zone_load_summary') {
+        pageTitle = 'Zone Load Summary';
+    }  else if (sectionSelection==='system_load_summary') {
+        pageTitle = 'System Load Summary';
+    } else {
+        pageTitle = '';
+    }
 
     const cardFontSize = 6;
     const tableBodyStyle = { fontStyle: 'normal', fontSize: 5, textColor: 80, padding: 0, minCellHeight: 0, lineWidth: 0.1, fillColor: 255}
@@ -57,10 +76,6 @@ export const LoadSummaryPDF = async (objectList, chart1Ref, chart2Ref, setPdfPri
             setHeatingCoolingSelection(heatingCoolingSelection);
             const objectName = getObjectName(objectList, objectId);
 
-            // update progress bar
-            progressBarValue++;
-            setProgressBarValue(progressBarValue/maxProgressBarValue*100);
-
             // Add page, if necessary
             if (!((i===0) && (j===0))) {
                 pageNum++; // Increment page number
@@ -86,6 +101,7 @@ export const LoadSummaryPDF = async (objectList, chart1Ref, chart2Ref, setPdfPri
             // Cooling/Heating Label
             xStart += objectNameWidth + 5;  // Place label next to the object name label
             yStart = 16;
+
             if(heatingCoolingSelection === 'cooling'){
                 doc.setDrawColor(0);
                 doc.setFillColor(0, 123, 255);
@@ -103,50 +119,97 @@ export const LoadSummaryPDF = async (objectList, chart1Ref, chart2Ref, setPdfPri
             }
 
             // Write Peak Conditions
+            xStart = 15; 
             yStart = 21;
-            const peakConditionsData = data[objectName][heatingCoolingSelection]['peak_condition'];
 
-            //var cardText = formatCardText(cardValueArray);
+            const peakConditionsData = data[objectName][heatingCoolingSelection]['peak_condition'];
             var cardText = formatCardText(unitSystem, dataMapping['peakConditions'][0], peakConditionsData);
             doc.setDrawColor(0);
             doc.setFillColor(221, 221, 221);
-            doc.rect(15, yStart, 35, 3, 'F');
+            doc.rect(xStart, yStart, 35, 3, 'F');
             doc.setTextColor(0, 0, 0);
             doc.setFontSize(cardFontSize+1);
-            doc.text('Conditions at Time of Peak', 15, yStart+2);
+            doc.text('Conditions at Time of Peak', xStart, yStart+2);
             doc.setFontSize(cardFontSize);
-            doc.text(cardText, 15, yStart+6);
+            doc.text(cardText, xStart, yStart+6);
 
             // Write Outside Conditions
+            xStart = 15;
             yStart = 31;
+
             doc.setFontType("bold");
-            doc.text(dataMapping['peakConditions'][1]['label'], 15, yStart);
+            doc.text(dataMapping['peakConditions'][1]['label'], xStart, yStart);
             cardText = formatCardText(unitSystem, dataMapping['peakConditions'][1], peakConditionsData);
             doc.setFontType("normal");
             doc.setFontSize(cardFontSize);
-            doc.text(cardText, 15, yStart+2);
+            doc.text(cardText, xStart, yStart+2);
 
             // Write Zone Conditions
-            yStart = 41;
-            doc.setFontType("bold");
-            doc.text(dataMapping['peakConditions'][2]['label'], 15, yStart);
-            cardText = formatCardText(unitSystem, dataMapping['peakConditions'][2], peakConditionsData);
-            doc.setFontType("normal");
-            doc.setFontSize(cardFontSize);
-            doc.text(cardText, 15, yStart+2);
+            if (sectionSelection==='zone_load_summary') {
+                xStart = 15;
+                yStart = 41;
+
+                doc.setFontType("bold");
+                doc.text(dataMapping['peakConditions'][2]['label'], xStart, yStart);
+                cardText = formatCardText(unitSystem, dataMapping['peakConditions'][2], peakConditionsData);
+                doc.setFontType("normal");
+                doc.setFontSize(cardFontSize);
+                doc.text(cardText, xStart, yStart+2);
+            }
+
+            // Write Temperatures
+            if (sectionSelection==='system_load_summary') {
+                xStart = 15;
+                yStart = 41;
+
+                const temperatureData = data[objectName][heatingCoolingSelection]['temperature'];
+                cardText = formatCardText(unitSystem, dataMapping['temperatures'][0], temperatureData);
+                doc.setDrawColor(0);
+                doc.setFillColor(221, 221, 221);
+                doc.rect(xStart, yStart, 35, 3, 'F');
+                doc.setTextColor(0, 0, 0);
+                doc.setFontSize(cardFontSize+1);
+                doc.text('Temperatures', xStart, yStart+2);
+                doc.setFontSize(cardFontSize);
+                doc.text(cardText, xStart, yStart+6);
+            }
+
+            // Write Airflows
+            if (sectionSelection==='system_load_summary') {
+                xStart = 60;
+                yStart = 21;
+
+                const airflowData = data[objectName][heatingCoolingSelection]['airflow'];
+                cardText = formatCardText(unitSystem, dataMapping['airflows'][0], airflowData);
+                doc.setDrawColor(0);
+                doc.setFillColor(221, 221, 221);
+                doc.rect(xStart, yStart, 35, 3, 'F');
+                doc.setTextColor(0, 0, 0);
+                doc.setFontSize(cardFontSize+1);
+                doc.text('Airflows', xStart, yStart+2);
+                doc.setFontSize(cardFontSize);
+                doc.text(cardText, xStart, yStart+6);
+            }
 
             // Write Engineering Checks
-            yStart = 21;
+            if (sectionSelection==='zone_load_summary') {
+                xStart = 60;
+                yStart = 21;
+            } else if (sectionSelection==='system_load_summary') {
+                xStart = 60;
+                yStart = 35;
+            }
+
             const engineeringCheckData = data[objectName][heatingCoolingSelection]['engineering_check'];
             cardText = formatCardText(unitSystem, dataMapping['engineeringCheck'][0], engineeringCheckData);
             doc.setDrawColor(0);
             doc.setFillColor(221, 221, 221);
-            doc.rect(60, yStart, 40, 3, 'F');
+            doc.rect(xStart, yStart, 40, 3, 'F');
             doc.setTextColor(0, 0, 0);
             doc.setFontSize(cardFontSize+1);
-            doc.text('Engineering Checks', 60, yStart+2);
+            doc.text('Engineering Checks', xStart, yStart+2);
             doc.setFontSize(cardFontSize);
-            doc.text(cardText, 60, yStart+6);
+            doc.text(cardText, xStart, yStart+6);
 
             // Write Heating/Cooling Load Chart
             yStart = 5;
@@ -190,8 +253,11 @@ export const LoadSummaryPDF = async (objectList, chart1Ref, chart2Ref, setPdfPri
                 console.error('Chart 2 did not render properly.', error);
             });
             
-            // Table Header
-            yStart = 58;
+            // Load Components Table
+            const loadComponentsData = data[objectName][heatingCoolingSelection]['estimated_peak_load_component_table'];
+
+            //Table Header
+            yStart = 56;
             var mapKey = 'envelopeLoadsTable';
             var colLabels = getColumnLabels(unitSystem, mapKey, dataMapping);
 
@@ -211,7 +277,8 @@ export const LoadSummaryPDF = async (objectList, chart1Ref, chart2Ref, setPdfPri
             doc.text('Envelope', 15, yStart);
             var mapKey = 'envelopeLoadsTable';
             var colLabels = getColumnLabels(unitSystem, mapKey, dataMapping);
-            var tableData = convertObjectToPDFTable(unitSystem, heatingCoolingSelection, objectName, dataMapping[mapKey], data);
+            var tempTableData = formatTableData(dataMapping[mapKey], loadComponentsData)
+            var tableData = convertObjectToPDFTable(unitSystem, dataMapping[mapKey], tempTableData);
 
             doc.autoTable({
                 tableLineWidth: 0.1,
@@ -225,12 +292,13 @@ export const LoadSummaryPDF = async (objectList, chart1Ref, chart2Ref, setPdfPri
 
             
             // Internal Gains Table
-            yStart += 98;
+            yStart += 97;
             doc.setFontSize(tableSubHeaderSize);
             doc.text('Internal Gains', 15, yStart);
             mapKey = 'internalGainsTable';
             colLabels = getColumnLabels(unitSystem, mapKey, dataMapping);
-            tableData = convertObjectToPDFTable(unitSystem, heatingCoolingSelection, objectName, dataMapping[mapKey], data);
+            tempTableData = formatTableData(dataMapping[mapKey], loadComponentsData)
+            tableData = convertObjectToPDFTable(unitSystem, dataMapping[mapKey], tempTableData);
 
             doc.autoTable({
                 bodyStyles: tableBodyStyle,
@@ -243,12 +311,13 @@ export const LoadSummaryPDF = async (objectList, chart1Ref, chart2Ref, setPdfPri
 
             
             // System Loads Table
-            yStart += 37;
+            yStart += 36;
             doc.setFontSize(tableSubHeaderSize);
             doc.text('Systems', 15, yStart);
             mapKey = 'systemLoadsTable';
             colLabels = getColumnLabels(unitSystem, mapKey, dataMapping);
-            tableData = convertObjectToPDFTable(unitSystem, heatingCoolingSelection, objectName, dataMapping[mapKey], data);
+            tempTableData = formatTableData(dataMapping[mapKey], loadComponentsData)
+            tableData = convertObjectToPDFTable(unitSystem, dataMapping[mapKey], tempTableData);
 
             doc.autoTable({
                 bodyStyles: tableBodyStyle,
@@ -260,12 +329,17 @@ export const LoadSummaryPDF = async (objectList, chart1Ref, chart2Ref, setPdfPri
             })
 
             // Total Loads Table
-            yStart += 59;
+            if (sectionSelection==='zone_load_summary') {
+                yStart += 59;
+            } else if (sectionSelection==='system_load_summary') {
+                yStart += 63;
+            }
             doc.setFontSize(tableSubHeaderSize);
             doc.text('Total', 15, yStart);
             mapKey = 'totalLoadsTable';
             colLabels = getColumnLabels(unitSystem, mapKey, dataMapping);
-            tableData = convertObjectToPDFTable(unitSystem, heatingCoolingSelection, objectName, dataMapping[mapKey], data);
+            tempTableData = formatTableData(dataMapping[mapKey], loadComponentsData)
+            tableData = convertObjectToPDFTable(unitSystem, dataMapping[mapKey], tempTableData);
 
             doc.autoTable({
                 bodyStyles: tableBodyStyle,
@@ -275,24 +349,40 @@ export const LoadSummaryPDF = async (objectList, chart1Ref, chart2Ref, setPdfPri
                 showHead: 'never',
                 startY: yStart+tableSubHeaderMargin,
             })
+
+            // update progress bar
+            progressBarValue++;
+            setProgressBarValue(progressBarValue/maxProgressBarValue*100);
         }
     }
 
-    doc.save('download.pdf');
+    // update progress bar
+    progressBarValue++;
+    setProgressBarValue(progressBarValue/maxProgressBarValue*100);
+
+    // Save pdf to file
+    var fileName = null
+    if (sectionSelection==='zone_load_summary') {
+        fileName = 'zone_load_summary.pdf';
+    } else if (sectionSelection==='system_load_summary') {
+        fileName = 'system_load_summary.pdf';
+    }
+
+    doc.save(fileName);
 
     // Clean up
     setAnimationEnable(true);
     setPdfPrint(false);
 
     var endTime = new Date().getTime();
-    //alert(endTime - startTime);
+    //alert((endTime - startTime)*0.001/60 + ' minutes');
 }
 
 const formatCardText = (unitSystem, dataMapping, data) => {
     var cardText = '';
     dataMapping['items'].forEach(item => {
         // Set formatting for the unit labels
-        const unitLabel = formatUnitLabels(getUnitLabel(unitSystem, item["type"]));
+        const unitLabel = getUnitLabel(unitSystem, item["type"]);
 
         // Set up array
         cardText += item['displayName'] + ': ' + data[item["jsonKey"]]
@@ -315,13 +405,11 @@ const getColumnLabels = (unitSystem, mapKey, dataMapping) => {
     return colLabels
 }
 
-const convertObjectToPDFTable = (unitSystem, heatingCoolingSelection, objectName, dataMapping, data) => {
+const convertObjectToPDFTable = (unitSystem, dataMapping, data) => {
     var tableData = [];
-    const objectData = data[objectName][heatingCoolingSelection]['estimated_peak_load_component_table'];
-
 
     dataMapping['rows'].map((row) => {
-        tableData.push(addDataRow(unitSystem, row, dataMapping['columns'], objectData));
+        tableData.push(addDataRow(unitSystem, row, dataMapping['columns'], data));
     })
 
     return tableData

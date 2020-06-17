@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Modal from 'react-bootstrap/Modal';
 import Nav from 'react-bootstrap/Nav';
@@ -18,6 +17,7 @@ import {
 } from '../constants/settings';
 import { isNumeric } from '../functions/numericFunctions';
 import { getObjectName, convertDataUnit, getUnitLabel, getHeatingAndCoolingPeakLoads, formatLoadComponentChartData } from '../functions/dataFormatting';
+import { formatTableData } from '../functions/tableFunctions';
 import { LoadSummaryPDF } from '../PdfReports/LoadSummaryPDF';
 
 export function LoadSummary(props) {
@@ -45,13 +45,39 @@ export function LoadSummary(props) {
     const chart2Ref = useRef(null);
 
     useEffect(() => {
-        if (pdfPrint && sectionSelection==='zone_load_summary') {
-            // Write report
+        if (pdfPrint) {
+
+            // Async function to write report
             async function writePDFReport() {
                 console.log('Print pdf report.');
+
+                // Open progress modal
                 setModalShow(true);
-                await LoadSummaryPDF(objectList, chart1Ref, chart2Ref, setPdfPrint, setZoneId, setHeatingCoolingSelection, setAnimationEnable, setProgressBarValue, dataMapping, data)
+
+                // Get original state
+                let origZoneId = zoneId;
+                let origHeatingCoolingSelection = heatingCoolingSelection;
+                
+                // Run function to create report
+                await LoadSummaryPDF(
+                    unitSystem,
+                    sectionSelection,
+                    objectList,
+                    chart1Ref,
+                    chart2Ref,
+                    setPdfPrint,
+                    setZoneId,
+                    setHeatingCoolingSelection,
+                    setAnimationEnable,
+                    setProgressBarValue,
+                    dataMapping,
+                    data
+                    )
+                
+                // Return to original state
                 setModalShow(false);
+                setZoneId(origZoneId);
+                setHeatingCoolingSelection(origHeatingCoolingSelection);
             }
             
             writePDFReport()
@@ -127,42 +153,6 @@ export function LoadSummary(props) {
             } else { 
                 return null 
             }
-        } else {
-            return null
-        }
-    }
-
-    const formatTableData = (dataMapping, data) => {
-        // This function formats the data that will be displayed in the table.
-        if (data) {
-            var newData = JSON.parse(JSON.stringify(data));
-            var totals = {
-                "latent": 0.0,
-                "sensible_delayed": 0.0,
-                "sensible_instant": 0.0,
-                "total": 0.0,
-                "percent_grand_total": 0.0
-            };
-
-            // Loop and calculate the table subtotals for each column
-            if (newData) {
-                dataMapping['rows'].map((row) => {
-                    Object.keys(totals 
-                        ).map((colName) => {
-                        var rowName = row['jsonKey'];
-                        if (Object.keys(newData).includes(rowName) && rowName !== "total" && newData[rowName]) {
-                            totals[colName] += newData[rowName][colName]
-                        }
-                        return totals
-                    })
-                    return totals
-                });
-
-                // Add total row to the data object
-                newData["subtotal"] = totals;
-            }
-
-            return newData
         } else {
             return null
         }
@@ -315,7 +305,7 @@ export function LoadSummary(props) {
                     keyboard={false}
                 >
                     <Modal.Header closeButton={false}>
-                    <Modal.Title>Printing pdf report.</Modal.Title>
+                    <Modal.Title>{sectionSelection === "zone_load_summary" ? "Printing Zone Load Summary Report to PDF": "Printing System Load Summary Report to PDF" }</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                     <ProgressBar now={progressBarValue} />

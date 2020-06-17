@@ -123,7 +123,7 @@ export default function App(props) {
             />
         
             )
-        } else if (value === 'system_load_summarys') {
+        } else if (value === 'system_load_summary') {
             const activeData = data['system_load_summarys'];
             const objectList = getObjectList(activeData);
 
@@ -191,7 +191,7 @@ export default function App(props) {
                             <Nav.Link eventKey="zone_load_summary">{ getLocaleLabel(locale, 'zone_load_summary' )}</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link eventKey="system_load_summarys">System Load Summary</Nav.Link>
+                            <Nav.Link eventKey="system_load_summary">System Load Summary</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
                             <Nav.Link eventKey="design_psychrometrics">Design Psychrometrics</Nav.Link>
