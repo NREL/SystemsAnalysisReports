@@ -7,6 +7,7 @@ import './ObjectSelectionDropdown.css';
 import en_US from '../constants/paginationLocale';
 import { OBJECT_SELECTION_PAGINATION_ITEMS } from '../constants/settings';
 import { isNumeric } from '../functions/numericFunctions';
+import { Translation } from 'react-i18next';
 
 export class ObjectSelectionDropDown extends React.Component {
     constructor(props) {
@@ -64,13 +65,19 @@ export class ObjectSelectionDropDown extends React.Component {
                 className={className}
                 aria-labelledby={labeledBy}
                 >
-                <FormControl
-                    autoFocus
-                    className="mx-3 my-2 w-auto"
-                    placeholder="Type to filter..."
-                    onChange={e => this.setState({filter: e.target.value})}
-                    value={this.state.filter}
-                />
+                <Translation>
+                    {
+                        (t) =>
+                        <FormControl
+                            autoFocus
+                            className="mx-3 my-2 w-auto"
+                            placeholder={t("Type to filter...")}
+                            onChange={e => this.setState({filter: e.target.value})}
+                            value={this.state.filter}
+                        />
+                    }
+
+                </Translation>
                 <ul className="list-unstyled">
                     {
                         React.Children.toArray(children).filter(

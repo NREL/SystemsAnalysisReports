@@ -5,7 +5,7 @@ import { isNumeric, numberWithCommas } from '../functions/numericFunctions';
 import { useTranslation } from "react-i18next";
 
 export function CustomTable(props) {
-    var { name, unitSystem, dataMapping, displayHeader, data } = props;
+    var { name, unitSystem, dataMapping, displayHeader, data, ns } = props;
     const { t } = useTranslation();
 
     const addDataRow = (unitSystem, row, columns, data, t) => {
@@ -18,7 +18,7 @@ export function CustomTable(props) {
             return (
                 <tr key={ name + '-' + rowKey }>
                     <td width="25%">
-                        { ( ['subtotal', 'grand_total'].includes(rowKey) ? <i>{t("systemLoadSummary:"+row['displayName'])}</i> : t("systemLoadSummary:"+row['displayName'])) }
+                        { ( ['subtotal', 'grand_total'].includes(rowKey) ? <i>{t(ns+":"+row['displayName'])}</i> : t(ns+":"+row['displayName'])) }
                     </td>
                     { columns.map((column) => {
                         var dataValue = null;
@@ -59,9 +59,9 @@ export function CustomTable(props) {
         }
     }
 
-    const getHeader = (unitSystem, column, t) => {
+    const getHeader = (unitSystem, column) => {
         var header = ""
-        header = t("systemLoadSummary:"+column['displayName'])
+        header = t(ns+":"+column['displayName'])
         if (column["type"]) {
             header += ' [' + getUnitLabel(unitSystem, column["type"]) + ']'
         }
@@ -83,7 +83,7 @@ export function CustomTable(props) {
                         key={ name + '-' + column['displayName'] + '-header' }
                         width="15%"
                     >
-                        { getHeader(unitSystem, column, t) }
+                        { getHeader(unitSystem, column) }
                     </th>
                 ))
                 }

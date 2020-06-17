@@ -146,6 +146,7 @@ export default function App(props) {
             unitSystem={unitSystem}
             dataMapping={zoneLoadSummaryMapping}
             data={activeData}
+            ns={"zoneLoadSummary"}
             />
         
             )
@@ -164,6 +165,7 @@ export default function App(props) {
             unitSystem={unitSystem}
             dataMapping={systemLoadSummaryMapping}
             data={activeData}
+            ns={"systemLoadSummary"}
             />
             )
         } else if (value === 'design_psychrometrics') {
@@ -181,6 +183,7 @@ export default function App(props) {
             unitSystem={unitSystem}
             dataMapping={designPsychrometricsMapping}
             data={activeData}
+            ns={"designPsychrometrics"}
             />
             )
         } else {
@@ -205,7 +208,7 @@ export default function App(props) {
           <div className="App" id="app">
             <header className="App-header">
               <p>
-                Revit Systems Analysis - Loads Report
+                  {t("Revit Systems Analysis - Loads Report")}
               </p>
             </header>
             <div className="navigation-container">

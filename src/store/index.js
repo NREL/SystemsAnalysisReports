@@ -3,7 +3,6 @@ import config from './config.json'
 import './i18n'
 import {getI18n} from "react-i18next";
 
-// Uses React Hooks Context API to provide a global store for state
 const language_map = {
   "en-US": "en",
   "de-DE": "de",
@@ -23,6 +22,9 @@ const language_map = {
   "en-GB": "eng",
 }
 
+getI18n().changeLanguage(language_map[config['language']]);
+
+// Uses React Hooks Context API to provide a global store for state
 export const Context = createContext();
 
 export const Provider = ({ children }) => {
@@ -31,7 +33,6 @@ export const Provider = ({ children }) => {
   const [ unitSystem, setUnitSystem ] = useState('revit');
   const [ zoneId, setZoneId ] = useState(0);
   const [ pdfPrint, setPdfPrint ] = useState(false);
-  getI18n().changeLanguage(language_map[config['language']]);
 
   // Make the context object:
   const mainContext = {
