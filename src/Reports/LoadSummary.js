@@ -1,6 +1,9 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import Col from 'react-bootstrap/Col'
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Modal from 'react-bootstrap/Modal';
 import Nav from 'react-bootstrap/Nav';
+import ProgressBar from 'react-bootstrap/ProgressBar';
 import Row from 'react-bootstrap/Row'
 import Tab from 'react-bootstrap/Tab';
 import { ObjectSelectionDropDown } from '../Components/ObjectSelectionDropdown';
@@ -36,15 +39,22 @@ export function LoadSummary(props) {
         setAnimationEnable,
     } = useContext(Context);
     const [ heatingCoolingSelection, setHeatingCoolingSelection ] = useState("cooling");
+    const [ modalShow, setModalShow ] = useState(false);
+    const [ progressBarValue, setProgressBarValue ] = useState(0);
     const chart1Ref = useRef(null);
     const chart2Ref = useRef(null);
 
     useEffect(() => {
         if (pdfPrint && sectionSelection==='zone_load_summary') {
-            console.log('Print pdf report.');
-
             // Write report
-            LoadSummaryPDF(objectList, chart1Ref, chart2Ref, setPdfPrint, setZoneId, setHeatingCoolingSelection, setAnimationEnable, dataMapping, data)
+            async function writePDFReport() {
+                console.log('Print pdf report.');
+                setModalShow(true);
+                await LoadSummaryPDF(objectList, chart1Ref, chart2Ref, setPdfPrint, setZoneId, setHeatingCoolingSelection, setAnimationEnable, setProgressBarValue, dataMapping, data)
+                setModalShow(false);
+            }
+            
+            writePDFReport()
         }
     }, [pdfPrint, sectionSelection]);
 
@@ -288,23 +298,29 @@ export function LoadSummary(props) {
                             <Row>
                                 <CustomPieChart
                                 name={name + "-loadComponentsChart"}
-                                title={ (heatingCoolingSelection === "cooling" ? "Cooling" : "Heating") + " Load Components [" + getUnitLabel(unitSystem, "heat_transfer_rate") + "]"}
-                                colors={EQUIDISTANTCOLORS}
-                                data={formatLoadComponentChartData(unitSystem, dataMapping["componentPieChart"], loadData)}
-                                /> 
-                                <CustomPieChart
                                 pdfRef={chart2Ref}
-                                isHidden={!pdfPrint}
-                                name={name + "-loadComponentsChart2"}
                                 title={ (heatingCoolingSelection === "cooling" ? "Cooling" : "Heating") + " Load Components [" + getUnitLabel(unitSystem, "heat_transfer_rate") + "]"}
                                 colors={EQUIDISTANTCOLORS}
                                 data={formatLoadComponentChartData(unitSystem, dataMapping["componentPieChart"], loadData)}
-                                /> 
+                                />
                             </Row>
                             </div>
                         </Col>
                     </Row>
                 </Tab.Container>
+                <Modal
+                    show={modalShow}
+                    onHide={(() => setModalShow(false))}
+                    backdrop="static"
+                    keyboard={false}
+                >
+                    <Modal.Header closeButton={false}>
+                    <Modal.Title>Printing pdf report.</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                    <ProgressBar now={progressBarValue} />
+                    </Modal.Body>
+                </Modal>
                 </div>
         );
     } else {

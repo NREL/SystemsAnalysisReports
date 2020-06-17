@@ -12,7 +12,7 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-export const LoadSummaryPDF = async (objectList, chart1Ref, chart2Ref, setPdfPrint, setZoneId, setHeatingCoolingSelection, setAnimationEnable, dataMapping, data) => {
+export const LoadSummaryPDF = async (objectList, chart1Ref, chart2Ref, setPdfPrint, setZoneId, setHeatingCoolingSelection, setAnimationEnable, setProgressBarValue, dataMapping, data) => {
     var startTime = new Date().getTime();
     
     // UPDATES NEEDED HERE!!!
@@ -40,6 +40,8 @@ export const LoadSummaryPDF = async (objectList, chart1Ref, chart2Ref, setPdfPri
 
     var pageNum = 1;
     const heatingCoolingOptions = ['cooling', 'heating'];
+    var progressBarValue = 0;
+    const maxProgressBarValue = objectList.length * heatingCoolingOptions.length;
 
     console.log('Print page ' + pageNum);  // Console log first page
     for (var j = 0; j < heatingCoolingOptions.length; j++) {
@@ -51,10 +53,14 @@ export const LoadSummaryPDF = async (objectList, chart1Ref, chart2Ref, setPdfPri
             
             // Set object for loop
             const objectId = i;
-            //setZoneId(i);
-            //setHeatingCoolingSelection(heatingCoolingSelection);
+            setZoneId(i);
+            setHeatingCoolingSelection(heatingCoolingSelection);
             const objectName = getObjectName(objectList, objectId);
- 
+
+            // update progress bar
+            progressBarValue++;
+            setProgressBarValue(progressBarValue/maxProgressBarValue*100);
+
             // Add page, if necessary
             if (!((i===0) && (j===0))) {
                 pageNum++; // Increment page number
@@ -153,8 +159,8 @@ export const LoadSummaryPDF = async (objectList, chart1Ref, chart2Ref, setPdfPri
                 width: width,
                 height: height,
                 style: {
-                  'transform': 'scale(1.0)',
-                  'transform-origin': 'top left'
+                'transform': 'scale(1.0)',
+                'transform-origin': 'top left'
                 }
             })
             .then(function (dataUrl) {
@@ -173,8 +179,8 @@ export const LoadSummaryPDF = async (objectList, chart1Ref, chart2Ref, setPdfPri
                 width: width,
                 height: height,
                 style: {
-                  'transform': 'scale(1.0)',
-                  'transform-origin': 'top left'
+                'transform': 'scale(1.0)',
+                'transform-origin': 'top left'
                 }
             })
             .then(function (dataUrl) {
@@ -279,8 +285,7 @@ export const LoadSummaryPDF = async (objectList, chart1Ref, chart2Ref, setPdfPri
     setPdfPrint(false);
 
     var endTime = new Date().getTime();
-
-    alert(endTime - startTime);
+    //alert(endTime - startTime);
 }
 
 const formatCardText = (unitSystem, dataMapping, data) => {
