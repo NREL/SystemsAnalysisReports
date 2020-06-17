@@ -10,7 +10,7 @@ export const getHeader = (unitSystem, column) => {
     return header
 }
 
-export const formatTableData = (dataMapping, data) => {
+export const formatLoadSummaryTableData = (dataMapping, data) => {
     // This function formats the data that will be displayed in the table.
     if (data) {
         var newData = JSON.parse(JSON.stringify(data));
@@ -39,6 +39,32 @@ export const formatTableData = (dataMapping, data) => {
             // Add total row to the data object
             newData["subtotal"] = totals;
         }
+
+        return newData
+    } else {
+        return null
+    }
+}
+
+export const formatDesignPsychrometricsTableData = (dataMapping, data) => {
+    // This function formats the data that will be displayed in the table.
+    if(data) {
+        var newData = {};
+
+        // Loop for each row
+        dataMapping['rows'].map((row) => {
+            var rowKey = row['jsonKey'];
+            newData[rowKey] = {};
+            
+            // Loop for each column
+            dataMapping['columns'].map((column) => {
+                var colKey = column['jsonKey'];
+                var dataKey = rowKey + '_' + colKey; // The jsonKey for retrieving data
+                newData[rowKey][colKey] = data[dataKey];
+                return newData
+            })
+            return newData
+        })
 
         return newData
     } else {

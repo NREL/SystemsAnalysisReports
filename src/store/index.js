@@ -10,6 +10,8 @@ export const Provider = ({ children }) => {
   const [ unitSystem, setUnitSystem ] = useState('si');
   const [ locale, setLocale ] = useState('en');
   const [ zoneId, setZoneId ] = useState(0);
+  const [ systemId, setSystemId ] = useState(0);
+  const [ coilId, setCoilId ] = useState(0);
   const [ pdfPrint, setPdfPrint ] = useState(false);
   const [ animationEnable, setAnimationEnable ] = useState(true);
 
@@ -23,6 +25,10 @@ export const Provider = ({ children }) => {
     setLocale,
     zoneId,
     setZoneId,
+    systemId,
+    setSystemId,
+    coilId,
+    setCoilId,
     pdfPrint,
     setPdfPrint,
     animationEnable,

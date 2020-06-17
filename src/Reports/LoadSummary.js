@@ -15,9 +15,8 @@ import {
     EQUIDISTANTCOLORS,
     COOLINGHEATINGCOLORS
 } from '../constants/settings';
-import { isNumeric } from '../functions/numericFunctions';
 import { getObjectName, convertDataUnit, getUnitLabel, getHeatingAndCoolingPeakLoads, formatLoadComponentChartData } from '../functions/dataFormatting';
-import { formatTableData } from '../functions/tableFunctions';
+import { formatLoadSummaryTableData } from '../functions/tableFunctions';
 import { LoadSummaryPDF } from '../PdfReports/LoadSummaryPDF';
 
 export function LoadSummary(props) {
@@ -35,6 +34,7 @@ export function LoadSummary(props) {
         sectionSelection, 
         unitSystem, 
         zoneId, setZoneId,
+        systemId, setSystemId,
         pdfPrint, setPdfPrint,
         setAnimationEnable,
     } = useContext(Context);
@@ -55,7 +55,16 @@ export function LoadSummary(props) {
                 setModalShow(true);
 
                 // Get original state
-                let origZoneId = zoneId;
+                let setObjectId = null;
+                let origId = null;
+                if (sectionSelection==='zone_load_summary') {
+                    setObjectId = setZoneId;
+                    origId = zoneId;
+                } else if (sectionSelection==='system_load_summary') {
+                    setObjectId = setSystemId;
+                    origId = systemId;
+                }
+
                 let origHeatingCoolingSelection = heatingCoolingSelection;
                 
                 // Run function to create report
@@ -66,7 +75,7 @@ export function LoadSummary(props) {
                     chart1Ref,
                     chart2Ref,
                     setPdfPrint,
-                    setZoneId,
+                    setObjectId,
                     setHeatingCoolingSelection,
                     setAnimationEnable,
                     setProgressBarValue,
@@ -76,7 +85,7 @@ export function LoadSummary(props) {
                 
                 // Return to original state
                 setModalShow(false);
-                setZoneId(origZoneId);
+                setObjectId(origId);
                 setHeatingCoolingSelection(origHeatingCoolingSelection);
             }
             
@@ -198,7 +207,7 @@ export function LoadSummary(props) {
                                 displayHeader={false}
                                 unitSystem={unitSystem}
                                 dataMapping={dataMapping['envelopeLoadsTable']}
-                                data={formatTableData(dataMapping['envelopeLoadsTable'], loadData)}
+                                data={formatLoadSummaryTableData(dataMapping['envelopeLoadsTable'], loadData)}
                                 />
                             </Row>
                             <Row>
@@ -208,7 +217,7 @@ export function LoadSummary(props) {
                                 displayHeader={false}
                                 unitSystem={unitSystem}
                                 dataMapping={dataMapping['internalGainsTable']}
-                                data={formatTableData(dataMapping['internalGainsTable'], loadData)}
+                                data={formatLoadSummaryTableData(dataMapping['internalGainsTable'], loadData)}
                                 />
                             </Row>
                             <Row>
@@ -218,7 +227,7 @@ export function LoadSummary(props) {
                                 displayHeader={false}
                                 unitSystem={unitSystem}
                                 dataMapping={dataMapping['systemLoadsTable']}
-                                data={formatTableData(dataMapping['systemLoadsTable'], loadData)}
+                                data={formatLoadSummaryTableData(dataMapping['systemLoadsTable'], loadData)}
                                 />
                             </Row>
                             <Row>
@@ -228,7 +237,7 @@ export function LoadSummary(props) {
                                 displayHeader={false}
                                 unitSystem={unitSystem}
                                 dataMapping={dataMapping['totalLoadsTable']}
-                                data={formatTableData(dataMapping['totalLoadsTable'], loadData)}
+                                data={formatLoadSummaryTableData(dataMapping['totalLoadsTable'], loadData)}
                                 />
                             </Row>
                         </Col>

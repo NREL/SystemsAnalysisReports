@@ -6,7 +6,7 @@ import 'jspdf-autotable';
 import { getHeader } from '../functions/tableFunctions';
 import { getObjectName, convertDataUnit, getUnitLabel } from '../functions/dataFormatting';
 import { isNumeric, numberWithCommas } from '../functions/numericFunctions';
-import { formatTableData } from '../functions/tableFunctions';
+import { formatLoadSummaryTableData } from '../functions/tableFunctions';
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -19,7 +19,7 @@ export const LoadSummaryPDF = async (
     chart1Ref,
     chart2Ref,
     setPdfPrint,
-    setZoneId,
+    setObjectId,
     setHeatingCoolingSelection,
     setAnimationEnable,
     setProgressBarValue,
@@ -72,7 +72,7 @@ export const LoadSummaryPDF = async (
             
             // Set object for loop
             const objectId = i;
-            setZoneId(i);
+            setObjectId(i);
             setHeatingCoolingSelection(heatingCoolingSelection);
             const objectName = getObjectName(objectList, objectId);
 
@@ -277,7 +277,7 @@ export const LoadSummaryPDF = async (
             doc.text('Envelope', 15, yStart);
             var mapKey = 'envelopeLoadsTable';
             var colLabels = getColumnLabels(unitSystem, mapKey, dataMapping);
-            var tempTableData = formatTableData(dataMapping[mapKey], loadComponentsData)
+            var tempTableData = formatLoadSummaryTableData(dataMapping[mapKey], loadComponentsData)
             var tableData = convertObjectToPDFTable(unitSystem, dataMapping[mapKey], tempTableData);
 
             doc.autoTable({
@@ -297,7 +297,7 @@ export const LoadSummaryPDF = async (
             doc.text('Internal Gains', 15, yStart);
             mapKey = 'internalGainsTable';
             colLabels = getColumnLabels(unitSystem, mapKey, dataMapping);
-            tempTableData = formatTableData(dataMapping[mapKey], loadComponentsData)
+            tempTableData = formatLoadSummaryTableData(dataMapping[mapKey], loadComponentsData)
             tableData = convertObjectToPDFTable(unitSystem, dataMapping[mapKey], tempTableData);
 
             doc.autoTable({
@@ -316,7 +316,7 @@ export const LoadSummaryPDF = async (
             doc.text('Systems', 15, yStart);
             mapKey = 'systemLoadsTable';
             colLabels = getColumnLabels(unitSystem, mapKey, dataMapping);
-            tempTableData = formatTableData(dataMapping[mapKey], loadComponentsData)
+            tempTableData = formatLoadSummaryTableData(dataMapping[mapKey], loadComponentsData)
             tableData = convertObjectToPDFTable(unitSystem, dataMapping[mapKey], tempTableData);
 
             doc.autoTable({
@@ -338,7 +338,7 @@ export const LoadSummaryPDF = async (
             doc.text('Total', 15, yStart);
             mapKey = 'totalLoadsTable';
             colLabels = getColumnLabels(unitSystem, mapKey, dataMapping);
-            tempTableData = formatTableData(dataMapping[mapKey], loadComponentsData)
+            tempTableData = formatLoadSummaryTableData(dataMapping[mapKey], loadComponentsData)
             tableData = convertObjectToPDFTable(unitSystem, dataMapping[mapKey], tempTableData);
 
             doc.autoTable({

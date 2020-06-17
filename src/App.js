@@ -6,8 +6,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
-//import html2canvas from 'html2canvas';
-//import jsPDF from 'jspdf';
 import { LoadSummary } from './Reports/LoadSummary';
 import { Context } from './store/index';
 import { DesignPsychrometrics } from './Reports/DesignPsychrometrics';import './App.css';
@@ -24,12 +22,12 @@ export default function App(props) {
         unitSystem, setUnitSystem,
         locale, setLocale,
         zoneId, setZoneId,
+        systemId, setSystemId,
+        coilId, setCoilId,
         pdfPrint, setPdfPrint,
     } = useContext(Context);
     const [ loading, setLoading ] = useState(true);
     const [ data, setData ] = useState(null);
-    const [ systemId, setSystemId ] = useState(0);
-    const [ coilId, setCoilId ] = useState(0);
     const { json } = props;
 
     useEffect(() => {
