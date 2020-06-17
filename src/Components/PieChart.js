@@ -1,14 +1,19 @@
 import React from 'react';
 import { Cell, Legend, Pie, PieChart } from 'recharts';
 import './PieChart.css';
+import { Translation } from 'react-i18next';
 
 export class CustomPieChart extends React.Component {
     render() {
-        const { title, colors, data, pdfRef } = this.props;
+        const { title, colors, data, pdfRef, ns } = this.props;
 
         function renderLegendText(value, entry) {
             // Sets the legend font size     
-          return <span style={{ fontSize: "12px" }}>{value}</span>;
+          return <Translation>
+              {
+                  (t) => <span style={{ fontSize: "12px" }}>{t(ns+":"+value)}</span>
+              }
+          </Translation>;
         }
         
         return (

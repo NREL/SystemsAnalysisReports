@@ -20,6 +20,7 @@ import {
 import { isNumeric } from '../functions/numericFunctions';
 import { getObjectName, convertDataUnit, getUnitLabel } from '../functions/dataFormatting';
 import { getLoadSummaryPDF } from './getLoadSummaryPDF';
+import { useTranslation } from "react-i18next";
 
 export function LoadSummary(props) {
     const { 
@@ -29,7 +30,8 @@ export function LoadSummary(props) {
         handleObjectSelect,
         objectList,
         dataMapping,
-        data
+        data,
+        ns
     } = props;
     
     const { 
@@ -44,6 +46,7 @@ export function LoadSummary(props) {
     const chart1Ref = useRef(null);
     const chart2Ref = useRef(null);
     const cardRef = useRef(null);
+    const { t } = useTranslation();
 
     useEffect(() => {
         if (pdfPrint && sectionSelection==='zone_load_summary') {
@@ -140,7 +143,7 @@ export function LoadSummary(props) {
                     const peakHeatingLoad = convertDataUnit(unitSystem, 'heat_transfer_rate', objectData['heating']['estimated_peak_load_component_table']['grand_total']['total']);
 
                     const output = [ 
-                        {'name': 'Cooling', 'value': parseInt(Math.abs(peakCoolingLoad))}, 
+                        {'name': 'Cooling', 'value': parseInt(Math.abs(peakCoolingLoad))},
                         {'name': 'Heating', 'value': parseInt(Math.abs(peakHeatingLoad))}
                     ]
 
@@ -233,10 +236,10 @@ export function LoadSummary(props) {
 
                         <Nav variant="pills" onSelect={handleHeatingCoolingSelect} className="App-buttons">
                             <Nav.Item>
-                            <Nav.Link eventKey="cooling">Cooling</Nav.Link>
+                            <Nav.Link eventKey="cooling">{t("zoneLoadSummary:Cooling")}</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                            <Nav.Link eventKey="heating">Heating</Nav.Link>
+                            <Nav.Link eventKey="heating">{t('zoneLoadSummary:Heating')}</Nav.Link>
                             </Nav.Item>
                         </Nav>
                     </Row>
@@ -250,43 +253,51 @@ export function LoadSummary(props) {
                                 />
                             </Row>
                             <Row>
-                                <span>Envelope</span>
+                                <span>{t('zoneLoadSummary:Envelope')}</span>
                                 <CustomTable
+                                t={t}
                                 name={name + "-envelopeTable"}
                                 displayHeader={false}
                                 unitSystem={unitSystem}
                                 dataMapping={dataMapping['envelopeLoadsTable']}
                                 data={formatTableData(dataMapping['envelopeLoadsTable'], loadData)}
+                                ns={ns}
                                 />
                             </Row>
                             <Row>
-                                <span>Internal Gains</span>
+                                <span>{t('zoneLoadSummary:Internal Gains')}</span>
                                 <CustomTable
+                                t={t}
                                 name={name + "-internalGainTable"}
                                 displayHeader={false}
                                 unitSystem={unitSystem}
                                 dataMapping={dataMapping['internalGainsTable']}
                                 data={formatTableData(dataMapping['internalGainsTable'], loadData)}
+                                ns={ns}
                                 />
                             </Row>
                             <Row>
-                                <span>Systems</span>
+                                <span>{t('zoneLoadSummary:Systems')}</span>
                                 <CustomTable
+                                t={t}
                                 name={name + "-systemLoadsTable"}
                                 displayHeader={false}
                                 unitSystem={unitSystem}
                                 dataMapping={dataMapping['systemLoadsTable']}
                                 data={formatTableData(dataMapping['systemLoadsTable'], loadData)}
+                                ns={ns}
                                 />
                             </Row>
                             <Row>
-                                <span>Total</span>
+                                <span>{t('zoneLoadSummary:Total')}</span>
                                 <CustomTable
+                                t={t}
                                 name={name + "-totalLoadsTable"}
                                 displayHeader={false}
                                 unitSystem={unitSystem}
                                 dataMapping={dataMapping['totalLoadsTable']}
                                 data={formatTableData(dataMapping['totalLoadsTable'], loadData)}
+                                ns={ns}
                                 />
                             </Row>
                         </Col>
@@ -294,20 +305,22 @@ export function LoadSummary(props) {
                             <Row>
                                 <ReportCard
                                 name={name + "-conditionsTimePeak"}
-                                title="Conditions at Time of Peak"
+                                title={t("systemLoadSummary:Conditions at Time of Peak")}
                                 unitSystem={unitSystem}
                                 dataMapping={dataMapping['peakConditions']}
                                 data={getPeakConditionTable(objectName, heatingCoolingSelection, data)}
+                                ns={ns}
                                 />
                             </Row>
                             { name === 'systemLoadSummary' ? (
                                 <Row>
                                     <ReportCard
                                     name={name + "-temperatures"}
-                                    title="Temperatures"
+                                    title={t(ns+":Temperatures")}
                                     unitSystem={unitSystem}
                                     dataMapping={dataMapping['temperatures']}
                                     data={getTemperaturesTable(objectName, heatingCoolingSelection, data)}
+                                    ns={ns}
                                     />
                                 </Row>
                             ) : null }
@@ -315,20 +328,22 @@ export function LoadSummary(props) {
                                 <Row>
                                     <ReportCard
                                     name={name + "-airflows"}
-                                    title="Airflows"
+                                    title={t(ns+":Airflows")}
                                     unitSystem={unitSystem}
                                     dataMapping={dataMapping['airflows']}
                                     data={getAirflowsTable(objectName, heatingCoolingSelection, data)}
+                                    ns={ns}
                                     />
                                 </Row>
                             ) : null }
                             <Row>
                                 <ReportCard
                                 name={name + "-engineeringCheck"}
-                                title="Engineering Checks"
+                                title={t("systemLoadSummary:Engineering Checks")}
                                 unitSystem={unitSystem}
                                 dataMapping={dataMapping['engineeringCheck']}
                                 data={getEngineeringCheckTable(objectName, heatingCoolingSelection, data)}
+                                ns={ns}
                                 />
                             </Row>
                         </Col>
@@ -338,19 +353,21 @@ export function LoadSummary(props) {
                                 <CustomPieChart
                                 pdfRef={chart1Ref}
                                 name={name + "-peakLoadsChart"}
-                                title={"Peak Loads Load Components [" + getUnitLabel(unitSystem, "heat_transfer_rate") + "]"}
+                                title={t(ns+":"+"Peak Loads")+" [" + getUnitLabel(unitSystem, "heat_transfer_rate") + "]"}
                                 colors={COOLINGHEATINGCOLORS}
                                 data={getHeatingAndCoolingPeakLoads(unitSystem, objectName, data)}
+                                ns={ns}
                                 />
                             </Row>
                             <Row>
                                 <CustomPieChart
                                 pdfRef={chart2Ref}
                                 name={name + "-loadComponentsChart"}
-                                title={ (heatingCoolingSelection === "cooling" ? "Cooling" : "Heating") + " Load Components [" + getUnitLabel(unitSystem, "heat_transfer_rate") + "]"}
+                                title={ t(ns+":"+(heatingCoolingSelection === "cooling" ? "Cooling" : "Heating") + " Load Components") + " [" + getUnitLabel(unitSystem, "heat_transfer_rate") + "]"}
                                 colors={EQUIDISTANTCOLORS}
                                 data={formatLoadComponentChartData(unitSystem, dataMapping["componentPieChart"], loadData)}
-                                /> 
+                                ns={ns}
+                                />
                             </Row>
                             </div>
                         </Col>

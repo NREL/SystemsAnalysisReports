@@ -1,50 +1,52 @@
 export default {
-    "en-US": {
-        zone_load_summary: 'Zone Load Summary',
+    "en": {
+        zone_load_summary: {
+            'Zone Load Summary': 'Zone LoadSma'
+        },
+        system_load_summary:{
+            'System Load Summary': "System Load Sma"
+        }
     },
-    "de-DE": {
+    "de": {
+        zone_load_summary: 'Zusammenfassung der Zonenlast',
+        system_load_summary:{
+            'System Load Summary': "System Load Sma"
+        }
+    },
+    "es": {
         zone_load_summary: 'Zusammenfassung der Zonenlast'
     },
-    "es-ES": {
+    "fr": {
         zone_load_summary: 'Zusammenfassung der Zonenlast'
     },
-    "fr-FR": {
+    "it": {
         zone_load_summary: 'Zusammenfassung der Zonenlast'
     },
-    "it-IT": {
+    "zh": {
         zone_load_summary: 'Zusammenfassung der Zonenlast'
     },
-    "nl-NL": {
+    "cht": {
         zone_load_summary: 'Zusammenfassung der Zonenlast'
     },
-    "zh-CN": {
+    "ja": {
         zone_load_summary: 'Zusammenfassung der Zonenlast'
     },
-    "zh-TW": {
+    "ko": {
         zone_load_summary: 'Zusammenfassung der Zonenlast'
     },
-    "ja-JP": {
+    "ru": {
         zone_load_summary: 'Zusammenfassung der Zonenlast'
     },
-    "ko-KR": {
+    "cs": {
         zone_load_summary: 'Zusammenfassung der Zonenlast'
     },
-    "ru-RU": {
+    "pl": {
         zone_load_summary: 'Zusammenfassung der Zonenlast'
     },
-    "cs-CZ": {
+    "pt": {
         zone_load_summary: 'Zusammenfassung der Zonenlast'
     },
-    "pl-PL": {
-        zone_load_summary: 'Zusammenfassung der Zonenlast'
-    },
-    "hu-HU": {
-        zone_load_summary: 'Zusammenfassung der Zonenlast'
-    },
-    "pt-BR": {
-        zone_load_summary: 'Zusammenfassung der Zonenlast'
-    },
-    "en-GB": {
+    "eng": {
         zone_load_summary: 'Zusammenfassung der Zonenlast'
     }
 }

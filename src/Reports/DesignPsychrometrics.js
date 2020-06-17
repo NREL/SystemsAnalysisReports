@@ -6,6 +6,7 @@ import { ObjectSelectionDropDown } from '../Components/ObjectSelectionDropdown';
 import { CustomTable } from '../Components/Table';
 import { ReportCard } from '../Components/ReportCard';
 import { Context } from '../store/index';
+import { useTranslation } from "react-i18next";
 
 export function DesignPsychrometrics(props) {
     const { 
@@ -15,6 +16,8 @@ export function DesignPsychrometrics(props) {
         dataMapping,
         data
     } = props;
+
+    const { t } = useTranslation()
 
     const { 
         sectionSelection, 
@@ -116,15 +119,17 @@ export function DesignPsychrometrics(props) {
                         unitSystem={unitSystem}
                         dataMapping={dataMapping['componentTable']}
                         data={formatTableData(dataMapping['componentTable'], objectData)}
+                        ns={"designPsychrometrics"}
                         />
                     </Col>
                     <Col>
                         <ReportCard
                         name={name + "-conditionsTimePeak"}
-                        title="Summary"
+                        title={ t("designPsychrometrics:Summary") }
                         unitSystem={unitSystem}
                         dataMapping={dataMapping['componentChecks']}
                         data={objectData}
+                        ns={"designPsychrometrics"}
                         />
                     </Col>
             </Row>
