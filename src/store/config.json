@@ -1,0 +1,20 @@
+{
+    "language": "en-US",
+    "units": {
+        "heat_transfer_rate": "W",
+        "temperature": "F",
+        "temperature_difference": "C",
+        "humidity_ratio": "kg/kg",
+        "flow_rate": "m3/s",
+        "specific_heat": "J/kg/C",
+        "density": "kg/m3",
+        "percent": "percent",
+        "outdoor_air_percentage": "percent",
+        "heat_transfer_rate_per_area": "W/m2",
+        "area_per_heat_transfer_rate": "m2/W",
+        "flow_rate_per_area": "m3/s/m2",
+        "flow_rate_per_heat_transfer_rate": "m3/s/W",
+        "people": "unitless",
+        "area": "m"
+    }
+}

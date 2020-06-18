@@ -1,1 +1,4618 @@
-{"zone_load_summarys":{"VAV1-3":{"name":"VAV1-3","cooling":{"peak_condition":{"name":"VAV1-3","difference_between_peak_and_estimated_sensible_load":-106.7,"difference_due_to_sizing_factor":0.0,"estimate_instant_delayed_sensible_load":16310.45,"main_fan_air_flow":777.61,"mixed_air_temperature":null,"outside_dry_bulb_temperature":89.9,"outside_wet_bulb_temperature":75.35,"outside_air_flow":0.0,"outside_humidity_ratio_at_peak":0.01558,"peak_sensible_load":16203.77,"peak_sensible_load_with_sizing_factor":16203.77,"supply_air_temperature":55.0,"time_of_peak_load":"7/21 18:00:00","zone_dry_bulb_temperature":73.98,"zone_humidity_ratio_at_peak":0.00909,"zone_relative_humidity":50.91},"engineering_check":{"name":"VAV1-3","airflow_per_floor_area":0.991,"airflow_per_total_capacity":0.0045,"floor_area_per_total_capacity":0.0484,"number_of_people":8.0,"outside_air_percent":0.0,"total_capacity_per_floor_area":20.6463},"estimated_peak_load_component_table":{"doas_direct_to_zone":{"sensible_instant":0.0,"sensible_delayed":null,"latent":0.0,"total":0.0,"percent_grand_total":0.0},"equipment":{"sensible_instant":4284.11,"sensible_delayed":0.0,"latent":0.0,"total":4284.11,"percent_grand_total":23.264215841199192},"exterior_floor":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":0.0},"exterior_wall":{"sensible_instant":null,"sensible_delayed":597.1,"latent":null,"total":597.1,"percent_grand_total":3.2424618599382464},"fenestration_conduction":{"sensible_instant":247.79,"sensible_delayed":null,"latent":null,"total":247.79,"percent_grand_total":1.3455863746007335},"fenestration_solar":{"sensible_instant":null,"sensible_delayed":53.52,"latent":null,"total":53.52,"percent_grand_total":0.2906323207903114},"grand_total":{"sensible_instant":9480.67,"sensible_delayed":6723.119999999999,"latent":2211.23,"total":18415.02,"percent_grand_total":99.99999999999999},"ground_contact_floor":{"sensible_instant":null,"sensible_delayed":-7030.1,"latent":null,"total":-7030.1,"percent_grand_total":-38.17590206255546},"ground_contact_wall":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":0.0},"hvac_equipment_loss":{"sensible_instant":0.0,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":0.0},"infiltration":{"sensible_instant":335.75,"sensible_delayed":null,"latent":611.3,"total":947.05,"percent_grand_total":5.1428127691417105},"interzone_ceiling":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":0.0},"interzone_floor":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":0.0},"interzone_mixing":{"sensible_instant":0.0,"sensible_delayed":null,"latent":0.0,"total":0.0,"percent_grand_total":0.0},"interzone_wall":{"sensible_instant":null,"sensible_delayed":-192.0,"latent":null,"total":-192.0,"percent_grand_total":-1.0426271597858705},"lights":{"sensible_instant":3213.08,"sensible_delayed":0.0,"latent":null,"total":3213.08,"percent_grand_total":17.44814830502492},"opaque_door":{"sensible_instant":null,"sensible_delayed":206.7,"latent":null,"total":206.7,"percent_grand_total":1.122453301706976},"other_floor":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":0.0},"other_roof":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":0.0},"other_wall":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":0.0},"people":{"sensible_instant":1399.94,"sensible_delayed":854.96,"latent":1599.93,"total":3854.83,"percent_grand_total":20.933075283111286},"power_generation_equipment":{"sensible_instant":0.0,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":0.0},"refrigeration":{"sensible_instant":0.0,"sensible_delayed":null,"latent":0.0,"total":0.0,"percent_grand_total":0.0},"return_air_other":{"sensible_instant":0.0,"sensible_delayed":null,"latent":null,"total":0.0,"percent_grand_total":0.0},"return_air_lights":{"sensible_instant":0.0,"sensible_delayed":null,"latent":null,"total":0.0,"percent_grand_total":0.0},"roof":{"sensible_instant":null,"sensible_delayed":12339.64,"latent":null,"total":12339.64,"percent_grand_total":67.00856148947977},"supply_fan_heat":null,"sizing_factor_correction":{"sensible_instant":0.0,"sensible_delayed":null,"latent":null,"total":0.0,"percent_grand_total":0.0},"time_delay_correction":{"sensible_instant":null,"sensible_delayed":-106.7,"latent":null,"total":-106.7,"percent_grand_total":-0.5794183226518353},"water_use_equipment":{"sensible_instant":0.0,"sensible_delayed":null,"latent":0.0,"total":0.0,"percent_grand_total":0.0},"zone_ventilation":{"sensible_instant":0.0,"sensible_delayed":null,"latent":0.0,"total":0.0,"percent_grand_total":0.0}}},"heating":{"peak_condition":{"name":"VAV1-3","difference_between_peak_and_estimated_sensible_load":-6.2,"difference_due_to_sizing_factor":0.0,"estimate_instant_delayed_sensible_load":-21966.4,"main_fan_air_flow":592.39,"mixed_air_temperature":null,"outside_dry_bulb_temperature":3.02,"outside_wet_bulb_temperature":3.02,"outside_air_flow":0.0,"outside_humidity_ratio_at_peak":0.00092,"peak_sensible_load":-21972.5,"peak_sensible_load_with_sizing_factor":-21972.5,"supply_air_temperature":104.0,"time_of_peak_load":"1/21 24:00:00","zone_dry_bulb_temperature":70.0,"zone_humidity_ratio_at_peak":0.00485,"zone_relative_humidity":31.29},"engineering_check":{"name":"VAV1-3","airflow_per_floor_area":0.991,"airflow_per_total_capacity":0.0045,"floor_area_per_total_capacity":0.0484,"number_of_people":8.0,"outside_air_percent":0.0,"total_capacity_per_floor_area":20.6463},"estimated_peak_load_component_table":{"doas_direct_to_zone":{"sensible_instant":0.0,"sensible_delayed":null,"latent":0.0,"total":0.0,"percent_grand_total":-0.0},"equipment":{"sensible_instant":0.0,"sensible_delayed":0.0,"latent":0.0,"total":0.0,"percent_grand_total":-0.0},"exterior_floor":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":-0.0},"exterior_wall":{"sensible_instant":null,"sensible_delayed":-4628.6,"latent":null,"total":-4628.6,"percent_grand_total":20.66},"fenestration_conduction":{"sensible_instant":-1355.4,"sensible_delayed":null,"latent":null,"total":-1355.4,"percent_grand_total":6.05},"fenestration_solar":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":-0.0},"grand_total":{"sensible_instant":-3027.2,"sensible_delayed":-18945.370000000003,"latent":-433.2,"total":-22405.770000000004,"percent_grand_total":100.0},"ground_contact_floor":{"sensible_instant":null,"sensible_delayed":2419.53,"latent":null,"total":2419.53,"percent_grand_total":-10.8},"ground_contact_wall":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":-0.0},"hvac_equipment_loss":{"sensible_instant":0.0,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":-0.0},"infiltration":{"sensible_instant":-1671.8,"sensible_delayed":null,"latent":-433.2,"total":-2105.0,"percent_grand_total":9.4},"interzone_ceiling":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":-0.0},"interzone_floor":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":-0.0},"interzone_mixing":{"sensible_instant":0.0,"sensible_delayed":null,"latent":0.0,"total":0.0,"percent_grand_total":-0.0},"interzone_wall":{"sensible_instant":null,"sensible_delayed":1.3,"latent":null,"total":1.3,"percent_grand_total":-0.0},"lights":{"sensible_instant":0.0,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":-0.0},"opaque_door":{"sensible_instant":null,"sensible_delayed":-900.7,"latent":null,"total":-900.7,"percent_grand_total":4.02},"other_floor":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":-0.0},"other_roof":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":-0.0},"other_wall":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":-0.0},"people":{"sensible_instant":0.0,"sensible_delayed":0.0,"latent":0.0,"total":0.0,"percent_grand_total":-0.0},"power_generation_equipment":{"sensible_instant":0.0,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":-0.0},"refrigeration":{"sensible_instant":0.0,"sensible_delayed":null,"latent":0.0,"total":0.0,"percent_grand_total":-0.0},"return_air_other":{"sensible_instant":0.0,"sensible_delayed":null,"latent":null,"total":0.0,"percent_grand_total":null},"return_air_lights":{"sensible_instant":0.0,"sensible_delayed":null,"latent":null,"total":0.0,"percent_grand_total":null},"roof":{"sensible_instant":null,"sensible_delayed":-15830.7,"latent":null,"total":-15830.7,"percent_grand_total":70.67},"supply_fan_heat":null,"sizing_factor_correction":{"sensible_instant":0.0,"sensible_delayed":null,"latent":null,"total":0.0,"percent_grand_total":null},"time_delay_correction":{"sensible_instant":null,"sensible_delayed":-6.2,"latent":null,"total":-6.2,"percent_grand_total":null},"water_use_equipment":{"sensible_instant":0.0,"sensible_delayed":null,"latent":0.0,"total":0.0,"percent_grand_total":-0.0},"zone_ventilation":{"sensible_instant":0.0,"sensible_delayed":null,"latent":0.0,"total":0.0,"percent_grand_total":-0.0}}}},"VAV1-2":{"name":"VAV1-2","cooling":{"peak_condition":{"name":"VAV1-2","difference_between_peak_and_estimated_sensible_load":-128.4,"difference_due_to_sizing_factor":0.0,"estimate_instant_delayed_sensible_load":20480.67,"main_fan_air_flow":976.78,"mixed_air_temperature":null,"outside_dry_bulb_temperature":89.9,"outside_wet_bulb_temperature":75.35,"outside_air_flow":0.0,"outside_humidity_ratio_at_peak":0.01558,"peak_sensible_load":20352.25,"peak_sensible_load_with_sizing_factor":20352.25,"supply_air_temperature":55.0,"time_of_peak_load":"7/21 18:00:00","zone_dry_bulb_temperature":73.98,"zone_humidity_ratio_at_peak":0.00913,"zone_relative_humidity":51.13},"engineering_check":{"name":"VAV1-2","airflow_per_floor_area":0.9732,"airflow_per_total_capacity":0.0045,"floor_area_per_total_capacity":0.0493,"number_of_people":10.0,"outside_air_percent":0.0,"total_capacity_per_floor_area":20.2742},"estimated_peak_load_component_table":{"doas_direct_to_zone":{"sensible_instant":0.0,"sensible_delayed":null,"latent":0.0,"total":0.0,"percent_grand_total":0.0},"equipment":{"sensible_instant":5479.67,"sensible_delayed":0.0,"latent":0.0,"total":5479.67,"percent_grand_total":23.50686995327943},"exterior_floor":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":0.0},"exterior_wall":{"sensible_instant":null,"sensible_delayed":528.21,"latent":null,"total":528.21,"percent_grand_total":2.2659327620133567},"fenestration_conduction":{"sensible_instant":747.83,"sensible_delayed":null,"latent":null,"total":747.83,"percent_grand_total":3.2080659158600713},"fenestration_solar":{"sensible_instant":null,"sensible_delayed":66.46,"latent":null,"total":66.46,"percent_grand_total":0.2851023103754334},"grand_total":{"sensible_instant":12616.91,"sensible_delayed":7735.289999999999,"latent":2958.73,"total":23310.929999999997,"percent_grand_total":100.00000000000001},"ground_contact_floor":{"sensible_instant":null,"sensible_delayed":-9103.6,"latent":null,"total":-9103.6,"percent_grand_total":-39.0529249583779},"ground_contact_wall":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":0.0},"hvac_equipment_loss":{"sensible_instant":0.0,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":0.0},"infiltration":{"sensible_instant":529.73,"sensible_delayed":null,"latent":958.81,"total":1488.54,"percent_grand_total":6.385588219775016},"interzone_ceiling":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":0.0},"interzone_floor":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":0.0},"interzone_mixing":{"sensible_instant":0.0,"sensible_delayed":null,"latent":0.0,"total":0.0,"percent_grand_total":0.0},"interzone_wall":{"sensible_instant":null,"sensible_delayed":-347.1,"latent":null,"total":-347.1,"percent_grand_total":-1.4890010823249011},"lights":{"sensible_instant":4109.75,"sensible_delayed":0.0,"latent":null,"total":4109.75,"percent_grand_total":17.630141740376725},"opaque_door":{"sensible_instant":null,"sensible_delayed":-206.4,"latent":null,"total":-206.4,"percent_grand_total":-0.8854215597575902},"other_floor":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":0.0},"other_roof":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":0.0},"other_wall":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":0.0},"people":{"sensible_instant":1749.93,"sensible_delayed":1097.91,"latent":1999.92,"total":4847.76,"percent_grand_total":20.7960814948181},"power_generation_equipment":{"sensible_instant":0.0,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":0.0},"refrigeration":{"sensible_instant":0.0,"sensible_delayed":null,"latent":0.0,"total":0.0,"percent_grand_total":0.0},"return_air_other":{"sensible_instant":0.0,"sensible_delayed":null,"latent":null,"total":0.0,"percent_grand_total":0.0},"return_air_lights":{"sensible_instant":0.0,"sensible_delayed":null,"latent":null,"total":0.0,"percent_grand_total":0.0},"roof":{"sensible_instant":null,"sensible_delayed":15828.21,"latent":null,"total":15828.21,"percent_grand_total":67.90037977892774},"supply_fan_heat":null,"sizing_factor_correction":{"sensible_instant":0.0,"sensible_delayed":null,"latent":null,"total":0.0,"percent_grand_total":0.0},"time_delay_correction":{"sensible_instant":null,"sensible_delayed":-128.4,"latent":null,"total":-128.4,"percent_grand_total":-0.5508145749654777},"water_use_equipment":{"sensible_instant":0.0,"sensible_delayed":null,"latent":0.0,"total":0.0,"percent_grand_total":0.0},"zone_ventilation":{"sensible_instant":0.0,"sensible_delayed":null,"latent":0.0,"total":0.0,"percent_grand_total":0.0}}},"heating":{"peak_condition":{"name":"VAV1-2","difference_between_peak_and_estimated_sensible_load":-9.6,"difference_due_to_sizing_factor":0.0,"estimate_instant_delayed_sensible_load":-28862.7,"main_fan_air_flow":778.38,"mixed_air_temperature":null,"outside_dry_bulb_temperature":3.02,"outside_wet_bulb_temperature":3.02,"outside_air_flow":0.0,"outside_humidity_ratio_at_peak":0.00092,"peak_sensible_load":-28872.3,"peak_sensible_load_with_sizing_factor":-28872.3,"supply_air_temperature":104.0,"time_of_peak_load":"1/21 24:00:00","zone_dry_bulb_temperature":69.99,"zone_humidity_ratio_at_peak":0.00482,"zone_relative_humidity":31.1},"engineering_check":{"name":"VAV1-2","airflow_per_floor_area":0.9732,"airflow_per_total_capacity":0.0045,"floor_area_per_total_capacity":0.0493,"number_of_people":10.0,"outside_air_percent":0.0,"total_capacity_per_floor_area":20.2742},"estimated_peak_load_component_table":{"doas_direct_to_zone":{"sensible_instant":0.0,"sensible_delayed":null,"latent":0.0,"total":0.0,"percent_grand_total":-0.0},"equipment":{"sensible_instant":0.0,"sensible_delayed":0.0,"latent":0.0,"total":0.0,"percent_grand_total":-0.0},"exterior_floor":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":-0.0},"exterior_wall":{"sensible_instant":null,"sensible_delayed":-8236.9,"latent":null,"total":-8236.9,"percent_grand_total":27.88},"fenestration_conduction":{"sensible_instant":-1316.3,"sensible_delayed":null,"latent":null,"total":-1316.3,"percent_grand_total":4.46},"fenestration_solar":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":-0.0},"grand_total":{"sensible_instant":-3953.7,"sensible_delayed":-24918.75,"latent":-678.4,"total":-29550.850000000002,"percent_grand_total":99.95999999999998},"ground_contact_floor":{"sensible_instant":null,"sensible_delayed":3414.66,"latent":null,"total":3414.66,"percent_grand_total":-11.6},"ground_contact_wall":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":-0.0},"hvac_equipment_loss":{"sensible_instant":0.0,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":-0.0},"infiltration":{"sensible_instant":-2637.4,"sensible_delayed":null,"latent":-678.4,"total":-3315.8,"percent_grand_total":11.22},"interzone_ceiling":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":-0.0},"interzone_floor":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":-0.0},"interzone_mixing":{"sensible_instant":0.0,"sensible_delayed":null,"latent":0.0,"total":0.0,"percent_grand_total":-0.0},"interzone_wall":{"sensible_instant":null,"sensible_delayed":20.45,"latent":null,"total":20.45,"percent_grand_total":-0.1},"lights":{"sensible_instant":0.0,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":-0.0},"opaque_door":{"sensible_instant":null,"sensible_delayed":10.64,"latent":null,"total":10.64,"percent_grand_total":-0.0},"other_floor":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":-0.0},"other_roof":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":-0.0},"other_wall":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":-0.0},"people":{"sensible_instant":0.0,"sensible_delayed":0.0,"latent":0.0,"total":0.0,"percent_grand_total":-0.0},"power_generation_equipment":{"sensible_instant":0.0,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":-0.0},"refrigeration":{"sensible_instant":0.0,"sensible_delayed":null,"latent":0.0,"total":0.0,"percent_grand_total":-0.0},"return_air_other":{"sensible_instant":0.0,"sensible_delayed":null,"latent":null,"total":0.0,"percent_grand_total":null},"return_air_lights":{"sensible_instant":0.0,"sensible_delayed":null,"latent":null,"total":0.0,"percent_grand_total":null},"roof":{"sensible_instant":null,"sensible_delayed":-20118.0,"latent":null,"total":-20118.0,"percent_grand_total":68.1},"supply_fan_heat":null,"sizing_factor_correction":{"sensible_instant":0.0,"sensible_delayed":null,"latent":null,"total":0.0,"percent_grand_total":null},"time_delay_correction":{"sensible_instant":null,"sensible_delayed":-9.6,"latent":null,"total":-9.6,"percent_grand_total":null},"water_use_equipment":{"sensible_instant":0.0,"sensible_delayed":null,"latent":0.0,"total":0.0,"percent_grand_total":-0.0},"zone_ventilation":{"sensible_instant":0.0,"sensible_delayed":null,"latent":0.0,"total":0.0,"percent_grand_total":-0.0}}}},"VAV1-1":{"name":"VAV1-1","cooling":{"peak_condition":{"name":"VAV1-1","difference_between_peak_and_estimated_sensible_load":-76.4,"difference_due_to_sizing_factor":0.0,"estimate_instant_delayed_sensible_load":11664.01,"main_fan_air_flow":556.12,"mixed_air_temperature":null,"outside_dry_bulb_temperature":89.9,"outside_wet_bulb_temperature":75.35,"outside_air_flow":0.0,"outside_humidity_ratio_at_peak":0.01558,"peak_sensible_load":11587.59,"peak_sensible_load_with_sizing_factor":11587.59,"supply_air_temperature":55.0,"time_of_peak_load":"7/21 18:00:00","zone_dry_bulb_temperature":73.98,"zone_humidity_ratio_at_peak":0.00915,"zone_relative_humidity":51.24},"engineering_check":{"name":"VAV1-1","airflow_per_floor_area":1.0158,"airflow_per_total_capacity":0.0045,"floor_area_per_total_capacity":0.0473,"number_of_people":6.0,"outside_air_percent":0.0,"total_capacity_per_floor_area":21.1625},"estimated_peak_load_component_table":{"doas_direct_to_zone":{"sensible_instant":0.0,"sensible_delayed":null,"latent":0.0,"total":0.0,"percent_grand_total":0.0},"equipment":{"sensible_instant":2988.91,"sensible_delayed":0.0,"latent":0.0,"total":2988.91,"percent_grand_total":22.42980063967005},"exterior_floor":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":0.0},"exterior_wall":{"sensible_instant":null,"sensible_delayed":280.99,"latent":null,"total":280.99,"percent_grand_total":2.1086448510463303},"fenestration_conduction":{"sensible_instant":255.38,"sensible_delayed":null,"latent":null,"total":255.38,"percent_grand_total":1.9164586713413707},"fenestration_solar":{"sensible_instant":null,"sensible_delayed":46.13,"latent":null,"total":46.13,"percent_grand_total":0.3461752623892922},"grand_total":{"sensible_instant":6834.08,"sensible_delayed":4753.560000000001,"latent":1737.98,"total":13325.62,"percent_grand_total":100.0},"ground_contact_floor":{"sensible_instant":null,"sensible_delayed":-4491.4,"latent":null,"total":-4491.4,"percent_grand_total":-33.70499834154057},"ground_contact_wall":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":0.0},"hvac_equipment_loss":{"sensible_instant":0.0,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":0.0},"infiltration":{"sensible_instant":298.15,"sensible_delayed":null,"latent":538.03,"total":836.18,"percent_grand_total":6.27498007597395},"interzone_ceiling":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":0.0},"interzone_floor":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":0.0},"interzone_mixing":{"sensible_instant":0.0,"sensible_delayed":null,"latent":0.0,"total":0.0,"percent_grand_total":0.0},"interzone_wall":{"sensible_instant":null,"sensible_delayed":-30.4,"latent":null,"total":-30.4,"percent_grand_total":-0.22813197434715982},"lights":{"sensible_instant":2241.68,"sensible_delayed":0.0,"latent":null,"total":2241.68,"percent_grand_total":16.82233171889938},"opaque_door":{"sensible_instant":null,"sensible_delayed":-106.4,"latent":null,"total":-106.4,"percent_grand_total":-0.7984619102150594},"other_floor":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":0.0},"other_roof":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":0.0},"other_wall":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":0.0},"people":{"sensible_instant":1049.96,"sensible_delayed":526.36,"latent":1199.95,"total":2776.2700000000004,"percent_grand_total":20.83407751384176},"power_generation_equipment":{"sensible_instant":0.0,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":0.0},"refrigeration":{"sensible_instant":0.0,"sensible_delayed":null,"latent":0.0,"total":0.0,"percent_grand_total":0.0},"return_air_other":{"sensible_instant":0.0,"sensible_delayed":null,"latent":null,"total":0.0,"percent_grand_total":0.0},"return_air_lights":{"sensible_instant":0.0,"sensible_delayed":null,"latent":null,"total":0.0,"percent_grand_total":0.0},"roof":{"sensible_instant":null,"sensible_delayed":8604.68,"latent":null,"total":8604.68,"percent_grand_total":64.57245516531313},"supply_fan_heat":null,"sizing_factor_correction":{"sensible_instant":0.0,"sensible_delayed":null,"latent":null,"total":0.0,"percent_grand_total":0.0},"time_delay_correction":{"sensible_instant":null,"sensible_delayed":-76.4,"latent":null,"total":-76.4,"percent_grand_total":-0.5733316723724674},"water_use_equipment":{"sensible_instant":0.0,"sensible_delayed":null,"latent":0.0,"total":0.0,"percent_grand_total":0.0},"zone_ventilation":{"sensible_instant":0.0,"sensible_delayed":null,"latent":0.0,"total":0.0,"percent_grand_total":0.0}}},"heating":{"peak_condition":{"name":"VAV1-1","difference_between_peak_and_estimated_sensible_load":-5.4,"difference_due_to_sizing_factor":0.0,"estimate_instant_delayed_sensible_load":-16774.5,"main_fan_air_flow":452.38,"mixed_air_temperature":null,"outside_dry_bulb_temperature":3.02,"outside_wet_bulb_temperature":3.02,"outside_air_flow":0.0,"outside_humidity_ratio_at_peak":0.00092,"peak_sensible_load":-16779.9,"peak_sensible_load_with_sizing_factor":-16779.9,"supply_air_temperature":104.0,"time_of_peak_load":"1/21 24:00:00","zone_dry_bulb_temperature":69.99,"zone_humidity_ratio_at_peak":0.00482,"zone_relative_humidity":31.14},"engineering_check":{"name":"VAV1-1","airflow_per_floor_area":1.0158,"airflow_per_total_capacity":0.0045,"floor_area_per_total_capacity":0.0473,"number_of_people":6.0,"outside_air_percent":0.0,"total_capacity_per_floor_area":21.1625},"estimated_peak_load_component_table":{"doas_direct_to_zone":{"sensible_instant":0.0,"sensible_delayed":null,"latent":0.0,"total":0.0,"percent_grand_total":-0.0},"equipment":{"sensible_instant":0.0,"sensible_delayed":0.0,"latent":0.0,"total":0.0,"percent_grand_total":-0.0},"exterior_floor":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":-0.0},"exterior_wall":{"sensible_instant":null,"sensible_delayed":-4418.3,"latent":null,"total":-4418.3,"percent_grand_total":25.75},"fenestration_conduction":{"sensible_instant":-1345.3,"sensible_delayed":null,"latent":null,"total":-1345.3,"percent_grand_total":7.84},"fenestration_solar":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":-0.0},"grand_total":{"sensible_instant":-2829.7,"sensible_delayed":-13950.06,"latent":-382.4,"total":-17162.16,"percent_grand_total":100.00000000000001},"ground_contact_floor":{"sensible_instant":null,"sensible_delayed":1545.04,"latent":null,"total":1545.04,"percent_grand_total":-9.0},"ground_contact_wall":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":-0.0},"hvac_equipment_loss":{"sensible_instant":0.0,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":-0.0},"infiltration":{"sensible_instant":-1484.4,"sensible_delayed":null,"latent":-382.4,"total":-1866.8000000000002,"percent_grand_total":10.88},"interzone_ceiling":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":-0.0},"interzone_floor":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":-0.0},"interzone_mixing":{"sensible_instant":0.0,"sensible_delayed":null,"latent":0.0,"total":0.0,"percent_grand_total":-0.0},"interzone_wall":{"sensible_instant":null,"sensible_delayed":-21.7,"latent":null,"total":-21.7,"percent_grand_total":0.13},"lights":{"sensible_instant":0.0,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":-0.0},"opaque_door":{"sensible_instant":null,"sensible_delayed":-10.3,"latent":null,"total":-10.3,"percent_grand_total":0.06},"other_floor":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":-0.0},"other_roof":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":-0.0},"other_wall":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":-0.0},"people":{"sensible_instant":0.0,"sensible_delayed":0.0,"latent":0.0,"total":0.0,"percent_grand_total":-0.0},"power_generation_equipment":{"sensible_instant":0.0,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":-0.0},"refrigeration":{"sensible_instant":0.0,"sensible_delayed":null,"latent":0.0,"total":0.0,"percent_grand_total":-0.0},"return_air_other":{"sensible_instant":0.0,"sensible_delayed":null,"latent":null,"total":0.0,"percent_grand_total":null},"return_air_lights":{"sensible_instant":0.0,"sensible_delayed":null,"latent":null,"total":0.0,"percent_grand_total":null},"roof":{"sensible_instant":null,"sensible_delayed":-11039.4,"latent":null,"total":-11039.4,"percent_grand_total":64.34},"supply_fan_heat":null,"sizing_factor_correction":{"sensible_instant":0.0,"sensible_delayed":null,"latent":null,"total":0.0,"percent_grand_total":null},"time_delay_correction":{"sensible_instant":null,"sensible_delayed":-5.4,"latent":null,"total":-5.4,"percent_grand_total":null},"water_use_equipment":{"sensible_instant":0.0,"sensible_delayed":null,"latent":0.0,"total":0.0,"percent_grand_total":-0.0},"zone_ventilation":{"sensible_instant":0.0,"sensible_delayed":null,"latent":0.0,"total":0.0,"percent_grand_total":-0.0}}}}},"system_load_summarys":{"Air1":{"name":"Air1","cooling":{"name":null,"peak_condition":{"name":"Air1","difference_between_peak_and_estimated_sensible_load":-1062.9,"difference_due_to_sizing_factor":0.0,"estimate_instant_delayed_sensible_load":165328.89,"main_fan_air_flow":4895131.21,"mixed_air_temperature":32.0,"outside_dry_bulb_temperature":193.82,"outside_wet_bulb_temperature":167.63,"outside_air_flow":0.0,"outside_humidity_ratio_at_peak":0.01558,"peak_sensible_load":164266.01,"peak_sensible_load_with_sizing_factor":164266.01,"supply_air_temperature":131.0,"time_of_peak_load":"7/21 18:00:00","zone_dry_bulb_temperature":165.17,"zone_humidity_ratio_at_peak":0.00909,"zone_relative_humidity":50.91},"engineering_check":{"name":"Air1","airflow_per_floor_area":2095.7479,"airflow_per_total_capacity":2.7688,"floor_area_per_total_capacity":0.0142,"number_of_people":24.0,"outside_air_percent":0.0,"total_capacity_per_floor_area":70.3125},"estimated_peak_load_component_table":{"doas_direct_to_zone":{"sensible_instant":0.0,"sensible_delayed":null,"latent":0.0,"total":0.0,"percent_grand_total":0.0},"equipment":{"sensible_instant":43512.18,"sensible_delayed":0.0,"latent":0.0,"total":43512.18,"percent_grand_total":22.427486063170317},"exterior_floor":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":0.0},"exterior_wall":{"sensible_instant":null,"sensible_delayed":4798.31,"latent":null,"total":4798.31,"percent_grand_total":2.4731932679946342},"fenestration_conduction":{"sensible_instant":4268.41,"sensible_delayed":null,"latent":null,"total":4268.41,"percent_grand_total":2.20006687292838},"fenestration_solar":{"sensible_instant":null,"sensible_delayed":566.77,"latent":null,"total":566.77,"percent_grand_total":0.29213030181487204},"grand_total":{"sensible_instant":104891.67899999999,"sensible_delayed":65551.18,"latent":23569.88,"total":194012.739,"percent_grand_total":99.99999999999999},"ground_contact_floor":{"sensible_instant":null,"sensible_delayed":-70372.8,"latent":null,"total":-70372.8,"percent_grand_total":-36.27225735934794},"ground_contact_wall":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":0.0},"hvac_equipment_loss":{"sensible_instant":0.0,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":0.0},"infiltration":{"sensible_instant":3970.31,"sensible_delayed":null,"latent":7192.96,"total":11163.27,"percent_grand_total":5.7538850580321945},"interzone_ceiling":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":0.0},"interzone_floor":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":0.0},"interzone_mixing":{"sensible_instant":0.0,"sensible_delayed":null,"latent":0.0,"total":0.0,"percent_grand_total":0.0},"interzone_wall":{"sensible_instant":null,"sensible_delayed":-1943.1,"latent":null,"total":-1943.1,"percent_grand_total":-1.0015321725858424},"lights":{"sensible_instant":32634.14,"sensible_delayed":0.0,"latent":null,"total":32634.14,"percent_grand_total":16.820617124528095},"opaque_door":{"sensible_instant":null,"sensible_delayed":-362.1,"latent":null,"total":-362.1,"percent_grand_total":-0.18663722901205987},"other_floor":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":0.0},"other_roof":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":0.0},"other_wall":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":0.0},"people":{"sensible_instant":14329.81,"sensible_delayed":8459.11,"latent":16376.92,"total":39165.84,"percent_grand_total":20.187251724743703},"power_generation_equipment":{"sensible_instant":0.0,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":0.0},"refrigeration":{"sensible_instant":0.0,"sensible_delayed":null,"latent":0.0,"total":0.0,"percent_grand_total":0.0},"return_air_other":{"sensible_instant":0.0,"sensible_delayed":null,"latent":null,"total":0.0,"percent_grand_total":0.0},"return_air_lights":{"sensible_instant":0.0,"sensible_delayed":null,"latent":null,"total":0.0,"percent_grand_total":0.0},"roof":{"sensible_instant":null,"sensible_delayed":125467.89,"latent":null,"total":125467.89,"percent_grand_total":64.66992355589598},"supply_fan_heat":{"sensible_instant":6176.829,"sensible_delayed":null,"latent":null,"total":6176.829,"percent_grand_total":3.1837234151928544},"sizing_factor_correction":{"sensible_instant":0.0,"sensible_delayed":null,"latent":null,"total":0.0,"percent_grand_total":0.0},"time_delay_correction":{"sensible_instant":null,"sensible_delayed":-1062.9,"latent":null,"total":-1062.9,"percent_grand_total":-0.5478506233552015},"water_use_equipment":{"sensible_instant":0.0,"sensible_delayed":null,"latent":0.0,"total":0.0,"percent_grand_total":0.0},"zone_ventilation":{"sensible_instant":0.0,"sensible_delayed":null,"latent":0.0,"total":0.0,"percent_grand_total":0.0}},"temperature":{"supply":131.0,"return":73.98,"mixed_air":32.0,"fan_heat_temperature_difference":8754.960741428504},"airflow":{"main_fan":4895131.21,"ventilation":0.0}},"heating":{"name":null,"peak_condition":{"name":"Air1","difference_between_peak_and_estimated_sensible_load":0.0,"difference_due_to_sizing_factor":0.0,"estimate_instant_delayed_sensible_load":0.0,"main_fan_air_flow":0.0,"mixed_air_temperature":32.0,"outside_dry_bulb_temperature":null,"outside_wet_bulb_temperature":null,"outside_air_flow":0.0,"outside_humidity_ratio_at_peak":null,"peak_sensible_load":0.0,"peak_sensible_load_with_sizing_factor":0.0,"supply_air_temperature":32.0,"time_of_peak_load":null,"zone_dry_bulb_temperature":null,"zone_humidity_ratio_at_peak":null,"zone_relative_humidity":null},"engineering_check":{"name":"Air1","airflow_per_floor_area":2095.7479,"airflow_per_total_capacity":2.7688,"floor_area_per_total_capacity":0.0142,"number_of_people":24.0,"outside_air_percent":0.0,"total_capacity_per_floor_area":70.3125},"estimated_peak_load_component_table":{"doas_direct_to_zone":{"sensible_instant":null,"sensible_delayed":null,"latent":null,"total":0,"percent_grand_total":null},"equipment":{"sensible_instant":null,"sensible_delayed":null,"latent":null,"total":0,"percent_grand_total":null},"exterior_floor":{"sensible_instant":null,"sensible_delayed":null,"latent":null,"total":0,"percent_grand_total":null},"exterior_wall":{"sensible_instant":null,"sensible_delayed":null,"latent":null,"total":0,"percent_grand_total":null},"fenestration_conduction":{"sensible_instant":null,"sensible_delayed":null,"latent":null,"total":0,"percent_grand_total":null},"fenestration_solar":{"sensible_instant":null,"sensible_delayed":null,"latent":null,"total":0,"percent_grand_total":null},"grand_total":{"sensible_instant":0.0,"sensible_delayed":0.0,"latent":0.0,"total":0.0,"percent_grand_total":0.0},"ground_contact_floor":{"sensible_instant":null,"sensible_delayed":null,"latent":null,"total":0,"percent_grand_total":null},"ground_contact_wall":{"sensible_instant":null,"sensible_delayed":null,"latent":null,"total":0,"percent_grand_total":null},"hvac_equipment_loss":{"sensible_instant":null,"sensible_delayed":null,"latent":null,"total":0,"percent_grand_total":null},"infiltration":{"sensible_instant":null,"sensible_delayed":null,"latent":null,"total":0,"percent_grand_total":null},"interzone_ceiling":{"sensible_instant":null,"sensible_delayed":null,"latent":null,"total":0,"percent_grand_total":null},"interzone_floor":{"sensible_instant":null,"sensible_delayed":null,"latent":null,"total":0,"percent_grand_total":null},"interzone_mixing":{"sensible_instant":null,"sensible_delayed":null,"latent":null,"total":0,"percent_grand_total":null},"interzone_wall":{"sensible_instant":null,"sensible_delayed":null,"latent":null,"total":0,"percent_grand_total":null},"lights":{"sensible_instant":null,"sensible_delayed":null,"latent":null,"total":0,"percent_grand_total":null},"opaque_door":{"sensible_instant":null,"sensible_delayed":null,"latent":null,"total":0,"percent_grand_total":null},"other_floor":{"sensible_instant":null,"sensible_delayed":null,"latent":null,"total":0,"percent_grand_total":null},"other_roof":{"sensible_instant":null,"sensible_delayed":null,"latent":null,"total":0,"percent_grand_total":null},"other_wall":{"sensible_instant":null,"sensible_delayed":null,"latent":null,"total":0,"percent_grand_total":null},"people":{"sensible_instant":null,"sensible_delayed":null,"latent":null,"total":0,"percent_grand_total":null},"power_generation_equipment":{"sensible_instant":null,"sensible_delayed":null,"latent":null,"total":0,"percent_grand_total":null},"refrigeration":{"sensible_instant":null,"sensible_delayed":null,"latent":null,"total":0,"percent_grand_total":null},"return_air_other":{"sensible_instant":0.0,"sensible_delayed":null,"latent":null,"total":0.0,"percent_grand_total":null},"return_air_lights":{"sensible_instant":null,"sensible_delayed":null,"latent":null,"total":0,"percent_grand_total":null},"roof":{"sensible_instant":null,"sensible_delayed":null,"latent":null,"total":0,"percent_grand_total":null},"supply_fan_heat":{"sensible_instant":0.0,"sensible_delayed":null,"latent":null,"total":0.0,"percent_grand_total":null},"sizing_factor_correction":{"sensible_instant":0.0,"sensible_delayed":null,"latent":null,"total":0.0,"percent_grand_total":null},"time_delay_correction":{"sensible_instant":null,"sensible_delayed":0.0,"latent":null,"total":0.0,"percent_grand_total":null},"water_use_equipment":{"sensible_instant":null,"sensible_delayed":null,"latent":null,"total":0,"percent_grand_total":null},"zone_ventilation":{"sensible_instant":-0.0,"sensible_delayed":null,"latent":0.0,"total":0.0,"percent_grand_total":null}},"temperature":{"supply":32.0,"return":32.0,"mixed_air":32.0,"fan_heat_temperature_difference":0.0},"airflow":{"main_fan":0.0,"ventilation":0.0}}}},"design_psychrometrics":{"Air1 Cooling Coil":{"name":"Air1 Cooling Coil","air_density":0.075,"air_specific_heat":0.2441,"percent_outdoor_air":0.0,"outdoor_air_flow_rate":0.0,"zone_sensible_load":54235.69,"coil_air_flow_rate":2310.502224,"time_of_peak":"7/21 18:00:00","zone_dry_bulb_temperature":73.98,"zone_humidity_ratio":0.0091182,"zone_relative_humidity":50.9929,"return_air_dry_bulb_temperature":73.98,"return_air_humidity_ratio":0.0091182,"outdoor_air_dry_bulb_temperature":89.9,"outdoor_air_humidity_ratio":0.01557844,"entering_coil_dry_bulb_temperature":73.98,"entering_coil_humidity_ratio":0.0091182,"leaving_coil_dry_bulb_temperature":52.57,"leaving_coil_humidity_ratio":32.0153,"supply_fan_temperature_difference":8754.960741428504}}}
+{
+  "zone_load_summarys": {
+    "VAV Box No Reheat-1": {
+      "name": "VAV Box No Reheat-1",
+      "cooling": {
+        "peak_condition": {
+          "name": "VAV BOX NO REHEAT-1",
+          "difference_between_peak_and_estimated_sensible_load": 702.1,
+          "difference_due_to_sizing_factor": 0.0,
+          "estimate_instant_delayed_sensible_load": 4305.74,
+          "main_fan_air_flow": 0.47,
+          "mixed_air_temperature": null,
+          "outside_dry_bulb_temperature": 32.78,
+          "outside_wet_bulb_temperature": 17.22,
+          "outside_air_flow": 0.07,
+          "outside_humidity_ratio_at_peak": 0.00591,
+          "peak_sensible_load": 5007.85,
+          "peak_sensible_load_with_sizing_factor": 5007.85,
+          "supply_air_temperature": 12.78,
+          "time_of_peak_load": "7/21 16:45:00",
+          "zone_dry_bulb_temperature": 23.33,
+          "zone_humidity_ratio_at_peak": 0.00836,
+          "zone_relative_humidity": 46.89
+        },
+        "engineering_check": {
+          "name": null,
+          "airflow_per_floor_area": 0.002781229658559678,
+          "airflow_per_total_capacity": 0.00010592169907419928,
+          "floor_area_per_total_capacity": 0.03808448495010412,
+          "number_of_people": 6.0,
+          "outside_air_percent": 0.1394,
+          "total_capacity_per_floor_area": 26.257411681164562
+        },
+        "estimated_peak_load_component_table": {
+          "doas_direct_to_zone": {
+            "sensible_instant": -1408.1,
+            "sensible_delayed": null,
+            "latent": -820.6,
+            "total": -2228.7,
+            "percent_grand_total": -50.227168239716576,
+            "related_area": null
+          },
+          "equipment": {
+            "sensible_instant": 2364.7,
+            "sensible_delayed": 0.0,
+            "latent": 0.0,
+            "total": 2364.7,
+            "percent_grand_total": 53.29213655335299,
+            "related_area": 168.99
+          },
+          "exterior_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "exterior_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 714.58,
+            "latent": null,
+            "total": 714.58,
+            "percent_grand_total": 16.104154834987515,
+            "related_area": 89.42
+          },
+          "fenestration_conduction": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "fenestration_solar": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "grand_total": {
+            "sensible_instant": 3245.63,
+            "sensible_delayed": 1762.2199999999998,
+            "latent": -570.6100000000001,
+            "total": 4437.24,
+            "percent_grand_total": 100.00000000000001,
+            "related_area": null
+          },
+          "ground_contact_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": -392.6,
+            "latent": null,
+            "total": -392.6,
+            "percent_grand_total": -8.847842352453327,
+            "related_area": 168.99
+          },
+          "ground_contact_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "hvac_equipment_loss": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "infiltration": {
+            "sensible_instant": 162.31,
+            "sensible_delayed": null,
+            "latent": -101.7,
+            "total": 60.61,
+            "percent_grand_total": 1.3659391874228124,
+            "related_area": 89.42
+          },
+          "interzone_ceiling": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "interzone_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "interzone_mixing": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "interzone_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 127.45,
+            "latent": null,
+            "total": 127.45,
+            "percent_grand_total": 2.8722809674482335,
+            "related_area": 89.08
+          },
+          "lights": {
+            "sensible_instant": 1819.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 1819.0,
+            "percent_grand_total": 40.99395119488691,
+            "related_area": 168.99
+          },
+          "opaque_door": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "other_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "other_roof": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 168.99
+          },
+          "other_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 89.42
+          },
+          "people": {
+            "sensible_instant": 307.72,
+            "sensible_delayed": 176.37,
+            "latent": 351.69,
+            "total": 835.78,
+            "percent_grand_total": 18.83558247919878,
+            "related_area": 168.99
+          },
+          "power_generation_equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "refrigeration": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 168.99
+          },
+          "return_air_other": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "return_air_lights": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "roof": {
+            "sensible_instant": null,
+            "sensible_delayed": 434.32,
+            "latent": null,
+            "total": 434.32,
+            "percent_grand_total": 9.78806645572473,
+            "related_area": 168.99
+          },
+          "supply_fan_heat": null,
+          "sizing_factor_correction": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "time_delay_correction": {
+            "sensible_instant": null,
+            "sensible_delayed": 702.1,
+            "latent": null,
+            "total": 702.1,
+            "percent_grand_total": 15.82289891914794,
+            "related_area": null
+          },
+          "water_use_equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 168.99
+          },
+          "zone_ventilation": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          }
+        }
+      },
+      "heating": {
+        "peak_condition": {
+          "name": "VAV BOX NO REHEAT-1",
+          "difference_between_peak_and_estimated_sensible_load": 356.39,
+          "difference_due_to_sizing_factor": 0.0,
+          "estimate_instant_delayed_sensible_load": -4428.2,
+          "main_fan_air_flow": 0.22,
+          "mixed_air_temperature": null,
+          "outside_dry_bulb_temperature": -17.4,
+          "outside_wet_bulb_temperature": -17.4,
+          "outside_air_flow": 0.07,
+          "outside_humidity_ratio_at_peak": 0.00099,
+          "peak_sensible_load": -4071.8,
+          "peak_sensible_load_with_sizing_factor": -4071.8,
+          "supply_air_temperature": 40.0,
+          "time_of_peak_load": "12/21 24:00:00",
+          "zone_dry_bulb_temperature": 21.11,
+          "zone_humidity_ratio_at_peak": 0.00385,
+          "zone_relative_humidity": 24.92
+        },
+        "engineering_check": {
+          "name": null,
+          "airflow_per_floor_area": 0.0013018521806024024,
+          "airflow_per_total_capacity": -4.2604778706906236e-05,
+          "floor_area_per_total_capacity": -0.032726279789454936,
+          "number_of_people": 6.0,
+          "outside_air_percent": 0.1394,
+          "total_capacity_per_floor_area": -30.556482632108406
+        },
+        "estimated_peak_load_component_table": {
+          "doas_direct_to_zone": {
+            "sensible_instant": -733.8,
+            "sensible_delayed": null,
+            "latent": -954.3,
+            "total": -1688.1,
+            "percent_grand_total": 30.58,
+            "related_area": null
+          },
+          "equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 168.99
+          },
+          "exterior_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "exterior_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": -1498.4,
+            "latent": null,
+            "total": -1498.4,
+            "percent_grand_total": 27.14,
+            "related_area": 89.42
+          },
+          "fenestration_conduction": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "fenestration_solar": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "grand_total": {
+            "sensible_instant": -1489.3,
+            "sensible_delayed": -2582.44,
+            "latent": -1092.0,
+            "total": -5163.74,
+            "percent_grand_total": 99.96999999999998,
+            "related_area": null
+          },
+          "ground_contact_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 257.92,
+            "latent": null,
+            "total": 257.92,
+            "percent_grand_total": -4.7,
+            "related_area": 168.99
+          },
+          "ground_contact_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "hvac_equipment_loss": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": null
+          },
+          "infiltration": {
+            "sensible_instant": -755.5,
+            "sensible_delayed": null,
+            "latent": -137.7,
+            "total": -893.2,
+            "percent_grand_total": 16.18,
+            "related_area": 89.42
+          },
+          "interzone_ceiling": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "interzone_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "interzone_mixing": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": null
+          },
+          "interzone_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.25,
+            "latent": null,
+            "total": 0.25,
+            "percent_grand_total": -0.0,
+            "related_area": 89.08
+          },
+          "lights": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 168.99
+          },
+          "opaque_door": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "other_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "other_roof": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 168.99
+          },
+          "other_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 89.42
+          },
+          "people": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 168.99
+          },
+          "power_generation_equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": null
+          },
+          "refrigeration": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 168.99
+          },
+          "return_air_other": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": null,
+            "related_area": null
+          },
+          "return_air_lights": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": null,
+            "related_area": null
+          },
+          "roof": {
+            "sensible_instant": null,
+            "sensible_delayed": -1698.6,
+            "latent": null,
+            "total": -1698.6,
+            "percent_grand_total": 30.77,
+            "related_area": 168.99
+          },
+          "supply_fan_heat": null,
+          "sizing_factor_correction": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": null,
+            "related_area": null
+          },
+          "time_delay_correction": {
+            "sensible_instant": null,
+            "sensible_delayed": 356.39,
+            "latent": null,
+            "total": 356.39,
+            "percent_grand_total": null,
+            "related_area": null
+          },
+          "water_use_equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 168.99
+          },
+          "zone_ventilation": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": null
+          }
+        }
+      }
+    },
+    "VAV Box Furnace-1": {
+      "name": "VAV Box Furnace-1",
+      "cooling": {
+        "peak_condition": {
+          "name": "VAV BOX FURNACE-1",
+          "difference_between_peak_and_estimated_sensible_load": -65.2,
+          "difference_due_to_sizing_factor": 0.0,
+          "estimate_instant_delayed_sensible_load": 11315.66,
+          "main_fan_air_flow": 1.06,
+          "mixed_air_temperature": null,
+          "outside_dry_bulb_temperature": 30.95,
+          "outside_wet_bulb_temperature": 16.58,
+          "outside_air_flow": 0.52,
+          "outside_humidity_ratio_at_peak": 0.00591,
+          "peak_sensible_load": 11250.45,
+          "peak_sensible_load_with_sizing_factor": 11250.45,
+          "supply_air_temperature": 12.78,
+          "time_of_peak_load": "7/21 18:00:00",
+          "zone_dry_bulb_temperature": 23.3,
+          "zone_humidity_ratio_at_peak": 0.01168,
+          "zone_relative_humidity": 65.26
+        },
+        "engineering_check": {
+          "name": null,
+          "airflow_per_floor_area": 0.006879543094496366,
+          "airflow_per_total_capacity": 5.374400513508759e-05,
+          "floor_area_per_total_capacity": 0.0078121474634097144,
+          "number_of_people": 108.0,
+          "outside_air_percent": 0.4926,
+          "total_capacity_per_floor_area": 128.00577622014535
+        },
+        "estimated_peak_load_component_table": {
+          "doas_direct_to_zone": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "equipment": {
+            "sensible_instant": 895.59,
+            "sensible_delayed": 0.0,
+            "latent": 0.0,
+            "total": 895.59,
+            "percent_grand_total": 4.540810713106896,
+            "related_area": 154.08
+          },
+          "exterior_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "exterior_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": -421.0,
+            "latent": null,
+            "total": -421.0,
+            "percent_grand_total": -2.134549637912441,
+            "related_area": 86.35
+          },
+          "fenestration_conduction": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "fenestration_solar": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "grand_total": {
+            "sensible_instant": 8612.15,
+            "sensible_delayed": 2638.3700000000003,
+            "latent": 8472.609999999999,
+            "total": 19723.129999999997,
+            "percent_grand_total": 100.0,
+            "related_area": null
+          },
+          "ground_contact_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": -341.4,
+            "latent": null,
+            "total": -341.4,
+            "percent_grand_total": -1.7309625804829154,
+            "related_area": 154.08
+          },
+          "ground_contact_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "hvac_equipment_loss": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "infiltration": {
+            "sensible_instant": 130.96,
+            "sensible_delayed": null,
+            "latent": -231.6,
+            "total": -100.63999999999999,
+            "percent_grand_total": -0.5102638374335108,
+            "related_area": 86.35
+          },
+          "interzone_ceiling": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "interzone_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "interzone_mixing": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "interzone_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": -1177.6,
+            "latent": null,
+            "total": -1177.6,
+            "percent_grand_total": -5.97065475915841,
+            "related_area": 86.01
+          },
+          "lights": {
+            "sensible_instant": 1492.65,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 1492.65,
+            "percent_grand_total": 7.5680178551781605,
+            "related_area": 154.08
+          },
+          "opaque_door": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "other_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "other_roof": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 154.08
+          },
+          "other_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 86.35
+          },
+          "people": {
+            "sensible_instant": 6092.95,
+            "sensible_delayed": 3873.67,
+            "latent": 8704.21,
+            "total": 18670.829999999998,
+            "percent_grand_total": 94.66463994305164,
+            "related_area": 154.08
+          },
+          "power_generation_equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "refrigeration": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 154.08
+          },
+          "return_air_other": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "return_air_lights": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "roof": {
+            "sensible_instant": null,
+            "sensible_delayed": 769.9,
+            "latent": null,
+            "total": 769.9,
+            "percent_grand_total": 3.9035386371230127,
+            "related_area": 154.08
+          },
+          "supply_fan_heat": null,
+          "sizing_factor_correction": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "time_delay_correction": {
+            "sensible_instant": null,
+            "sensible_delayed": -65.2,
+            "latent": null,
+            "total": -65.2,
+            "percent_grand_total": -0.3305763334724256,
+            "related_area": null
+          },
+          "water_use_equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 154.08
+          },
+          "zone_ventilation": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          }
+        }
+      },
+      "heating": {
+        "peak_condition": {
+          "name": "VAV BOX FURNACE-1",
+          "difference_between_peak_and_estimated_sensible_load": -2.4,
+          "difference_due_to_sizing_factor": 0.0,
+          "estimate_instant_delayed_sensible_load": -3487.7,
+          "main_fan_air_flow": 0.18,
+          "mixed_air_temperature": null,
+          "outside_dry_bulb_temperature": -17.4,
+          "outside_wet_bulb_temperature": -17.4,
+          "outside_air_flow": 0.52,
+          "outside_humidity_ratio_at_peak": 0.00099,
+          "peak_sensible_load": -3490.1,
+          "peak_sensible_load_with_sizing_factor": -3490.1,
+          "supply_air_temperature": 40.0,
+          "time_of_peak_load": "12/21 24:00:00",
+          "zone_dry_bulb_temperature": 21.11,
+          "zone_humidity_ratio_at_peak": 0.00462,
+          "zone_relative_humidity": 29.86
+        },
+        "engineering_check": {
+          "name": null,
+          "airflow_per_floor_area": 0.0011682242990654205,
+          "airflow_per_total_capacity": -4.919565110444236e-05,
+          "floor_area_per_total_capacity": -0.042111477345402666,
+          "number_of_people": 108.0,
+          "outside_air_percent": 0.4926,
+          "total_capacity_per_floor_area": -23.746495327102807
+        },
+        "estimated_peak_load_component_table": {
+          "doas_direct_to_zone": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": null
+          },
+          "equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 154.08
+          },
+          "exterior_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "exterior_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": -1447.2,
+            "latent": null,
+            "total": -1447.2,
+            "percent_grand_total": 39.58,
+            "related_area": 86.35
+          },
+          "fenestration_conduction": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "fenestration_solar": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "grand_total": {
+            "sensible_instant": -729.7,
+            "sensible_delayed": -2760.36,
+            "latent": -168.8,
+            "total": -3658.8600000000006,
+            "percent_grand_total": 100.0,
+            "related_area": null
+          },
+          "ground_contact_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 235.22,
+            "latent": null,
+            "total": 235.22,
+            "percent_grand_total": -6.4,
+            "related_area": 154.08
+          },
+          "ground_contact_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "hvac_equipment_loss": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": null
+          },
+          "infiltration": {
+            "sensible_instant": -729.7,
+            "sensible_delayed": null,
+            "latent": -168.8,
+            "total": -898.5,
+            "percent_grand_total": 24.57,
+            "related_area": 86.35
+          },
+          "interzone_ceiling": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "interzone_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "interzone_mixing": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": null
+          },
+          "interzone_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 2.32,
+            "latent": null,
+            "total": 2.32,
+            "percent_grand_total": -0.1,
+            "related_area": 86.01
+          },
+          "lights": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 154.08
+          },
+          "opaque_door": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "other_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "other_roof": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 154.08
+          },
+          "other_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 86.35
+          },
+          "people": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 154.08
+          },
+          "power_generation_equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": null
+          },
+          "refrigeration": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 154.08
+          },
+          "return_air_other": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": null,
+            "related_area": null
+          },
+          "return_air_lights": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": null,
+            "related_area": null
+          },
+          "roof": {
+            "sensible_instant": null,
+            "sensible_delayed": -1548.3,
+            "latent": null,
+            "total": -1548.3,
+            "percent_grand_total": 42.35,
+            "related_area": 154.08
+          },
+          "supply_fan_heat": null,
+          "sizing_factor_correction": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": null,
+            "related_area": null
+          },
+          "time_delay_correction": {
+            "sensible_instant": null,
+            "sensible_delayed": -2.4,
+            "latent": null,
+            "total": -2.4,
+            "percent_grand_total": null,
+            "related_area": null
+          },
+          "water_use_equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 154.08
+          },
+          "zone_ventilation": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": null
+          }
+        }
+      }
+    },
+    "VAV Box Electric-1": {
+      "name": "VAV Box Electric-1",
+      "cooling": {
+        "peak_condition": {
+          "name": "VAV BOX ELECTRIC-1",
+          "difference_between_peak_and_estimated_sensible_load": -18.4,
+          "difference_due_to_sizing_factor": 0.0,
+          "estimate_instant_delayed_sensible_load": 10731.0,
+          "main_fan_air_flow": 1.01,
+          "mixed_air_temperature": null,
+          "outside_dry_bulb_temperature": 29.81,
+          "outside_wet_bulb_temperature": 16.18,
+          "outside_air_flow": 0.31,
+          "outside_humidity_ratio_at_peak": 0.00591,
+          "peak_sensible_load": 10712.58,
+          "peak_sensible_load_with_sizing_factor": 10712.58,
+          "supply_air_temperature": 12.78,
+          "time_of_peak_load": "7/21 18:30:00",
+          "zone_dry_bulb_temperature": 23.32,
+          "zone_humidity_ratio_at_peak": 0.00944,
+          "zone_relative_humidity": 52.86
+        },
+        "engineering_check": {
+          "name": null,
+          "airflow_per_floor_area": 0.006046455938697319,
+          "airflow_per_total_capacity": 7.712843947021162e-05,
+          "floor_area_per_total_capacity": 0.012755974781291236,
+          "number_of_people": 72.0,
+          "outside_air_percent": 0.3031,
+          "total_capacity_per_floor_area": 78.39463601532567
+        },
+        "estimated_peak_load_component_table": {
+          "doas_direct_to_zone": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "equipment": {
+            "sensible_instant": 3596.0,
+            "sensible_delayed": 0.0,
+            "latent": 0.0,
+            "total": 3596.0,
+            "percent_grand_total": 27.46077904305752,
+            "related_area": 167.04
+          },
+          "exterior_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "exterior_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 647.16,
+            "latent": null,
+            "total": 647.16,
+            "percent_grand_total": 4.942023850251697,
+            "related_area": 90.95
+          },
+          "fenestration_conduction": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "fenestration_solar": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "grand_total": {
+            "sensible_instant": 9085.4,
+            "sensible_delayed": 1627.21,
+            "latent": 2382.4300000000003,
+            "total": 13095.04,
+            "percent_grand_total": 99.99999999999999,
+            "related_area": null
+          },
+          "ground_contact_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": -409.4,
+            "latent": null,
+            "total": -409.4,
+            "percent_grand_total": -3.126374566247984,
+            "related_area": 167.04
+          },
+          "ground_contact_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "hvac_equipment_loss": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "infiltration": {
+            "sensible_instant": 122.71,
+            "sensible_delayed": null,
+            "latent": -149.7,
+            "total": -26.989999999999995,
+            "percent_grand_total": -0.2061085724060407,
+            "related_area": 90.95
+          },
+          "interzone_ceiling": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "interzone_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "interzone_mixing": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "interzone_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": -222.8,
+            "latent": null,
+            "total": -222.8,
+            "percent_grand_total": -1.7014075558379356,
+            "related_area": 90.95
+          },
+          "lights": {
+            "sensible_instant": 3594.2,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 3594.2,
+            "percent_grand_total": 27.44703338057768,
+            "related_area": 167.04
+          },
+          "opaque_door": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "other_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "other_roof": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 166.08
+          },
+          "other_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 90.95
+          },
+          "people": {
+            "sensible_instant": 1772.49,
+            "sensible_delayed": 1028.3,
+            "latent": 2532.13,
+            "total": 5332.92,
+            "percent_grand_total": 40.72473241777039,
+            "related_area": 167.04
+          },
+          "power_generation_equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "refrigeration": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 167.04
+          },
+          "return_air_other": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "return_air_lights": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "roof": {
+            "sensible_instant": null,
+            "sensible_delayed": 602.35,
+            "latent": null,
+            "total": 602.35,
+            "percent_grand_total": 4.5998332192952445,
+            "related_area": 166.08
+          },
+          "supply_fan_heat": null,
+          "sizing_factor_correction": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "time_delay_correction": {
+            "sensible_instant": null,
+            "sensible_delayed": -18.4,
+            "latent": null,
+            "total": -18.4,
+            "percent_grand_total": -0.14051121646058354,
+            "related_area": null
+          },
+          "water_use_equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 167.04
+          },
+          "zone_ventilation": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          }
+        }
+      },
+      "heating": {
+        "peak_condition": {
+          "name": "VAV BOX ELECTRIC-1",
+          "difference_between_peak_and_estimated_sensible_load": -2.5,
+          "difference_due_to_sizing_factor": 0.0,
+          "estimate_instant_delayed_sensible_load": -3706.2,
+          "main_fan_air_flow": 0.2,
+          "mixed_air_temperature": null,
+          "outside_dry_bulb_temperature": -17.4,
+          "outside_wet_bulb_temperature": -17.4,
+          "outside_air_flow": 0.31,
+          "outside_humidity_ratio_at_peak": 0.00099,
+          "peak_sensible_load": -3708.7,
+          "peak_sensible_load_with_sizing_factor": -3708.7,
+          "supply_air_temperature": 40.0,
+          "time_of_peak_load": "12/21 24:00:00",
+          "zone_dry_bulb_temperature": 21.11,
+          "zone_humidity_ratio_at_peak": 0.00463,
+          "zone_relative_humidity": 29.88
+        },
+        "engineering_check": {
+          "name": null,
+          "airflow_per_floor_area": 0.0011973180076628354,
+          "airflow_per_total_capacity": -5.145885864251531e-05,
+          "floor_area_per_total_capacity": -0.042978438738228784,
+          "number_of_people": 72.0,
+          "outside_air_percent": 0.3031,
+          "total_capacity_per_floor_area": -23.267480842911876
+        },
+        "estimated_peak_load_component_table": {
+          "doas_direct_to_zone": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": null
+          },
+          "equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 167.04
+          },
+          "exterior_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "exterior_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": -1524.7,
+            "latent": null,
+            "total": -1524.7,
+            "percent_grand_total": 39.26,
+            "related_area": 90.95
+          },
+          "fenestration_conduction": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "fenestration_solar": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "grand_total": {
+            "sensible_instant": -768.6,
+            "sensible_delayed": -2940.1,
+            "latent": -177.9,
+            "total": -3886.6,
+            "percent_grand_total": 100.00999999999999,
+            "related_area": null
+          },
+          "ground_contact_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 254.65,
+            "latent": null,
+            "total": 254.65,
+            "percent_grand_total": -6.6,
+            "related_area": 167.04
+          },
+          "ground_contact_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "hvac_equipment_loss": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": null
+          },
+          "infiltration": {
+            "sensible_instant": -768.6,
+            "sensible_delayed": null,
+            "latent": -177.9,
+            "total": -946.5,
+            "percent_grand_total": 24.37,
+            "related_area": 90.95
+          },
+          "interzone_ceiling": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "interzone_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "interzone_mixing": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": null
+          },
+          "interzone_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 1.75,
+            "latent": null,
+            "total": 1.75,
+            "percent_grand_total": -0.0,
+            "related_area": 90.95
+          },
+          "lights": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 167.04
+          },
+          "opaque_door": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "other_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "other_roof": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 166.08
+          },
+          "other_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 90.95
+          },
+          "people": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 167.04
+          },
+          "power_generation_equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": null
+          },
+          "refrigeration": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 167.04
+          },
+          "return_air_other": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": null,
+            "related_area": null
+          },
+          "return_air_lights": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": null,
+            "related_area": null
+          },
+          "roof": {
+            "sensible_instant": null,
+            "sensible_delayed": -1669.3,
+            "latent": null,
+            "total": -1669.3,
+            "percent_grand_total": 42.98,
+            "related_area": 166.08
+          },
+          "supply_fan_heat": null,
+          "sizing_factor_correction": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": null,
+            "related_area": null
+          },
+          "time_delay_correction": {
+            "sensible_instant": null,
+            "sensible_delayed": -2.5,
+            "latent": null,
+            "total": -2.5,
+            "percent_grand_total": null,
+            "related_area": null
+          },
+          "water_use_equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 167.04
+          },
+          "zone_ventilation": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": null
+          }
+        }
+      }
+    },
+    "VAV Box Hot Water-1": {
+      "name": "VAV Box Hot Water-1",
+      "cooling": {
+        "peak_condition": {
+          "name": "VAV BOX HOT WATER-1",
+          "difference_between_peak_and_estimated_sensible_load": -2.2,
+          "difference_due_to_sizing_factor": 0.0,
+          "estimate_instant_delayed_sensible_load": 6285.24,
+          "main_fan_air_flow": 0.59,
+          "mixed_air_temperature": null,
+          "outside_dry_bulb_temperature": 31.33,
+          "outside_wet_bulb_temperature": 16.72,
+          "outside_air_flow": 0.07,
+          "outside_humidity_ratio_at_peak": 0.00591,
+          "peak_sensible_load": 6282.99,
+          "peak_sensible_load_with_sizing_factor": 6282.99,
+          "supply_air_temperature": 12.78,
+          "time_of_peak_load": "7/21 17:45:00",
+          "zone_dry_bulb_temperature": 23.33,
+          "zone_humidity_ratio_at_peak": 0.0087,
+          "zone_relative_humidity": 48.72
+        },
+        "engineering_check": {
+          "name": null,
+          "airflow_per_floor_area": 0.003220524017467249,
+          "airflow_per_total_capacity": 8.977343619238903e-05,
+          "floor_area_per_total_capacity": 0.027875412729568932,
+          "number_of_people": 7.0,
+          "outside_air_percent": 0.1224,
+          "total_capacity_per_floor_area": 35.873908296943235
+        },
+        "estimated_peak_load_component_table": {
+          "doas_direct_to_zone": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "equipment": {
+            "sensible_instant": 2563.6,
+            "sensible_delayed": 0.0,
+            "latent": 0.0,
+            "total": 2563.6,
+            "percent_grand_total": 39.00731881742517,
+            "related_area": 183.2
+          },
+          "exterior_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "exterior_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 1017.14,
+            "latent": null,
+            "total": 1017.14,
+            "percent_grand_total": 15.476636082835013,
+            "related_area": 93.68
+          },
+          "fenestration_conduction": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "fenestration_solar": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "grand_total": {
+            "sensible_instant": 5042.4400000000005,
+            "sensible_delayed": 1240.66,
+            "latent": 289.0,
+            "total": 6572.1,
+            "percent_grand_total": 100.0,
+            "related_area": null
+          },
+          "ground_contact_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": -474.0,
+            "latent": null,
+            "total": -474.0,
+            "percent_grand_total": -7.212306568676678,
+            "related_area": 183.2
+          },
+          "ground_contact_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "hvac_equipment_loss": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "infiltration": {
+            "sensible_instant": 147.83,
+            "sensible_delayed": null,
+            "latent": -121.3,
+            "total": 26.530000000000015,
+            "percent_grand_total": 0.4036761461328953,
+            "related_area": 93.68
+          },
+          "interzone_ceiling": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "interzone_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "interzone_mixing": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "interzone_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": -3.2,
+            "latent": null,
+            "total": -3.2,
+            "percent_grand_total": -0.04869067725688897,
+            "related_area": 94.02
+          },
+          "lights": {
+            "sensible_instant": 1972.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 1972.0,
+            "percent_grand_total": 30.005629859557825,
+            "related_area": 183.2
+          },
+          "opaque_door": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "other_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "other_roof": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 182.15
+          },
+          "other_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 93.68
+          },
+          "people": {
+            "sensible_instant": 359.01,
+            "sensible_delayed": 183.05,
+            "latent": 410.3,
+            "total": 952.3599999999999,
+            "percent_grand_total": 14.490954185115868,
+            "related_area": 183.2
+          },
+          "power_generation_equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "refrigeration": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 183.2
+          },
+          "return_air_other": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "return_air_lights": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "roof": {
+            "sensible_instant": null,
+            "sensible_delayed": 519.87,
+            "latent": null,
+            "total": 519.87,
+            "percent_grand_total": 7.910256995480896,
+            "related_area": 182.15
+          },
+          "supply_fan_heat": null,
+          "sizing_factor_correction": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "time_delay_correction": {
+            "sensible_instant": null,
+            "sensible_delayed": -2.2,
+            "latent": null,
+            "total": -2.2,
+            "percent_grand_total": -0.03347484061411117,
+            "related_area": null
+          },
+          "water_use_equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 183.2
+          },
+          "zone_ventilation": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          }
+        }
+      },
+      "heating": {
+        "peak_condition": {
+          "name": "VAV BOX HOT WATER-1",
+          "difference_between_peak_and_estimated_sensible_load": -2.6,
+          "difference_due_to_sizing_factor": 0.0,
+          "estimate_instant_delayed_sensible_load": -3917.1,
+          "main_fan_air_flow": 0.21,
+          "mixed_air_temperature": null,
+          "outside_dry_bulb_temperature": -17.4,
+          "outside_wet_bulb_temperature": -17.4,
+          "outside_air_flow": 0.07,
+          "outside_humidity_ratio_at_peak": 0.00099,
+          "peak_sensible_load": -3919.7,
+          "peak_sensible_load_with_sizing_factor": -3919.7,
+          "supply_air_temperature": 40.0,
+          "time_of_peak_load": "12/21 24:00:00",
+          "zone_dry_bulb_temperature": 21.11,
+          "zone_humidity_ratio_at_peak": 0.00464,
+          "zone_relative_humidity": 29.93
+        },
+        "engineering_check": {
+          "name": null,
+          "airflow_per_floor_area": 0.001146288209606987,
+          "airflow_per_total_capacity": -5.117744683028827e-05,
+          "floor_area_per_total_capacity": -0.04464622980623244,
+          "number_of_people": 7.0,
+          "outside_air_percent": 0.1224,
+          "total_capacity_per_floor_area": -22.39830786026201
+        },
+        "estimated_peak_load_component_table": {
+          "doas_direct_to_zone": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": null
+          },
+          "equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 183.2
+          },
+          "exterior_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "exterior_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": -1570.5,
+            "latent": null,
+            "total": -1570.5,
+            "percent_grand_total": 38.3,
+            "related_area": 93.68
+          },
+          "fenestration_conduction": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "fenestration_solar": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "grand_total": {
+            "sensible_instant": -791.6,
+            "sensible_delayed": -3128.07,
+            "latent": -183.7,
+            "total": -4103.37,
+            "percent_grand_total": 100.0,
+            "related_area": null
+          },
+          "ground_contact_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 278.83,
+            "latent": null,
+            "total": 278.83,
+            "percent_grand_total": -6.8,
+            "related_area": 183.2
+          },
+          "ground_contact_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "hvac_equipment_loss": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": null
+          },
+          "infiltration": {
+            "sensible_instant": -791.6,
+            "sensible_delayed": null,
+            "latent": -183.7,
+            "total": -975.3,
+            "percent_grand_total": 23.78,
+            "related_area": 93.68
+          },
+          "interzone_ceiling": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "interzone_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "interzone_mixing": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": null
+          },
+          "interzone_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": -2.3,
+            "latent": null,
+            "total": -2.3,
+            "percent_grand_total": 0.06,
+            "related_area": 94.02
+          },
+          "lights": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 183.2
+          },
+          "opaque_door": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "other_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "other_roof": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 182.15
+          },
+          "other_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 93.68
+          },
+          "people": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 183.2
+          },
+          "power_generation_equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": null
+          },
+          "refrigeration": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 183.2
+          },
+          "return_air_other": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": null,
+            "related_area": null
+          },
+          "return_air_lights": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": null,
+            "related_area": null
+          },
+          "roof": {
+            "sensible_instant": null,
+            "sensible_delayed": -1831.5,
+            "latent": null,
+            "total": -1831.5,
+            "percent_grand_total": 44.66,
+            "related_area": 182.15
+          },
+          "supply_fan_heat": null,
+          "sizing_factor_correction": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": null,
+            "related_area": null
+          },
+          "time_delay_correction": {
+            "sensible_instant": null,
+            "sensible_delayed": -2.6,
+            "latent": null,
+            "total": -2.6,
+            "percent_grand_total": null,
+            "related_area": null
+          },
+          "water_use_equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 183.2
+          },
+          "zone_ventilation": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": null
+          }
+        }
+      }
+    }
+  },
+  "system_load_summarys": {
+    "DOAS NoneHWCHWHWVV": {
+      "name": "DOAS NoneHWCHWHWVV",
+      "cooling": {
+        "name": null,
+        "peak_condition": {
+          "name": "DOAS NONEHWCHWHWVV",
+          "difference_between_peak_and_estimated_sensible_load": 781.35,
+          "difference_due_to_sizing_factor": 0.0,
+          "estimate_instant_delayed_sensible_load": 4226.5,
+          "main_fan_air_flow": 0.47,
+          "mixed_air_temperature": 0.0,
+          "outside_dry_bulb_temperature": 34.6,
+          "outside_wet_bulb_temperature": 17.83,
+          "outside_air_flow": 0.07,
+          "outside_humidity_ratio_at_peak": 0.00591,
+          "peak_sensible_load": 5007.85,
+          "peak_sensible_load_with_sizing_factor": 5007.85,
+          "supply_air_temperature": 12.78,
+          "time_of_peak_load": "7/21 15:00:00",
+          "zone_dry_bulb_temperature": 23.33,
+          "zone_humidity_ratio_at_peak": 0.00836,
+          "zone_relative_humidity": 46.88
+        },
+        "engineering_check": {
+          "name": null,
+          "airflow_per_floor_area": 0.002781229658559678,
+          "airflow_per_total_capacity": 9.62014517051678e-05,
+          "floor_area_per_total_capacity": 0.034589538986502785,
+          "number_of_people": 6.0,
+          "outside_air_percent": 0.1394,
+          "total_capacity_per_floor_area": 28.91047493839715
+        },
+        "estimated_peak_load_component_table": {
+          "doas_direct_to_zone": {
+            "sensible_instant": -1408.1,
+            "sensible_delayed": null,
+            "latent": -818.9,
+            "total": -2227.0,
+            "percent_grand_total": -45.58311339306568,
+            "related_area": null
+          },
+          "equipment": {
+            "sensible_instant": 2364.7,
+            "sensible_delayed": 0.0,
+            "latent": 0.0,
+            "total": 2364.7,
+            "percent_grand_total": 48.4016112440873,
+            "related_area": 168.99
+          },
+          "exterior_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "exterior_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 829.54,
+            "latent": null,
+            "total": 829.54,
+            "percent_grand_total": 16.979351542022318,
+            "related_area": 89.42
+          },
+          "fenestration_conduction": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "fenestration_solar": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "grand_total": {
+            "sensible_instant": 4117.954832191263,
+            "sensible_delayed": 1740.56,
+            "latent": -972.9336723515287,
+            "total": 4885.581159839735,
+            "percent_grand_total": 99.99999999999999,
+            "related_area": null
+          },
+          "ground_contact_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": -354.2,
+            "latent": null,
+            "total": -354.2,
+            "percent_grand_total": -7.249905147653285,
+            "related_area": 168.99
+          },
+          "ground_contact_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "hvac_equipment_loss": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "infiltration": {
+            "sensible_instant": 183.93,
+            "sensible_delayed": null,
+            "latent": -101.3,
+            "total": 82.63000000000001,
+            "percent_grand_total": 1.6913033945527696,
+            "related_area": 89.42
+          },
+          "interzone_ceiling": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "interzone_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "interzone_mixing": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "interzone_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 111.08,
+            "latent": null,
+            "total": 111.08,
+            "percent_grand_total": 2.273629203278732,
+            "related_area": 89.08
+          },
+          "lights": {
+            "sensible_instant": 1819.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 1819.0,
+            "percent_grand_total": 37.232008649297924,
+            "related_area": 168.99
+          },
+          "opaque_door": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "other_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "other_roof": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 168.99
+          },
+          "other_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 89.42
+          },
+          "people": {
+            "sensible_instant": 307.72,
+            "sensible_delayed": 176.13,
+            "latent": 351.69,
+            "total": 835.54,
+            "percent_grand_total": 17.10216190590126,
+            "related_area": 168.99
+          },
+          "power_generation_equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "refrigeration": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 168.99
+          },
+          "return_air_other": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "return_air_lights": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "roof": {
+            "sensible_instant": null,
+            "sensible_delayed": 196.66,
+            "latent": null,
+            "total": 196.66,
+            "percent_grand_total": 4.025314360071979,
+            "related_area": 168.99
+          },
+          "supply_fan_heat": {
+            "sensible_instant": 109.007,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 109.007,
+            "percent_grand_total": 2.231198222558559,
+            "related_area": null
+          },
+          "sizing_factor_correction": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "time_delay_correction": {
+            "sensible_instant": null,
+            "sensible_delayed": 781.35,
+            "latent": null,
+            "total": 781.35,
+            "percent_grand_total": 15.992979636134653,
+            "related_area": null
+          },
+          "water_use_equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 168.99
+          },
+          "zone_ventilation": {
+            "sensible_instant": 741.6978321912635,
+            "sensible_delayed": null,
+            "latent": -404.4236723515287,
+            "total": 337.2741598397348,
+            "percent_grand_total": 6.903460382813467,
+            "related_area": null
+          }
+        },
+        "temperature": {
+          "supply": 12.78,
+          "return": 23.33,
+          "mixed_air": 0.0,
+          "fan_heat_temperature_difference": 1.6562854095063864
+        },
+        "airflow": {
+          "main_fan": 0.47,
+          "ventilation": 0.07
+        }
+      },
+      "heating": {
+        "name": null,
+        "peak_condition": {
+          "name": "DOAS NONEHWCHWHWVV",
+          "difference_between_peak_and_estimated_sensible_load": 356.39,
+          "difference_due_to_sizing_factor": 0.0,
+          "estimate_instant_delayed_sensible_load": -4428.2,
+          "main_fan_air_flow": 0.22,
+          "mixed_air_temperature": 0.0,
+          "outside_dry_bulb_temperature": -17.4,
+          "outside_wet_bulb_temperature": -17.4,
+          "outside_air_flow": 0.07,
+          "outside_humidity_ratio_at_peak": 0.00099,
+          "peak_sensible_load": -4071.8,
+          "peak_sensible_load_with_sizing_factor": -4071.8,
+          "supply_air_temperature": 40.0,
+          "time_of_peak_load": "12/21 24:00:00",
+          "zone_dry_bulb_temperature": 21.11,
+          "zone_humidity_ratio_at_peak": 0.00385,
+          "zone_relative_humidity": 24.92
+        },
+        "engineering_check": {
+          "name": null,
+          "airflow_per_floor_area": 0.0013018521806024024,
+          "airflow_per_total_capacity": -2.6996733369668047e-05,
+          "floor_area_per_total_capacity": -0.020737172600637288,
+          "number_of_people": 6.0,
+          "outside_air_percent": 0.1394,
+          "total_capacity_per_floor_area": -48.22258170186944
+        },
+        "estimated_peak_load_component_table": {
+          "doas_direct_to_zone": {
+            "sensible_instant": -733.8,
+            "sensible_delayed": null,
+            "latent": -954.3,
+            "total": -1688.1,
+            "percent_grand_total": 30.58,
+            "related_area": null
+          },
+          "equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 168.99
+          },
+          "exterior_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "exterior_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": -1498.4,
+            "latent": null,
+            "total": -1498.4,
+            "percent_grand_total": 27.14,
+            "related_area": 89.42
+          },
+          "fenestration_conduction": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "fenestration_solar": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "grand_total": {
+            "sensible_instant": -4019.505748514095,
+            "sensible_delayed": -2582.44,
+            "latent": -1547.1883332848215,
+            "total": -8149.134081798917,
+            "percent_grand_total": 99.96999999999998,
+            "related_area": null
+          },
+          "ground_contact_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 257.92,
+            "latent": null,
+            "total": 257.92,
+            "percent_grand_total": -4.7,
+            "related_area": 168.99
+          },
+          "ground_contact_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "hvac_equipment_loss": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": null
+          },
+          "infiltration": {
+            "sensible_instant": -755.5,
+            "sensible_delayed": null,
+            "latent": -137.7,
+            "total": -893.2,
+            "percent_grand_total": 16.18,
+            "related_area": 89.42
+          },
+          "interzone_ceiling": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "interzone_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "interzone_mixing": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": null
+          },
+          "interzone_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.25,
+            "latent": null,
+            "total": 0.25,
+            "percent_grand_total": -0.0,
+            "related_area": 89.08
+          },
+          "lights": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 168.99
+          },
+          "opaque_door": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "other_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "other_roof": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 168.99
+          },
+          "other_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 89.42
+          },
+          "people": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 168.99
+          },
+          "power_generation_equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": null
+          },
+          "refrigeration": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 168.99
+          },
+          "return_air_other": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": null,
+            "related_area": null
+          },
+          "return_air_lights": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": null,
+            "related_area": null
+          },
+          "roof": {
+            "sensible_instant": null,
+            "sensible_delayed": -1698.6,
+            "latent": null,
+            "total": -1698.6,
+            "percent_grand_total": 30.77,
+            "related_area": 168.99
+          },
+          "supply_fan_heat": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": null,
+            "related_area": null
+          },
+          "sizing_factor_correction": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": null,
+            "related_area": null
+          },
+          "time_delay_correction": {
+            "sensible_instant": null,
+            "sensible_delayed": 356.39,
+            "latent": null,
+            "total": 356.39,
+            "percent_grand_total": null,
+            "related_area": null
+          },
+          "water_use_equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 168.99
+          },
+          "zone_ventilation": {
+            "sensible_instant": -2530.2057485140954,
+            "sensible_delayed": null,
+            "latent": -455.1883332848215,
+            "total": -2985.394081798917,
+            "percent_grand_total": null,
+            "related_area": null
+          }
+        },
+        "temperature": {
+          "supply": 40.0,
+          "return": 21.11,
+          "mixed_air": 0.0,
+          "fan_heat_temperature_difference": 0.0
+        },
+        "airflow": {
+          "main_fan": 0.22,
+          "ventilation": 0.07
+        }
+      }
+    },
+    "SensFurnACDXFurnCV": {
+      "name": "SensFurnACDXFurnCV",
+      "cooling": {
+        "name": null,
+        "peak_condition": {
+          "name": "SENSFURNACDXFURNCV",
+          "difference_between_peak_and_estimated_sensible_load": 33.77,
+          "difference_due_to_sizing_factor": 0.0,
+          "estimate_instant_delayed_sensible_load": 6249.23,
+          "main_fan_air_flow": 0.59,
+          "mixed_air_temperature": 0.0,
+          "outside_dry_bulb_temperature": 32.78,
+          "outside_wet_bulb_temperature": 17.22,
+          "outside_air_flow": 0.07,
+          "outside_humidity_ratio_at_peak": 0.00591,
+          "peak_sensible_load": 6282.99,
+          "peak_sensible_load_with_sizing_factor": 6282.99,
+          "supply_air_temperature": 12.78,
+          "time_of_peak_load": "7/21 16:45:00",
+          "zone_dry_bulb_temperature": 23.33,
+          "zone_humidity_ratio_at_peak": 0.0087,
+          "zone_relative_humidity": 48.73
+        },
+        "engineering_check": {
+          "name": null,
+          "airflow_per_floor_area": 0.003220524017467249,
+          "airflow_per_total_capacity": 7.629594881736821e-05,
+          "floor_area_per_total_capacity": 0.023690538683630264,
+          "number_of_people": 7.0,
+          "outside_air_percent": 0.1224,
+          "total_capacity_per_floor_area": 42.2109439280493
+        },
+        "estimated_peak_load_component_table": {
+          "doas_direct_to_zone": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "equipment": {
+            "sensible_instant": 2563.6,
+            "sensible_delayed": 0.0,
+            "latent": 0.0,
+            "total": 2563.6,
+            "percent_grand_total": 33.15123633698393,
+            "related_area": 183.2
+          },
+          "exterior_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "exterior_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 1072.97,
+            "latent": null,
+            "total": 1072.97,
+            "percent_grand_total": 13.87512952585959,
+            "related_area": 93.68
+          },
+          "fenestration_conduction": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "fenestration_solar": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "grand_total": {
+            "sensible_instant": 6734.3468978122755,
+            "sensible_delayed": 1218.3000000000002,
+            "latent": -219.6019701936437,
+            "total": 7733.044927618632,
+            "percent_grand_total": 100.00000000000001,
+            "related_area": null
+          },
+          "ground_contact_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": -452.9,
+            "latent": null,
+            "total": -452.9,
+            "percent_grand_total": -5.856683935489163,
+            "related_area": 183.2
+          },
+          "ground_contact_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "hvac_equipment_loss": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "infiltration": {
+            "sensible_instant": 170.04,
+            "sensible_delayed": null,
+            "latent": -121.0,
+            "total": 49.03999999999999,
+            "percent_grand_total": 0.6341615813565655,
+            "related_area": 93.68
+          },
+          "interzone_ceiling": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "interzone_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "interzone_mixing": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "interzone_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": -14.7,
+            "latent": null,
+            "total": -14.7,
+            "percent_grand_total": -0.1900932962059852,
+            "related_area": 94.02
+          },
+          "lights": {
+            "sensible_instant": 1972.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 1972.0,
+            "percent_grand_total": 25.50095102844917,
+            "related_area": 183.2
+          },
+          "opaque_door": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "other_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "other_roof": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 182.15
+          },
+          "other_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 93.68
+          },
+          "people": {
+            "sensible_instant": 359.01,
+            "sensible_delayed": 183.05,
+            "latent": 410.3,
+            "total": 952.3599999999999,
+            "percent_grand_total": 12.315459290798099,
+            "related_area": 183.2
+          },
+          "power_generation_equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "refrigeration": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 183.2
+          },
+          "return_air_other": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "return_air_lights": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "roof": {
+            "sensible_instant": null,
+            "sensible_delayed": 396.11,
+            "latent": null,
+            "total": 396.11,
+            "percent_grand_total": 5.122303099330123,
+            "related_area": 182.15
+          },
+          "supply_fan_heat": {
+            "sensible_instant": 981.326,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 981.326,
+            "percent_grand_total": 12.690033604941132,
+            "related_area": null
+          },
+          "sizing_factor_correction": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "time_delay_correction": {
+            "sensible_instant": null,
+            "sensible_delayed": 33.77,
+            "latent": null,
+            "total": 33.77,
+            "percent_grand_total": 0.4366973206038178,
+            "related_area": null
+          },
+          "water_use_equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 183.2
+          },
+          "zone_ventilation": {
+            "sensible_instant": 688.3708978122756,
+            "sensible_delayed": null,
+            "latent": -508.9019701936437,
+            "total": 179.46892761863194,
+            "percent_grand_total": 2.320805443372729,
+            "related_area": null
+          }
+        },
+        "temperature": {
+          "supply": 12.78,
+          "return": 23.33,
+          "mixed_air": 0.0,
+          "fan_heat_temperature_difference": 1.6488974796990141
+        },
+        "airflow": {
+          "main_fan": 0.59,
+          "ventilation": 0.07
+        }
+      },
+      "heating": {
+        "name": null,
+        "peak_condition": {
+          "name": "SENSFURNACDXFURNCV",
+          "difference_between_peak_and_estimated_sensible_load": -60.1,
+          "difference_due_to_sizing_factor": 0.0,
+          "estimate_instant_delayed_sensible_load": -3859.6,
+          "main_fan_air_flow": 0.21,
+          "mixed_air_temperature": 0.0,
+          "outside_dry_bulb_temperature": -17.4,
+          "outside_wet_bulb_temperature": -17.4,
+          "outside_air_flow": 0.07,
+          "outside_humidity_ratio_at_peak": 0.00099,
+          "peak_sensible_load": -3919.7,
+          "peak_sensible_load_with_sizing_factor": -3919.7,
+          "supply_air_temperature": 40.0,
+          "time_of_peak_load": "12/21 01:00:00",
+          "zone_dry_bulb_temperature": 21.11,
+          "zone_humidity_ratio_at_peak": 0.00463,
+          "zone_relative_humidity": 29.9
+        },
+        "engineering_check": {
+          "name": null,
+          "airflow_per_floor_area": 0.001146288209606987,
+          "airflow_per_total_capacity": -2.787131162910405e-05,
+          "floor_area_per_total_capacity": -0.024314401383104107,
+          "number_of_people": 7.0,
+          "outside_air_percent": 0.1224,
+          "total_capacity_per_floor_area": -41.12788895123252
+        },
+        "estimated_peak_load_component_table": {
+          "doas_direct_to_zone": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": null
+          },
+          "equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 183.2
+          },
+          "exterior_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "exterior_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": -1571.8,
+            "latent": null,
+            "total": -1571.8,
+            "percent_grand_total": 38.88,
+            "related_area": 93.68
+          },
+          "fenestration_conduction": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "fenestration_solar": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "grand_total": {
+            "sensible_instant": -3579.6644687710896,
+            "sensible_delayed": -3127.99,
+            "latent": -826.9747870947075,
+            "total": -7534.629255865797,
+            "percent_grand_total": 99.99000000000001,
+            "related_area": null
+          },
+          "ground_contact_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 339.01,
+            "latent": null,
+            "total": 339.01,
+            "percent_grand_total": -8.4,
+            "related_area": 183.2
+          },
+          "ground_contact_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "hvac_equipment_loss": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": null
+          },
+          "infiltration": {
+            "sensible_instant": -791.6,
+            "sensible_delayed": null,
+            "latent": -183.4,
+            "total": -975.0,
+            "percent_grand_total": 24.12,
+            "related_area": 93.68
+          },
+          "interzone_ceiling": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "interzone_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "interzone_mixing": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": null
+          },
+          "interzone_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": -2.3,
+            "latent": null,
+            "total": -2.3,
+            "percent_grand_total": 0.06,
+            "related_area": 94.02
+          },
+          "lights": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 183.2
+          },
+          "opaque_door": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "other_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "other_roof": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 182.15
+          },
+          "other_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 93.68
+          },
+          "people": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 183.2
+          },
+          "power_generation_equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": null
+          },
+          "refrigeration": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 183.2
+          },
+          "return_air_other": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": null,
+            "related_area": null
+          },
+          "return_air_lights": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": null,
+            "related_area": null
+          },
+          "roof": {
+            "sensible_instant": null,
+            "sensible_delayed": -1832.8,
+            "latent": null,
+            "total": -1832.8,
+            "percent_grand_total": 45.33,
+            "related_area": 182.15
+          },
+          "supply_fan_heat": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": null,
+            "related_area": null
+          },
+          "sizing_factor_correction": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": null,
+            "related_area": null
+          },
+          "time_delay_correction": {
+            "sensible_instant": null,
+            "sensible_delayed": -60.1,
+            "latent": null,
+            "total": -60.1,
+            "percent_grand_total": null,
+            "related_area": null
+          },
+          "water_use_equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 183.2
+          },
+          "zone_ventilation": {
+            "sensible_instant": -2788.0644687710897,
+            "sensible_delayed": null,
+            "latent": -643.5747870947075,
+            "total": -3431.639255865797,
+            "percent_grand_total": null,
+            "related_area": null
+          }
+        },
+        "temperature": {
+          "supply": 40.0,
+          "return": 21.11,
+          "mixed_air": 0.0,
+          "fan_heat_temperature_difference": 0.0
+        },
+        "airflow": {
+          "main_fan": 0.21,
+          "ventilation": 0.07
+        }
+      }
+    },
+    "EnthElecACDXElecCV": {
+      "name": "EnthElecACDXElecCV",
+      "cooling": {
+        "name": null,
+        "peak_condition": {
+          "name": "ENTHELECACDXELECCV",
+          "difference_between_peak_and_estimated_sensible_load": 97.72,
+          "difference_due_to_sizing_factor": 0.0,
+          "estimate_instant_delayed_sensible_load": 11152.73,
+          "main_fan_air_flow": 1.06,
+          "mixed_air_temperature": 0.0,
+          "outside_dry_bulb_temperature": 34.6,
+          "outside_wet_bulb_temperature": 17.83,
+          "outside_air_flow": 0.52,
+          "outside_humidity_ratio_at_peak": 0.00591,
+          "peak_sensible_load": 11250.45,
+          "peak_sensible_load_with_sizing_factor": 11250.45,
+          "supply_air_temperature": 12.78,
+          "time_of_peak_load": "7/21 15:00:00",
+          "zone_dry_bulb_temperature": 23.3,
+          "zone_humidity_ratio_at_peak": 0.01172,
+          "zone_relative_humidity": 65.52
+        },
+        "engineering_check": {
+          "name": null,
+          "airflow_per_floor_area": 0.006879543094496366,
+          "airflow_per_total_capacity": 5.34338271598634e-05,
+          "floor_area_per_total_capacity": 0.007767060461124295,
+          "number_of_people": 108.0,
+          "outside_air_percent": 0.4926,
+          "total_capacity_per_floor_area": 128.74883683540276
+        },
+        "estimated_peak_load_component_table": {
+          "doas_direct_to_zone": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "equipment": {
+            "sensible_instant": 895.59,
+            "sensible_delayed": 0.0,
+            "latent": 0.0,
+            "total": 895.59,
+            "percent_grand_total": 4.514603893028496,
+            "related_area": 154.08
+          },
+          "exterior_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "exterior_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": -369.2,
+            "latent": null,
+            "total": -369.2,
+            "percent_grand_total": -1.861110281832223,
+            "related_area": 86.35
+          },
+          "fenestration_conduction": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "fenestration_solar": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "grand_total": {
+            "sensible_instant": 16378.951993081573,
+            "sensible_delayed": 2591.0099999999998,
+            "latent": 867.6587865172896,
+            "total": 19837.62077959886,
+            "percent_grand_total": 100.00000000000001,
+            "related_area": null
+          },
+          "ground_contact_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": -294.6,
+            "latent": null,
+            "total": -294.6,
+            "percent_grand_total": -1.4850571208769583,
+            "related_area": 154.08
+          },
+          "ground_contact_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "hvac_equipment_loss": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "infiltration": {
+            "sensible_instant": 178.19,
+            "sensible_delayed": null,
+            "latent": -231.8,
+            "total": -53.610000000000014,
+            "percent_grand_total": -0.27024410132455445,
+            "related_area": 86.35
+          },
+          "interzone_ceiling": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "interzone_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "interzone_mixing": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "interzone_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": -1196.4,
+            "latent": null,
+            "total": -1196.4,
+            "percent_grand_total": -6.03096517113779,
+            "related_area": 86.01
+          },
+          "lights": {
+            "sensible_instant": 1492.65,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 1492.65,
+            "percent_grand_total": 7.52433982171416,
+            "related_area": 154.08
+          },
+          "opaque_door": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "other_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "other_roof": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 154.08
+          },
+          "other_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 86.35
+          },
+          "people": {
+            "sensible_instant": 6092.95,
+            "sensible_delayed": 3869.52,
+            "latent": 8704.21,
+            "total": 18666.68,
+            "percent_grand_total": 94.09737290268669,
+            "related_area": 154.08
+          },
+          "power_generation_equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "refrigeration": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 154.08
+          },
+          "return_air_other": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "return_air_lights": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "roof": {
+            "sensible_instant": null,
+            "sensible_delayed": 483.97,
+            "latent": null,
+            "total": 483.97,
+            "percent_grand_total": 2.4396574840150085,
+            "related_area": 154.08
+          },
+          "supply_fan_heat": {
+            "sensible_instant": 1763.169,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 1763.169,
+            "percent_grand_total": 8.888006377323508,
+            "related_area": null
+          },
+          "sizing_factor_correction": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "time_delay_correction": {
+            "sensible_instant": null,
+            "sensible_delayed": 97.72,
+            "latent": null,
+            "total": 97.72,
+            "percent_grand_total": 0.4925993952888539,
+            "related_area": null
+          },
+          "water_use_equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 154.08
+          },
+          "zone_ventilation": {
+            "sensible_instant": 5956.402993081571,
+            "sensible_delayed": null,
+            "latent": -7604.75121348271,
+            "total": -1648.3482204011389,
+            "percent_grand_total": -8.309203198885177,
+            "related_area": null
+          }
+        },
+        "temperature": {
+          "supply": 12.78,
+          "return": 23.3,
+          "mixed_air": 0.0,
+          "fan_heat_temperature_difference": 1.6475073621168785
+        },
+        "airflow": {
+          "main_fan": 1.06,
+          "ventilation": 0.52
+        }
+      },
+      "heating": {
+        "name": null,
+        "peak_condition": {
+          "name": "ENTHELECACDXELECCV",
+          "difference_between_peak_and_estimated_sensible_load": -14.6,
+          "difference_due_to_sizing_factor": 0.0,
+          "estimate_instant_delayed_sensible_load": -3475.4,
+          "main_fan_air_flow": 0.18,
+          "mixed_air_temperature": 0.0,
+          "outside_dry_bulb_temperature": -17.4,
+          "outside_wet_bulb_temperature": -17.4,
+          "outside_air_flow": 0.52,
+          "outside_humidity_ratio_at_peak": 0.00099,
+          "peak_sensible_load": -3490.1,
+          "peak_sensible_load_with_sizing_factor": -3490.1,
+          "supply_air_temperature": 40.0,
+          "time_of_peak_load": "12/21 00:15:00",
+          "zone_dry_bulb_temperature": 21.11,
+          "zone_humidity_ratio_at_peak": 0.00462,
+          "zone_relative_humidity": 29.83
+        },
+        "engineering_check": {
+          "name": null,
+          "airflow_per_floor_area": 0.0011682242990654205,
+          "airflow_per_total_capacity": -6.32581574181935e-06,
+          "floor_area_per_total_capacity": -0.005414898274997364,
+          "number_of_people": 108.0,
+          "outside_air_percent": 0.4926,
+          "total_capacity_per_floor_area": -184.67567610962863
+        },
+        "estimated_peak_load_component_table": {
+          "doas_direct_to_zone": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": null
+          },
+          "equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 154.08
+          },
+          "exterior_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "exterior_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": -1447.5,
+            "latent": null,
+            "total": -1447.5,
+            "percent_grand_total": 39.72,
+            "related_area": 86.35
+          },
+          "fenestration_conduction": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "fenestration_solar": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "grand_total": {
+            "sensible_instant": -20887.879682692565,
+            "sensible_delayed": -2760.3399999999997,
+            "latent": -4806.608492279017,
+            "total": -28454.828174971582,
+            "percent_grand_total": 99.97,
+            "related_area": null
+          },
+          "ground_contact_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 248.0,
+            "latent": null,
+            "total": 248.0,
+            "percent_grand_total": -6.8,
+            "related_area": 154.08
+          },
+          "ground_contact_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "hvac_equipment_loss": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": null
+          },
+          "infiltration": {
+            "sensible_instant": -729.7,
+            "sensible_delayed": null,
+            "latent": -168.7,
+            "total": -898.4000000000001,
+            "percent_grand_total": 24.65,
+            "related_area": 86.35
+          },
+          "interzone_ceiling": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "interzone_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "interzone_mixing": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": null
+          },
+          "interzone_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 2.36,
+            "latent": null,
+            "total": 2.36,
+            "percent_grand_total": -0.1,
+            "related_area": 86.01
+          },
+          "lights": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 154.08
+          },
+          "opaque_door": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "other_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "other_roof": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 154.08
+          },
+          "other_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 86.35
+          },
+          "people": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 154.08
+          },
+          "power_generation_equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": null
+          },
+          "refrigeration": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 154.08
+          },
+          "return_air_other": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": null,
+            "related_area": null
+          },
+          "return_air_lights": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": null,
+            "related_area": null
+          },
+          "roof": {
+            "sensible_instant": null,
+            "sensible_delayed": -1548.6,
+            "latent": null,
+            "total": -1548.6,
+            "percent_grand_total": 42.5,
+            "related_area": 154.08
+          },
+          "supply_fan_heat": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": null,
+            "related_area": null
+          },
+          "sizing_factor_correction": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": null,
+            "related_area": null
+          },
+          "time_delay_correction": {
+            "sensible_instant": null,
+            "sensible_delayed": -14.6,
+            "latent": null,
+            "total": -14.6,
+            "percent_grand_total": null,
+            "related_area": null
+          },
+          "water_use_equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 154.08
+          },
+          "zone_ventilation": {
+            "sensible_instant": -20158.179682692564,
+            "sensible_delayed": null,
+            "latent": -4637.908492279017,
+            "total": -24796.08817497158,
+            "percent_grand_total": null,
+            "related_area": null
+          }
+        },
+        "temperature": {
+          "supply": 40.0,
+          "return": 21.11,
+          "mixed_air": 0.0,
+          "fan_heat_temperature_difference": 0.0
+        },
+        "airflow": {
+          "main_fan": 0.18,
+          "ventilation": 0.52
+        }
+      }
+    },
+    "All None": {
+      "name": "All None",
+      "cooling": {
+        "name": null,
+        "peak_condition": {
+          "name": "ALL NONE",
+          "difference_between_peak_and_estimated_sensible_load": 393.89,
+          "difference_due_to_sizing_factor": 0.0,
+          "estimate_instant_delayed_sensible_load": 10318.69,
+          "main_fan_air_flow": 1.01,
+          "mixed_air_temperature": 0.0,
+          "outside_dry_bulb_temperature": 34.6,
+          "outside_wet_bulb_temperature": 17.83,
+          "outside_air_flow": 0.31,
+          "outside_humidity_ratio_at_peak": 0.00591,
+          "peak_sensible_load": 10712.58,
+          "peak_sensible_load_with_sizing_factor": 10712.58,
+          "supply_air_temperature": 12.78,
+          "time_of_peak_load": "7/21 15:00:00",
+          "zone_dry_bulb_temperature": 23.32,
+          "zone_humidity_ratio_at_peak": 0.00948,
+          "zone_relative_humidity": 53.08
+        },
+        "engineering_check": {
+          "name": null,
+          "airflow_per_floor_area": 0.006046455938697319,
+          "airflow_per_total_capacity": 7.712985307144821e-05,
+          "floor_area_per_total_capacity": 0.012756208571341295,
+          "number_of_people": 72.0,
+          "outside_air_percent": 0.3031,
+          "total_capacity_per_floor_area": 78.39319923371647
+        },
+        "estimated_peak_load_component_table": {
+          "doas_direct_to_zone": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "equipment": {
+            "sensible_instant": 3596.0,
+            "sensible_delayed": 0.0,
+            "latent": 0.0,
+            "total": 3596.0,
+            "percent_grand_total": 27.461282341081954,
+            "related_area": 167.04
+          },
+          "exterior_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "exterior_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 397.64,
+            "latent": null,
+            "total": 397.64,
+            "percent_grand_total": 3.036625225280264,
+            "related_area": 90.95
+          },
+          "fenestration_conduction": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "fenestration_solar": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "grand_total": {
+            "sensible_instant": 9149.93,
+            "sensible_delayed": 1562.6399999999999,
+            "latent": 2382.23,
+            "total": 13094.8,
+            "percent_grand_total": 100.0,
+            "related_area": null
+          },
+          "ground_contact_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": -285.8,
+            "latent": null,
+            "total": -285.8,
+            "percent_grand_total": -2.182545743348505,
+            "related_area": 167.04
+          },
+          "ground_contact_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "hvac_equipment_loss": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "infiltration": {
+            "sensible_instant": 187.24,
+            "sensible_delayed": null,
+            "latent": -149.9,
+            "total": 37.34,
+            "percent_grand_total": 0.28515135779087886,
+            "related_area": 90.95
+          },
+          "interzone_ceiling": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "interzone_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "interzone_mixing": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "interzone_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": -228.9,
+            "latent": null,
+            "total": -228.9,
+            "percent_grand_total": -1.74802211564896,
+            "related_area": 90.95
+          },
+          "lights": {
+            "sensible_instant": 3594.2,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 3594.2,
+            "percent_grand_total": 27.447536426673185,
+            "related_area": 167.04
+          },
+          "opaque_door": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "other_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 0.0
+          },
+          "other_roof": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 166.08
+          },
+          "other_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 90.95
+          },
+          "people": {
+            "sensible_instant": 1772.49,
+            "sensible_delayed": 1026.91,
+            "latent": 2532.13,
+            "total": 5331.530000000001,
+            "percent_grand_total": 40.71486391544736,
+            "related_area": 167.04
+          },
+          "power_generation_equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "refrigeration": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 167.04
+          },
+          "return_air_other": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "return_air_lights": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "roof": {
+            "sensible_instant": null,
+            "sensible_delayed": 258.9,
+            "latent": null,
+            "total": 258.9,
+            "percent_grand_total": 1.9771206891285091,
+            "related_area": 166.08
+          },
+          "supply_fan_heat": null,
+          "sizing_factor_correction": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          },
+          "time_delay_correction": {
+            "sensible_instant": null,
+            "sensible_delayed": 393.89,
+            "latent": null,
+            "total": 393.89,
+            "percent_grand_total": 3.0079879035953203,
+            "related_area": null
+          },
+          "water_use_equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": 167.04
+          },
+          "zone_ventilation": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": 0.0,
+            "related_area": null
+          }
+        },
+        "temperature": {
+          "supply": 12.78,
+          "return": null,
+          "mixed_air": 0.0,
+          "fan_heat_temperature_difference": null
+        },
+        "airflow": {
+          "main_fan": 1.01,
+          "ventilation": 0.31
+        }
+      },
+      "heating": {
+        "name": null,
+        "peak_condition": {
+          "name": "ALL NONE",
+          "difference_between_peak_and_estimated_sensible_load": -15.8,
+          "difference_due_to_sizing_factor": 0.0,
+          "estimate_instant_delayed_sensible_load": -3693.0,
+          "main_fan_air_flow": 0.2,
+          "mixed_air_temperature": 0.0,
+          "outside_dry_bulb_temperature": -17.4,
+          "outside_wet_bulb_temperature": -17.4,
+          "outside_air_flow": 0.31,
+          "outside_humidity_ratio_at_peak": 0.00099,
+          "peak_sensible_load": -3708.7,
+          "peak_sensible_load_with_sizing_factor": -3708.7,
+          "supply_air_temperature": 40.0,
+          "time_of_peak_load": "12/21 00:15:00",
+          "zone_dry_bulb_temperature": 21.11,
+          "zone_humidity_ratio_at_peak": 0.00462,
+          "zone_relative_humidity": 29.85
+        },
+        "engineering_check": {
+          "name": null,
+          "airflow_per_floor_area": 0.0011973180076628354,
+          "airflow_per_total_capacity": -5.145687270856114e-05,
+          "floor_area_per_total_capacity": -0.04297678008619026,
+          "number_of_people": 72.0,
+          "outside_air_percent": 0.3031,
+          "total_capacity_per_floor_area": -23.268378831417625
+        },
+        "estimated_peak_load_component_table": {
+          "doas_direct_to_zone": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": null
+          },
+          "equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 167.04
+          },
+          "exterior_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "exterior_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": -1525.1,
+            "latent": null,
+            "total": -1525.1,
+            "percent_grand_total": 39.4,
+            "related_area": 90.95
+          },
+          "fenestration_conduction": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "fenestration_solar": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "grand_total": {
+            "sensible_instant": -768.6,
+            "sensible_delayed": -2940.25,
+            "latent": -177.9,
+            "total": -3886.75,
+            "percent_grand_total": 100.08000000000001,
+            "related_area": null
+          },
+          "ground_contact_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 268.46,
+            "latent": null,
+            "total": 268.46,
+            "percent_grand_total": -6.9,
+            "related_area": 167.04
+          },
+          "ground_contact_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "hvac_equipment_loss": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": null
+          },
+          "infiltration": {
+            "sensible_instant": -768.6,
+            "sensible_delayed": null,
+            "latent": -177.9,
+            "total": -946.5,
+            "percent_grand_total": 24.45,
+            "related_area": 90.95
+          },
+          "interzone_ceiling": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "interzone_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "interzone_mixing": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": null
+          },
+          "interzone_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 1.79,
+            "latent": null,
+            "total": 1.79,
+            "percent_grand_total": -0.0,
+            "related_area": 90.95
+          },
+          "lights": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 167.04
+          },
+          "opaque_door": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "other_floor": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 0.0
+          },
+          "other_roof": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 166.08
+          },
+          "other_wall": {
+            "sensible_instant": null,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 90.95
+          },
+          "people": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 167.04
+          },
+          "power_generation_equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": 0.0,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": null
+          },
+          "refrigeration": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 167.04
+          },
+          "return_air_other": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": null,
+            "related_area": null
+          },
+          "return_air_lights": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": null,
+            "related_area": null
+          },
+          "roof": {
+            "sensible_instant": null,
+            "sensible_delayed": -1669.6,
+            "latent": null,
+            "total": -1669.6,
+            "percent_grand_total": 43.13,
+            "related_area": 166.08
+          },
+          "supply_fan_heat": null,
+          "sizing_factor_correction": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": null,
+            "total": 0.0,
+            "percent_grand_total": null,
+            "related_area": null
+          },
+          "time_delay_correction": {
+            "sensible_instant": null,
+            "sensible_delayed": -15.8,
+            "latent": null,
+            "total": -15.8,
+            "percent_grand_total": null,
+            "related_area": null
+          },
+          "water_use_equipment": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": 167.04
+          },
+          "zone_ventilation": {
+            "sensible_instant": 0.0,
+            "sensible_delayed": null,
+            "latent": 0.0,
+            "total": 0.0,
+            "percent_grand_total": -0.0,
+            "related_area": null
+          }
+        },
+        "temperature": {
+          "supply": 40.0,
+          "return": null,
+          "mixed_air": 0.0,
+          "fan_heat_temperature_difference": null
+        },
+        "airflow": {
+          "main_fan": 0.2,
+          "ventilation": 0.31
+        }
+      }
+    }
+  },
+  "design_psychrometrics": {
+    "PTAC Elec-1 + Cooling Coil": {
+      "name": "PTAC Elec-1 + Cooling Coil",
+      "air_density": 0.9866,
+      "air_specific_heat": 1019.7527,
+      "percent_outdoor_air": 13.9367,
+      "outdoor_air_flow_rate": 0.06566675,
+      "zone_sensible_load": 8291.17,
+      "coil_air_flow_rate": 0.47118,
+      "time_of_peak": "7/21 16:45:00",
+      "zone_dry_bulb_temperature": 23.33,
+      "zone_humidity_ratio": 0.00836474,
+      "zone_relative_humidity": 38.4162,
+      "return_air_dry_bulb_temperature": 23.33,
+      "return_air_humidity_ratio": 0.00836474,
+      "outdoor_air_dry_bulb_temperature": 32.78,
+      "outdoor_air_humidity_ratio": 0.00590619,
+      "entering_coil_dry_bulb_temperature": 24.65,
+      "entering_coil_humidity_ratio": 0.0080221,
+      "leaving_coil_dry_bulb_temperature": 12.42,
+      "leaving_coil_humidity_ratio": 0.0080221,
+      "supply_fan_temperature_difference": 0.3549677187669964
+    },
+    "SensFurnACDXFurnCV Cooling Coil": {
+      "name": "SensFurnACDXFurnCV Cooling Coil",
+      "air_density": 0.9866,
+      "air_specific_heat": 1020.3686,
+      "percent_outdoor_air": 12.2402,
+      "outdoor_air_flow_rate": 0.07235899,
+      "zone_sensible_load": 10402.44,
+      "coil_air_flow_rate": 0.59116,
+      "time_of_peak": "7/21 16:45:00",
+      "zone_dry_bulb_temperature": 23.33,
+      "zone_humidity_ratio": 0.00869529,
+      "zone_relative_humidity": 39.9135,
+      "return_air_dry_bulb_temperature": 23.33,
+      "return_air_humidity_ratio": 0.00869701,
+      "outdoor_air_dry_bulb_temperature": 32.78,
+      "outdoor_air_humidity_ratio": 0.00590619,
+      "entering_coil_dry_bulb_temperature": 24.49,
+      "entering_coil_humidity_ratio": 0.00835344,
+      "leaving_coil_dry_bulb_temperature": 11.13,
+      "leaving_coil_humidity_ratio": 0.00835344,
+      "supply_fan_temperature_difference": 1.6488974796990141
+    },
+    "EnthElecACDXElecCV Cooling Coil": {
+      "name": "EnthElecACDXElecCV Cooling Coil",
+      "air_density": 0.9866,
+      "air_specific_heat": 1021.2298,
+      "percent_outdoor_air": 49.2555,
+      "outdoor_air_flow_rate": 0.52316784,
+      "zone_sensible_load": 21699.01,
+      "coil_air_flow_rate": 1.06215,
+      "time_of_peak": "7/21 15:00:00",
+      "zone_dry_bulb_temperature": 23.3,
+      "zone_humidity_ratio": 0.011678,
+      "zone_relative_humidity": 53.468,
+      "return_air_dry_bulb_temperature": 23.3,
+      "return_air_humidity_ratio": 0.01172465,
+      "outdoor_air_dry_bulb_temperature": 34.6,
+      "outdoor_air_humidity_ratio": 0.00590619,
+      "entering_coil_dry_bulb_temperature": 28.95,
+      "entering_coil_humidity_ratio": 0.0088167,
+      "leaving_coil_dry_bulb_temperature": 11.13,
+      "leaving_coil_humidity_ratio": 0.0085,
+      "supply_fan_temperature_difference": 1.6475073621168785
+    },
+    "DOAS NoneHWCHWHWVV Cooling Coil": {
+      "name": "DOAS NoneHWCHWHWVV Cooling Coil",
+      "air_density": 0.9866,
+      "air_specific_heat": 1015.8193,
+      "percent_outdoor_air": 100.0,
+      "outdoor_air_flow_rate": 0.06566675,
+      "zone_sensible_load": 1545.22,
+      "coil_air_flow_rate": 0.065667,
+      "time_of_peak": "7/21 15:00:00",
+      "zone_dry_bulb_temperature": 23.33,
+      "zone_humidity_ratio": 0.00836474,
+      "zone_relative_humidity": 38.4162,
+      "return_air_dry_bulb_temperature": 23.33,
+      "return_air_humidity_ratio": 0.0083629,
+      "outdoor_air_dry_bulb_temperature": 34.6,
+      "outdoor_air_humidity_ratio": 0.00590619,
+      "entering_coil_dry_bulb_temperature": 34.6,
+      "entering_coil_humidity_ratio": 0.00590619,
+      "leaving_coil_dry_bulb_temperature": 11.12,
+      "leaving_coil_humidity_ratio": 0.00590619,
+      "supply_fan_temperature_difference": 1.6562854095063864
+    }
+  }
+}

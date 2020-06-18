@@ -2,9 +2,10 @@ import React, { useContext } from 'react';
 import { Cell, Legend, Pie, PieChart } from 'recharts';
 import { Context } from '../store/index';
 import './PieChart.css';
+import { Translation } from 'react-i18next';
 
 export function CustomPieChart(props) {
-    const { name, title, colors, data, pdfRef, isHidden } = props;
+    const { name, title, colors, data, pdfRef, isHidden, ns } = props;
     
     const { 
         animationEnable,
@@ -12,7 +13,11 @@ export function CustomPieChart(props) {
 
     const renderLegendText = (value, entry) => {
         // Sets the legend font size     
-      return <span style={{ fontSize: "12px" , display: "inline-block"}}>{value}</span>;
+      return <Translation>
+          {
+              (t) => <span style={{ fontSize: "12px", display: "inline-block" }}>{t(ns+":"+value)}</span>
+          }
+      </Translation>;
     }
 
     const displayStyle = (isHidden) => {

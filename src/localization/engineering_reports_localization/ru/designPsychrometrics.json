@@ -1,0 +1,20 @@
+{
+  "Design Psychrometrics": "Психометрические данные конструкции",
+  "Zone": "Зона",
+  "Return Air": "Рециркулирующий воздух",
+  "Outdoor Air": "Наружный воздух",
+  "Entering Coil": "На входе в теплообменник",
+  "Leaving Coil": "На выходе их теплообменника",
+  "Supply Fan": "Приточный вентилятор",
+  "Dry Bulb Temperature": "Температура по сухому термометру",
+  "Humidity Ratio": "Коэффициент влажности",
+  "Temperature Difference": "Разность температур",
+  "System Name": "Имя системы",
+  "Time of Peak": "Пиковый период",
+  "Coil Air Flow Rate": "Расход воздуха теплообменника",
+  "Zone Space Sensible Load": "Нагрузка по явному теплу в пространстве зоны",
+  "Outdoor Air Flow Rate": "Расход наружного воздуха",
+  "Percent Outdoor Air": "Процент наружного воздуха",
+  "Air Specific Heat": "Удельная теплоемкость воздуха",
+  "Air Density": "Плотность воздушной среды"
+}

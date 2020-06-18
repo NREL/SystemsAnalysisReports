@@ -1,5 +1,5 @@
 import { isNumeric } from '../functions/numericFunctions';
-import unitConversions from '../constants/unitConversions';
+import { unitConversions } from '../constants/unitConversions';
 import locales from '../constants/locales';
 
 export const getObjectName = (objectList, id) => {
@@ -116,15 +116,9 @@ export function convertDataUnit(unitSystem, type, value) {
     const dataObject = unitConversions[unitSystem][type];
 
     if (dataObject["conversion"]) {
-      const conversion = dataObject["conversion"]
+      var conversion = dataObject["conversion"]
 
-      if (Object.keys(conversion).includes("multiply")) {
-        newValue = newValue * conversion["multiply"];
-      }
-
-      if (Object.keys(conversion).includes("add")) {
-        newValue = newValue + conversion["add"];
-      }
+      newValue = conversion['convert'](value)
     }
 
     if (Object.keys(dataObject).includes("decimals") && isNumeric(newValue)) {
@@ -143,19 +137,19 @@ export function getUnitLabel(unitSystem, type) {
   // Returns the unit label (e.g. "C").
 
   if (unitSystem && type) {
-      return unitConversions[unitSystem][type]["label"]
+      return unitConversions[unitSystem][type]['conversion']["label"]
   } else {
     return null
   }
 }
 
-export function getLocaleLabel(locale, key) {
+export function getLocaleLabel(locale, section, key) {
   // Function provides the label for a specific locale.
   // Requires the local (i.e. "en" or "de"), the label key (e.g. "zone_load_summary"). 
   // Returns the label (e.g. "Zone Load Summary").
 
-  if (locale && key) {
-      return locales[locale][key]
+  if (locale && section && key) {
+      return locales[locale][section][key]
   } else {
     return null
   }

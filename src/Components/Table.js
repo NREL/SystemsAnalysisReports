@@ -3,23 +3,27 @@ import Table from 'react-bootstrap/Table'
 import { getHeader } from '../functions/tableFunctions';
 import { convertDataUnit, getUnitLabel } from '../functions/dataFormatting';
 import { isNumeric, numberWithCommas } from '../functions/numericFunctions';
+import { useTranslation } from "react-i18next";
 
-export class CustomTable extends React.Component {
-    addDataRow(unitSystem, row, columns, data) {
+export function CustomTable(props) {
+    var { name, unitSystem, dataMapping, displayHeader, data, ns } = props;
+    const { t } = useTranslation();
+
+    const addDataRow = (unitSystem, row, columns, data, t) => {
         const rowKey = row['jsonKey'];
-        
+
         if (data) {
             var rowData = data[rowKey];
 
             //if (rowData) {
-                return (
-                    <tr key={ this.props.name + '-' + rowKey }>
+            return (
+                <tr key={ name + '-' + rowKey }>
                     <td width="25%">
-                        { ( ['subtotal', 'grand_total'].includes(rowKey) ? <i>{row['displayName']}</i> : row['displayName']) }
+                        { ( ['subtotal', 'grand_total'].includes(rowKey) ? <i>{t(ns+":"+row['displayName'])}</i> : t(ns+":"+row['displayName'])) }
                     </td>
                     { columns.map((column) => {
                         var dataValue = null;
-                        
+
                         if (rowData) {
                             if (Object.keys(rowData).includes(column['jsonKey'])) {
                                 if ( isNumeric(rowData[column['jsonKey']]) ) {
@@ -42,45 +46,53 @@ export class CustomTable extends React.Component {
 
                         return (
                             <td
-                            key={ this.props.name + '-' + rowKey + '-' + column['jsonKey'] }
-                            width="15%"
+                                key={ name + '-' + rowKey + '-' + column['jsonKey'] }
+                                width="15%"
                             >
                                 {  ['subtotal', 'grand_total'].includes(rowKey) ? <i>{dataValue}</i> : dataValue }
                             </td>
                         )
-                        
+
                     })}
-                    </tr>
-                );
+                </tr>
+            );
             //}
         }
     }
 
-    render() {
-        var { displayHeader, unitSystem, dataMapping, data } = this.props;
+    const getHeader = (unitSystem, column) => {
+        var header = ""
+        header = t(ns+":"+column['displayName'])
+        if (column["type"]) {
+            header += ' [' + getUnitLabel(unitSystem, column["type"]) + ']'
+        }
 
-        const headerStyle = displayHeader === true ? null : {"display":"none"};
+        return header
+    }
 
-        return (
-            <Table striped bordered hover responsive size="sm" className="App-table">
+    const headerStyle = displayHeader === true ? null : {"display":"none"};
+
+    return(
+        // const { t } = useTranslation();
+
+        <Table striped bordered hover responsive size="sm" className="App-table">
             <thead style={headerStyle}>
-            <tr key={ this.props.name + '-header' }>
-                <th  key={ this.props.name + '-label-header' } width="25%"></th>
+            <tr key={ name + '-header' }>
+                <th  key={ name + '-label-header' } width="25%"></th>
                 { dataMapping['columns'].map((column) => (
                     <th
-                    key={ this.props.name + '-' + column['displayName'] + '-header' }
-                    width="15%"
+                        key={ name + '-' + column['displayName'] + '-header' }
+                        width="15%"
                     >
-                    { getHeader(unitSystem, column) }
+                        { getHeader(unitSystem, column) }
                     </th>
                 ))
                 }
             </tr>
             </thead>
             <tbody>
-                { dataMapping['rows'].map((row) => this.addDataRow(unitSystem, row, dataMapping['columns'], data)) }
+            { dataMapping['rows'].map((row) => addDataRow(unitSystem, row, dataMapping['columns'], data, t)) }
             </tbody>
-            </Table>
-        );
-    }
+        </Table>
+    );
 }

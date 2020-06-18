@@ -11,6 +11,7 @@ import { Context } from '../store/index';
 import { DesignPsychrometricsPDF } from '../PdfReports/DesignPsychrometricsPDF';
 import { getObjectName } from '../functions/dataFormatting';
 import { formatDesignPsychrometricsTableData } from '../functions/tableFunctions';
+import { useTranslation } from "react-i18next";
 
 export function DesignPsychrometrics(props) {
     const { 
@@ -21,6 +22,8 @@ export function DesignPsychrometrics(props) {
         dataMapping,
         data
     } = props;
+
+    const { t } = useTranslation()
 
     const { 
         sectionSelection, 
@@ -102,15 +105,17 @@ export function DesignPsychrometrics(props) {
                         unitSystem={unitSystem}
                         dataMapping={dataMapping['componentTable']}
                         data={formatDesignPsychrometricsTableData(dataMapping['componentTable'], objectData)}
+                        ns={"designPsychrometrics"}
                         />
                     </Col>
                     <Col>
                         <ReportCard
                         name={name + "-conditionsTimePeak"}
-                        title="Summary"
+                        title={ t("designPsychrometrics:Summary") }
                         unitSystem={unitSystem}
                         dataMapping={dataMapping['componentChecks']}
                         data={objectData}
+                        ns={"designPsychrometrics"}
                         />
                     </Col>
             </Row>

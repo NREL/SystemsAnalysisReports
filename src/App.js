@@ -15,12 +15,13 @@ import {
   systemLoadSummaryMapping
 } from './constants/dataMapping';
 import { getLocaleLabel, loadData, formatData } from './functions/dataFormatting';
+import { useTranslation } from "react-i18next";
 
 export default function App(props) {
     const { 
         sectionSelection, setSectionSelection, 
         unitSystem, setUnitSystem,
-        locale, setLocale,
+        // locale, setLocale,
         zoneId, setZoneId,
         systemId, setSystemId,
         coilId, setCoilId,
@@ -29,6 +30,7 @@ export default function App(props) {
     const [ loading, setLoading ] = useState(true);
     const [ data, setData ] = useState(null);
     const { json } = props;
+    const { t, i18n } = useTranslation();
 
     useEffect(() => {
         console.log('hi');
@@ -61,7 +63,9 @@ export default function App(props) {
 
     const handleLocaleSelection = (value) => {
         if (value) {
-            setLocale(value);
+            // setLocale(value);
+            // console.log(value)
+            i18n.changeLanguage(value)
         }
     }
 
@@ -86,6 +90,27 @@ export default function App(props) {
             setCoilId(value);
         }
     }
+
+    const getLanguageLabel = (value) => {
+        let language_displays = {
+            "en": "US",
+            "de": "DE",
+            "es": "ES",
+            "fr": "FR",
+            "it": "IT",
+            "zh": "CN",
+            "cht": "TW",
+            "ja": "JP",
+            "ko": "KR",
+            "ru": "RU",
+            "cs": "CZ",
+            "pl": "PL",
+            "pt": "BR",
+            "eng": "GB"
+        }
+
+        return language_displays[value]
+    }
     
     const getObjectList = (data) => {
         // Get a list of object names, ids, and cad_object, ids
@@ -103,6 +128,7 @@ export default function App(props) {
     }
 
     const renderActiveSection = (value, data) => {
+
         if (value === 'zone_load_summary') {
             const activeData = data['zone_load_summarys'];
             const objectList = getObjectList(activeData);
@@ -118,6 +144,7 @@ export default function App(props) {
             unitSystem={unitSystem}
             dataMapping={zoneLoadSummaryMapping}
             data={activeData}
+            ns={"zoneLoadSummary"}
             />
         
             )
@@ -136,6 +163,7 @@ export default function App(props) {
             unitSystem={unitSystem}
             dataMapping={systemLoadSummaryMapping}
             data={activeData}
+            ns={"systemLoadSummary"}
             />
             )
         } else if (value === 'design_psychrometrics') {
@@ -153,6 +181,7 @@ export default function App(props) {
             unitSystem={unitSystem}
             dataMapping={designPsychrometricsMapping}
             data={activeData}
+            ns={"designPsychrometrics"}
             />
             )
         } else {
@@ -177,7 +206,7 @@ export default function App(props) {
           <div className="App" id="app">
             <header className="App-header">
               <p>
-                Revit Systems Analysis - Loads Report
+                  {t("Revit Systems Analysis - Loads Report")}
               </p>
             </header>
             <div className="navigation-container">
@@ -186,13 +215,14 @@ export default function App(props) {
                     <Col>
                         <Nav variant="tabs" defaultActiveKey="zone_load_summary" id="report-navbar" onSelect={handleSectionSelection}>
                         <Nav.Item>
-                            <Nav.Link eventKey="zone_load_summary">{ getLocaleLabel(locale, 'zone_load_summary' )}</Nav.Link>
+                            <Nav.Link eventKey="zone_load_summary">{ t("zoneLoadSummary:Zone Load Summary")}</Nav.Link>
+                            {/*<Nav.Link eventKey="zone_load_summary">{ getLocaleLabel(locale, 'zone_load_summary', "Zone Load Summary" )}</Nav.Link>*/}
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link eventKey="system_load_summary">System Load Summary</Nav.Link>
+                            <Nav.Link eventKey="system_load_summary">{ t("systemLoadSummary:System Load Summary")}</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link eventKey="design_psychrometrics">Design Psychrometrics</Nav.Link>
+                            <Nav.Link eventKey="design_psychrometrics">{ t("designPsychrometrics:Design Psychrometrics") }</Nav.Link>
                         </Nav.Item>
                         </Nav>
                     </Col>
@@ -200,22 +230,36 @@ export default function App(props) {
                         <div className='App-button-group'>
                             <Dropdown onSelect={handleUnitSystemSelection}>
                                 <Dropdown.Toggle id="dropdown-unit-selection"  variant="info">
-                                { unitSystem === 'si' ? 'SI' : 'IP'  }
+                                { unitSystem === 'si' ? 'SI' : unitSystem === 'ip' ? 'IP' : 'Revit' }
                                 </Dropdown.Toggle>
                 
                                 <Dropdown.Menu>
                                 <Dropdown.Item eventKey="ip">IP</Dropdown.Item>
                                 <Dropdown.Item eventKey="si">SI</Dropdown.Item>
+                                <Dropdown.Item eventKey="revit">Revit</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
                             <Dropdown onSelect={handleLocaleSelection}>
                               <Dropdown.Toggle id="dropdown-locale-selection"  variant="light">
-                              { locale === 'en' ? 'EN' : 'DE'  }
+                              { getLanguageLabel(i18n.language)  }
                               </Dropdown.Toggle>
               
                               <Dropdown.Menu>
-                              <Dropdown.Item eventKey="en">EN</Dropdown.Item>
+                              <Dropdown.Item eventKey="en">US</Dropdown.Item>
                               <Dropdown.Item eventKey="de">DE</Dropdown.Item>
+                              <Dropdown.Item eventKey="es">ES</Dropdown.Item>
+                              <Dropdown.Item eventKey="fr">FR</Dropdown.Item>
+                              <Dropdown.Item eventKey="it">IT</Dropdown.Item>
+                              <Dropdown.Item eventKey="zh">CN</Dropdown.Item>
+                              <Dropdown.Item eventKey="cht">TW</Dropdown.Item>
+                              <Dropdown.Item eventKey="ja">JP</Dropdown.Item>
+                              <Dropdown.Item eventKey="ko">KR</Dropdown.Item>
+                              <Dropdown.Item eventKey="ru">RU</Dropdown.Item>
+                              <Dropdown.Item eventKey="cs">CZ</Dropdown.Item>
+                              <Dropdown.Item eventKey="pl">PL</Dropdown.Item>
+                              <Dropdown.Item eventKey="pt">BR</Dropdown.Item>
+                              <Dropdown.Item eventKey="eng">GB</Dropdown.Item>
+
                               </Dropdown.Menu>
                             </Dropdown> 
                             <Button onClick={handlePrintClick} disabled={pdfPrint}>
