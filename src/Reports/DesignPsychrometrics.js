@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import Col from 'react-bootstrap/Col';
 import Modal from 'react-bootstrap/Modal';
 import ProgressBar from 'react-bootstrap/ProgressBar';
@@ -7,6 +7,7 @@ import Tab from 'react-bootstrap/Tab';
 import { ObjectSelectionDropDown } from '../Components/ObjectSelectionDropdown';
 import { CustomTable } from '../Components/Table';
 import { ReportCard } from '../Components/ReportCard';
+import { PsychrometricChart } from '../Components/PsychrometricChart';
 import { Context } from '../store/index';
 import { DesignPsychrometricsPDF } from '../PdfReports/DesignPsychrometricsPDF';
 import { getObjectName } from '../functions/dataFormatting';
@@ -34,6 +35,7 @@ export function DesignPsychrometrics(props) {
     const [ dataExists, setDataExists ] = useState(false);
     const [ modalShow, setModalShow ] = useState(false);
     const [ progressBarValue, setProgressBarValue ] = useState(0);
+    const d3Container = useRef(null);
 
     useEffect(() => {
         if (pdfPrint) {
@@ -118,6 +120,11 @@ export function DesignPsychrometrics(props) {
                         ns={"designPsychrometrics"}
                         />
                     </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <PsychrometricChart d3Container={d3Container}/>
+                </Col>
             </Row>
             </Tab.Container>
             <Modal

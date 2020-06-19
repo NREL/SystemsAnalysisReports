@@ -20,6 +20,13 @@ module.exports = {
             test: /\.css$/,
             loaders: ['style-loader', 'css-loader'],
           },
+          {
+            test: require.resolve('./lib/psychrolib.js'),
+            loader: 'imports-loader',
+            options: {
+              imports: 'default psychrolib Psychrometrics',
+            },
+          },
         ],
     },
     plugins: [
