@@ -1,11 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Col from 'react-bootstrap/Col';
+import Modal from 'react-bootstrap/Modal';
+import ProgressBar from 'react-bootstrap/ProgressBar';
 import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
 import { ObjectSelectionDropDown } from '../Components/ObjectSelectionDropdown';
 import { CustomTable } from '../Components/Table';
 import { ReportCard } from '../Components/ReportCard';
 import { Context } from '../store/index';
+import { DesignPsychrometricsPDF } from '../PdfReports/DesignPsychrometricsPDF';
+import { getObjectName } from '../functions/dataFormatting';
+import { formatDesignPsychrometricsTableData } from '../functions/tableFunctions';
 import { useTranslation } from "react-i18next";
 
 export function DesignPsychrometrics(props) {
@@ -13,6 +18,7 @@ export function DesignPsychrometrics(props) {
         name,
         objectSelection,
         handleObjectSelect,
+        objectList,
         dataMapping,
         data
     } = props;
@@ -22,84 +28,64 @@ export function DesignPsychrometrics(props) {
     const { 
         sectionSelection, 
         unitSystem, 
-        coilId, setCoilId 
+        coilId, setCoilId,
+        pdfPrint, setPdfPrint,
     } = useContext(Context);
     const [ dataExists, setDataExists ] = useState(false);
-    const [ heatingCoolingSelection, setHeatingCoolingSelection ] = useState("cooling");
+    const [ modalShow, setModalShow ] = useState(false);
+    const [ progressBarValue, setProgressBarValue ] = useState(0);
+
+    useEffect(() => {
+        if (pdfPrint) {
+
+            // Async function to write report
+            async function writePDFReport() {
+                console.log('Print pdf report.');
+
+                // Open progress modal
+                setModalShow(true);
+
+                // Get original state
+                let setObjectId = setCoilId;
+                let origId = coilId;
+                
+                // Run function to create report
+                await DesignPsychrometricsPDF(
+                    unitSystem,
+                    sectionSelection,
+                    objectList,
+                    setPdfPrint,
+                    setObjectId,
+                    setProgressBarValue,
+                    dataMapping,
+                    data
+                    )
+                
+                // Return to original state
+                setModalShow(false);
+                setObjectId(origId);
+            }
+            
+            writePDFReport()
+        }
+    }, [pdfPrint, sectionSelection]);
 
     useEffect(() => {
         // Set data_exists state to false if data object is empty
         if (data && Object.keys(data).length === 0) {
             setDataExists(false);
         } else {
+            console.log(data);
             setDataExists(true);
         }
     }, [data]);
-    
-    /*const handleObjectSelect = (eventKey) => {
-        // Update state when user selects a object from dropdown
-        this.setState({
-            object_selection: eventKey,
-        });
-    }*/
 
-    const getObjectList = (data) => {
-        // Get a list of object names, ids, and cad_object, ids
-        var object_list = [];
-
-        if (data) {
-            const objList = Object.keys(data);
-            for (var i = 0; i < objList.length; i++) {
-                const objName = objList[i];
-                object_list.push({id: i, cad_object_id: data[objName].cad_object_id, name: data[objName].name});
-            }
-        }
-
-        return object_list
-    }
-
-    const getObjectName = (objectList, id) => {
-        // Get the string name of the object given an id
-        //const objectList = this.state.object_list;
-        for (var i = 0; i < objectList.length; i++) {
-            if (objectList[i].id.toString() === id.toString()) {
-                return objectList[i].name
-            }
-        }
-    }
-
-    const formatTableData = (dataMapping, data) => {
-        // This function formats the data that will be displayed in the table.
-        if(data) {
-            var newData = {};
-
-            // Loop for each row
-            dataMapping['rows'].map((row) => {
-                var rowKey = row['jsonKey'];
-                newData[rowKey] = {};
-                
-                // Loop for each column
-                dataMapping['columns'].map((column) => {
-                    var colKey = column['jsonKey'];
-                    var dataKey = rowKey + '_' + colKey; // The jsonKey for retrieving data
-                    newData[rowKey][colKey] = data[dataKey];
-                    return newData
-                })
-                return newData
-            })
-
-            return newData
-        } else {
-            return null
-        }
-    }
-
-    const objectList = getObjectList(data);
     const objectName = getObjectName(objectList, objectSelection);
     const objectData = data[objectName];
 
     return (
         ( dataExists ?
+            <div id={name + '-designpsychrometricreport'}  height="500px" width="50px">
             <Tab.Container id={name + '-container'}>
                 <Row>
                     <Col className='text-left'>
@@ -118,7 +104,7 @@ export function DesignPsychrometrics(props) {
                         displayHeader={true}
                         unitSystem={unitSystem}
                         dataMapping={dataMapping['componentTable']}
-                        data={formatTableData(dataMapping['componentTable'], objectData)}
+                        data={formatDesignPsychrometricsTableData(dataMapping['componentTable'], objectData)}
                         ns={"designPsychrometrics"}
                         />
                     </Col>
@@ -134,6 +120,20 @@ export function DesignPsychrometrics(props) {
                     </Col>
             </Row>
             </Tab.Container>
+            <Modal
+                show={modalShow}
+                onHide={(() => setModalShow(false))}
+                backdrop="static"
+                keyboard={false}
+            >
+                <Modal.Header closeButton={false}>
+                <Modal.Title>{"Printing Design Psychrometrics Report to PDF"}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                <ProgressBar now={progressBarValue} />
+                </Modal.Body>
+            </Modal>
+            </div>
         : 
             <h1>No system coils found.</h1> 
         )

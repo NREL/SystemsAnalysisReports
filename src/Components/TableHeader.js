@@ -1,5 +1,6 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table'
+import { getHeader } from '../functions/tableFunctions';
 import { getUnitLabel } from '../functions/dataFormatting';
 import { useTranslation } from "react-i18next";
 

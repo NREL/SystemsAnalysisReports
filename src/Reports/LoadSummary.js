@@ -1,12 +1,10 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import ReactDOM from 'react-dom';
-import Col from 'react-bootstrap/Col'
+import Col from 'react-bootstrap/Col';
+import Modal from 'react-bootstrap/Modal';
 import Nav from 'react-bootstrap/Nav';
+import ProgressBar from 'react-bootstrap/ProgressBar';
 import Row from 'react-bootstrap/Row'
 import Tab from 'react-bootstrap/Tab';
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
-import 'jspdf-autotable';
 import { ObjectSelectionDropDown } from '../Components/ObjectSelectionDropdown';
 import { ReportCard } from '../Components/ReportCard';
 import { CustomTable } from '../Components/Table';
@@ -17,9 +15,9 @@ import {
     EQUIDISTANTCOLORS,
     COOLINGHEATINGCOLORS
 } from '../constants/settings';
-import { isNumeric } from '../functions/numericFunctions';
-import { getObjectName, convertDataUnit, getUnitLabel } from '../functions/dataFormatting';
-import { getLoadSummaryPDF } from './getLoadSummaryPDF';
+import { getObjectName, convertDataUnit, getUnitLabel, getHeatingAndCoolingPeakLoads, formatLoadComponentChartData } from '../functions/dataFormatting';
+import { formatLoadSummaryTableData } from '../functions/tableFunctions';
+import { LoadSummaryPDF } from '../PdfReports/LoadSummaryPDF';
 import { useTranslation } from "react-i18next";
 
 export function LoadSummary(props) {
@@ -38,20 +36,64 @@ export function LoadSummary(props) {
         sectionSelection, 
         unitSystem, 
         zoneId, setZoneId,
+        systemId, setSystemId,
         pdfPrint, setPdfPrint,
+        setAnimationEnable,
     } = useContext(Context);
     const [ heatingCoolingSelection, setHeatingCoolingSelection ] = useState("cooling");
-    const tableRef = useRef(null);
-    const chartRef = useRef(null);
+    const [ modalShow, setModalShow ] = useState(false);
+    const [ progressBarValue, setProgressBarValue ] = useState(0);
     const chart1Ref = useRef(null);
     const chart2Ref = useRef(null);
     const cardRef = useRef(null);
     const { t } = useTranslation();
 
     useEffect(() => {
-        if (pdfPrint && sectionSelection==='zone_load_summary') {
-            console.log('pdf print.');
-            getLoadSummaryPDF(objectList, chartRef, chart1Ref, chart2Ref, cardRef, setPdfPrint, setZoneId, dataMapping, data)
+        if (pdfPrint) {
+
+            // Async function to write report
+            async function writePDFReport() {
+                console.log('Print pdf report.');
+
+                // Open progress modal
+                setModalShow(true);
+
+                // Get original state
+                let setObjectId = null;
+                let origId = null;
+                if (sectionSelection==='zone_load_summary') {
+                    setObjectId = setZoneId;
+                    origId = zoneId;
+                } else if (sectionSelection==='system_load_summary') {
+                    setObjectId = setSystemId;
+                    origId = systemId;
+                }
+
+                let origHeatingCoolingSelection = heatingCoolingSelection;
+                
+                // Run function to create report
+                await LoadSummaryPDF(
+                    unitSystem,
+                    sectionSelection,
+                    objectList,
+                    chart1Ref,
+                    chart2Ref,
+                    setPdfPrint,
+                    setObjectId,
+                    setHeatingCoolingSelection,
+                    setAnimationEnable,
+                    setProgressBarValue,
+                    dataMapping,
+                    data
+                    )
+                
+                // Return to original state
+                setModalShow(false);
+                setObjectId(origId);
+                setHeatingCoolingSelection(origHeatingCoolingSelection);
+            }
+            
+            writePDFReport()
         }
     }, [pdfPrint, sectionSelection]);
 
@@ -129,96 +171,6 @@ export function LoadSummary(props) {
         }
     }
 
-    const getHeatingAndCoolingPeakLoads = (unitSystem, objectName, data) => {
-        // Assumes that Cooling Peak Condition Table - Sensible Peak Load is the appropriate total load value.
-        // Investigate further whether this should be a calculated value from the subcomponents.
-        
-        if (data) {
-            if (objectName) {
-                const objectData = data[objectName]
-
-                if (objectData) {
-                    // get load and convert unit system
-                    const peakCoolingLoad = convertDataUnit(unitSystem, 'heat_transfer_rate', objectData['cooling']['estimated_peak_load_component_table']['grand_total']['total']);
-                    const peakHeatingLoad = convertDataUnit(unitSystem, 'heat_transfer_rate', objectData['heating']['estimated_peak_load_component_table']['grand_total']['total']);
-
-                    const output = [ 
-                        {'name': 'Cooling', 'value': parseInt(Math.abs(peakCoolingLoad))},
-                        {'name': 'Heating', 'value': parseInt(Math.abs(peakHeatingLoad))}
-                    ]
-
-                    return output
-                } else {
-                    return null
-                }
-            } else { 
-                return null 
-            }
-        } else {
-            return null
-        }
-    }
-
-    const formatTableData = (dataMapping, data) => {
-        // This function formats the data that will be displayed in the table.
-        if (data) {
-            var newData = JSON.parse(JSON.stringify(data));
-            var totals = {
-                "latent": 0.0,
-                "sensible_delayed": 0.0,
-                "sensible_instant": 0.0,
-                "total": 0.0,
-                "percent_grand_total": 0.0
-            };
-
-            // Loop and calculate the table subtotals for each column
-            if (newData) {
-                dataMapping['rows'].map((row) => {
-                    Object.keys(totals 
-                        ).map((colName) => {
-                        var rowName = row['jsonKey'];
-                        if (Object.keys(newData).includes(rowName) && rowName !== "total" && newData[rowName]) {
-                            totals[colName] += newData[rowName][colName]
-                        }
-                        return totals
-                    })
-                    return totals
-                });
-
-                // Add total row to the data object
-                newData["subtotal"] = totals;
-            }
-
-            return newData
-        } else {
-            return null
-        }
-    }
-
-    const formatLoadComponentChartData = (unitSystem, dataMapping, data) => {
-
-        if (data) {
-        // This function formats the data that will be displayed in a chart.
-        var newData = [];
-
-        // Loop for loadGroups and sum all of the totals
-        Object.keys(dataMapping).map((group) => {
-            var total = 0;
-            // Loop again to total the loads for each load group
-            dataMapping[group].map((loadComponent) => ( Object.keys(data).includes(loadComponent) ? total += Math.abs(data[loadComponent]['total']) : null ))
-
-            // Convert unit system and add value to array
-            newData.push({'name': group, 'value': parseInt(convertDataUnit(unitSystem, 'heat_transfer_rate', total))})
-            return newData
-        })
-
-        return newData
-
-        } else {
-            return null
-        }
-    }
-
     if (data && Object.keys(data).length !== 0) {
         const objectName = getObjectName(objectList,activeSelection);
         const loadData = getLoadComponents(objectName, heatingCoolingSelection, data);
@@ -244,7 +196,7 @@ export function LoadSummary(props) {
                         </Nav>
                     </Row>
                     <Row>
-                        <Col md={6} ref={tableRef}>
+                        <Col md={6}>
                             <Row>
                                 <TableHeader
                                 name={name + "-headerTable"}
@@ -260,7 +212,7 @@ export function LoadSummary(props) {
                                 displayHeader={false}
                                 unitSystem={unitSystem}
                                 dataMapping={dataMapping['envelopeLoadsTable']}
-                                data={formatTableData(dataMapping['envelopeLoadsTable'], loadData)}
+                                data={formatLoadSummaryTableData(dataMapping['envelopeLoadsTable'], loadData)}
                                 ns={ns}
                                 />
                             </Row>
@@ -272,7 +224,7 @@ export function LoadSummary(props) {
                                 displayHeader={false}
                                 unitSystem={unitSystem}
                                 dataMapping={dataMapping['internalGainsTable']}
-                                data={formatTableData(dataMapping['internalGainsTable'], loadData)}
+                                data={formatLoadSummaryTableData(dataMapping['internalGainsTable'], loadData)}
                                 ns={ns}
                                 />
                             </Row>
@@ -284,7 +236,7 @@ export function LoadSummary(props) {
                                 displayHeader={false}
                                 unitSystem={unitSystem}
                                 dataMapping={dataMapping['systemLoadsTable']}
-                                data={formatTableData(dataMapping['systemLoadsTable'], loadData)}
+                                data={formatLoadSummaryTableData(dataMapping['systemLoadsTable'], loadData)}
                                 ns={ns}
                                 />
                             </Row>
@@ -296,12 +248,12 @@ export function LoadSummary(props) {
                                 displayHeader={false}
                                 unitSystem={unitSystem}
                                 dataMapping={dataMapping['totalLoadsTable']}
-                                data={formatTableData(dataMapping['totalLoadsTable'], loadData)}
+                                data={formatLoadSummaryTableData(dataMapping['totalLoadsTable'], loadData)}
                                 ns={ns}
                                 />
                             </Row>
                         </Col>
-                        <Col ref={cardRef}>
+                        <Col>
                             <Row>
                                 <ReportCard
                                 name={name + "-conditionsTimePeak"}
@@ -348,11 +300,11 @@ export function LoadSummary(props) {
                             </Row>
                         </Col>
                         <Col>
-                            <div ref={chartRef}>
+                            <div>
                             <Row>
                                 <CustomPieChart
-                                pdfRef={chart1Ref}
                                 name={name + "-peakLoadsChart"}
+                                pdfRef={chart1Ref}
                                 title={t(ns+":"+"Peak Loads")+" [" + getUnitLabel(unitSystem, "heat_transfer_rate") + "]"}
                                 colors={COOLINGHEATINGCOLORS}
                                 data={getHeatingAndCoolingPeakLoads(unitSystem, objectName, data)}
@@ -361,8 +313,8 @@ export function LoadSummary(props) {
                             </Row>
                             <Row>
                                 <CustomPieChart
-                                pdfRef={chart2Ref}
                                 name={name + "-loadComponentsChart"}
+                                pdfRef={chart2Ref}
                                 title={ t(ns+":"+(heatingCoolingSelection === "cooling" ? "Cooling" : "Heating") + " Load Components") + " [" + getUnitLabel(unitSystem, "heat_transfer_rate") + "]"}
                                 colors={EQUIDISTANTCOLORS}
                                 data={formatLoadComponentChartData(unitSystem, dataMapping["componentPieChart"], loadData)}
@@ -373,6 +325,19 @@ export function LoadSummary(props) {
                         </Col>
                     </Row>
                 </Tab.Container>
+                <Modal
+                    show={modalShow}
+                    onHide={(() => setModalShow(false))}
+                    backdrop="static"
+                    keyboard={false}
+                >
+                    <Modal.Header closeButton={false}>
+                    <Modal.Title>{sectionSelection === "zone_load_summary" ? "Printing Zone Load Summary Report to PDF": "Printing System Load Summary Report to PDF" }</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                    <ProgressBar now={progressBarValue} />
+                    </Modal.Body>
+                </Modal>
                 </div>
         );
     } else {
