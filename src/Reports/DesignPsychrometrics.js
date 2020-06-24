@@ -122,7 +122,11 @@ export function DesignPsychrometrics(props) {
             </Row>
             <Row>
                 <Col>
-                    <PsychrometricChart d3Container={d3Container}/>
+                    <PsychrometricChart
+                    d3Container={d3Container}
+                    data={objectData}
+                    dataMapping={dataMapping['componentTable']}
+                    />
                 </Col>
             </Row>
             </Tab.Container>

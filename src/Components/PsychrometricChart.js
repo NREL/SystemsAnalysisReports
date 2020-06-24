@@ -4,11 +4,9 @@ import { select } from 'd3-selection';
 import { line } from 'd3-shape';
 import { axisBottom, axisRight } from 'd3-axis';
 import { bisect, extent, max, min } from 'd3-array';
+import { schemeCategory10 } from 'd3-scale-chromatic';
 import { initReactI18next } from 'react-i18next';
 var psychrolib = require('../lib/psychrolib');
-
-
-// FINISH THE CODE FOR THE MINIMUM CONSTANT DB LINE.  THEN ADD STATE POINTS FROM DATA TO CHART
 
 function range(start, stop, step) {
     if (typeof stop == 'undefined') {
@@ -93,15 +91,42 @@ function filterPointsGreaterThan(pointLabel, pointArray, intersectionLabel, inte
 
 
 export const PsychrometricChart = (props) => {
-    const { d3Container } = props;
-    const data = [{x:10, y:0.0001}, {x:20, y:0.004}, {x:50, y:0.008}];
+    const { d3Container, dataMapping } = props;
+
+    // Example data
+    const data = {
+        zone: {
+            dry_bulb_temperature: 20.6,
+            humidity_ratio: 0.0090,
+        },
+        return_air: {
+            dry_bulb_temperature: 17.9,
+            humidity_ratio: 0.0086,
+        },
+        outdoor_air: {
+            dry_bulb_temperature: 29.3,
+            humidity_ratio: 0.0011,
+        },
+        entering_coil: {
+            dry_bulb_temperature: 24.0,
+            humidity_ratio: 0.0078,
+        },
+        leaving_coil: {
+            dry_bulb_temperature: 17.1,
+            humidity_ratio: 0.0094,
+        },
+    };
+
+    const xAxisTitle = 'Dry Bulb Temperature [C]';
+    const yAxisTitle = 'Humidity Ratio [kg/kg]';
+
+    // Initialize chart limits
     const xMin = 0;
     const xMax = 50;
     const yMin = 0;
     const yMax = 0.03;
 
     useEffect(() => {
-        
         // Set unit system - this needs to be done only once
         psychrolib.SetUnitSystem(psychrolib.SI)
 
@@ -114,8 +139,8 @@ export const PsychrometricChart = (props) => {
         })
         
         // set the dimensions and margins of the graph
-        var margin = {top: 40, right: 40, bottom: 40, left: 40},
-            width = 960 - margin.left - margin.right,
+        var margin = {top: 20, right: 300, bottom: 50, left: 20},
+            width = 1280 - margin.left - margin.right,
             height = 500 - margin.top - margin.bottom;
 
         // Set scales
@@ -135,9 +160,9 @@ export const PsychrometricChart = (props) => {
             "translate(" + margin.left + "," + margin.top + ")");
 
         // format data
-        data.forEach(function(d) {
-        d.y = +d.y;
-        });
+        //data.forEach(function(d) {
+        //d.y = +d.y;
+        //});
 
         // Max humid ratio line array 
         var MaxHumidRatioArray = [];
@@ -151,21 +176,45 @@ export const PsychrometricChart = (props) => {
             SaturationArray.push({db: TDryBulb, w: psychrolib.GetHumRatioFromRelHum(TDryBulb, 1.0, Pressure)});
         })
 
+        // Draw psychrometric chart lines
         addConstantRelativeHumidityLines(svg, x, y, Pressure, TDryBulbRange, MaxHumidRatioArray);
         addConstantEnthalpyLines(svg, x, y, Pressure, TDryBulbRange, SaturationArray);
         addMaxHumidityRatioLine(svg, x, y, MaxHumidRatioArray, SaturationArray);
         addMinDryBulbTemperatureLine(svg, x, y, xMin, HumidRatioRange, SaturationArray);
+        
+        // Draw process lines
         addSystemProcessLines(svg, x, y, data);
+        addSystemStatePoints(svg, x, y, data);
+
+        // Draw legend
+        addLegend(svg, width, margin, data);
 
         // add the x Axis
         svg.append("g")
         .attr("transform", "translate(0," + height + ")")
         .call(axisBottom(x));
 
+          // text label for the x axis
+        svg.append("text")             
+        .attr("transform",
+                "translate(" + (width/2) + " ," + 
+                            (height + margin.top + 20) + ")")
+        .style("text-anchor", "middle")
+        .text(xAxisTitle);
+
         // add the y Axis
         svg.append("g")
         .attr("transform", "translate( " + width + ", 0 )")
         .call(axisRight(y));
+
+        // text label for the y axis
+        svg.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", width + margin.left + 20)
+        .attr("x",0 - (height / 2))
+        .attr("dy", "1em")
+        .style("text-anchor", "middle")
+        .text(yAxisTitle); 
 
     },[data, d3Container.current])
 
@@ -288,28 +337,84 @@ export const PsychrometricChart = (props) => {
     }
 
     const addSystemProcessLines = (svg, x, y, data) => {
+        let statePoints = [];
+
+        // Set up data for system process lines
+        for (const [systemName, statePoint] of Object.entries(data)) {
+            statePoints.push(statePoint);
+        }
+
         // Add the data line
         svg.append("path")
-        .datum(data)
+        .datum(statePoints)
         .attr("fill", "none")
         .attr("stroke", "steelblue")
         .attr("stroke-width", 1.5)
         .attr("d", line()
-        .x(function(d) { return x(d.x) })
-        .y(function(d) { return y(d.y) })
+        .x(function(d) { return x(d.dry_bulb_temperature) })
+        .y(function(d) { return y(d.humidity_ratio) })
         )
     }
 
     const addSystemStatePoints = (svg, x, y, data) => {
-        // Add point data
+        let statePoints = [];
+
+        // Set up data for state points
+        for (const [systemName, statePoint] of Object.entries(data)) {
+            statePoints.push(statePoint);
+        }
+
+        // Add state point on chart
         svg.selectAll('.point')
-        .data(data)
+        .data(statePoints)
         .enter().append('circle')
-        //.call(drag)
+        .style('fill', function(d, i) { return schemeCategory10[i] })
         .attr("class", "point")
-        .attr("r", 4)
-        .attr("cx", function(p) { return x(p.x); })
-        .attr("cy", function(p) { return y(p.y); });
+        .attr("r", 6)
+        .attr("cx", function(d) { return x(d.dry_bulb_temperature); })
+        .attr("cy", function(d) { return y(d.humidity_ratio); });
+    }
+
+    const addLegend = (svg, width, margin, data) => {
+        let legendEntries = [];
+
+        // Set up data for legend
+        Object.entries(data).forEach(([systemName, statePoint], i) => {
+            let displayName = '';
+            const yLocation = margin.top + 50 + i*50;
+            const xLocation = width + margin.left + 100;
+
+            // Get the display name for the row data
+            Object.entries(dataMapping['rows']).forEach(([k, v]) => {
+                if (v.jsonKey === systemName) {
+                    displayName = v.displayName;
+                }
+            })
+
+            // Add a data row
+            legendEntries.push({name: displayName, x: xLocation, y: yLocation});
+        })
+
+        // Add point for legend entry
+        svg.selectAll(".legendPoint")
+        .data(legendEntries)
+        .enter()
+        .append('circle')
+        .style('fill', function(d, i) { return schemeCategory10[i] })
+        .attr("class", "legendPoint")
+        .attr("r", 8)
+        .attr("cx", function(d) { return d.x } )
+        .attr("cy", function(d) { return d.y } );
+
+        //Add text for legend entry
+        svg.selectAll(".legendLabel")
+        .data(legendEntries)
+        .enter()
+        .append("text")
+        .attr("class", "legendLabel")
+        .text( function (d) { return d.name; })
+        .attr("x", function(d) { return (d.x + 20) } )
+        .attr("y", function(d) { return d.y } );
     }
 
     return (
