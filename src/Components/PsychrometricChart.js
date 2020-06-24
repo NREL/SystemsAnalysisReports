@@ -100,20 +100,20 @@ export const PsychrometricChart = (props) => {
             humidity_ratio: 0.0090,
         },
         return_air: {
-            dry_bulb_temperature: 17.9,
-            humidity_ratio: 0.0086,
+            dry_bulb_temperature: 21.9,
+            humidity_ratio: 0.0090,
         },
         outdoor_air: {
             dry_bulb_temperature: 29.3,
-            humidity_ratio: 0.0011,
+            humidity_ratio: 0.020,
         },
         entering_coil: {
-            dry_bulb_temperature: 24.0,
-            humidity_ratio: 0.0078,
+            dry_bulb_temperature: 26.0,
+            humidity_ratio: 0.0150,
         },
         leaving_coil: {
-            dry_bulb_temperature: 17.1,
-            humidity_ratio: 0.0094,
+            dry_bulb_temperature: 12.1,
+            humidity_ratio: 0.008,
         },
     };
 
@@ -337,16 +337,26 @@ export const PsychrometricChart = (props) => {
     }
 
     const addSystemProcessLines = (svg, x, y, data) => {
-        let statePoints = [];
+        let systemProcesses = [];
+        //let statePoints = [];
 
         // Set up data for system process lines
-        for (const [systemName, statePoint] of Object.entries(data)) {
-            statePoints.push(statePoint);
-        }
+        //for (const [systemName, statePoint] of Object.entries(data)) {
+        //    statePoints.push(statePoint);
+        //}
 
+        systemProcesses.push([data["zone"], data["return_air"]]);
+        systemProcesses.push([data["outdoor_air"], data["entering_coil"]]);
+        systemProcesses.push([data["return_air"], data["entering_coil"]]);
+        systemProcesses.push([data["entering_coil"], data["leaving_coil"]]);
+        systemProcesses.push([data["leaving_coil"], data["zone"]]);
+
+        console.log(data);
+
+        systemProcesses.forEach((systemProcess) => {
         // Add the data line
         svg.append("path")
-        .datum(statePoints)
+        .datum(systemProcess)
         .attr("fill", "none")
         .attr("stroke", "steelblue")
         .attr("stroke-width", 1.5)
@@ -354,6 +364,9 @@ export const PsychrometricChart = (props) => {
         .x(function(d) { return x(d.dry_bulb_temperature) })
         .y(function(d) { return y(d.humidity_ratio) })
         )
+
+        })
+
     }
 
     const addSystemStatePoints = (svg, x, y, data) => {
