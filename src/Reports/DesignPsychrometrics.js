@@ -77,7 +77,6 @@ export function DesignPsychrometrics(props) {
         if (data && Object.keys(data).length === 0) {
             setDataExists(false);
         } else {
-            console.log(data);
             setDataExists(true);
         }
     }, [data]);
