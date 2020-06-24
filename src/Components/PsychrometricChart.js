@@ -100,20 +100,25 @@ export const PsychrometricChart = (props) => {
     const yMin = 0;
     const yMax = 0.03;
 
-    useEffect(
-        () => {
+    useEffect(() => {
         
         // Set unit system - this needs to be done only once
-
         psychrolib.SetUnitSystem(psychrolib.SI)
+
+        // Constants and axes parameter ranges
         const Pressure = 101325;
-        const TDryBulbArray = range(xMin, xMax+1, 1);
+        const TDryBulbRange = range(xMin, xMax+1, 1);
+        let HumidRatioRange = range(yMin*1000, yMax*1000+1, 1);
+        HumidRatioRange.forEach((HumidRatio, i) => {
+            HumidRatioRange[i] = HumidRatio/1000;
+        })
         
         // set the dimensions and margins of the graph
         var margin = {top: 40, right: 40, bottom: 40, left: 40},
             width = 960 - margin.left - margin.right,
             height = 500 - margin.top - margin.bottom;
 
+        // Set scales
         var x = scaleLinear()
                 .domain([xMin, xMax])
                 .range([0, width]);
@@ -121,6 +126,7 @@ export const PsychrometricChart = (props) => {
                 .domain([yMin, yMax])
                 .range([height, 0]);
         
+        // Initialize svg object
         const svg = select(d3Container.current)
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
@@ -128,35 +134,49 @@ export const PsychrometricChart = (props) => {
         .attr("transform", 
             "translate(" + margin.left + "," + margin.top + ")");
 
-        // format the data
+        // format data
         data.forEach(function(d) {
         d.y = +d.y;
         });
 
-        // Max humid ratio line
+        // Max humid ratio line array 
         var MaxHumidRatioArray = [];
-        TDryBulbArray.forEach(TDryBulb => {
+        TDryBulbRange.forEach(TDryBulb => {
             MaxHumidRatioArray.push({db: TDryBulb, w: yMax});
         })
 
-        // Min dry bulb temperature line
-        var MinTDryBulbArray = [];
-        MaxHumidRatioArray.forEach(HumidRatio => {
-            MinTDryBulbArray.push({db: xMin, w: HumidRatio});
-        })
-
-        // Saturation line
+        // Saturation line array
         var SaturationArray = [];
-        TDryBulbArray.forEach(TDryBulb => {
+        TDryBulbRange.forEach(TDryBulb => {
             SaturationArray.push({db: TDryBulb, w: psychrolib.GetHumRatioFromRelHum(TDryBulb, 1.0, Pressure)});
         })
 
+        addConstantRelativeHumidityLines(svg, x, y, Pressure, TDryBulbRange, MaxHumidRatioArray);
+        addConstantEnthalpyLines(svg, x, y, Pressure, TDryBulbRange, SaturationArray);
+        addMaxHumidityRatioLine(svg, x, y, MaxHumidRatioArray, SaturationArray);
+        addMinDryBulbTemperatureLine(svg, x, y, xMin, HumidRatioRange, SaturationArray);
+        addSystemProcessLines(svg, x, y, data);
+
+        // add the x Axis
+        svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(axisBottom(x));
+
+        // add the y Axis
+        svg.append("g")
+        .attr("transform", "translate( " + width + ", 0 )")
+        .call(axisRight(y));
+
+    },[data, d3Container.current])
+
+
+    const addConstantRelativeHumidityLines = (svg, x, y, Pressure, TDryBulbRange, MaxHumidRatioArray) => {
         // Add constant relative humidity lines
         const RelHumArray = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0];
 
         RelHumArray.forEach(RelHum => {
             let HumRatioArray = [];
-            TDryBulbArray.forEach(TDryBulb => {
+            TDryBulbRange.forEach(TDryBulb => {
                 HumRatioArray.push({db: TDryBulb, w: psychrolib.GetHumRatioFromRelHum(TDryBulb, RelHum, Pressure)});
             })
 
@@ -179,13 +199,15 @@ export const PsychrometricChart = (props) => {
             )
 
         });
-        
+    }
+
+    const addConstantEnthalpyLines = (svg, x, y, Pressure, TDryBulbRange, SaturationArray) => {
         // Add constant enthalpy lines
         const MoistAirEnthalpyArray = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120];
 
         MoistAirEnthalpyArray.forEach(MoistAirEnthalpy => {
             let HumRatioArray = [];
-            TDryBulbArray.forEach(TDryBulb => {
+            TDryBulbRange.forEach(TDryBulb => {
                 HumRatioArray.push({db: TDryBulb, w: psychrolib.GetHumRatioFromEnthalpyAndTDryBulb(MoistAirEnthalpy*1000, TDryBulb, Pressure)});
             })
 
@@ -215,7 +237,9 @@ export const PsychrometricChart = (props) => {
             .y(function(d) { return y(d.w) })
             )
         });
-        
+    }
+
+    const addMaxHumidityRatioLine = (svg, x, y, MaxHumidRatioArray, SaturationArray) => {
         // Clip points at max humidity ratio beyond saturation line
         let MaxHumidLine = JSON.parse(JSON.stringify(MaxHumidRatioArray));
         let intersectionPoint = lineIntersection( "db", "w", SaturationArray, MaxHumidRatioArray);  // Determine intersection point
@@ -235,17 +259,21 @@ export const PsychrometricChart = (props) => {
         .x(function(d) { return x(d.db) })
         .y(function(d) { return y(d.w) })
         )
+    }
 
-        // Clip points at min dryb bulb temperature beyond saturation line
-        let MinTDryBulbLine = JSON.parse(JSON.stringify(MinTDryBulbArray));
-        intersectionPoint = lineIntersection( "db", "w", SaturationArray, MinTDryBulbArray);  // Determine intersection point
+    const addMinDryBulbTemperatureLine = (svg, x, y, minTDryBulb, HumidRatioRange, SaturationArray) => {
+        let MinTDryBulbLine = [];
 
-        if (intersectionPoint) {
-            MinTDryBulbLine = filterPointsLessThan("db", MinTDryBulbArray, "x", intersectionPoint);  // Remove points beyond humidity ratio line
-            MinTDryBulbLine.unshift({db: intersectionPoint["x"], w: intersectionPoint["y"]}); // Add intersection point to array
-        }
+        // Determine the humidity ratio at saturation and minimum dry bulb temperature
+        let humidRatioAtMinTDryBulbSaturation = SaturationArray[0]["w"];
 
-        console.log(MinTDryBulbLine)
+        // Create array of points at min dry bulb temperature up to saturation line
+        HumidRatioRange.forEach(item => {
+            if (item <= humidRatioAtMinTDryBulbSaturation) {
+                MinTDryBulbLine.push({db: minTDryBulb, w: item})
+            }
+        })
+        MinTDryBulbLine.push({db: minTDryBulb, w: humidRatioAtMinTDryBulbSaturation}); 
 
         // Draw min dry bulb tempeature line
         svg.append("path")
@@ -256,8 +284,10 @@ export const PsychrometricChart = (props) => {
         .attr("d", line()
         .x(function(d) { return x(d.db) })
         .y(function(d) { return y(d.w) })
-        )
+        );
+    }
 
+    const addSystemProcessLines = (svg, x, y, data) => {
         // Add the data line
         svg.append("path")
         .datum(data)
@@ -268,30 +298,19 @@ export const PsychrometricChart = (props) => {
         .x(function(d) { return x(d.x) })
         .y(function(d) { return y(d.y) })
         )
-          
-        /*
+    }
+
+    const addSystemStatePoints = (svg, x, y, data) => {
         // Add point data
         svg.selectAll('.point')
-        .data([arrayOfPoints])
+        .data(data)
         .enter().append('circle')
         //.call(drag)
         .attr("class", "point")
         .attr("r", 4)
         .attr("cx", function(p) { return x(p.x); })
         .attr("cy", function(p) { return y(p.y); });
-        */
-
-        // add the x Axis
-        svg.append("g")
-        .attr("transform", "translate(0," + height + ")")
-        .call(axisBottom(x));
-
-        // add the y Axis
-        svg.append("g")
-        .attr("transform", "translate( " + width + ", 0 )")
-        .call(axisRight(y));
-
-    },[data, d3Container.current])
+    }
 
     return (
         <svg
