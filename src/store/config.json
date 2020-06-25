@@ -6,7 +6,9 @@
         "temperature_difference": "C",
         "humidity_ratio": "kg/kg",
         "flow_rate": "m3/s",
+        "enthalpy": "kJ/kg",
         "specific_heat": "J/kg/C",
+        "specific_volume": "m3/kg",
         "density": "kg/m3",
         "percent": "percent",
         "outdoor_air_percentage": "percent",
@@ -15,6 +17,7 @@
         "flow_rate_per_area": "m3/s/m2",
         "flow_rate_per_heat_transfer_rate": "m3/s/W",
         "people": "unitless",
+        "pressure": "N/m2",
         "area": "m"
     }
 }

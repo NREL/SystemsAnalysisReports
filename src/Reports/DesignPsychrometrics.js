@@ -85,13 +85,6 @@ export function DesignPsychrometrics(props) {
         const objectName = getObjectName(objectList, objectSelection);
         const objectData = data[objectName];
 
-        console.log(data);
-        console.log(coilId);
-        console.log(objectList);
-        console.log(objectSelection);
-        console.log(objectName);
-        console.log(objectData);
-
         return (
             ( dataExists ?
                 <div id={name + '-designpsychrometricreport'}  height="500px" width="50px">
@@ -113,7 +106,7 @@ export function DesignPsychrometrics(props) {
                             title={ t("designPsychrometrics:Summary") }
                             unitSystem={unitSystem}
                             dataMapping={dataMapping['componentChecks']}
-                            data={objectData}
+                            data={objectData["summary"]}
                             ns={"designPsychrometrics"}
                             />
                         </Col>
@@ -129,6 +122,7 @@ export function DesignPsychrometrics(props) {
                     <Col>
                         <CustomTable
                         name={name + "-statePointTable"}
+                        firstColWidth={10}
                         displayHeader={true}
                         unitSystem={unitSystem}
                         dataMapping={dataMapping['componentTable']}

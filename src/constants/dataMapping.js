@@ -6,9 +6,10 @@ export const designPsychrometricsMapping = {
             {"displayName": "Dew Point Temperature", "jsonKey": "dewpoint_temperature", "type": "temperature"},
             {"displayName": "Humidity Ratio", "jsonKey": "humidity_ratio", "type": "humidity_ratio"},
             {"displayName": "Relative Humidity", "jsonKey": "relative_humidity", "type": "percent"},
-            //{"displayName": "Enthalpy", "jsonKey": "enthalpy", "type": "enthalpy"},
-            //{"displayName": "Density", "jsonKey": "air_density", "type": "density"},
-            //{"displayName": "Specific Volume", "jsonKey": "air_specific_volume", "type": "specific_volume"},
+            {"displayName": "Enthalpy", "jsonKey": "enthalpy", "type": "enthalpy"},
+            {"displayName": "Specific Heat", "jsonKey": "air_specific_heat", "type": "specific_heat"},
+            {"displayName": "Density", "jsonKey": "air_density", "type": "density"},  
+            {"displayName": "Specific Volume", "jsonKey": "air_specific_volume", "type": "specific_volume"},
         ],
         "rows": [
             {"displayName": "Zone", "jsonKey": "zone"},
@@ -22,14 +23,14 @@ export const designPsychrometricsMapping = {
         {
             "label": null,
             "items": [
-                {"displayName": "System Name", "jsonKey": "name", "type": null},
                 {"displayName": "Time of Peak", "jsonKey": "time_of_peak", "type": null},
+                {"displayName": "Atmospheric Pressure", "jsonKey": "atmospheric_pressure", "type": "pressure"},
                 {"displayName": "Zone Space Sensible Load", "jsonKey": "zone_sensible_load", "type": "heat_transfer_rate"},
                 {"displayName": "Coil Air Flow Rate", "jsonKey": "coil_air_flow_rate", "type": "flow_rate"},
                 {"displayName": "Outdoor Air Flow Rate", "jsonKey": "outdoor_air_flow_rate", "type": "flow_rate"},
                 {"displayName": "Percent Outdoor Air", "jsonKey": "percent_outdoor_air", "type": "outdoor_air_percentage"},
-                {"displayName": "Air Specific Heat", "jsonKey": "air_specific_heat", "type": "specific_heat"},
-                {"displayName": "Air Density", "jsonKey": "air_density", "type": "density"},   
+                //{"displayName": "Air Specific Heat", "jsonKey": "air_specific_heat", "type": "specific_heat"},
+                //{"displayName": "Air Density", "jsonKey": "air_density", "type": "density"},   
                 {"displayName": "Supply Fan Temperature Difference", "jsonKey": "supply_fan_temperature_difference", "type": "temperature_difference"},        
             ]
         }

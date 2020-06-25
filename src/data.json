@@ -15,46 +15,46 @@
             "entering_coil": {
                 "dry_bulb_temperature": 24.029,
                 "humidity_ratio": 0.0078271,
+                "relative_humidity": 43.8,
                 "wetbulb_temperature": 24.029,
                 "dewpoint_temperature": 24.029,
-                "relative_humdiity": 0.40,
                 "enthalpy": 50,
                 "air_density": 0.99592,
                 "air_specific_heat": 0.90388,
-                "air_specific_volume":10
+                "air_specific_volume": 0.86
             },
             "leaving_coil": {
                 "dry_bulb_temperature": 17.075,
                 "humidity_ratio": 0.0093508,
+                "relative_humidity": 48.4,
                 "wetbulb_temperature": 17.075,
                 "dewpoint_temperature": 17.075,
-                "relative_humdiity": 0.40,
                 "enthalpy": 50,
                 "air_density": 0.99592,
                 "air_specific_heat": 0.90388,
-                "air_specific_volume":10
+                "air_specific_volume": 0.86
             },
             "outdoor_air": {
                 "dry_bulb_temperature": 29.32,
                 "humidity_ratio": 0.0010632,
+                "relative_humidity": 45.1,
                 "wetbulb_temperature": 29.32,
                 "dewpoint_temperature": 29.32,
-                "relative_humdiity": 0.40,
                 "enthalpy": 50,
                 "air_density": 0.99592,
                 "air_specific_heat": 0.90388,
-                "air_specific_volume":10
+                "air_specific_volume": 0.86
             },
             "return_air": {
                 "dry_bulb_temperature": 17.892,
                 "humidity_ratio": 0.0085941,
+                "relative_humidity": 41.9,
                 "wetbulb_temperature": 17.892,
                 "dewpoint_temperature": 17.892,
-                "relative_humdiity": 0.40,
                 "enthalpy": 50,
                 "air_density": 0.99592,
                 "air_specific_heat": 0.90388,
-                "air_specific_volume":10
+                "air_specific_volume": 0.86
             },
             "zone": {
                 "dry_bulb_temperature": 20.613,
@@ -62,11 +62,10 @@
                 "relative_humidity": 40.839,
                 "wetbulb_temperature": 20.613,
                 "dewpoint_temperature": 20.613,
-                "relative_humdiity": 0.40,
                 "enthalpy": 50,
                 "air_density": 0.99592,
                 "air_specific_heat": 0.90388,
-                "air_specific_volume":10
+                "air_specific_volume": 0.86
             }
         },
         "Coil 2": {
@@ -83,46 +82,46 @@
             "entering_coil": {
                 "dry_bulb_temperature": 23.097,
                 "humidity_ratio": 0.0027073,
+                "relative_humidity": 48.1,
                 "wetbulb_temperature": 24.029,
                 "dewpoint_temperature": 24.029,
-                "relative_humdiity": 0.40,
                 "enthalpy": 50,
                 "air_density": 0.99592,
                 "air_specific_heat": 0.90388,
-                "air_specific_volume":10
+                "air_specific_volume": 0.86
             },
             "leaving_coil": {
                 "dry_bulb_temperature": 17.31,
                 "humidity_ratio": 0.0080549,
+                "relative_humidity": 41.8,
                 "wetbulb_temperature": 24.029,
                 "dewpoint_temperature": 24.029,
-                "relative_humdiity": 0.40,
                 "enthalpy": 50,
                 "air_density": 0.99592,
                 "air_specific_heat": 0.90388,
-                "air_specific_volume":10
+                "air_specific_volume": 0.86
             },
             "outdoor_air": {
                 "dry_bulb_temperature": 15.502,
                 "humidity_ratio": 0.0070312,
+                "relative_humidity": 38.0,
                 "wetbulb_temperature": 24.029,
                 "dewpoint_temperature": 24.029,
-                "relative_humdiity": 0.40,
                 "enthalpy": 50,
                 "air_density": 0.99592,
                 "air_specific_heat": 0.90388,
-                "air_specific_volume":10
+                "air_specific_volume": 0.86
             },
             "return_air": {
                 "dry_bulb_temperature": 23.888,
                 "humidity_ratio": 0.0040665,
+                "relative_humidity": 42.0,
                 "wetbulb_temperature": 24.029,
                 "dewpoint_temperature": 24.029,
-                "relative_humdiity": 0.40,
                 "enthalpy": 50,
                 "air_density": 0.99592,
                 "air_specific_heat": 0.90388,
-                "air_specific_volume":10
+                "air_specific_volume": 0.86
             },
             "zone": {
                 "dry_bulb_temperature": 15.498,
@@ -130,11 +129,10 @@
                 "relative_humidity": 38.662,
                 "wetbulb_temperature": 24.029,
                 "dewpoint_temperature": 24.029,
-                "relative_humdiity": 0.40,
                 "enthalpy": 50,
                 "air_density": 0.99592,
                 "air_specific_heat": 0.90388,
-                "air_specific_volume":10
+                "air_specific_volume": 0.86
             }
         },
         "Coil 3": {
@@ -154,11 +152,10 @@
                 "relative_humidity": 40.839,
                 "wetbulb_temperature": 20.613,
                 "dewpoint_temperature": 20.613,
-                "relative_humdiity": 0.40,
                 "enthalpy": 50,
                 "air_density": 1.0856,
                 "air_specific_heat": 0.91227,
-                "air_specific_volume":10
+                "air_specific_volume": 0.86
             },
             "leaving_coil": {
                 "dry_bulb_temperature": 18.626,
@@ -166,11 +163,10 @@
                 "relative_humidity": 40.839,
                 "wetbulb_temperature": 20.613,
                 "dewpoint_temperature": 20.613,
-                "relative_humdiity": 0.40,
                 "enthalpy": 50,
                 "air_density": 1.0856,
                 "air_specific_heat": 0.91227,
-                "air_specific_volume":10
+                "air_specific_volume": 0.86
             },
             "outdoor_air": {
                 "dry_bulb_temperature": 14.057,
@@ -178,11 +174,10 @@
                 "relative_humidity": 40.839,
                 "wetbulb_temperature": 20.613,
                 "dewpoint_temperature": 20.613,
-                "relative_humdiity": 0.40,
                 "enthalpy": 50,
                 "air_density": 1.0856,
                 "air_specific_heat": 0.91227,
-                "air_specific_volume":10
+                "air_specific_volume": 0.86
             },
             "return_air": {
                 "dry_bulb_temperature": 21.493,
@@ -190,11 +185,10 @@
                 "relative_humidity": 40.839,
                 "wetbulb_temperature": 20.613,
                 "dewpoint_temperature": 20.613,
-                "relative_humdiity": 0.40,
                 "enthalpy": 50,
                 "air_density": 1.0856,
                 "air_specific_heat": 0.91227,
-                "air_specific_volume":10
+                "air_specific_volume": 0.86
             },
             "zone": {
                 "dry_bulb_temperature": 16.273,
@@ -202,11 +196,10 @@
                 "relative_humidity": 43.275,
                 "wetbulb_temperature": 20.613,
                 "dewpoint_temperature": 20.613,
-                "relative_humdiity": 0.40,
                 "enthalpy": 50,
                 "air_density": 1.0856,
                 "air_specific_heat": 0.91227,
-                "air_specific_volume":10
+                "air_specific_volume": 0.86
             }
         },
         "Coil 4": {
@@ -226,11 +219,11 @@
                 "relative_humidity": 40.839,
                 "wetbulb_temperature": 20.613,
                 "dewpoint_temperature": 20.613,
-                "relative_humdiity": 0.40,
+                "relative_humidity": 0.4,
                 "enthalpy": 50,
                 "air_density": 1.0841,
                 "air_specific_heat": 0.99551,
-                "air_specific_volume":10
+                "air_specific_volume": 0.86
             },
             "leaving_coil": {
                 "dry_bulb_temperature": 17.371,
@@ -238,11 +231,11 @@
                 "relative_humidity": 40.839,
                 "wetbulb_temperature": 20.613,
                 "dewpoint_temperature": 20.613,
-                "relative_humdiity": 0.40,
+                "relative_humidity": 0.4,
                 "enthalpy": 50,
                 "air_density": 1.0841,
                 "air_specific_heat": 0.99551,
-                "air_specific_volume":10
+                "air_specific_volume": 0.86
             },
             "outdoor_air": {
                 "dry_bulb_temperature": 17.65,
@@ -250,11 +243,11 @@
                 "relative_humidity": 40.839,
                 "wetbulb_temperature": 20.613,
                 "dewpoint_temperature": 20.613,
-                "relative_humdiity": 0.40,
+                "relative_humidity": 0.4,
                 "enthalpy": 50,
                 "air_density": 1.0841,
                 "air_specific_heat": 0.99551,
-                "air_specific_volume":10
+                "air_specific_volume": 0.86
             },
             "return_air": {
                 "dry_bulb_temperature": 14.18,
@@ -262,11 +255,11 @@
                 "relative_humidity": 40.839,
                 "wetbulb_temperature": 20.613,
                 "dewpoint_temperature": 20.613,
-                "relative_humdiity": 0.40,
+                "relative_humidity": 0.4,
                 "enthalpy": 50,
                 "air_density": 1.0841,
                 "air_specific_heat": 0.99551,
-                "air_specific_volume":10
+                "air_specific_volume": 0.86
             },
             "zone": {
                 "dry_bulb_temperature": 21.963,
@@ -274,11 +267,11 @@
                 "relative_humidity": 51.958,
                 "wetbulb_temperature": 20.613,
                 "dewpoint_temperature": 20.613,
-                "relative_humdiity": 0.40,
+                "relative_humidity": 0.4,
                 "enthalpy": 50,
                 "air_density": 1.0841,
                 "air_specific_heat": 0.99551,
-                "air_specific_volume":10
+                "air_specific_volume": 0.86
             }
         },
         "Coil 5": {
@@ -292,18 +285,17 @@
                 "time_of_peak": "8/21 12:00:00",
                 "zone_sensible_load": 3240.7
             },
-
             "entering_coil": {
                 "dry_bulb_temperature": 17.665,
                 "humidity_ratio": 0.0028115,
                 "relative_humidity": 40.839,
                 "wetbulb_temperature": 20.613,
                 "dewpoint_temperature": 20.613,
-                "relative_humdiity": 0.40,
+                "relative_humidity": 0.4,
                 "enthalpy": 50,
                 "air_density": 0.93072,
                 "air_specific_heat": 1.0236,
-                "air_specific_volume":10
+                "air_specific_volume": 0.86
             },
             "leaving_coil": {
                 "dry_bulb_temperature": 14.67,
@@ -311,11 +303,11 @@
                 "relative_humidity": 40.839,
                 "wetbulb_temperature": 20.613,
                 "dewpoint_temperature": 20.613,
-                "relative_humdiity": 0.40,
+                "relative_humidity": 0.4,
                 "enthalpy": 50,
                 "air_density": 0.93072,
                 "air_specific_heat": 1.0236,
-                "air_specific_volume":10
+                "air_specific_volume": 0.86
             },
             "outdoor_air": {
                 "dry_bulb_temperature": 28.613,
@@ -323,11 +315,11 @@
                 "relative_humidity": 40.839,
                 "wetbulb_temperature": 20.613,
                 "dewpoint_temperature": 20.613,
-                "relative_humdiity": 0.40,
+                "relative_humidity": 0.4,
                 "enthalpy": 50,
                 "air_density": 0.93072,
                 "air_specific_heat": 1.0236,
-                "air_specific_volume":10
+                "air_specific_volume": 0.86
             },
             "return_air": {
                 "dry_bulb_temperature": 17.485,
@@ -335,11 +327,11 @@
                 "relative_humidity": 40.839,
                 "wetbulb_temperature": 20.613,
                 "dewpoint_temperature": 20.613,
-                "relative_humdiity": 0.40,
+                "relative_humidity": 0.4,
                 "enthalpy": 50,
                 "air_density": 0.93072,
                 "air_specific_heat": 1.0236,
-                "air_specific_volume":10
+                "air_specific_volume": 0.86
             },
             "zone": {
                 "dry_bulb_temperature": 18.215,
@@ -347,11 +339,11 @@
                 "relative_humidity": 21.846,
                 "wetbulb_temperature": 20.613,
                 "dewpoint_temperature": 20.613,
-                "relative_humdiity": 0.40,
+                "relative_humidity": 0.4,
                 "enthalpy": 50,
                 "air_density": 0.93072,
                 "air_specific_heat": 1.0236,
-                "air_specific_volume":10
+                "air_specific_volume": 0.86
             }
         }
     },
