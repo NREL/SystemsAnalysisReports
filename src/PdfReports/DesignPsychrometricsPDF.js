@@ -1,20 +1,21 @@
+import ReactDOM from 'react-dom';
+import domtoimage from 'dom-to-image';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { getHeader } from '../functions/tableFunctions';
+import { sleep } from '../functions/generalFunctions';
 import { getObjectName, convertDataUnit, getUnitLabel } from '../functions/dataFormatting';
 import { isNumeric, numberWithCommas } from '../functions/numericFunctions';
 import { formatDesignPsychrometricsTableData } from '../functions/tableFunctions';
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
 
 export const DesignPsychrometricsPDF = async (
     unitSystem,
     sectionSelection,
     objectList,
+    chart1Ref,
     setPdfPrint,
     setObjectId,
+    setAnimationEnable,
     setProgressBarValue,
     dataMapping,
     data
@@ -39,9 +40,15 @@ export const DesignPsychrometricsPDF = async (
     // Default a4 size (210 x 297 mm), units in mm
     const doc = new jsPDF({orientation: 'portrait', format: 'a4', unit: 'mm', compress: true});
 
+    // Turn off animations
+    setAnimationEnable(false);
+
     var pageNum = 1;
     var progressBarValue = 0;
     const maxProgressBarValue = objectList.length;
+
+    // Initialize progress bar
+    setProgressBarValue(progressBarValue);
 
     console.log('Print page ' + pageNum);  // Console log first page
 
@@ -53,6 +60,9 @@ export const DesignPsychrometricsPDF = async (
         const objectId = i;
         setObjectId(i);
         const objectName = getObjectName(objectList, objectId);
+
+        // Delay to allow time to render
+        await sleep(50);
 
         // Add page, if necessary
         if (!(i===0)) {
@@ -78,11 +88,11 @@ export const DesignPsychrometricsPDF = async (
 
         // Summary
         xStart = 15; 
-        yStart = 21;
+        yStart = 30;
 
         const coilData = data[objectName];
 
-        var cardText = formatCardText(unitSystem, dataMapping['componentChecks'][0], coilData);
+        var cardText = formatCardText(unitSystem, dataMapping['componentChecks'][0], coilData['summary']);
         doc.setDrawColor(0);
         doc.setFillColor(221, 221, 221);
         doc.rect(xStart, yStart, 35, 3, 'F');
@@ -92,8 +102,30 @@ export const DesignPsychrometricsPDF = async (
         doc.setFontSize(cardFontSize);
         doc.text(cardText, xStart, yStart+6);
 
-        // Load Components Table
+        // Write Psychrometric Chart
         yStart = 56;
+
+        let svg = ReactDOM.findDOMNode(chart1Ref.current);
+        let width = svg.getBoundingClientRect().width;
+        let height = svg.getBoundingClientRect().height;
+
+        await domtoimage.toPng(svg, {
+            width: width,
+            height: height,
+            style: {
+            'transform': 'scale(1.0)',
+            'transform-origin': 'top left'
+            }
+        })
+        .then(function (dataUrl) {
+            doc.addImage(dataUrl, 'PNG', (210 - width/6)/2, yStart, width/6, height/6);
+        })
+        .catch(function (error) {
+            console.error('Psychrometric chart did not render properly.', error);
+        });
+
+        // System Components Table
+        yStart = 150;
         var mapKey = 'componentTable';
         var colLabels = getColumnLabels(unitSystem, mapKey, dataMapping);
         var tempTableData = formatDesignPsychrometricsTableData(dataMapping[mapKey], coilData)
@@ -102,6 +134,7 @@ export const DesignPsychrometricsPDF = async (
         doc.autoTable({
             tableLineWidth: 0.1,
             bodyStyles: tableBodyStyle,
+            headStyles: tableHeaderStyle,
             columnStyles: columnStyles,
             body: tableData,
             columns: colLabels,
@@ -122,6 +155,7 @@ export const DesignPsychrometricsPDF = async (
     doc.save(fileName);
 
     // Clean up
+    setAnimationEnable(true);
     setPdfPrint(false);
 
     var endTime = new Date().getTime();

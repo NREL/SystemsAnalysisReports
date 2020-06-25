@@ -31,6 +31,7 @@ export function DesignPsychrometrics(props) {
         unitSystem, 
         coilId, setCoilId,
         pdfPrint, setPdfPrint,
+        animationEnable, setAnimationEnable,
     } = useContext(Context);
     const [ dataExists, setDataExists ] = useState(false);
     const [ modalShow, setModalShow ] = useState(false);
@@ -56,8 +57,10 @@ export function DesignPsychrometrics(props) {
                     unitSystem,
                     sectionSelection,
                     objectList,
+                    d3Container,
                     setPdfPrint,
                     setObjectId,
+                    setAnimationEnable,
                     setProgressBarValue,
                     dataMapping,
                     data
@@ -114,6 +117,7 @@ export function DesignPsychrometrics(props) {
                             <PsychrometricChart
                             d3Container={d3Container}
                             unitSystem={unitSystem}
+                            animationEnable={animationEnable}
                             data={objectData}
                             dataMapping={dataMapping['componentTable']}
                             ns={"designPsychrometrics"}

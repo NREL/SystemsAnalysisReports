@@ -13,7 +13,7 @@ import { lineIntersection } from '../functions/geometricFunctions';
 var psychrolib = require('../lib/psychrolib');
 
 export const PsychrometricChart = (props) => {
-    const { d3Container, unitSystem, data, dataMapping, ns } = props;
+    const { d3Container, unitSystem, animationEnable, data, dataMapping, ns } = props;
     const { t } = useTranslation();
 
     // Set unit system to use for psych chart
@@ -33,15 +33,16 @@ export const PsychrometricChart = (props) => {
     const yMin = 0.0
     const yMax = 0.03;
 
-    // Transition for d3 animation
-    const t1 = transition().duration(1000);
-
     // set the dimensions and margins of the graph
     var margin = {top: 20, right: 300, bottom: 100, left: 20},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
     useEffect(() => {
+
+        // Transition for d3 animation
+        const t1 = ( animationEnable ? transition().duration(1000) : transition().duration(0)) ;
+
         // Set unit system - this needs to be done only once
         if (psychUnitSystem === 'si') {
             psychrolib.SetUnitSystem(psychrolib.SI)
@@ -128,7 +129,7 @@ export const PsychrometricChart = (props) => {
         .attr("dy", "1em")
         .style("text-anchor", "middle")
         .text(yAxisTitle); 
-    },[unitSystem, t, data, d3Container.current])
+    },[unitSystem, t, animationEnable, data, d3Container.current])
 
     const addConstantRelativeHumidityLines = (svg, x, y, Pressure, TDryBulbRange, MaxHumidRatioArray) => {
         // Add constant relative humidity lines
