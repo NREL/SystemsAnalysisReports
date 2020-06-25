@@ -81,22 +81,49 @@ export function DesignPsychrometrics(props) {
         }
     }, [data]);
 
-    const objectName = getObjectName(objectList, objectSelection);
-    const objectData = data[objectName];
+    if (data && Object.keys(data).length !== 0) {
+        const objectName = getObjectName(objectList, objectSelection);
+        const objectData = data[objectName];
 
-    return (
-        ( dataExists ?
-            <div id={name + '-designpsychrometricreport'}  height="500px" width="50px">
-            <Tab.Container id={name + '-container'}>
-                <Row>
-                    <Col className='text-left'>
-                        <ObjectSelectionDropDown
-                        name={name + "-objectDropdown"}
-                        objectList={objectList}
-                        objectSelection={objectSelection}
-                        handleObjectSelect={handleObjectSelect}
-                        />
-                    </Col>
+        console.log(data);
+        console.log(coilId);
+        console.log(objectList);
+        console.log(objectSelection);
+        console.log(objectName);
+        console.log(objectData);
+
+        return (
+            ( dataExists ?
+                <div id={name + '-designpsychrometricreport'}  height="500px" width="50px">
+                <Tab.Container id={name + '-container'}>
+                    <Row>
+                        <Col className='text-left'>
+                            <ObjectSelectionDropDown
+                            name={name + "-objectDropdown"}
+                            objectList={objectList}
+                            objectSelection={objectSelection}
+                            handleObjectSelect={handleObjectSelect}
+                            />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md={1}>
+                            <ReportCard
+                            name={name + "-conditionsTimePeak"}
+                            title={ t("designPsychrometrics:Summary") }
+                            unitSystem={unitSystem}
+                            dataMapping={dataMapping['componentChecks']}
+                            data={objectData}
+                            ns={"designPsychrometrics"}
+                            />
+                        </Col>
+                        <Col>
+                            <PsychrometricChart
+                            d3Container={d3Container}
+                            data={objectData}
+                            dataMapping={dataMapping['componentTable']}
+                            />
+                        </Col>
                 </Row>
                 <Row>
                     <Col>
@@ -109,43 +136,25 @@ export function DesignPsychrometrics(props) {
                         ns={"designPsychrometrics"}
                         />
                     </Col>
-                    <Col>
-                        <ReportCard
-                        name={name + "-conditionsTimePeak"}
-                        title={ t("designPsychrometrics:Summary") }
-                        unitSystem={unitSystem}
-                        dataMapping={dataMapping['componentChecks']}
-                        data={objectData}
-                        ns={"designPsychrometrics"}
-                        />
-                    </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <PsychrometricChart
-                    d3Container={d3Container}
-                    data={objectData}
-                    dataMapping={dataMapping['componentTable']}
-                    />
-                </Col>
-            </Row>
-            </Tab.Container>
-            <Modal
-                show={modalShow}
-                onHide={(() => setModalShow(false))}
-                backdrop="static"
-                keyboard={false}
-            >
-                <Modal.Header closeButton={false}>
-                <Modal.Title>{"Printing Design Psychrometrics Report to PDF"}</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                <ProgressBar now={progressBarValue} />
-                </Modal.Body>
-            </Modal>
-            </div>
-        : 
-            <h1>No system coils found.</h1> 
-        )
-    );
+                </Row>
+                </Tab.Container>
+                <Modal
+                    show={modalShow}
+                    onHide={(() => setModalShow(false))}
+                    backdrop="static"
+                    keyboard={false}
+                >
+                    <Modal.Header closeButton={false}>
+                    <Modal.Title>{"Printing Design Psychrometrics Report to PDF"}</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                    <ProgressBar now={progressBarValue} />
+                    </Modal.Body>
+                </Modal>
+                </div>
+            : 
+                <h1>No system coils found.</h1> 
+            )
+        );
+    }
 }

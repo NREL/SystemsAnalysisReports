@@ -59,8 +59,7 @@ export const formatDesignPsychrometricsTableData = (dataMapping, data) => {
             // Loop for each column
             dataMapping['columns'].map((column) => {
                 var colKey = column['jsonKey'];
-                var dataKey = rowKey + '_' + colKey; // The jsonKey for retrieving data
-                newData[rowKey][colKey] = data[dataKey];
+                newData[rowKey][colKey] = data[rowKey][colKey];
                 return newData
             })
             return newData
