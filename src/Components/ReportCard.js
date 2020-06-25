@@ -16,7 +16,7 @@ export class ReportCard extends React.Component {
                 {
                     (t) =>
                         <Card className="App-card" id={name}>
-                            <Card.Header className="App-card-header">{this.props.title}</Card.Header>
+                            <Card.Header className="App-card-header">{t(ns+":"+this.props.title)}</Card.Header>
                             <Card.Body className="App-card-body">
                                 <Container>
                                     {dataMapping.map((colData, index) => (

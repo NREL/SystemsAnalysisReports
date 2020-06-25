@@ -10,7 +10,7 @@ export default function TableHeader(props) {
     //const firstColWidth = 20;
     const colWidth = (100-firstColWidth)/numberOfCols;
 
-    const getHeader = (unitSystem, column) => {
+    const getHeader = (unitSystem, column, t) => {
         var header = ""
         header = t("systemLoadSummary:"+column['displayName'])
         if (column["type"]) {

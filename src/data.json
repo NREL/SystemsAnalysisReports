@@ -72,6 +72,7 @@
             "cad_object_id": 2,
             "name": "Coil 2",
             "summary": {
+                "atmospheric_pressure": 90000,
                 "coil_air_flow_rate": 0.53354,
                 "outdoor_air_flow_rate": 0.6451,
                 "percent_outdoor_air": 0.06403,
@@ -206,6 +207,7 @@
             "cad_object_id": 4,
             "name": "Coil 4",
             "summary": {
+                "atmospheric_pressure": 101325,
                 "coil_air_flow_rate": 0.82307,
                 "outdoor_air_flow_rate": 0.58247,
                 "percent_outdoor_air": 0.15264,
@@ -278,6 +280,7 @@
             "cad_object_id": 5,
             "name": "Coil 5",
             "summary": {
+                "atmospheric_pressure": 101325,
                 "coil_air_flow_rate": 1.0001,
                 "outdoor_air_flow_rate": 0.84341,
                 "percent_outdoor_air": 0.53923,
