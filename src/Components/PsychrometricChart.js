@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 import { convertDataUnit, getUnitLabel } from '../functions/dataFormatting';
 import { filterPointsGreaterThan, filterPointsLessThan, range } from '../functions/numericFunctions';
 import { lineIntersection } from '../functions/geometricFunctions';
-var psychrolib = require('../lib/psychrolib');
+var psychrolib = require('../lib/psychrolib.js');
 
 export const PsychrometricChart = (props) => {
     const { d3Container, unitSystem, animationEnable, data, dataMapping, ns } = props;
