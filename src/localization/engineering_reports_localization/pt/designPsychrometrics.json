@@ -1,0 +1,20 @@
+{
+  "Design Psychrometrics": "Psicometria do projeto",
+  "Zone": "Zona",
+  "Return Air": "Ar de retorno",
+  "Outdoor Air": "Ar externo",
+  "Entering Coil": "Espiral de entrada",
+  "Leaving Coil": "Espiral de saída",
+  "Supply Fan": "Ventilador de fornecimento",
+  "Dry Bulb Temperature": "Temperatura do bulbo seco",
+  "Humidity Ratio": "Relação de umidade",
+  "Temperature Difference": "Diferença de temperatura",
+  "System Name": "Nome do sistema",
+  "Time of Peak": "Hora de pico",
+  "Coil Air Flow Rate": "Taxa de fluxo de ar da serpentina",
+  "Zone Space Sensible Load": "Carga sensível do espaço da zona",
+  "Outdoor Air Flow Rate": "Taxa de fluxo de ar externo",
+  "Percent Outdoor Air": "Porcentagem de ar externo",
+  "Air Specific Heat": "Calor específico do ar",
+  "Air Density": "Densidade do ar"
+}
