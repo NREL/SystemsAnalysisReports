@@ -1,8 +1,16 @@
+//import { useTranslation } from "react-i18next";
 import { convertDataUnit, getUnitLabel } from '../functions/dataFormatting';
 
-export const getHeader = (unitSystem, column) => {
+export const getHeader = (unitSystem, column, t, ns) => {
+    //const { t } = useTranslation();
     var header = ""
-    header = column['displayName']
+
+    if (t && ns) {
+        header = t(ns + ':' + column['displayName']);
+    } else {
+        header = column['displayName'];
+    }
+
     if (column["type"]) {
         header += ' [' + getUnitLabel(unitSystem, column["type"]) + ']'
     }
@@ -59,8 +67,7 @@ export const formatDesignPsychrometricsTableData = (dataMapping, data) => {
             // Loop for each column
             dataMapping['columns'].map((column) => {
                 var colKey = column['jsonKey'];
-                var dataKey = rowKey + '_' + colKey; // The jsonKey for retrieving data
-                newData[rowKey][colKey] = data[dataKey];
+                newData[rowKey][colKey] = data[rowKey][colKey];
                 return newData
             })
             return newData

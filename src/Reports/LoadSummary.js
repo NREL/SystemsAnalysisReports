@@ -84,7 +84,9 @@ export function LoadSummary(props) {
                     setAnimationEnable,
                     setProgressBarValue,
                     dataMapping,
-                    data
+                    data,
+                    ns,
+                    t
                     )
                 
                 // Return to original state
@@ -200,8 +202,10 @@ export function LoadSummary(props) {
                             <Row>
                                 <TableHeader
                                 name={name + "-headerTable"}
+                                firstColWidth={20}
                                 unitSystem={unitSystem}
                                 dataMapping={dataMapping['headerTable']}
+                                ns={ns}
                                 />
                             </Row>
                             <Row>
@@ -209,6 +213,7 @@ export function LoadSummary(props) {
                                 <CustomTable
                                 t={t}
                                 name={name + "-envelopeTable"}
+                                firstColWidth={20}
                                 displayHeader={false}
                                 unitSystem={unitSystem}
                                 dataMapping={dataMapping['envelopeLoadsTable']}
@@ -221,6 +226,7 @@ export function LoadSummary(props) {
                                 <CustomTable
                                 t={t}
                                 name={name + "-internalGainTable"}
+                                firstColWidth={20}
                                 displayHeader={false}
                                 unitSystem={unitSystem}
                                 dataMapping={dataMapping['internalGainsTable']}
@@ -233,6 +239,7 @@ export function LoadSummary(props) {
                                 <CustomTable
                                 t={t}
                                 name={name + "-systemLoadsTable"}
+                                firstColWidth={20}
                                 displayHeader={false}
                                 unitSystem={unitSystem}
                                 dataMapping={dataMapping['systemLoadsTable']}
@@ -245,6 +252,7 @@ export function LoadSummary(props) {
                                 <CustomTable
                                 t={t}
                                 name={name + "-totalLoadsTable"}
+                                firstColWidth={20}
                                 displayHeader={false}
                                 unitSystem={unitSystem}
                                 dataMapping={dataMapping['totalLoadsTable']}

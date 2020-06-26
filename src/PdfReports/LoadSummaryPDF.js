@@ -2,15 +2,11 @@ import ReactDOM from 'react-dom';
 import domtoimage from 'dom-to-image';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
-//
+//import { useTranslation } from "react-i18next";
 import { getHeader } from '../functions/tableFunctions';
 import { getObjectName, convertDataUnit, getUnitLabel } from '../functions/dataFormatting';
 import { isNumeric, numberWithCommas } from '../functions/numericFunctions';
 import { formatLoadSummaryTableData } from '../functions/tableFunctions';
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
 
 export const LoadSummaryPDF = async (
     unitSystem,
@@ -24,9 +20,12 @@ export const LoadSummaryPDF = async (
     setAnimationEnable,
     setProgressBarValue,
     dataMapping,
-    data
+    data,
+    ns,
+    t
     ) => {
     var startTime = new Date().getTime();
+    //const { t } = useTranslation();
     
     // Set title for report
     var pageTitle = null;
@@ -62,6 +61,9 @@ export const LoadSummaryPDF = async (
     var progressBarValue = 0;
     const maxProgressBarValue = objectList.length * heatingCoolingOptions.length;
 
+    // Initialize progress bar
+    setProgressBarValue(progressBarValue);
+
     console.log('Print page ' + pageNum);  // Console log first page
     for (var j = 0; j < heatingCoolingOptions.length; j++) {
         const heatingCoolingSelection = heatingCoolingOptions[j];
@@ -85,7 +87,7 @@ export const LoadSummaryPDF = async (
 
             // Title
             doc.setFontSize(13);
-            doc.text(pageTitle, 10, 10);
+            doc.text(t(ns+":"+pageTitle), 10, 10);
 
             // Object Name
             xStart = 10;
@@ -108,14 +110,14 @@ export const LoadSummaryPDF = async (
                 doc.rect(xStart-1, yStart-4, 15, 5, 'F');
                 doc.setTextColor(255,255,255);
                 doc.setFontSize(10);
-                doc.text('Cooling', xStart, yStart);  
+                doc.text(t(ns+":"+'Cooling'), xStart, yStart);  
             } else if (heatingCoolingSelection === 'heating') {
                 doc.setDrawColor(0);
                 doc.setFillColor(220, 53, 69);
                 doc.rect(xStart-1, yStart-4, 15, 5, 'F');
                 doc.setTextColor(255,255,255);
                 doc.setFontSize(10);
-                doc.text('Heating', xStart, yStart);  
+                doc.text(t(ns+":"+'Heating'), xStart, yStart);  
             }
 
             // Write Peak Conditions
@@ -123,13 +125,13 @@ export const LoadSummaryPDF = async (
             yStart = 21;
 
             const peakConditionsData = data[objectName][heatingCoolingSelection]['peak_condition'];
-            var cardText = formatCardText(unitSystem, dataMapping['peakConditions'][0], peakConditionsData);
+            var cardText = formatCardText(unitSystem, dataMapping['peakConditions'][0], peakConditionsData, t, ns);
             doc.setDrawColor(0);
             doc.setFillColor(221, 221, 221);
             doc.rect(xStart, yStart, 35, 3, 'F');
             doc.setTextColor(0, 0, 0);
             doc.setFontSize(cardFontSize+1);
-            doc.text('Conditions at Time of Peak', xStart, yStart+2);
+            doc.text(t(ns + ':' + 'Conditions at Time of Peak'), xStart, yStart+2);
             doc.setFontSize(cardFontSize);
             doc.text(cardText, xStart, yStart+6);
 
@@ -138,8 +140,8 @@ export const LoadSummaryPDF = async (
             yStart = 31;
 
             doc.setFontType("bold");
-            doc.text(dataMapping['peakConditions'][1]['label'], xStart, yStart);
-            cardText = formatCardText(unitSystem, dataMapping['peakConditions'][1], peakConditionsData);
+            doc.text(t(ns + ':' + dataMapping['peakConditions'][1]['label']), xStart, yStart);
+            cardText = formatCardText(unitSystem, dataMapping['peakConditions'][1], peakConditionsData, t, ns);
             doc.setFontType("normal");
             doc.setFontSize(cardFontSize);
             doc.text(cardText, xStart, yStart+2);
@@ -150,8 +152,8 @@ export const LoadSummaryPDF = async (
                 yStart = 41;
 
                 doc.setFontType("bold");
-                doc.text(dataMapping['peakConditions'][2]['label'], xStart, yStart);
-                cardText = formatCardText(unitSystem, dataMapping['peakConditions'][2], peakConditionsData);
+                doc.text(t(ns + ':' + dataMapping['peakConditions'][2]['label']), xStart, yStart);
+                cardText = formatCardText(unitSystem, dataMapping['peakConditions'][2], peakConditionsData, t, ns);
                 doc.setFontType("normal");
                 doc.setFontSize(cardFontSize);
                 doc.text(cardText, xStart, yStart+2);
@@ -163,13 +165,13 @@ export const LoadSummaryPDF = async (
                 yStart = 41;
 
                 const temperatureData = data[objectName][heatingCoolingSelection]['temperature'];
-                cardText = formatCardText(unitSystem, dataMapping['temperatures'][0], temperatureData);
+                cardText = formatCardText(unitSystem, dataMapping['temperatures'][0], temperatureData, t, ns);
                 doc.setDrawColor(0);
                 doc.setFillColor(221, 221, 221);
                 doc.rect(xStart, yStart, 35, 3, 'F');
                 doc.setTextColor(0, 0, 0);
                 doc.setFontSize(cardFontSize+1);
-                doc.text('Temperatures', xStart, yStart+2);
+                doc.text(t(ns + ':' + 'Temperatures'), xStart, yStart+2);
                 doc.setFontSize(cardFontSize);
                 doc.text(cardText, xStart, yStart+6);
             }
@@ -180,13 +182,13 @@ export const LoadSummaryPDF = async (
                 yStart = 21;
 
                 const airflowData = data[objectName][heatingCoolingSelection]['airflow'];
-                cardText = formatCardText(unitSystem, dataMapping['airflows'][0], airflowData);
+                cardText = formatCardText(unitSystem, dataMapping['airflows'][0], airflowData, t, ns);
                 doc.setDrawColor(0);
                 doc.setFillColor(221, 221, 221);
                 doc.rect(xStart, yStart, 35, 3, 'F');
                 doc.setTextColor(0, 0, 0);
                 doc.setFontSize(cardFontSize+1);
-                doc.text('Airflows', xStart, yStart+2);
+                doc.text(t(ns + ':' + 'Airflows'), xStart, yStart+2);
                 doc.setFontSize(cardFontSize);
                 doc.text(cardText, xStart, yStart+6);
             }
@@ -201,13 +203,13 @@ export const LoadSummaryPDF = async (
             }
 
             const engineeringCheckData = data[objectName][heatingCoolingSelection]['engineering_check'];
-            cardText = formatCardText(unitSystem, dataMapping['engineeringCheck'][0], engineeringCheckData);
+            cardText = formatCardText(unitSystem, dataMapping['engineeringCheck'][0], engineeringCheckData, t, ns);
             doc.setDrawColor(0);
             doc.setFillColor(221, 221, 221);
             doc.rect(xStart, yStart, 40, 3, 'F');
             doc.setTextColor(0, 0, 0);
             doc.setFontSize(cardFontSize+1);
-            doc.text('Engineering Checks', xStart, yStart+2);
+            doc.text(t(ns + ':' + 'Engineering Checks'), xStart, yStart+2);
             doc.setFontSize(cardFontSize);
             doc.text(cardText, xStart, yStart+6);
 
@@ -259,7 +261,7 @@ export const LoadSummaryPDF = async (
             //Table Header
             yStart = 56;
             var mapKey = 'envelopeLoadsTable';
-            var colLabels = getColumnLabels(unitSystem, mapKey, dataMapping);
+            var colLabels = getColumnLabels(unitSystem, mapKey, dataMapping, t, ns);
 
             doc.autoTable({
                 bodyStyles: { lineWidth: 0, fillColor: [255, 255, 255]},
@@ -274,11 +276,11 @@ export const LoadSummaryPDF = async (
             // Envelope Loads Table
             yStart += 12;
             doc.setFontSize(tableSubHeaderSize);
-            doc.text('Envelope', 15, yStart);
+            doc.text(t(ns + ':' + 'Envelope'), 15, yStart);
             var mapKey = 'envelopeLoadsTable';
-            var colLabels = getColumnLabels(unitSystem, mapKey, dataMapping);
+            var colLabels = getColumnLabels(unitSystem, mapKey, dataMapping, t, ns);
             var tempTableData = formatLoadSummaryTableData(dataMapping[mapKey], loadComponentsData)
-            var tableData = convertObjectToPDFTable(unitSystem, dataMapping[mapKey], tempTableData);
+            var tableData = convertObjectToPDFTable(unitSystem, dataMapping[mapKey], tempTableData, t, ns);
 
             doc.autoTable({
                 tableLineWidth: 0.1,
@@ -294,11 +296,11 @@ export const LoadSummaryPDF = async (
             // Internal Gains Table
             yStart += 97;
             doc.setFontSize(tableSubHeaderSize);
-            doc.text('Internal Gains', 15, yStart);
+            doc.text(t(ns + ':' + 'Internal Gains'), 15, yStart);
             mapKey = 'internalGainsTable';
-            colLabels = getColumnLabels(unitSystem, mapKey, dataMapping);
+            colLabels = getColumnLabels(unitSystem, mapKey, dataMapping, t, ns);
             tempTableData = formatLoadSummaryTableData(dataMapping[mapKey], loadComponentsData)
-            tableData = convertObjectToPDFTable(unitSystem, dataMapping[mapKey], tempTableData);
+            tableData = convertObjectToPDFTable(unitSystem, dataMapping[mapKey], tempTableData, t, ns);
 
             doc.autoTable({
                 bodyStyles: tableBodyStyle,
@@ -313,11 +315,11 @@ export const LoadSummaryPDF = async (
             // System Loads Table
             yStart += 36;
             doc.setFontSize(tableSubHeaderSize);
-            doc.text('Systems', 15, yStart);
+            doc.text(t(ns + ':' + 'Systems'), 15, yStart);
             mapKey = 'systemLoadsTable';
-            colLabels = getColumnLabels(unitSystem, mapKey, dataMapping);
+            colLabels = getColumnLabels(unitSystem, mapKey, dataMapping, t, ns);
             tempTableData = formatLoadSummaryTableData(dataMapping[mapKey], loadComponentsData)
-            tableData = convertObjectToPDFTable(unitSystem, dataMapping[mapKey], tempTableData);
+            tableData = convertObjectToPDFTable(unitSystem, dataMapping[mapKey], tempTableData, t, ns);
 
             doc.autoTable({
                 bodyStyles: tableBodyStyle,
@@ -335,11 +337,11 @@ export const LoadSummaryPDF = async (
                 yStart += 63;
             }
             doc.setFontSize(tableSubHeaderSize);
-            doc.text('Total', 15, yStart);
+            doc.text(t(ns + ':' + 'Total'), 15, yStart);
             mapKey = 'totalLoadsTable';
-            colLabels = getColumnLabels(unitSystem, mapKey, dataMapping);
+            colLabels = getColumnLabels(unitSystem, mapKey, dataMapping, t, ns);
             tempTableData = formatLoadSummaryTableData(dataMapping[mapKey], loadComponentsData)
-            tableData = convertObjectToPDFTable(unitSystem, dataMapping[mapKey], tempTableData);
+            tableData = convertObjectToPDFTable(unitSystem, dataMapping[mapKey], tempTableData, t, ns);
 
             doc.autoTable({
                 bodyStyles: tableBodyStyle,
@@ -378,14 +380,14 @@ export const LoadSummaryPDF = async (
     //alert((endTime - startTime)*0.001/60 + ' minutes');
 }
 
-const formatCardText = (unitSystem, dataMapping, data) => {
+const formatCardText = (unitSystem, dataMapping, data, t, ns) => {
     var cardText = '';
     dataMapping['items'].forEach(item => {
         // Set formatting for the unit labels
         const unitLabel = getUnitLabel(unitSystem, item["type"]);
 
         // Set up array
-        cardText += item['displayName'] + ': ' + data[item["jsonKey"]]
+        cardText += t(ns + ':' + item['displayName']) + ': ' + data[item["jsonKey"]]
         if (unitLabel) {
             cardText += ' ' + unitLabel;
         }
@@ -395,32 +397,32 @@ const formatCardText = (unitSystem, dataMapping, data) => {
     return cardText
 }
 
-const getColumnLabels = (unitSystem, mapKey, dataMapping) => {
+const getColumnLabels = (unitSystem, mapKey, dataMapping, t, ns) => {
     var colLabels = [{header: '', dataKey: 'name'}];
 
     dataMapping[mapKey]['columns'].forEach(item => {
-        colLabels.push({ header: getHeader(unitSystem, item), dataKey: item['jsonKey']})
+        colLabels.push({ header: getHeader(unitSystem, item, t, ns), dataKey: item['jsonKey']})
     })
 
     return colLabels
 }
 
-const convertObjectToPDFTable = (unitSystem, dataMapping, data) => {
+const convertObjectToPDFTable = (unitSystem, dataMapping, data, t, ns) => {
     var tableData = [];
 
     dataMapping['rows'].map((row) => {
-        tableData.push(addDataRow(unitSystem, row, dataMapping['columns'], data));
+        tableData.push(addDataRow(unitSystem, row, dataMapping['columns'], data, t, ns));
     })
 
     return tableData
 }
 
-const addDataRow = (unitSystem, row, columns, data) => {
+const addDataRow = (unitSystem, row, columns, data, t, ns) => {
     const rowKey = row['jsonKey'];
     
     if (data) {
         var rowData = data[rowKey];
-        var rowObject = {name: row['displayName']};
+        var rowObject = {name: t(ns + ':' + row['displayName'])};
         
         columns.map((column) => {
             var dataValue = null;

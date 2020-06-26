@@ -33,7 +33,6 @@ export default function App(props) {
     const { t, i18n } = useTranslation();
 
     useEffect(() => {
-        console.log('hi');
         fetchData();
       }, [json]);
     

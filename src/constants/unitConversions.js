@@ -24,9 +24,17 @@ let conversions = {
     'l/s': {'convert':(value) => {return value * 1000}, label: 'l/s'},
     'us_gal/hr': {'convert':(value) => {return value * 951019.38849}, label: 'gal(us)/hr'},
     'us_gal/min': {'convert':(value) => {return value * 15850.32314}, label: 'gal(us)/min'},
+    'J/g': {'convert':(value) => {return value / 1000}, label: 'J/g'},
+    'btu/lb': {'convert':(value) => {return value / 2.3260}, label: 'Btu/lb'},
+    'J/kg': {'convert':(value) => {return value / 1000 }, label: 'J/kg'},
+    'kJ/kg': {'convert':(value) => {return value }, label: 'kJ/kg'},
     'J/g/C': {'convert':(value) => {return value / 1000}, label: 'J/g-C'},
     'btu/lb/F': {'convert':(value) => {return value / 4186.80}, label: 'Btu/lb-F'},
     'J/kg/C': {'convert':(value) => {return value }, label: 'J/kg-C'},
+    'N/m2': {'convert':(value) => {return value }, label: 'Pa'},
+    'lb/in2': {'convert':(value) => {return value / 6895 }, label: 'psi'},
+    'm3/kg': {'convert':(value) => {return value }, label: 'm3/kg'},
+    'ft3/lb': {'convert':(value) => {return value * 16.01846337396}, label: 'ft3/lb'},
     'kg/m3': {'convert':(value) => {return value }, label: 'kg/m3'},
     'lb/ft3': {'convert':(value) => {return value / 16.01846337396}, label: 'lb/ft3'},
     'lb/in3': {'convert':(value) => {return value / 27679.904710203}, label: 'lb/in3'},
@@ -63,7 +71,9 @@ export var unitConversions = {
         temperature_difference: {conversion:conversions['C'], decimals: 1},
         humidity_ratio: {conversion:conversions['kg/kg'], decimals: 4},
         flow_rate: {conversion:conversions['m3/s'], decimals: 3},
+        enthalpy: {conversion:conversions['kJ/kg'], decimals: 1},
         specific_heat: {conversion:conversions['J/kg/C'], decimals: 2},
+        specific_volume: {conversion:conversions['m3/kg'], decimals: 3},
         density: {conversion:conversions['kg/m3'], decimals: 2},
         percent: {conversion:conversions['percent'], decimals: 1},
         outdoor_air_percentage: {conversion:conversions['percent'], decimals: 2},
@@ -72,6 +82,7 @@ export var unitConversions = {
         flow_rate_per_area: {conversion:conversions['m3/s/m2'], decimals: 6},
         flow_rate_per_heat_transfer_rate: {conversion:conversions['m3/s/W'], decimals: 6},
         people: {conversion:conversions['unitless'], decimals: 1},
+        pressure: {conversion:conversions['N/m2'], decimals: 0},
         area: {conversion:conversions['m2'], decimals: 1}
     },
     ip: {
@@ -80,7 +91,9 @@ export var unitConversions = {
         temperature_difference: {conversion:conversions['F'], decimals: 1},
         humidity_ratio: {conversion:conversions['lb/lb'], decimals: 4},
         flow_rate: {conversion:conversions['ft3/min'], decimals: 1},
+        enthalpy: {conversion:conversions['btu/lb'], decimals: 1},
         specific_heat: {conversion:conversions['btu/lb/F'], decimals: 3},
+        specific_volume: {conversion:conversions['ft3/lb'], decimals: 2},
         density: {conversion:conversions['lb/ft3'], decimals: 3},
         percent: {conversion:conversions['percent'], decimals: 1},
         outdoor_air_percentage: {conversion:conversions['percent'], decimals: 2},
@@ -89,6 +102,7 @@ export var unitConversions = {
         flow_rate_per_area: {conversion:conversions['ft3/min/ft2'], decimals: 2},
         flow_rate_per_heat_transfer_rate: {conversion:conversions['ft3/min/ton_r'], decimals: 2},
         people: {conversion:conversions['unitless'], decimals: 1},
+        pressure: {conversion:conversions['lb/in2'], decimals: 1},
         area: {conversion:conversions['ft2'], decimals: 1}
     },
     revit: {
@@ -97,7 +111,9 @@ export var unitConversions = {
         temperature_difference: {conversion:conversions[config['units']['temperature_difference']], decimals: 1},
         humidity_ratio: {conversion:conversions[config['units']['humidity_ratio']], decimals: 4},
         flow_rate: {conversion:conversions[config['units']['flow_rate']], decimals: 3},
+        enthalpy: {conversion:conversions[config['units']['enthalpy']], decimals: 1},
         specific_heat: {conversion:conversions[config['units']['specific_heat']], decimals: 2},
+        specific_volume: {conversion:conversions[config['units']['specific_volume']], decimals: 3},
         density: {conversion:conversions[config['units']['density']], decimals: 2},
         percent: {conversion:conversions[config['units']['percent']], decimals: 1},
         outdoor_air_percentage: {conversion:conversions[config['units']['outdoor_air_percentage']], decimals: 2},
@@ -106,6 +122,7 @@ export var unitConversions = {
         flow_rate_per_area: {conversion:conversions[config['units']['flow_rate_per_area']], decimals: 6},
         flow_rate_per_heat_transfer_rate: {conversion:conversions[config['units']['flow_rate_per_heat_transfer_rate']], decimals: 6},
         people: {conversion:conversions[config['units']['people']], decimals: 1},
+        pressure: {conversion:conversions[config['units']['pressure']], decimals: 1},
         area: {conversion:conversions[config['units']['area']], decimals: 1}
     }
 }

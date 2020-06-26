@@ -7,11 +7,15 @@ module.exports = {
     entry: {
         app: './src/index.js',
     },
+    devServer: {
+      compress: true,
+      port: 3000
+    },
     module: {
         rules: [
           {
             test: /\.js$/,
-            exclude: /node_modules/,
+            exclude: [/node_modules/, path.resolve(__dirname, 'src/lib/psychrolib.js')],
             use: {
               loader: 'babel-loader'
             },
@@ -26,7 +30,6 @@ module.exports = {
         // The plugin will generate an HTML5 file for you that includes all your webpack bundles in the body using script tags
         new HtmlWebpackPlugin({
             template: "./public/index.html",
-            //filename: "index.html",
             inject: true,
             minify: {
                 removeComments: true,

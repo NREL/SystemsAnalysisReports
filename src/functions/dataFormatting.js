@@ -111,7 +111,7 @@ export function convertDataUnit(unitSystem, type, value) {
   // Requires the unit sytem (i.e. "ip" or "si"), the type (e.g. "temperature")
   // and the numeric value (e.g. 4.12).  Returns the converted value.
 
-  if (unitSystem && type && value) {
+  if (unitSystem && type && isNumeric(value)) {
     var newValue = value;
     const dataObject = unitConversions[unitSystem][type];
 
