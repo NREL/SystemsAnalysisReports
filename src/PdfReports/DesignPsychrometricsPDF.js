@@ -18,12 +18,14 @@ export const DesignPsychrometricsPDF = async (
     setAnimationEnable,
     setProgressBarValue,
     dataMapping,
-    data
+    data,
+    ns,
+    t
     ) => {
     var startTime = new Date().getTime();
     
     // Set title for report
-    const pageTitle = 'Design Psychrometrics';
+    const pageTitle = t(ns + ':' + 'Design Psychrometrics');
     const cardFontSize = 6;
     const tableBodyStyle = { fontStyle: 'normal', fontSize: 5, textColor: 80, padding: 0, minCellHeight: 0, lineWidth: 0.1, fillColor: 255}
     const tableHeaderStyle =  { fontSize: 5, padding: 0, minCellHeight: 0, lineWidth: 0.1, halign: 'center' };
@@ -92,13 +94,13 @@ export const DesignPsychrometricsPDF = async (
 
         const coilData = data[objectName];
 
-        var cardText = formatCardText(unitSystem, dataMapping['componentChecks'][0], coilData['summary']);
+        var cardText = formatCardText(unitSystem, dataMapping['componentChecks'][0], coilData['summary'], t, ns);
         doc.setDrawColor(0);
         doc.setFillColor(221, 221, 221);
         doc.rect(xStart, yStart, 35, 3, 'F');
         doc.setTextColor(0, 0, 0);
         doc.setFontSize(cardFontSize+1);
-        doc.text('Summary', xStart, yStart+2);
+        doc.text(t(ns + ':' + 'Summary'), xStart, yStart+2);
         doc.setFontSize(cardFontSize);
         doc.text(cardText, xStart, yStart+6);
 
@@ -127,9 +129,9 @@ export const DesignPsychrometricsPDF = async (
         // System Components Table
         yStart = 150;
         var mapKey = 'componentTable';
-        var colLabels = getColumnLabels(unitSystem, mapKey, dataMapping);
+        var colLabels = getColumnLabels(unitSystem, mapKey, dataMapping, t, ns);
         var tempTableData = formatDesignPsychrometricsTableData(dataMapping[mapKey], coilData)
-        var tableData = convertObjectToPDFTable(unitSystem, dataMapping[mapKey], tempTableData);
+        var tableData = convertObjectToPDFTable(unitSystem, dataMapping[mapKey], tempTableData, t, ns);
 
         doc.autoTable({
             tableLineWidth: 0.1,
@@ -162,14 +164,14 @@ export const DesignPsychrometricsPDF = async (
     //alert((endTime - startTime)*0.001/60 + ' minutes');
 }
 
-const formatCardText = (unitSystem, dataMapping, data) => {
+const formatCardText = (unitSystem, dataMapping, data, t, ns) => {
     var cardText = '';
     dataMapping['items'].forEach(item => {
         // Set formatting for the unit labels
         const unitLabel = getUnitLabel(unitSystem, item["type"]);
 
         // Set up array
-        cardText += item['displayName'] + ': ' + data[item["jsonKey"]]
+        cardText += t(ns + ':' + item['displayName']) + ': ' + data[item["jsonKey"]]
         if (unitLabel) {
             cardText += ' ' + unitLabel;
         }
@@ -179,32 +181,32 @@ const formatCardText = (unitSystem, dataMapping, data) => {
     return cardText
 }
 
-const getColumnLabels = (unitSystem, mapKey, dataMapping) => {
+const getColumnLabels = (unitSystem, mapKey, dataMapping, t, ns) => {
     var colLabels = [{header: '', dataKey: 'name'}];
 
     dataMapping[mapKey]['columns'].forEach(item => {
-        colLabels.push({ header: getHeader(unitSystem, item), dataKey: item['jsonKey']})
+        colLabels.push({ header: getHeader(unitSystem, item, t, ns), dataKey: item['jsonKey']})
     })
 
     return colLabels
 }
 
-const convertObjectToPDFTable = (unitSystem, dataMapping, data) => {
+const convertObjectToPDFTable = (unitSystem, dataMapping, data, t, ns) => {
     var tableData = [];
 
     dataMapping['rows'].map((row) => {
-        tableData.push(addDataRow(unitSystem, row, dataMapping['columns'], data));
+        tableData.push(addDataRow(unitSystem, row, dataMapping['columns'], data, t, ns));
     })
 
     return tableData
 }
 
-const addDataRow = (unitSystem, row, columns, data) => {
+const addDataRow = (unitSystem, row, columns, data, t, ns) => {
     const rowKey = row['jsonKey'];
     
     if (data) {
         var rowData = data[rowKey];
-        var rowObject = {name: row['displayName']};
+        var rowObject = {name: t(ns + ':' + row['displayName'])};
         
         columns.map((column) => {
             var dataValue = null;

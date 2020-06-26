@@ -84,7 +84,9 @@ export function LoadSummary(props) {
                     setAnimationEnable,
                     setProgressBarValue,
                     dataMapping,
-                    data
+                    data,
+                    ns,
+                    t
                     )
                 
                 // Return to original state
@@ -203,6 +205,7 @@ export function LoadSummary(props) {
                                 firstColWidth={20}
                                 unitSystem={unitSystem}
                                 dataMapping={dataMapping['headerTable']}
+                                ns={ns}
                                 />
                             </Row>
                             <Row>

@@ -1,8 +1,16 @@
+//import { useTranslation } from "react-i18next";
 import { convertDataUnit, getUnitLabel } from '../functions/dataFormatting';
 
-export const getHeader = (unitSystem, column) => {
+export const getHeader = (unitSystem, column, t, ns) => {
+    //const { t } = useTranslation();
     var header = ""
-    header = column['displayName']
+
+    if (t && ns) {
+        header = t(ns + ':' + column['displayName']);
+    } else {
+        header = column['displayName'];
+    }
+
     if (column["type"]) {
         header += ' [' + getUnitLabel(unitSystem, column["type"]) + ']'
     }

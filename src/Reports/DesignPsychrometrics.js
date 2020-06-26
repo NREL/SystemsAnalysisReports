@@ -21,7 +21,8 @@ export function DesignPsychrometrics(props) {
         handleObjectSelect,
         objectList,
         dataMapping,
-        data
+        data,
+        ns
     } = props;
 
     const { t } = useTranslation()
@@ -63,7 +64,9 @@ export function DesignPsychrometrics(props) {
                     setAnimationEnable,
                     setProgressBarValue,
                     dataMapping,
-                    data
+                    data,
+                    ns,
+                    t
                     )
                 
                 // Return to original state
@@ -106,11 +109,11 @@ export function DesignPsychrometrics(props) {
                         <Col md={1}>
                             <ReportCard
                             name={name + "-conditionsTimePeak"}
-                            title={ t("designPsychrometrics:Summary") }
+                            title={ t(ns + ":" + "Summary") }
                             unitSystem={unitSystem}
                             dataMapping={dataMapping['componentChecks']}
                             data={objectData["summary"]}
-                            ns={"designPsychrometrics"}
+                            ns={ns}
                             />
                         </Col>
                         <Col>
@@ -120,7 +123,7 @@ export function DesignPsychrometrics(props) {
                             animationEnable={animationEnable}
                             data={objectData}
                             dataMapping={dataMapping['componentTable']}
-                            ns={"designPsychrometrics"}
+                            ns={ns}
                             />
                         </Col>
                 </Row>
@@ -133,7 +136,7 @@ export function DesignPsychrometrics(props) {
                         unitSystem={unitSystem}
                         dataMapping={dataMapping['componentTable']}
                         data={formatDesignPsychrometricsTableData(dataMapping['componentTable'], objectData)}
-                        ns={"designPsychrometrics"}
+                        ns={ns}
                         />
                     </Col>
                 </Row>
