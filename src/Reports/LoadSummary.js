@@ -313,7 +313,7 @@ export function LoadSummary(props) {
                                 <CustomPieChart
                                 name={name + "-peakLoadsChart"}
                                 pdfRef={chart1Ref}
-                                title={t(ns+":"+"Peak Loads")+" [" + getUnitLabel(unitSystem, "heat_transfer_rate", t) + "]"}
+                                title={t(ns+":"+"Peak Loads")+" [" + getUnitLabel(unitSystem, "heat_transfer_rate") + "]"}
                                 colors={COOLINGHEATINGCOLORS}
                                 data={getHeatingAndCoolingPeakLoads(unitSystem, objectName, data)}
                                 ns={ns}
@@ -323,7 +323,7 @@ export function LoadSummary(props) {
                                 <CustomPieChart
                                 name={name + "-loadComponentsChart"}
                                 pdfRef={chart2Ref}
-                                title={ t(ns+":"+(heatingCoolingSelection === "cooling" ? "Cooling" : "Heating") + " Load Components") + " [" + getUnitLabel(unitSystem, "heat_transfer_rate", t) + "]"}
+                                title={ t(ns+":"+(heatingCoolingSelection === "cooling" ? "Cooling" : "Heating") + " Load Components") + " [" + getUnitLabel(unitSystem, "heat_transfer_rate") + "]"}
                                 colors={EQUIDISTANTCOLORS}
                                 data={formatLoadComponentChartData(unitSystem, dataMapping["componentPieChart"], loadData)}
                                 ns={ns}

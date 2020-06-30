@@ -131,17 +131,13 @@ export function convertDataUnit(unitSystem, type, value) {
   }
 }
 
-export function getUnitLabel(unitSystem, type, t) {
+export function getUnitLabel(unitSystem, type) {
   // Function provides the data label in a specific unit system.
   // Requires the unit sytem (i.e. "ip" or "si"), the type (e.g. "temperature"). 
   // Returns the unit label (e.g. "C").
 
   if (unitSystem && type) {
-      if(t) {
-        return t("units:" + unitConversions[unitSystem][type]['conversion']["label"])
-      } else {
-        return unitConversions[unitSystem][type]['conversion']["label"]
-      }
+      return unitConversions[unitSystem][type]['conversion']["label"]
   } else {
     return null
   }

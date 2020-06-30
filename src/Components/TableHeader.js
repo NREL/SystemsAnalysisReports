@@ -1,13 +1,25 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table'
 import { getHeader } from '../functions/tableFunctions';
+import { getUnitLabel } from '../functions/dataFormatting';
 import { useTranslation } from "react-i18next";
 
 export default function TableHeader(props) {
     var { name, firstColWidth, unitSystem, dataMapping, ns } = props;
     const { t } = useTranslation();
     const numberOfCols = Object.entries(dataMapping.columns).length;
+    //const firstColWidth = 20;
     const colWidth = (100-firstColWidth)/numberOfCols;
+
+    /*const getHeader = (unitSystem, column, t) => {
+        var header = ""
+        header = t("systemLoadSummary:"+column['displayName'])
+        if (column["type"]) {
+            header += ' [' + getUnitLabel(unitSystem, column["type"]) + ']'
+        }
+
+        return header
+    }*/
 
     return (
         <Table striped bordered hover responsive size="sm" className="App-table">

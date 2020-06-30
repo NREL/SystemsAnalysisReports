@@ -67,7 +67,7 @@ export function CustomTable(props) {
         var header = ""
         header = t(ns+":"+column['displayName'])
         if (column["type"]) {
-            header += ' [' + getUnitLabel(unitSystem, column["type"], t) + ']'
+            header += ' [' + getUnitLabel(unitSystem, column["type"]) + ']'
         }
 
         return header

@@ -42,7 +42,7 @@ export class ReportCard extends React.Component {
                                                 }
 
                                                 // Set formatting for the unit labels
-                                                const unitLabel = formatUnitLabels(getUnitLabel(this.props.unitSystem, item["type"], t));
+                                                const unitLabel = formatUnitLabels(getUnitLabel(this.props.unitSystem, item["type"]));
 
                                                 return (
                                                     <p key={ this.props.name + '-' + item["jsonKey"] }>
