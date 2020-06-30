@@ -39,5 +39,5 @@ jobs:
         personal_token: ${{ secrets.GITHUB_TOKEN }}
         src_path: .
         dst_path: /backup/
-        dst_owner: pflaumingo
-        dst_repo_name: workflow-actions
+        dst_owner: NREL
+        dst_repo_name: gbxml-to-openstudio
