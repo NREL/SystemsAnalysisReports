@@ -1,0 +1,42 @@
+{
+   "completed_at" : "20200430T194707Z",
+   "completed_status" : "Success",
+   "current_step" : 1,
+   "hash" : "FAD2CEAB",
+   "measure_paths" : [ "/Users/npflaum/Documents/GitHub/SystemsAnalysisReports/measure/" ],
+   "run_directory" : "./run",
+   "seed_file" : "./run/in.osm",
+   "started_at" : "20200430T194035Z",
+   "steps" : [
+      {
+         "arguments" : {},
+         "measure_dir_name" : "systems_analysis_report_generator",
+         "name" : "Systems Analysis Report",
+         "result" : {
+            "completed_at" : "20200430T194703Z",
+            "measure_class_name" : "SystemsAnalysisReportGenerator",
+            "measure_display_name" : "Systems Analysis Report Generator",
+            "measure_name" : "systems_analysis_report_generator",
+            "measure_taxonomy" : "Reporting.QAQC",
+            "measure_type" : "ReportingMeasure",
+            "measure_uid" : "1384e1c3-118f-40a1-9071-643edf5ba9b8",
+            "measure_version_id" : "5c25e45c-b52a-4b2c-8abb-f90129ad5d5a",
+            "measure_version_modified" : "20200302T221429Z",
+            "measure_xml_checksum" : "9BF1E6AC",
+            "started_at" : "20200430T194656Z",
+            "stderr" : "",
+            "stdout" : "",
+            "step_errors" : [],
+            "step_files" : [
+               "/Users/npflaum/Documents/GitHub/SystemsAnalysisReports/measure/systems_analysis_report_generator/test/functional/run/000_systems_analysis_report_generator/report_bundle.js",
+               "/Users/npflaum/Documents/GitHub/SystemsAnalysisReports/measure/systems_analysis_report_generator/test/functional/run/000_systems_analysis_report_generator/report.html"
+            ],
+            "step_info" : [],
+            "step_result" : "Success",
+            "step_values" : [],
+            "step_warnings" : []
+         }
+      }
+   ],
+   "updated_at" : "20200430T194707Z"
+}

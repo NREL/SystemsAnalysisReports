@@ -1,0 +1,17 @@
+{
+	"language": "en-US",
+	"units": [
+		{
+			"type": "HVAC_Heating_Load",
+			"forge_schema_spec": "autodesk.spec.aec.hvac:heatingLoad-1.0.0",
+			"forge_schema_unit": "autodesk.unit.unit:watts-1.0.1",
+			"display": "WATTS"
+		},
+		{
+			"type": "HVAC_Temperature",
+			"forge_schema_spec": "autodesk.spec.aec.hvac:temperature-1.0.0",
+			"forge_schema_unit": "autodesk.unit.unit:celsius-1.0.1",
+			"display": "CELSIUS"
+		}
+	]
+}

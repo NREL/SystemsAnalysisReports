@@ -1,0 +1,35 @@
+############################ Header ################################################
+# Configuration file for Continuous Localization (CL) process. 
+#
+#	To reduce the size of this file, instructions on what each parameter is used for,
+#	with the respective values to use, can be found on:
+#	https://localization.autodesk.com/display/SYS/CL+-+Setup+-+Continous+Localization+Configuration+File 
+#
+######################### End of Header ###############################################
+common:
+  branch_section:
+    pseudo_language: []
+    maintainer: [choudhg]
+    auto_merge_pr: false
+    ignore_this_branch: true
+    sync_source: true
+    incremental: false
+                
+  variable_section:
+    langProject: [jpn, deu, fra, esp, kor, chs, ita, ptb, rus]
+    platformCustom: [iOS, Android, Symbian, Win]
+    langCustom: {kor: KOR, fra: FRA, ptg: PTG, enu: ENU, chs: CHS, jpn: JPN, rus: RUS, ita: ITA, eng: ENG, plk: PLK, deu: DEU, csy: CSY, nls: NLS, esp: ESP, hun: HUN, cht: CHT, ptb: PTB}
+    langThreeLetter: {cat: cat, eng: eng, rus: rus, ita: ita, jpn: jpn, chs: chs, enu: enu, fra: fra, ptg: ptg, kor: kor, trk: trk, ptb: ptb, cht: cht, hun: hun, esp: esp, csy: csy, deu: deu, plk: plk}
+    langMsNet: {dnk: da-DK, csy: cs-CZ, plk: pl-PL, deu: de-DE, nld: nl-NL, fin: fi-FI, hrv: hr-HR, cht: zh-TW, ptb: pt-BR, swe: sv-SE, hun: hu-HU, esp: es-ES, ptg: pt-PT, fra: fr-FR, enu: en-US, trk: tr-TR, kor: ko-KR, ita: it-IT, rus: ru-RU, nor: nb-NO, eng: en-GB, rom: ro-RO, cat: ca-ES, chs: zh-CN, jpn: ja-JP}
+    langJava: {chs: zh_CN, jpn: ja_JP, ita: it_IT, rus: ru_RU, nor: nb_NO, eng: en_GB, cat: ca_ES, rom: ro_RO, trk: tr_TR, kor: ko_KR, ptg: pt_PT, fra: fr_FR, enu: en_US, esp: es_ES, swe: sv_SE, hun: hu_HU, cht: zh_TW, ptb: pt_BR, plk: pl_PL, deu: de_DE, nld: nl_NL, hrv: hr_HR, fin: fi_FI, dnk: da_DK, csy: cs_CZ}
+    langISO639_1: {ptb: pt, esp: es, swe: sv, hun: hu, csy: cs, dnk: da, plk: pl, deu: de, nld: nl, fin: fi, hrv: hr, ita: it, nor: no, rus: ru, cat: ca, rom: ro, chs: zh, jpn: ja, fra: fr, enu: en, trk: tr, kor: ko}
+    langBCP47: {swe: sv, hun: hu, esp: es, ptb: pt-BR, cht: zh-Hant, fin: fi, hrv: hr, nld: nl, deu: de, plk: pl, dnk: da, csy: cs, jpn: ja, chs: zh-Hans, rom: ro, cat: ca, eng: en-GB, nor: no, rus: ru, ita: it, kor: ko, trk: tr, enu: en, fra: fr, ptg: pt-PT}
+    langMasterCustom: {enu: USEnglish, eng: English,csy: Czech, deu: German, fra: France, ita: Italian, ptb: PortugueseBr, plk: Polish, rus: Russian, esp: Spanish, rom: Romanian}
+
+  components:
+    - name: InsightXResources
+      main_owner: Soft
+      content_owner:  N/A
+      lang: [enu, eng, csy, deu, esp, fra, ita, jpn, kor, plk, ptb, rus, chs, cht]
+      file_rules:
+       - engineering_reports_localization\en\*.json, engineering_reports_localization\%langISO639_1%\*.json
