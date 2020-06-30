@@ -30,6 +30,6 @@ jobs:
         dst_path: /measures/
         dst_owner: pflaumingo
         dst_repo_name: workflow-actions
-        clear: true
+        clean: true
         exclude: measure/test/
         commit_message: "Automatic merge from the SystemsAnalysisReport repo"
