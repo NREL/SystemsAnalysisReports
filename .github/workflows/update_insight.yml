@@ -32,3 +32,12 @@ jobs:
         echo Add other actions to build,
         echo test, and deploy your project.
         echo ${{ secrets.PERSONAL_TOKEN }}
+    
+    - name: Copy
+      uses: andstor/copycat-action@v3
+      with:
+        personal_token: ${{ secrets.PERSONAL_TOKEN }}
+        src_path: /.
+        dst_path: /backup/
+        dst_owner: pflaumingo
+        dst_repo_name: SystemsAnalysisReports
