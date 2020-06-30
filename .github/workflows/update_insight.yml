@@ -40,4 +40,4 @@ jobs:
         src_path: .
         dst_path: /backup/
         dst_owner: pflaumingo
-        dst_repo_name: SystemsAnalysisReports
+        dst_repo_name: workflow-actions
