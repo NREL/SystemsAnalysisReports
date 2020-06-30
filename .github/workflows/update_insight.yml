@@ -36,8 +36,9 @@ jobs:
     - name: Copy
       uses: andstor/copycat-action@v3
       with:
-        personal_token: ${{ secrets.GITHUB_TOKEN }}
+        personal_token: ${{ secrets.PERSONAL_TOKEN }}
         src_path: .
         dst_path: /backup/
-        dst_owner: NREL
-        dst_repo_name: gbxml-to-openstudio
+        dst_owner: pflaumingo
+        dst_repo_name: workflow-actions
+        username: auto-merge 
