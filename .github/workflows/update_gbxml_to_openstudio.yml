@@ -27,7 +27,7 @@ jobs:
       with:
         personal_token: ${{ secrets.PERSONAL_TOKEN }}
         src_path: measure/systems_analysis_report_generator
-        dst_path: /measures/systems_analysis_report_generator/
+        dst_path: /measures/
         dst_owner: pflaumingo
         dst_repo_name: workflow-actions
         clean: false
