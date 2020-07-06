@@ -1,0 +1,2 @@
+class AirStatePointMapper
+end
