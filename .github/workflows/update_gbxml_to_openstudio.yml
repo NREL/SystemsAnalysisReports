@@ -28,8 +28,8 @@ jobs:
         personal_token: ${{ secrets.PERSONAL_TOKEN }}
         src_path: measure/systems_analysis_report_generator/
         dst_path: /measures/
-        dst_owner: pflaumingo
-        dst_repo_name: workflow-actions
+        dst_owner: NREL
+        dst_repo_name: gbxml-to-openstudio
         clean: true
         exclude: measure/systems_analysis_report_generator/test/*
         commit_message: "Automatic merge from the SystemsAnalysisReport repo"
