@@ -27,7 +27,7 @@ jobs:
       with:
         personal_token: ${{ secrets.PERSONAL_TOKEN }}
         src_path: measure/systems_analysis_report_generator/
-        dst_path: /measures/
+        dst_path: /measures/systems_analysis_report_generator/
         dst_owner: NREL
         dst_repo_name: gbxml-to-openstudio
         clean: true
