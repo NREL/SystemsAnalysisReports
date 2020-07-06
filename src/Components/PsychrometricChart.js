@@ -3,7 +3,6 @@ import { scaleLinear } from 'd3-scale';
 import { select } from 'd3-selection';
 import { line } from 'd3-shape';
 import { axisBottom, axisRight } from 'd3-axis';
-import { bisect, extent, max, min } from 'd3-array';
 import { schemeCategory10 } from 'd3-scale-chromatic';
 import { transition } from 'd3-transition';
 import { useTranslation } from "react-i18next";
@@ -21,8 +20,8 @@ export const PsychrometricChart = (props) => {
     const psychUnitSystem = ( (unitSystem === 'revit') ? 'ip' : unitSystem );
 
     // Chart titles
-    const xAxisTitle = t(ns+":"+'Dry Bulb Temperature') + ' [' + getUnitLabel(psychUnitSystem, 'temperature') + ']';
-    const yAxisTitle = t(ns+":"+'Humidity Ratio') + ' [' + getUnitLabel(psychUnitSystem, 'humidity_ratio') + ']';
+    const xAxisTitle = t(ns+":"+'Dry Bulb Temperature') + ' [' + getUnitLabel(psychUnitSystem, 'temperature', t) + ']';
+    const yAxisTitle = t(ns+":"+'Humidity Ratio') + ' [' + getUnitLabel(psychUnitSystem, 'humidity_ratio', t) + ']';
 
     // Atmospheric pressure
     var Pressure = convertDataUnit(psychUnitSystem, 'pressure', ( data['summary']['atmospheric_pressure'] ? data['summary']['atmospheric_pressure'] : 101325 ));
