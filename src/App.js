@@ -34,7 +34,8 @@ export default function App(props) {
 
     useEffect(() => {
         fetchData();
-      }, [json]);
+      }, [json]
+    );
     
     const fetchData = async () => {
         // Function to load data asyncronously

@@ -1,6 +1,8 @@
 import { isNumeric } from '../functions/numericFunctions';
 import { unitConversions } from '../constants/unitConversions';
 import locales from '../constants/locales';
+var psychrolib = require('../lib/psychrolib.js');
+psychrolib.SetUnitSystem(psychrolib.SI)
 
 export const getObjectName = (objectList, id) => {
   // Get the string name of the object given an id
@@ -16,8 +18,27 @@ export const getObjectName = (objectList, id) => {
   } else return null
 }
 
+const generateStatePoints = (coil, pressure) => {
+  let tDryBulb = coil['dry_bulb_temperature']
+  let humidityRatio = coil['humidity_ratio']
+
+  let T_h = psychrolib.GetMoistAirEnthalpy(tDryBulb + 1, humidityRatio)
+  let T_c = psychrolib.GetMoistAirEnthalpy(tDryBulb - 1, humidityRatio)
+  console.log((T_h - T_c) / 2)
+
+  coil['relative_humidity'] = psychrolib.GetRelHumFromHumRatio(tDryBulb, humidityRatio, pressure) * 100
+  coil['dewpoint_temperature'] = psychrolib.GetTDewPointFromHumRatio(tDryBulb, humidityRatio, pressure)
+  coil['enthalpy'] = psychrolib.GetMoistAirEnthalpy(tDryBulb, humidityRatio) / 1000
+  coil['wetbulb_temperature'] = psychrolib.GetTWetBulbFromHumRatio(tDryBulb, humidityRatio, pressure)
+  coil['air_specific_volume'] = psychrolib.GetMoistAirVolume(tDryBulb, humidityRatio, pressure)
+  coil['air_density'] = psychrolib.GetMoistAirDensity(tDryBulb, humidityRatio, pressure)
+  coil['air_specific_heat'] = 1006 + 1860 * humidityRatio
+  // Move specific heat to
+  return coil
+}
+
 export const loadData = (data) => new Promise((resolve, reject) => {
-  // function loads the data from JSON data file usign Promise.  
+  // function loads the data from JSON data file using Promise.
   
   setTimeout(() => resolve(JSON.parse(JSON.stringify(data))), 1);
   });
@@ -99,6 +120,20 @@ export const formatData = (data) => new Promise((resolve, reject) => {
     // Update heating load tables
     loadObject['heating']['estimated_peak_load_component_table'] = updateGrandTotalLoad(loadObject['heating']['estimated_peak_load_component_table']);
     loadObject['heating']['estimated_peak_load_component_table'] = updatePercentTotalLoad(loadObject['heating']['estimated_peak_load_component_table']);
+
+    return loadObject;
+  })
+
+  Object.keys(newData['design_psychrometrics']).map((objKey) => {
+    var loadObject = newData['design_psychrometrics'][objKey];
+    var pressure = loadObject['summary']['atmospheric_pressure'];
+
+    // Update cooling load tables
+    loadObject['entering_coil'] = generateStatePoints(loadObject['entering_coil'], pressure);
+    loadObject['leaving_coil'] = generateStatePoints(loadObject['leaving_coil'], pressure);
+    loadObject['outdoor_air'] = generateStatePoints(loadObject['outdoor_air'], pressure);
+    loadObject['zone'] = generateStatePoints(loadObject['zone'], pressure);
+    loadObject['return_air'] = generateStatePoints(loadObject['return_air'], pressure);
 
     return loadObject;
   })
