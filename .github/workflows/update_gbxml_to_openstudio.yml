@@ -26,10 +26,10 @@ jobs:
       uses: andstor/copycat-action@v3
       with:
         personal_token: ${{ secrets.PERSONAL_TOKEN }}
-        src_path: measure/systems_analysis_report_generator/.
+        src_path: measure/systems_analysis_report_generator
         dst_path: /measures/systems_analysis_report_generator/
         dst_owner: pflaumingo
         dst_repo_name: workflow-actions
-        clean: true
+        clean: false
         exclude: measure/systems_analysis_report_generator/test/*
         commit_message: "Automatic merge from the SystemsAnalysisReport repo"
