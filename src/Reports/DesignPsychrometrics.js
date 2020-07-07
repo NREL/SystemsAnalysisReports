@@ -87,7 +87,7 @@ export function DesignPsychrometrics(props) {
         }
     }, [data]);
 
-    if (data && Object.keys(data).length !== 0) {
+    // if (data && Object.keys(data).length !== 0) {
         const objectName = getObjectName(objectList, objectSelection);
         const objectData = data[objectName];
 
@@ -155,9 +155,9 @@ export function DesignPsychrometrics(props) {
                     </Modal.Body>
                 </Modal>
                 </div>
-            : 
-                <h1>No system coils found.</h1> 
+            :
+        <h1>No system coils found.</h1>
             )
         );
-    }
+    // }
 }

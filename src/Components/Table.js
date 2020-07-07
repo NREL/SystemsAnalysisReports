@@ -87,7 +87,7 @@ export function CustomTable(props) {
                         key={ name + '-' + column['displayName'] + '-header' }
                         width={`${colWidth}%`}
                     >
-                        { getHeader(unitSystem, column) }
+                        { getHeader(unitSystem, column, t) }
                     </th>
                 ))
                 }

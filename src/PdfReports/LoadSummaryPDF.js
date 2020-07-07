@@ -384,7 +384,7 @@ const formatCardText = (unitSystem, dataMapping, data, t, ns) => {
     var cardText = '';
     dataMapping['items'].forEach(item => {
         // Set formatting for the unit labels
-        const unitLabel = getUnitLabel(unitSystem, item["type"]);
+        const unitLabel = getUnitLabel(unitSystem, item["type"], t);
 
         // Set up array
         cardText += t(ns + ':' + item['displayName']) + ': ' + data[item["jsonKey"]]

@@ -206,7 +206,7 @@ export default function App(props) {
           <div className="App" id="app">
             <header className="App-header">
               <p>
-                  {t("Revit Systems Analysis - Loads Report")}
+                  {t("common:Revit Systems Analysis - Loads Report")}
               </p>
             </header>
             <div className="navigation-container">

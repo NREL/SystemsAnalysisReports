@@ -22,10 +22,6 @@ const generateStatePoints = (coil, pressure) => {
   let tDryBulb = coil['dry_bulb_temperature']
   let humidityRatio = coil['humidity_ratio']
 
-  let T_h = psychrolib.GetMoistAirEnthalpy(tDryBulb + 1, humidityRatio)
-  let T_c = psychrolib.GetMoistAirEnthalpy(tDryBulb - 1, humidityRatio)
-  console.log((T_h - T_c) / 2)
-
   coil['relative_humidity'] = psychrolib.GetRelHumFromHumRatio(tDryBulb, humidityRatio, pressure) * 100
   coil['dewpoint_temperature'] = psychrolib.GetTDewPointFromHumRatio(tDryBulb, humidityRatio, pressure)
   coil['enthalpy'] = psychrolib.GetMoistAirEnthalpy(tDryBulb, humidityRatio) / 1000
