@@ -7,7 +7,7 @@ module SystemsAnalysisReport
 
       def mapping
         [
-            [:coil_air_mass_flow_rate_at_ideal_loads_peak, :coil_air_flow_rate],
+            [:coil_air_volume_flow_rate_at_ideal_loads_peak, :coil_air_flow_rate],
             [:outdoor_air_volume_flow_rate_at_ideal_loads_peak, :outdoor_air_flow_rate],
             [:outdoor_air_flow_percentage_at_ideal_loads_peak, :percent_outdoor_air],
             [:date_time_at_sensible_ideal_loads_peak, :time_of_peak],
