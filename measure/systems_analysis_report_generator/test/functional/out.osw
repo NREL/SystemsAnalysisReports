@@ -1,19 +1,19 @@
 {
-   "completed_at" : "20200604T212211Z",
+   "completed_at" : "20200706T192920Z",
    "completed_status" : "Success",
    "current_step" : 1,
-   "hash" : "34C60440",
-   "measure_paths" : [ "/Users/npflaum/Documents/GitHub/SystemsAnalysisReports/measure/" ],
+   "hash" : "5CA8366A",
+   "measure_paths" : [ "/Users/npflaum/Documents/GitHub/SystemsAnalysisReportsNew/measure/" ],
    "run_directory" : "./run",
-   "seed_file" : "/Users/npflaum/Documents/GitHub/SystemsAnalysisReports/measure/systems_analysis_report_generator/test/functional/run/in.osm",
-   "started_at" : "20200604T212159Z",
+   "seed_file" : "/Users/npflaum/Documents/GitHub/SystemsAnalysisReportsNew/measure/systems_analysis_report_generator/test/functional/run/in.osm",
+   "started_at" : "20200706T192918Z",
    "steps" : [
       {
          "arguments" : {},
          "measure_dir_name" : "systems_analysis_report_generator",
          "name" : "Systems Analysis Report",
          "result" : {
-            "completed_at" : "20200604T212207Z",
+            "completed_at" : "20200706T192919Z",
             "measure_class_name" : "SystemsAnalysisReportGenerator",
             "measure_display_name" : "Systems Analysis Report Generator",
             "measure_name" : "systems_analysis_report_generator",
@@ -23,7 +23,7 @@
             "measure_version_id" : "5c25e45c-b52a-4b2c-8abb-f90129ad5d5a",
             "measure_version_modified" : "20200302T221429Z",
             "measure_xml_checksum" : "9BF1E6AC",
-            "started_at" : "20200604T212200Z",
+            "started_at" : "20200706T192919Z",
             "stderr" : "",
             "stdout" : "",
             "step_errors" : [],
@@ -35,5 +35,5 @@
          }
       }
    ],
-   "updated_at" : "20200604T212211Z"
+   "updated_at" : "20200706T192920Z"
 }

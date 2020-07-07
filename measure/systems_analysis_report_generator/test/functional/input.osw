@@ -1,6 +1,6 @@
 {
-  "seed_file": "/Users/npflaum/Documents/GitHub/SystemsAnalysisReports/measure/systems_analysis_report_generator/test/functional/run/in.osm",
-  "measure_paths" : [ "/Users/npflaum/Documents/GitHub/SystemsAnalysisReports/measure/" ],
+  "seed_file": "/Users/npflaum/Documents/GitHub/SystemsAnalysisReportsNew/measure/systems_analysis_report_generator/test/functional/run/in.osm",
+  "measure_paths" : [ "/Users/npflaum/Documents/GitHub/SystemsAnalysisReportsNew/measure/" ],
   "run_directory" : "./run",
   "steps" : [
     {

@@ -71,7 +71,7 @@ export class ObjectSelectionDropDown extends React.Component {
                         <FormControl
                             autoFocus
                             className="mx-3 my-2 w-auto"
-                            placeholder={t("Type to filter...")}
+                            placeholder={t("common:Type to Filter") + "..."}
                             onChange={e => this.setState({filter: e.target.value})}
                             value={this.state.filter}
                         />

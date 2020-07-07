@@ -25,3 +25,4 @@ yarn-error.log*
 
 # Ruby
 measure/systems_analysis_report_generator/test/functional/run
+measure/systems_analysis_report_generator/test/functional/reports/

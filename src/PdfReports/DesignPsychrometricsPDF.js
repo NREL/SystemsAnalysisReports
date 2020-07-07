@@ -23,7 +23,7 @@ export const DesignPsychrometricsPDF = async (
     t
     ) => {
     var startTime = new Date().getTime();
-    
+
     // Set title for report
     const pageTitle = t(ns + ':' + 'Design Psychrometrics');
     const cardFontSize = 6;
@@ -107,7 +107,7 @@ export const DesignPsychrometricsPDF = async (
         // Write Psychrometric Chart
         yStart = 56;
 
-        let svg = ReactDOM.findDOMNode(chart1Ref.current);
+        const svg = ReactDOM.findDOMNode(chart1Ref.current);
         let width = svg.getBoundingClientRect().width;
         let height = svg.getBoundingClientRect().height;
 
@@ -168,7 +168,7 @@ const formatCardText = (unitSystem, dataMapping, data, t, ns) => {
     var cardText = '';
     dataMapping['items'].forEach(item => {
         // Set formatting for the unit labels
-        const unitLabel = getUnitLabel(unitSystem, item["type"]);
+        const unitLabel = getUnitLabel(unitSystem, item["type"], t);
 
         // Set up array
         cardText += t(ns + ':' + item['displayName']) + ': ' + data[item["jsonKey"]]
