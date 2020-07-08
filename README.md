@@ -6,7 +6,12 @@ For testing, you can create some simulated data by running the following command
 
 ### `node ./scripts/generateJSON.js`
 
-Move the created data.json file into the /src folder.
+Move the created data.json file into the /src folder. *After doing so be sure to return the data.json in /src to the snippet below before doing a build:*
+```json
+{
+    "design_psychrometrics": {}, "system_load_summarys": {}, "zone_load_summarys": {}
+}
+```
 
 In the project directory, you can run:
 
@@ -35,3 +40,11 @@ This build can be run statically without the need for any web server.<br />
 ### `unit conversions`
 
 Unit conversions use the library [convert-units](https://github.com/ben-ng/convert-units).
+
+### `Building the measure`
+
+This step hasn't been automated yet, but after running npm run build:
+- The files in build need to be moved to measure/systems_analysis_report_generator/resources/build.
+- index.html must reference the bundle as systems_analysis_report_generator_report_bundle.js, this is due to logic baked into the openstudio-workflow gem.
+
+It should also be noted that any push to master currently triggers a push to develop on gbxml-to-openstudio.
