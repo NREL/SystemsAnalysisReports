@@ -70,12 +70,18 @@ export const PsychrometricChart = (props) => {
         select(d3Container.current).selectAll("*").remove();
 
         // Initialize svg object
+        const widthPlusMargins = width + margin.left + margin.right;
+        const heightPlusMargins = height + margin.top + margin.bottom;
         const svg = select(d3Container.current)
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
+        //.attr("preserveAspectRatio", "xMinYMin meet")
+        .attr("preserveAspectRatio", "xMidYMid meet")
+        .attr("viewBox", "0 0 " + widthPlusMargins + " " + heightPlusMargins)
         .append("g")
         .attr("transform", 
             "translate(" + margin.left + "," + margin.top + ")");
+
 
         // Max humid ratio line array 
         var MaxHumidRatioArray = [];

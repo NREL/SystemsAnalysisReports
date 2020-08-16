@@ -8,7 +8,8 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
 import { LoadSummary } from './Reports/LoadSummary';
 import { Context } from './store/index';
-import { DesignPsychrometrics } from './Reports/DesignPsychrometrics';import './App.css';
+import { DesignPsychrometrics } from './Reports/DesignPsychrometrics';
+import './App.css';
 import {
   designPsychrometricsMapping,
   zoneLoadSummaryMapping,

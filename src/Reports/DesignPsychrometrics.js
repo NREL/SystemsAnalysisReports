@@ -9,7 +9,7 @@ import { CustomTable } from '../Components/Table';
 import { ReportCard } from '../Components/ReportCard';
 import { PsychrometricChart } from '../Components/PsychrometricChart';
 import { Context } from '../store/index';
-import { DesignPsychrometricsPDF } from '../PdfReports/DesignPsychrometricsPDF';
+import { DesignPsychrometricsPDF } from '../PdfReports/DesignPsychrometricsPDF2';
 import { getObjectName } from '../functions/dataFormatting';
 import { formatDesignPsychrometricsTableData } from '../functions/tableFunctions';
 import { useTranslation } from "react-i18next";

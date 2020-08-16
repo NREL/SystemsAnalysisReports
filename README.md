@@ -13,6 +13,12 @@ Move the created data.json file into the /src folder. *After doing so be sure to
 }
 ```
 
+pdfMake is used for PDF creation.  To configure pdfMake first navigate to the pdfMake source folder in node_modules and run:
+
+### `npm install`
+### `npm build`
+
+
 In the project directory, you can run:
 
 ### `npm start`
