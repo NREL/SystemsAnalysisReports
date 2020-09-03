@@ -2,7 +2,7 @@
     "language": "en-US",
     "units": {
         "heat_transfer_rate": "W",
-        "temperature": "F",
+        "temperature": "C",
         "temperature_difference": "C",
         "humidity_ratio": "kg/kg",
         "flow_rate": "m3/s",

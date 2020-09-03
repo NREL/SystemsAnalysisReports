@@ -9,7 +9,7 @@ module EPlusOut
 
       def where(params, select: :value, order_by: [], distinct: false)
         query = build_query(params, select: select, order_by: order_by, distinct: distinct)
-        @sql_file.execAndReturnVectorOfString(query).get
+        execute(query).map { |value| cast_type(value) }
       end
 
       # dangerous public entry :). Executes string as is
@@ -38,6 +38,14 @@ module EPlusOut
 
       def camelize(string)
         string.split('_').collect(&:capitalize).join
+      end
+
+      def cast_type(value)
+        begin
+          Float(value)
+        rescue
+          value
+        end
       end
     end
   end

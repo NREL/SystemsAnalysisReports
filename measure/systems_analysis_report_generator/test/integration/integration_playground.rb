@@ -1,6 +1,6 @@
 require 'openstudio'
 require_relative '../../resources/systems_analysis_report'
-require 'memory_profiler'
+# require 'memory_profiler'
 
 # start = Time.now
 # model = OpenStudio::Model::Model.load("/Users/npflaum/Documents/GitHub/SystemsAnalysisReports/measure/systems_analysis_report_generator/test/functional/run/in.osm").get
@@ -50,7 +50,7 @@ end
 #
 # osw_in_path = Config::TEST_OUTPUT_PATH + '/cav_box/in.osw'
 # cmd = "\"#{Config::CLI_PATH}\" run -w \"#{osw_in_path}\""
-cmd = "openstudio run -p -w '/Users/npflaum/Documents/GitHub/SystemsAnalysisReports/measure/systems_analysis_report_generator/test/functional/input.osw'"
+cmd = "openstudio run -p -w 'C:\\Users\\t_pflan\\Documents\\GitHub\\SystemsAnalysisReports\\measure\\systems_analysis_report_generator\\test\\functional\\input.osw'" #'C:/Users/t_pflan/Documents/GitHub/SystemsAnalysisReports/measure/systems_analysis_report_generator/test/functional/input.osw'"
 run_command(cmd)
 open('sample.json', 'w') do |f|
   f.puts report.to_json
