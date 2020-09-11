@@ -1,21 +1,18 @@
 require 'openstudio'
 require_relative '../../resources/eplusout'
+require_relative '../../resources/systems_analysis_report'
 
-sql_file = OpenStudio::SqlFile.new("/Users/npflaum/Documents/GitHub/SystemsAnalysisReports/measure/systems_analysis_report_generator/test/fixtures/air_system_4_zone/eplusout.sql")
-eplusout = EPlusOut.container(sql_file)
-
-start = Time.now
-# eplusout.estimated_cooling_peak_load_component_tables.find_by_name("")
-puts (Time.now - start)
-
-start = Time.now
-# eplusout.estimated_cooling_peak_load_component_tables.find_by_name("")
-puts (Time.now - start)
-require 'objspace'
-puts eplusout.locations.all
-puts eplusout.estimated_cooling_peak_load_component_tables.instances.count
+# sql_file = OpenStudio::SqlFile.new("C:/Users/t_pflan/AppData/Local/Temp/1/11f015c5-000d-4992-8fae-fef4cbc8c6b5/HVAC Systems Loads and Sizing/run/eplusout.sql")
+# eplusout = EPlusOut.container(sql_file)
+#
+#
+# puts eplusout.estimated_cooling_peak_load_component_tables.first
+# puts eplusout.locations.first
 # puts eplusout.estimated_cooling_peak_load_component_tables.instances
-puts ObjectSpace.memsize_of(eplusout.estimated_cooling_peak_load_component_tables.instances)
-puts ObjectSpace.memsize_of([0..572].to_a)
 
-puts ObjectSpace.memsize_of(EPlusOut::Models::EstimatedPeakLoadComponent.new([0..7]))
+sql_file = OpenStudio::SqlFile.new('C:\Users\t_pflan\Downloads\Annual Building Energy Simulation (1)\Annual Building Energy Simulation\run\eplusout.sql')
+model = OpenStudio::Model::Model.load('C:\Users\t_pflan\Downloads\Annual Building Energy Simulation (1)\Annual Building Energy Simulation\run\in.osm').get
+
+systems_analysis_report = SystemsAnalysisReport.container(model, sql_file)
+data = systems_analysis_report.json_generator.generate
+puts data.to_json

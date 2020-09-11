@@ -2,8 +2,8 @@
     "language": "en-US",
     "units": {
         "heat_transfer_rate": "W",
-        "temperature": "F",
-        "temperature_difference": "C",
+        "temperature": "C",
+        "temperature_difference": "C_diff",
         "humidity_ratio": "kg/kg",
         "flow_rate": "m3/s",
         "enthalpy": "kJ/kg",
@@ -18,6 +18,6 @@
         "flow_rate_per_heat_transfer_rate": "m3/s/W",
         "people": "unitless",
         "pressure": "N/m2",
-        "area": "m"
+        "area": "m2"
     }
 }
