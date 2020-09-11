@@ -1,7 +1,7 @@
 {
-  "seed_file": "/Users/npflaum/Documents/GitHub/SystemsAnalysisReportsNew/measure/systems_analysis_report_generator/test/functional/run/in.osm",
-  "measure_paths" : [ "/Users/npflaum/Documents/GitHub/SystemsAnalysisReportsNew/measure/" ],
-  "run_directory" : "./run",
+  "seed_file": "C:/Users/t_pflan/Documents/GitHub/SystemsAnalysisReports/measure/systems_analysis_report_generator/test/fixtures/air_system_4_zone/in.osm",
+  "measure_paths" : [ "C:/Users/t_pflan/Documents/GitHub/SystemsAnalysisReports/measure/" ],
+  "run_directory" : "C:/Users/t_pflan/Documents/GitHub/SystemsAnalysisReports/measure/systems_analysis_report_generator/test/fixtures/air_system_4_zone/",
   "steps" : [
     {
       "measure_dir_name" : "systems_analysis_report_generator",

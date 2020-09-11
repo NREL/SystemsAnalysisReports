@@ -265,12 +265,12 @@ export const PsychrometricChart = (props) => {
         lineLabelPairs.forEach(pair => {
             systemProcesses.push([
                 {
-                    dry_bulb_temperature: convertDataUnit(unitSystem, "temperature", data[pair[0]]["dry_bulb_temperature"]),
-                    humidity_ratio: convertDataUnit(unitSystem, "humidity_ratio", data[pair[0]]["humidity_ratio"])
+                    dry_bulb_temperature: convertDataUnit(psychUnitSystem, "temperature", data[pair[0]]["dry_bulb_temperature"]),
+                    humidity_ratio: convertDataUnit(psychUnitSystem, "humidity_ratio", data[pair[0]]["humidity_ratio"])
                 },
                 {
-                    dry_bulb_temperature: convertDataUnit(unitSystem, "temperature", data[pair[1]]["dry_bulb_temperature"]),
-                    humidity_ratio: convertDataUnit(unitSystem, "humidity_ratio", data[pair[1]]["humidity_ratio"])
+                    dry_bulb_temperature: convertDataUnit(psychUnitSystem, "temperature", data[pair[1]]["dry_bulb_temperature"]),
+                    humidity_ratio: convertDataUnit(psychUnitSystem, "humidity_ratio", data[pair[1]]["humidity_ratio"])
                 }
             ]);
         });
@@ -303,8 +303,8 @@ export const PsychrometricChart = (props) => {
             Object.entries(dataMapping['rows']).forEach(([k, v]) => {
                 if (v.jsonKey === systemName) {
                     // Add a data row
-                    const Tdb = convertDataUnit(unitSystem, 'temperature', data[v.jsonKey]['dry_bulb_temperature']);
-                    const w = convertDataUnit(unitSystem, 'humidity_ratio', data[v.jsonKey]['humidity_ratio']);
+                    const Tdb = convertDataUnit(psychUnitSystem, 'temperature', data[v.jsonKey]['dry_bulb_temperature']);
+                    const w = convertDataUnit(psychUnitSystem, 'humidity_ratio', data[v.jsonKey]['humidity_ratio']);
                     statePoints.push({ dry_bulb_temperature: Tdb, humidity_ratio: w });
                 }
             })
