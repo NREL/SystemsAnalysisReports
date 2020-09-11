@@ -1,0 +1,4 @@
+[21:13:17.739929 WARN] No valid weather file defined in either the osm or osw.
+[21:13:18.574686 WARN] Could not find reportConfig.json in root. Using default configuration instead
+[21:20:36.018641 WARN] No valid weather file defined in either the osm or osw.
+[21:20:36.847441 WARN] Could not find reportConfig.json in root. Using default configuration instead

@@ -1257,20 +1257,6 @@ OS:AdditionalProperties,
   String,                                 !- Feature Data Type 1
   80;                                     !- Feature Value 1
 
-OS:WeatherFile,
-  {fe275590-f021-4098-b83d-31dd8e6fc168}, !- Handle
-  Denver Intl Ap,                         !- City
-  CO,                                     !- State Province Region
-  USA,                                    !- Country
-  TMY3,                                   !- Data Source
-  725650,                                 !- WMO Number
-  39.83,                                  !- Latitude {deg}
-  -104.65,                                !- Longitude {deg}
-  -7,                                     !- Time Zone {hr}
-  1650,                                   !- Elevation {m}
-  file:///Users/npflaum/Documents/GitHub/gbxml-to-openstudio/test/gbxml_hvac_import/resources/weather/USA_CO_Denver.Intl.AP.725650_TMY3.epw, !- Url
-  E23378AA;                               !- Checksum
-
 OS:SizingPeriod:DesignDay,
   {28c8517c-6d18-4677-99c2-23a903760d7a}, !- Handle
   Denver Intl Ap Ann Clg .4% Condns DB=>MWB, !- Name

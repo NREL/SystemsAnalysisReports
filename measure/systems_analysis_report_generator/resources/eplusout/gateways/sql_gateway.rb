@@ -42,9 +42,12 @@ module EPlusOut
 
       def cast_type(value)
         begin
+          if value[-1] == "."
+            value += "0"
+          end
           Float(value)
         rescue
-          value
+          value.empty? ? nil : value.strip
         end
       end
     end

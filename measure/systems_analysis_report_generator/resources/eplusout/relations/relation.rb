@@ -47,7 +47,7 @@ module EPlusOut
 
         names = @gateway.where(clauses, select: name_field, order_by: [name_field] + order_by, distinct: true)
         data = @gateway.where(clauses, select: :value, order_by: [name_field] + order_by)
-        units = @gateway.where(clauses, select: :units, order_by: [name_field] + order_by)
+        units = get_units(clauses, select: :units, order_by: [name_field] + order_by)
 
         names.each_with_index do |name, idx|
           instance_data = data.slice(idx * @mapper.size, @mapper.size)
@@ -58,6 +58,10 @@ module EPlusOut
           result.name = name
           @instances[name] = result
         end
+      end
+
+      def get_units(clauses, select: :units, order_by: nil)
+        @gateway.where(clauses, select: :units, order_by: [name_field] + order_by)
       end
     end
   end
