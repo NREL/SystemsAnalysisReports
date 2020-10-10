@@ -52,6 +52,7 @@ export const LoadSummaryPDF = async (
 
     // Default a4 size (210 x 297 mm), units in mm
     const doc = new jsPDF({orientation: 'portrait', format: 'a4', unit: 'mm', compress: true});
+    const baseFont = doc.getFont()['fontName'];
 
     // Turn off animations
     setAnimationEnable(false);
@@ -139,10 +140,10 @@ export const LoadSummaryPDF = async (
             xStart = 15;
             yStart = 31;
 
-            doc.setFontType("bold");
+            doc.setFont(baseFont, "bold");
             doc.text(t(ns + ':' + dataMapping['peakConditions'][1]['label']), xStart, yStart);
             cardText = formatCardText(unitSystem, dataMapping['peakConditions'][1], peakConditionsData, t, ns);
-            doc.setFontType("normal");
+            doc.setFont(baseFont, "normal");
             doc.setFontSize(cardFontSize);
             doc.text(cardText, xStart, yStart+2);
 
@@ -151,10 +152,10 @@ export const LoadSummaryPDF = async (
                 xStart = 15;
                 yStart = 41;
 
-                doc.setFontType("bold");
+                doc.setFont(baseFont, "bold");
                 doc.text(t(ns + ':' + dataMapping['peakConditions'][2]['label']), xStart, yStart);
                 cardText = formatCardText(unitSystem, dataMapping['peakConditions'][2], peakConditionsData, t, ns);
-                doc.setFontType("normal");
+                doc.setFont(baseFont, "normal");
                 doc.setFontSize(cardFontSize);
                 doc.text(cardText, xStart, yStart+2);
             }
