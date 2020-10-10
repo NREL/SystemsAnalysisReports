@@ -1,8 +1,9 @@
 import ReactDOM from 'react-dom';
 //import domtoimage from 'dom-to-image';
-//import jsPDF from 'jspdf';
-//import 'jspdf-autotable';
-//import { useTranslation } from "react-i18next";
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+import htmlToPdfmake from "html-to-pdfmake";
+import { sleep } from '../functions/generalFunctions';
 import { getHeader } from '../functions/tableFunctions';
 import { getObjectName, convertDataUnit, getUnitLabel } from '../functions/dataFormatting';
 import { isNumeric, numberWithCommas } from '../functions/numericFunctions';
@@ -32,7 +33,7 @@ export const LoadSummaryPDF = async (
     if (sectionSelection==='zone_load_summary') {
         pageTitle = 'Zone Load Summary';
     }  else if (sectionSelection==='system_load_summary') {
-        pageTitle = 'System Load Summary';
+        pageTitle = t(ns + ':' + 'System Load Summary');
     } else {
         pageTitle = '';
     }
@@ -49,6 +50,20 @@ export const LoadSummaryPDF = async (
     };
     const tableSubHeaderSize = 7;
     const tableSubHeaderMargin = 2;
+    var docDefinition = {
+        'content': [],
+        styles: {
+            header: {
+              //fontSize: 22,
+              //bold: true
+            },
+            tableBody: {
+              fontSize: 8,
+              //italics: true,
+              //alignment: 'right'
+            }
+          }
+    }
 
     // Default a4 size (210 x 297 mm), units in mm
     //const doc = new jsPDF({orientation: 'portrait', format: 'a4', unit: 'mm', compress: true});
@@ -69,8 +84,8 @@ export const LoadSummaryPDF = async (
         const heatingCoolingSelection = heatingCoolingOptions[j];
 
         for (var i = 0; i < objectList.length; i++) {
-            var xStart = 0;
-            var yStart = 0;
+            //var xStart = 0;
+            //var yStart = 0;
             
             // Set object for loop
             const objectId = i;
@@ -88,10 +103,18 @@ export const LoadSummaryPDF = async (
             // Title
             //doc.setFontSize(13);
             //doc.text(t(ns+":"+pageTitle), 10, 10);
+            docDefinition['content'].push(
+                {
+                    text: pageTitle,
+                    fontSize: 13,
+                    margin: [0, 5],
+                }
+            )
 
             // Object Name
-            xStart = 10;
-            yStart = 16;
+            //const objectNameWidth = doc.getStringUnitWidth(objectName)*11*25.4/72;
+            //xStart = 10;
+            //yStart = 16;
             /*const objectNameWidth = doc.getStringUnitWidth(objectName)*11*25.4/72;
             doc.setDrawColor(0);
             doc.setFillColor(108, 117, 125);
@@ -99,11 +122,15 @@ export const LoadSummaryPDF = async (
             doc.setTextColor(255,255,255);
             doc.setFontSize(11);
             doc.text(objectName, xStart, yStart);*/
+            docDefinition['content'].push(
+                {
+                    text: objectName,
+                    fontSize: 11,
+                    margin: [0, 5],
+                }
+            )
 
             // Cooling/Heating Label
-            xStart += objectNameWidth + 5;  // Place label next to the object name label
-            yStart = 16;
-
             if(heatingCoolingSelection === 'cooling'){
                 /*doc.setDrawColor(0);
                 doc.setFillColor(0, 123, 255);
@@ -111,6 +138,13 @@ export const LoadSummaryPDF = async (
                 doc.setTextColor(255,255,255);
                 doc.setFontSize(10);
                 doc.text(t(ns+":"+'Cooling'), xStart, yStart);  */
+                docDefinition['content'].push(
+                    {
+                        text: t(ns+":"+'Cooling'),
+                        fontSize: 10,
+                        margin: [0, 2],
+                    }
+                )
             } else if (heatingCoolingSelection === 'heating') {
                 /*doc.setDrawColor(0);
                 doc.setFillColor(220, 53, 69);
@@ -118,14 +152,20 @@ export const LoadSummaryPDF = async (
                 doc.setTextColor(255,255,255);
                 doc.setFontSize(10);
                 doc.text(t(ns+":"+'Heating'), xStart, yStart);  */
+                docDefinition['content'].push(
+                    {
+                        text: t(ns+":"+'Heating'),
+                        fontSize: 10,
+                        margin: [0, 2],
+                    }
+                )
             }
 
             // Write Peak Conditions
-            xStart = 15; 
-            yStart = 21;
-
             const peakConditionsData = data[objectName][heatingCoolingSelection]['peak_condition'];
             var cardText = formatCardText(unitSystem, dataMapping['peakConditions'][0], peakConditionsData, t, ns);
+            var cardTitle = t(ns + ':' + 'Conditions at Time of Peak');
+            docDefinition['content'].push(getCardDocDefinition(cardTitle, cardText));
             /*doc.setDrawColor(0);
             doc.setFillColor(221, 221, 221);
             doc.rect(xStart, yStart, 35, 3, 'F');
@@ -136,10 +176,9 @@ export const LoadSummaryPDF = async (
             doc.text(cardText, xStart, yStart+6);*/
 
             // Write Outside Conditions
-            xStart = 15;
-            yStart = 31;
-
-            cardText = formatCardText(unitSystem, dataMapping['peakConditions'][1], peakConditionsData, t, ns);
+             cardText = formatCardText(unitSystem, dataMapping['peakConditions'][1], peakConditionsData, t, ns);
+            cardTitle = t(ns + ':' + dataMapping['peakConditions'][1]['label']);
+            docDefinition['content'].push(getCardDocDefinition(cardTitle, cardText));
             /*doc.setFontType("bold");
             doc.text(t(ns + ':' + dataMapping['peakConditions'][1]['label']), xStart, yStart);
             doc.setFontType("normal");
@@ -148,10 +187,11 @@ export const LoadSummaryPDF = async (
 
             // Write Zone Conditions
             if (sectionSelection==='zone_load_summary') {
-                xStart = 15;
-                yStart = 41;
-
                 cardText = formatCardText(unitSystem, dataMapping['peakConditions'][2], peakConditionsData, t, ns);
+                cardTitle = t(ns + ':' + dataMapping['peakConditions'][2]['label']);
+
+                //docDefinition['content'].push(getMultiCardDocDefinition(cardTitle, subTitle1, cardText1, subTitle2, cardText2));
+                
                 /*doc.setFontType("bold");
                 doc.text(t(ns + ':' + dataMapping['peakConditions'][2]['label']), xStart, yStart);
                 doc.setFontType("normal");
@@ -159,13 +199,12 @@ export const LoadSummaryPDF = async (
                 doc.text(cardText, xStart, yStart+2);*/
             }
 
-            // Write Temperatures
             if (sectionSelection==='system_load_summary') {
-                xStart = 15;
-                yStart = 41;
-
+                // Write Temperatures
                 const temperatureData = data[objectName][heatingCoolingSelection]['temperature'];
                 cardText = formatCardText(unitSystem, dataMapping['temperatures'][0], temperatureData, t, ns);
+                cardTitle = t(ns + ':' + 'Temperatures');
+                docDefinition['content'].push(getCardDocDefinition(cardTitle, cardText));
                 /*doc.setDrawColor(0);
                 doc.setFillColor(221, 221, 221);
                 doc.rect(xStart, yStart, 35, 3, 'F');
@@ -174,15 +213,12 @@ export const LoadSummaryPDF = async (
                 doc.text(t(ns + ':' + 'Temperatures'), xStart, yStart+2);
                 doc.setFontSize(cardFontSize);
                 doc.text(cardText, xStart, yStart+6);*/
-            }
 
-            // Write Airflows
-            if (sectionSelection==='system_load_summary') {
-                xStart = 60;
-                yStart = 21;
-
+                // Write Airflows
                 const airflowData = data[objectName][heatingCoolingSelection]['airflow'];
                 cardText = formatCardText(unitSystem, dataMapping['airflows'][0], airflowData, t, ns);
+                cardTitle = t(ns + ':' + 'Airflows');
+                docDefinition['content'].push(getCardDocDefinition(cardTitle, cardText));
                 /*doc.setDrawColor(0);
                 doc.setFillColor(221, 221, 221);
                 doc.rect(xStart, yStart, 35, 3, 'F');
@@ -194,16 +230,10 @@ export const LoadSummaryPDF = async (
             }
 
             // Write Engineering Checks
-            if (sectionSelection==='zone_load_summary') {
-                xStart = 60;
-                yStart = 21;
-            } else if (sectionSelection==='system_load_summary') {
-                xStart = 60;
-                yStart = 35;
-            }
-
             const engineeringCheckData = data[objectName][heatingCoolingSelection]['engineering_check'];
             cardText = formatCardText(unitSystem, dataMapping['engineeringCheck'][0], engineeringCheckData, t, ns);
+            cardTitle = t(ns + ':' + 'Engineering Checks');
+            docDefinition['content'].push(getCardDocDefinition(cardTitle, cardText));
             /*doc.setDrawColor(0);
             doc.setFillColor(221, 221, 221);
             doc.rect(xStart, yStart, 40, 3, 'F');
@@ -214,11 +244,26 @@ export const LoadSummaryPDF = async (
             doc.text(cardText, xStart, yStart+6);*/
 
             // Write Heating/Cooling Load Chart
-            yStart = 5;
+            //let svgChart = ReactDOM.findDOMNode(chart1Ref.current).children[0];
+            //let svgLegend = ReactDOM.findDOMNode(chart1Ref.current).children[1].children[0];
+            //let width = svgChart.getBoundingClientRect().width;
+            //let height = svgChart.getBoundingClientRect().height;
 
-            let svg = ReactDOM.findDOMNode(chart1Ref.current);
-            let width = svg.getBoundingClientRect().width;
-            let height = svg.getBoundingClientRect().height;
+            //console.log(svgChart);
+            //console.log(svgLegend);
+
+            /*docDefinition['content'].push({
+                svg: svgChart.outerHTML,
+                width: 150,
+                //margin: [5, 5]
+            });*/
+            
+            /*docDefinition['content'].push({
+                svg: "<svg class=\"recharts-surface\" width=\"14\" height=\"14\" style=\"display: inline-block; vertical-align: middle; margin-right: 4px;\" viewBox=\"0 0 32 32\" version=\"1.1\"><path stroke=\"none\" fill=\"#3399FF\" d=\"M0,4h32v24h-32z\" class=\"recharts-legend-icon\"></path></svg><span class=\"recharts-legend-item-text\"><span style=\"font-size: 12px; display: inline-block;\">Cooling</span></span></li><li class=\"recharts-legend-item legend-item-1\" style=\"display: inline-block; margin-right: 10px;\"><svg class=\"recharts-surface\" width=\"14\" height=\"14\" style=\"display: inline-block; vertical-align: middle; margin-right: 4px;\" viewBox=\"0 0 32 32\" version=\"1.1\"><path stroke=\"none\" fill=\"#FF3333\" d=\"M0,4h32v24h-32z\" class=\"recharts-legend-icon\"></path></svg><span class=\"recharts-legend-item-text\"><span style=\"font-size: 12px; display: inline-block;\">Heating</span></span></li>",
+                //svg: svgLegend.outerHTML,
+                //width: 150,
+                //margin: [5, 5]
+            });*/
 
             /*await domtoimage.toPng(svg, {
                 width: width,
@@ -236,9 +281,38 @@ export const LoadSummaryPDF = async (
             });*/
 
             // Write Component Load Chart
-            svg = ReactDOM.findDOMNode(chart2Ref.current);
-            width = svg.getBoundingClientRect().width;
-            height = svg.getBoundingClientRect().height;
+            let svgChart = ReactDOM.findDOMNode(chart2Ref.current);
+            //svgLegend = ReactDOM.findDOMNode(chart2Ref.current).children[1].children[0];
+            //width = svgChart.getBoundingClientRect().width;
+            //height = svgChart.getBoundingClientRect().height;
+            //console.log(svgChart.outerHTML);
+            //await sleep(10000);
+
+            var html = htmlToPdfmake(svgChart.outerHTML);
+            console.log(html);
+            docDefinition['content'].push(html);
+
+            /*if (this.chart2Ref && this.chart2Ref.current) {
+                svgChart = ReactDOM.findDOMNode(chart2Ref.current);
+                console.log(svgChart);
+                await domtoimage.toSvg(svgChart) //, { bgcolor: '#ffffff' })
+                .then((dataUrl) => {
+                    console.log(dataUrl);
+                    //const download = document.createElement('a');
+                    //download.href = dataUrl;
+                    //download.download = `chart.png`;
+                    //download.dispatchEvent(new MouseEvent('click'));
+                })
+                .catch((error) => {
+                    console.error('Something went wrong!', error);
+                });
+            }*/
+
+            /*docDefinition['content'].push({
+                svg: svgChart.outerHTML,
+                width: 150,
+                margin: [5, 5]
+            });*/
 
             /*await domtoimage.toPng(svg, {
                 width: width,
@@ -259,7 +333,7 @@ export const LoadSummaryPDF = async (
             const loadComponentsData = data[objectName][heatingCoolingSelection]['estimated_peak_load_component_table'];
 
             //Table Header
-            yStart = 56;
+            //yStart = 56;
             var mapKey = 'envelopeLoadsTable';
             var colLabels = getColumnLabels(unitSystem, mapKey, dataMapping, t, ns);
 
@@ -274,7 +348,7 @@ export const LoadSummaryPDF = async (
             })*/
 
             // Envelope Loads Table
-            yStart += 12;
+            //yStart += 12;
             //doc.setFontSize(tableSubHeaderSize);
             //doc.text(t(ns + ':' + 'Envelope'), 15, yStart);
             var mapKey = 'envelopeLoadsTable';
@@ -294,7 +368,7 @@ export const LoadSummaryPDF = async (
 
             
             // Internal Gains Table
-            yStart += 97;
+            //yStart += 97;
             //doc.setFontSize(tableSubHeaderSize);
             //doc.text(t(ns + ':' + 'Internal Gains'), 15, yStart);
             mapKey = 'internalGainsTable';
@@ -313,7 +387,7 @@ export const LoadSummaryPDF = async (
 
             
             // System Loads Table
-            yStart += 36;
+            //yStart += 36;
             //doc.setFontSize(tableSubHeaderSize);
             //doc.text(t(ns + ':' + 'Systems'), 15, yStart);
             mapKey = 'systemLoadsTable';
@@ -332,11 +406,11 @@ export const LoadSummaryPDF = async (
             })*/
 
             // Total Loads Table
-            if (sectionSelection==='zone_load_summary') {
+            /*if (sectionSelection==='zone_load_summary') {
                 yStart += 59;
             } else if (sectionSelection==='system_load_summary') {
                 yStart += 63;
-            }
+            }*/
             //doc.setFontSize(tableSubHeaderSize);
             //doc.text(t(ns + ':' + 'Total'), 15, yStart);
             mapKey = 'totalLoadsTable';
@@ -353,6 +427,16 @@ export const LoadSummaryPDF = async (
                 startY: yStart+tableSubHeaderMargin,
             })*/
 
+            // Add page, if necessary
+            if (i < objectList.length) {
+                docDefinition['content'].push(
+                    {
+                        text: "-",
+                        pageBreak: "after" // or before
+                    },
+                )
+            }
+
             // update progress bar
             progressBarValue++;
             setProgressBarValue(progressBarValue/maxProgressBarValue*100);
@@ -363,6 +447,8 @@ export const LoadSummaryPDF = async (
     progressBarValue++;
     setProgressBarValue(progressBarValue/maxProgressBarValue*100);
 
+    //await sleep(20000);
+
     // Save pdf to file
     var fileName = null
     if (sectionSelection==='zone_load_summary') {
@@ -372,6 +458,8 @@ export const LoadSummaryPDF = async (
     }
 
     //doc.save(fileName);
+    pdfMake.vfs = pdfFonts.pdfMake.vfs;
+    pdfMake.createPdf(docDefinition).download();
 
     // Clean up
     setAnimationEnable(true);
@@ -396,6 +484,55 @@ const formatCardText = (unitSystem, dataMapping, data, t, ns) => {
     })
 
     return cardText
+}
+
+const getCardDocDefinition = (cardTitle, cardText) => {
+    const docDef = {
+        table: {
+            headerRows: 1,
+            body: [
+                [
+                    cardTitle
+                ],
+                [
+                    cardText
+                ]
+            ]
+        },
+        style: 'tableBody',
+        margin: [0, 5]
+    }
+
+    return docDef
+}
+
+const getMultiCardDocDefinition = (cardTitle, subTitle1, cardText1, subTitle2, cardText2) => {
+    const docDef = {
+        table: {
+            headerRows: 1,
+            body: [
+                [
+                    cardTitle
+                ],
+                [
+                    subTitle1
+                ],
+                [
+                    cardText1
+                ],
+                [
+                    subTitle2
+                ],
+                [
+                    cardText2
+                ]
+            ]
+        },
+        style: 'tableBody',
+        margin: [0, 5]
+    }
+
+    return docDef
 }
 
 const getColumnLabels = (unitSystem, mapKey, dataMapping, t, ns) => {

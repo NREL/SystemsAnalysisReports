@@ -6,10 +6,19 @@ module.exports = {
     devtool: 'inline-source-map',
     entry: {
         app: './src/index.js',
+        data: './src/data.json',
+        //designPsychrometricsPDF: './src/PdfReports/DesignPsychrometricsPDF2.js',
+        //loadSummaryPDF: './src/PdfReports/LoadSummaryPDF.js',
     },
     devServer: {
       compress: true,
       port: 3000
+    },
+    optimization: {
+      minimize: true,
+      splitChunks: {
+       chunks: 'all',
+      }
     },
     module: {
         rules: [
@@ -38,7 +47,12 @@ module.exports = {
         }),
     ],
     output: {
-        filename: 'bundle.js',
+        filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'build'),
-    }
+    },
+    //optimization: {
+    //  splitChunks: {
+    //    chunks: 'all',
+    //  },
+    //},
 };

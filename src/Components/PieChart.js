@@ -5,7 +5,7 @@ import './PieChart.css';
 import { Translation } from 'react-i18next';
 
 export function CustomPieChart(props) {
-    const { name, title, colors, data, pdfRef, isHidden, ns } = props;
+    const { name, title, colors, data, pdfRef, legendRef, isHidden, ns } = props;
     
     const { 
         animationEnable,
