@@ -204,11 +204,6 @@ export default function App(props) {
     } else {
         return(
           <div className="App" id="app">
-            <header className="App-header">
-              <p>
-                  {t("common:Revit Systems Analysis - Loads Report")}
-              </p>
-            </header>
             <div className="navigation-container">
                 <Container fluid>
                 <Row>

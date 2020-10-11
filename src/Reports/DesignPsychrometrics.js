@@ -96,50 +96,50 @@ export function DesignPsychrometrics(props) {
                 <div id={name + '-designpsychrometricreport'}  height="500px" width="50px">
                 <Tab.Container id={name + '-container'}>
                     <Row>
-                        <Col className='text-left'>
-                            <ObjectSelectionDropDown
-                            name={name + "-objectDropdown"}
-                            objectList={objectList}
-                            objectSelection={objectSelection}
-                            handleObjectSelect={handleObjectSelect}
-                            />
+                        <Col md={3} className='text-left'>
+                            <Row>
+                                <ObjectSelectionDropDown
+                                name={name + "-objectDropdown"}
+                                objectList={objectList}
+                                objectSelection={objectSelection}
+                                handleObjectSelect={handleObjectSelect}
+                                />
+                            </Row>
+                            <Row>
+                                <ReportCard
+                                name={name + "-conditionsTimePeak"}
+                                title={ t(ns + ":" + "Summary") }
+                                unitSystem={unitSystem}
+                                dataMapping={dataMapping['componentChecks']}
+                                data={objectData["summary"]}
+                                ns={ns}
+                                />
+                            </Row>
+                        </Col>
+                        <Col md={9}>
+                            <PsychrometricChart
+                                d3Container={d3Container}
+                                unitSystem={unitSystem}
+                                animationEnable={animationEnable}
+                                data={objectData}
+                                dataMapping={dataMapping['componentTable']}
+                                ns={ns}
+                                />
                         </Col>
                     </Row>
                     <Row>
-                        <Col md={1}>
-                            <ReportCard
-                            name={name + "-conditionsTimePeak"}
-                            title={ t(ns + ":" + "Summary") }
-                            unitSystem={unitSystem}
-                            dataMapping={dataMapping['componentChecks']}
-                            data={objectData["summary"]}
-                            ns={ns}
-                            />
-                        </Col>
                         <Col>
-                            <PsychrometricChart
-                            d3Container={d3Container}
+                            <CustomTable
+                            name={name + "-statePointTable"}
+                            firstColWidth={10}
+                            displayHeader={true}
                             unitSystem={unitSystem}
-                            animationEnable={animationEnable}
-                            data={objectData}
                             dataMapping={dataMapping['componentTable']}
+                            data={formatDesignPsychrometricsTableData(dataMapping['componentTable'], objectData)}
                             ns={ns}
                             />
                         </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <CustomTable
-                        name={name + "-statePointTable"}
-                        firstColWidth={10}
-                        displayHeader={true}
-                        unitSystem={unitSystem}
-                        dataMapping={dataMapping['componentTable']}
-                        data={formatDesignPsychrometricsTableData(dataMapping['componentTable'], objectData)}
-                        ns={ns}
-                        />
-                    </Col>
-                </Row>
+                    </Row>
                 </Tab.Container>
                 <Modal
                     show={modalShow}
