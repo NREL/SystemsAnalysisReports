@@ -4,6 +4,8 @@ import { Context } from '../store/index';
 import './PieChart.css';
 import { Translation } from 'react-i18next';
 
+const RADIAN = Math.PI / 180;
+
 export function CustomPieChart(props) {
     const { name, title, colors, data, pdfRef, isHidden, ns } = props;
     
@@ -15,10 +17,32 @@ export function CustomPieChart(props) {
         // Sets the legend font size     
       return <Translation>
           {
-              (t) => <span style={{ fontSize: "12px", display: "inline-block" }}>{t(ns+":"+value)}</span>
+              (t) => <p style={{ fontSize: "10px", display: "inline-block" }}>{t(ns+":"+value)}</p>
           }
       </Translation>;
     }
+
+    const renderCustomizedLabel = ({
+        cx, cy, midAngle, outerRadius, value, index,
+      }) => {
+        const radius = outerRadius * 1.35;
+        const labelAngle = midAngle;
+        const x = cx + radius * Math.cos(-labelAngle * RADIAN);
+        const y = cy + radius * Math.sin(-labelAngle * RADIAN);
+
+        return (
+          <text
+          x={x}
+          y={y}
+          fill="black"
+          style={{ fontSize: "10px"}}
+          textAnchor={x > cx ? 'start' : 'end'}
+          dominantBaseline="central"
+          >
+            {`${(value).toFixed(0)}`}
+          </text>
+        );
+      };
 
     const displayStyle = (isHidden) => {
         if (isHidden) {
@@ -28,19 +52,22 @@ export function CustomPieChart(props) {
         }
     }
 
+    const width = 220;
+    const height = 220;
+
     return (
         <div ref={pdfRef} className="App-chart-container" style={displayStyle(isHidden)}>
             <span className="App-chart-title">{title}</span>
-            <PieChart width={350} height={300} >
+            <PieChart width={width} height={height} >
                 <Pie
                     data={data}
                     dataKey="value"
-                    cx={170}
-                    cy={125}
+                    cx={width/2}
+                    cy={height/2}
                     innerRadius={0}
-                    outerRadius={90}
+                    outerRadius={width/3.25}
                     fill="#8884d8"
-                    label
+                    label={renderCustomizedLabel}
                     isAnimationActive ={animationEnable}
                 >
                 {
@@ -53,8 +80,8 @@ export function CustomPieChart(props) {
                 }
                 </Pie>
                 <Legend
-                    width={350}
-                    iconSize="14"
+                    width={width}
+                    iconSize="12"
                     align="center"
                     formatter={renderLegendText}
                 />

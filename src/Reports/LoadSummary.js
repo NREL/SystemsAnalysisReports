@@ -5,18 +5,15 @@ import Nav from 'react-bootstrap/Nav';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import Row from 'react-bootstrap/Row'
 import Tab from 'react-bootstrap/Tab';
+import SummaryContent from '../Components/SummaryContent';
+import DetailedContent from '../Components/DetailedContent';
 import { ObjectSelectionDropDown } from '../Components/ObjectSelectionDropdown';
-import { ReportCard } from '../Components/ReportCard';
-import { CustomTable } from '../Components/Table';
-import TableHeader from '../Components/TableHeader';
-import { CustomPieChart } from '../Components/PieChart';
 import { Context } from '../store/index';
 import { 
     EQUIDISTANTCOLORS,
     COOLINGHEATINGCOLORS
 } from '../constants/settings';
 import { getObjectName, convertDataUnit, getUnitLabel, getHeatingAndCoolingPeakLoads, formatLoadComponentChartData } from '../functions/dataFormatting';
-import { formatLoadSummaryTableData } from '../functions/tableFunctions';
 import { LoadSummaryPDF } from '../PdfReports/LoadSummaryPDF';
 import { useTranslation } from "react-i18next";
 
@@ -121,231 +118,68 @@ export function LoadSummary(props) {
         }
     }
 
-    const getPeakConditionTable = (objectName, heatingCoolingSelection, data) => {
-        // Get data for peak_condition_table
-        if (data && Object.keys(data).length !== 0) {
-            if (objectName) {
-                return data[objectName][heatingCoolingSelection]['peak_condition']
-            } else { 
-                return null 
-            }
-        } else {
-            return null
-        }
-    }
-
-    const getTemperaturesTable = (objectName, heatingCoolingSelection, data) => {
-        // Get data for peak_condition_table
-        if (data && Object.keys(data).length !== 0) {
-            if (objectName) {
-                return data[objectName][heatingCoolingSelection]['temperature']
-            } else { 
-                return null 
-            }
-        } else {
-            return null
-        }
-    }
-
-    const getAirflowsTable = (objectName, heatingCoolingSelection, data) => {
-        // Get data for peak_condition_table
-        if (data && Object.keys(data).length !== 0) {
-            if (objectName) {
-                return data[objectName][heatingCoolingSelection]['airflow']
-            } else { 
-                return null
-            }
-        } else {
-            return null
-        }
-    }
-
-    const getEngineeringCheckTable = (objectName, heatingCoolingSelection, data) => {
-        // Get data for engineering_check_table
-        if (data && Object.keys(data).length !== 0) {  
-            if (objectName) {
-                return data[objectName][heatingCoolingSelection]['engineering_check']
-            } else { 
-                return null 
-            }
-        } else {
-            return null
-        }
-    }
-
     if (data && Object.keys(data).length !== 0) {
         const objectName = getObjectName(objectList,activeSelection);
         const loadData = getLoadComponents(objectName, heatingCoolingSelection, data);
 
         return (
-                <div id={name + '-loadsummaryreport'}  height="500px" width="50px">
-                <Tab.Container id={name + '-container'} activeKey={heatingCoolingSelection} defaultActiveKey="cooling">
-                    <Row>
-                        <Col md={3}>
-                            <Row>
-                            {objectList ? <ObjectSelectionDropDown
-                                name={name + "-objectDropdown"}
-                                objectList={objectList}
-                                objectSelection={activeSelection}
-                                handleObjectSelect={handleObjectSelect}
-                            /> : null}
-                            </Row>
-                            <Row>
-                                <ReportCard
-                                name={name + "-conditionsTimePeak"}
-                                title={t("systemLoadSummary:Conditions at Time of Peak")}
-                                unitSystem={unitSystem}
-                                dataMapping={dataMapping['peakConditions']}
-                                data={getPeakConditionTable(objectName, heatingCoolingSelection, data)}
-                                ns={ns}
-                                />
-                            </Row>
-                            { name === 'systemLoadSummary' ? (
-                                <Row>
-                                    <ReportCard
-                                    name={name + "-temperatures"}
-                                    title={t(ns+":Temperatures")}
-                                    unitSystem={unitSystem}
-                                    dataMapping={dataMapping['temperatures']}
-                                    data={getTemperaturesTable(objectName, heatingCoolingSelection, data)}
-                                    ns={ns}
-                                    />
-                                </Row>
-                            ) : null }
-                            { name === 'systemLoadSummary' ? (
-                                <Row>
-                                    <ReportCard
-                                    name={name + "-airflows"}
-                                    title={t(ns+":Airflows")}
-                                    unitSystem={unitSystem}
-                                    dataMapping={dataMapping['airflows']}
-                                    data={getAirflowsTable(objectName, heatingCoolingSelection, data)}
-                                    ns={ns}
-                                    />
-                                </Row>
-                            ) : null }
-                            <Row>
-                                <ReportCard
-                                name={name + "-engineeringCheck"}
-                                title={t("systemLoadSummary:Engineering Checks")}
-                                unitSystem={unitSystem}
-                                dataMapping={dataMapping['engineeringCheck']}
-                                data={getEngineeringCheckTable(objectName, heatingCoolingSelection, data)}
-                                ns={ns}
-                                />
-                            </Row>
-                            <div>
-                            <Row>
-                                <CustomPieChart
-                                name={name + "-peakLoadsChart"}
-                                pdfRef={chart1Ref}
-                                title={t(ns+":"+"Peak Loads")+" [" + getUnitLabel(unitSystem, "heat_transfer_rate", t) + "]"}
-                                colors={COOLINGHEATINGCOLORS}
-                                data={getHeatingAndCoolingPeakLoads(unitSystem, objectName, data)}
-                                ns={ns}
-                                />
-                            </Row>
-                            <Row>
-                                <CustomPieChart
-                                name={name + "-loadComponentsChart"}
-                                pdfRef={chart2Ref}
-                                title={ t(ns+":"+(heatingCoolingSelection === "cooling" ? "Cooling" : "Heating") + " Load Components") + " [" + getUnitLabel(unitSystem, "heat_transfer_rate", t) + "]"}
-                                colors={EQUIDISTANTCOLORS}
-                                data={formatLoadComponentChartData(unitSystem, dataMapping["componentPieChart"], loadData)}
-                                ns={ns}
-                                />
-                            </Row>
-                            </div>
-                        </Col>
-                        <Col md={9}>
-                            <Row>
-                                <Nav variant="pills" onSelect={handleHeatingCoolingSelect} className="App-buttons">
-                                    <Nav.Item>
-                                    <Nav.Link eventKey="cooling">{t("zoneLoadSummary:Cooling")}</Nav.Link>
-                                    </Nav.Item>
-                                    <Nav.Item>
-                                    <Nav.Link eventKey="heating">{t('zoneLoadSummary:Heating')}</Nav.Link>
-                                    </Nav.Item>
-                                </Nav>
-                            </Row>
-                            <Row>
-                                <TableHeader
-                                name={name + "-headerTable"}
-                                firstColWidth={20}
-                                unitSystem={unitSystem}
-                                dataMapping={dataMapping['headerTable']}
-                                ns={ns}
-                                />
-                            </Row>
-                            <Row>
-                                <span>{t('zoneLoadSummary:Envelope')}</span>
-                                <CustomTable
-                                t={t}
-                                name={name + "-envelopeTable"}
-                                firstColWidth={20}
-                                displayHeader={false}
-                                unitSystem={unitSystem}
-                                dataMapping={dataMapping['envelopeLoadsTable']}
-                                data={formatLoadSummaryTableData(dataMapping['envelopeLoadsTable'], loadData)}
-                                ns={ns}
-                                />
-                            </Row>
-                            <Row>
-                                <span>{t('zoneLoadSummary:Internal Gains')}</span>
-                                <CustomTable
-                                t={t}
-                                name={name + "-internalGainTable"}
-                                firstColWidth={20}
-                                displayHeader={false}
-                                unitSystem={unitSystem}
-                                dataMapping={dataMapping['internalGainsTable']}
-                                data={formatLoadSummaryTableData(dataMapping['internalGainsTable'], loadData)}
-                                ns={ns}
-                                />
-                            </Row>
-                            <Row>
-                                <span>{t('zoneLoadSummary:Systems')}</span>
-                                <CustomTable
-                                t={t}
-                                name={name + "-systemLoadsTable"}
-                                firstColWidth={20}
-                                displayHeader={false}
-                                unitSystem={unitSystem}
-                                dataMapping={dataMapping['systemLoadsTable']}
-                                data={formatLoadSummaryTableData(dataMapping['systemLoadsTable'], loadData)}
-                                ns={ns}
-                                />
-                            </Row>
-                            <Row>
-                                <span>{t('zoneLoadSummary:Total')}</span>
-                                <CustomTable
-                                t={t}
-                                name={name + "-totalLoadsTable"}
-                                firstColWidth={20}
-                                displayHeader={false}
-                                unitSystem={unitSystem}
-                                dataMapping={dataMapping['totalLoadsTable']}
-                                data={formatLoadSummaryTableData(dataMapping['totalLoadsTable'], loadData)}
-                                ns={ns}
-                                />
-                            </Row>
-                        </Col>
-                    </Row>
-                </Tab.Container>
-                <Modal
-                    show={modalShow}
-                    onHide={(() => setModalShow(false))}
-                    backdrop="static"
-                    keyboard={false}
-                >
-                    <Modal.Header closeButton={false}>
-                    <Modal.Title>{sectionSelection === "zone_load_summary" ? "Printing Zone Load Summary Report to PDF": "Printing System Load Summary Report to PDF" }</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                    <ProgressBar now={progressBarValue} />
-                    </Modal.Body>
-                </Modal>
-                </div>
+                <React.Fragment>
+                    <div className='App-summary-content'>
+                        {objectList ? <ObjectSelectionDropDown
+                            name={name + "-objectDropdown"}
+                            objectList={objectList}
+                            objectSelection={activeSelection}
+                            handleObjectSelect={handleObjectSelect}
+                        /> : null}
+                        <SummaryContent
+                            name={name}
+                            unitSystem={unitSystem}
+                            objectName={objectName}
+                            objectList={objectList}
+                            activeSelection={activeSelection}
+                            heatingCoolingSelection={heatingCoolingSelection}
+                            handleObjectSelect={handleObjectSelect}
+                            chart1Ref={chart1Ref}
+                            chart2Ref={chart2Ref}
+                            dataMapping={dataMapping}
+                            data={data}
+                            loadData={loadData}
+                            ns={ns}
+                        />
+                    </div>
+                    <div className='App-detailed-content'>
+                        <button 
+                            onClick={() => handleHeatingCoolingSelect('cooling')}
+                            style={{ color: ( heatingCoolingSelection == 'cooling' ? 'blue' : 'gray') }}
+                            className="heatingCoolingButtons"
+                        >{t('zoneLoadSummary:Cooling')}</button>
+                        <button
+                            onClick={() => handleHeatingCoolingSelect('heating')}
+                            style={{ color: ( heatingCoolingSelection == 'heating' ? 'red' : 'gray') }}
+                            className="heatingCoolingButtons"
+                        >{t('zoneLoadSummary:Heating')}</button>
+                        <DetailedContent
+                            name={name}
+                            unitSystem={unitSystem}
+                            dataMapping={dataMapping}
+                            loadData={loadData}
+                            ns={ns}
+                        />
+                    </div>
+                    <Modal
+                        show={modalShow}
+                        onHide={(() => setModalShow(false))}
+                        backdrop="static"
+                        keyboard={false}
+                    >
+                        <Modal.Header closeButton={false}>
+                        <Modal.Title>{sectionSelection === "zone_load_summary" ? "Printing Zone Load Summary Report to PDF": "Printing System Load Summary Report to PDF" }</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                        <ProgressBar now={progressBarValue} />
+                        </Modal.Body>
+                    </Modal>
+                </React.Fragment>
         );
     } else {
         return( <h1>No {name === "zoneLoadSummary" ? "zones": "systems" } found.</h1> )

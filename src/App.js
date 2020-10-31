@@ -204,81 +204,69 @@ export default function App(props) {
     } else {
         return(
           <div className="App" id="app">
-            <div className="navigation-container">
-                <Container fluid>
-                <Row>
-                    <Col>
-                        <Nav variant="tabs" defaultActiveKey="zone_load_summary" id="report-navbar" onSelect={handleSectionSelection}>
-                        <Nav.Item>
-                            <Nav.Link eventKey="zone_load_summary">{ t("zoneLoadSummary:Zone Load Summary")}</Nav.Link>
-                            {/*<Nav.Link eventKey="zone_load_summary">{ getLocaleLabel(locale, 'zone_load_summary', "Zone Load Summary" )}</Nav.Link>*/}
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link eventKey="system_load_summary">{ t("systemLoadSummary:System Load Summary")}</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link eventKey="design_psychrometrics">{ t("designPsychrometrics:Design Psychrometrics") }</Nav.Link>
-                        </Nav.Item>
-                        </Nav>
-                    </Col>
-                    <Col lg={2}>
-                        <div className='App-button-group'>
-                            <Dropdown onSelect={handleUnitSystemSelection}>
-                                <Dropdown.Toggle id="dropdown-unit-selection"  variant="info">
-                                { unitSystem === 'si' ? 'SI' : unitSystem === 'ip' ? 'IP' : 'Revit' }
-                                </Dropdown.Toggle>
-                
-                                <Dropdown.Menu>
-                                <Dropdown.Item eventKey="ip">IP</Dropdown.Item>
-                                <Dropdown.Item eventKey="si">SI</Dropdown.Item>
-                                <Dropdown.Item eventKey="revit">Revit</Dropdown.Item>
-                                </Dropdown.Menu>
-                            </Dropdown>
-                            <Dropdown onSelect={handleLocaleSelection}>
-                              <Dropdown.Toggle id="dropdown-locale-selection"  variant="light">
-                              { getLanguageLabel(i18n.language)  }
-                              </Dropdown.Toggle>
-              
-                              <Dropdown.Menu>
-                              <Dropdown.Item eventKey="en">US</Dropdown.Item>
-                              <Dropdown.Item eventKey="de">DE</Dropdown.Item>
-                              <Dropdown.Item eventKey="es">ES</Dropdown.Item>
-                              <Dropdown.Item eventKey="fr">FR</Dropdown.Item>
-                              <Dropdown.Item eventKey="it">IT</Dropdown.Item>
-                              <Dropdown.Item eventKey="zh">CN</Dropdown.Item>
-                              <Dropdown.Item eventKey="cht">TW</Dropdown.Item>
-                              <Dropdown.Item eventKey="ja">JP</Dropdown.Item>
-                              <Dropdown.Item eventKey="ko">KR</Dropdown.Item>
-                              <Dropdown.Item eventKey="ru">RU</Dropdown.Item>
-                              <Dropdown.Item eventKey="cs">CZ</Dropdown.Item>
-                              <Dropdown.Item eventKey="pl">PL</Dropdown.Item>
-                              <Dropdown.Item eventKey="pt">BR</Dropdown.Item>
-                              <Dropdown.Item eventKey="eng">GB</Dropdown.Item>
+            <div className="App-navigation">
+                <Nav variant="tabs" defaultActiveKey="zone_load_summary" id="report-navbar" onSelect={handleSectionSelection}>
+                <Nav.Item>
+                    <Nav.Link eventKey="zone_load_summary">{ t("zoneLoadSummary:Zone Load Summary")}</Nav.Link>
+                    {/*<Nav.Link eventKey="zone_load_summary">{ getLocaleLabel(locale, 'zone_load_summary', "Zone Load Summary" )}</Nav.Link>*/}
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link eventKey="system_load_summary">{ t("systemLoadSummary:System Load Summary")}</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link eventKey="design_psychrometrics">{ t("designPsychrometrics:Design Psychrometrics") }</Nav.Link>
+                </Nav.Item>
+                </Nav>
+                <div className='App-button-group'>
+                    <Dropdown onSelect={handleUnitSystemSelection}>
+                        <Dropdown.Toggle id="dropdown-unit-selection"  variant="info">
+                        { unitSystem === 'si' ? 'SI' : unitSystem === 'ip' ? 'IP' : 'Revit' }
+                        </Dropdown.Toggle>
+        
+                        <Dropdown.Menu>
+                        <Dropdown.Item eventKey="ip">IP</Dropdown.Item>
+                        <Dropdown.Item eventKey="si">SI</Dropdown.Item>
+                        <Dropdown.Item eventKey="revit">Revit</Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
+                    <Dropdown onSelect={handleLocaleSelection}>
+                        <Dropdown.Toggle id="dropdown-locale-selection"  variant="light">
+                        { getLanguageLabel(i18n.language)  }
+                        </Dropdown.Toggle>
+        
+                        <Dropdown.Menu>
+                        <Dropdown.Item eventKey="en">US</Dropdown.Item>
+                        <Dropdown.Item eventKey="de">DE</Dropdown.Item>
+                        <Dropdown.Item eventKey="es">ES</Dropdown.Item>
+                        <Dropdown.Item eventKey="fr">FR</Dropdown.Item>
+                        <Dropdown.Item eventKey="it">IT</Dropdown.Item>
+                        <Dropdown.Item eventKey="zh">CN</Dropdown.Item>
+                        <Dropdown.Item eventKey="cht">TW</Dropdown.Item>
+                        <Dropdown.Item eventKey="ja">JP</Dropdown.Item>
+                        <Dropdown.Item eventKey="ko">KR</Dropdown.Item>
+                        <Dropdown.Item eventKey="ru">RU</Dropdown.Item>
+                        <Dropdown.Item eventKey="cs">CZ</Dropdown.Item>
+                        <Dropdown.Item eventKey="pl">PL</Dropdown.Item>
+                        <Dropdown.Item eventKey="pt">BR</Dropdown.Item>
+                        <Dropdown.Item eventKey="eng">GB</Dropdown.Item>
 
-                              </Dropdown.Menu>
-                            </Dropdown> 
-                            <Button onClick={handlePrintClick} disabled={pdfPrint}>
-                                { pdfPrint ? 
-                                    <Spinner
-                                        as="span"
-                                        animation="border"
-                                        size="sm"
-                                        role="status"
-                                        aria-hidden="true"
-                                    /> : 
-                                    <span>PDF</span>
-                                }
-                            </Button>
-                        </div>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                      { renderActiveSection(sectionSelection, data) }
-                    </Col>
-                </Row>
-                </Container>
+                        </Dropdown.Menu>
+                    </Dropdown> 
+                    <Button onClick={handlePrintClick} disabled={pdfPrint}>
+                        { pdfPrint ? 
+                            <Spinner
+                                as="span"
+                                animation="border"
+                                size="sm"
+                                role="status"
+                                aria-hidden="true"
+                            /> : 
+                            <span>PDF</span>
+                        }
+                    </Button>
+                </div>
             </div>
+            { renderActiveSection(sectionSelection, data) }
           </div>
         );
     }
