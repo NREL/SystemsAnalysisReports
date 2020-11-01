@@ -1,3 +1,19 @@
-.heating-cooling-buttons {
-    text-align: left;
-  };
+
+.heating-cooling-button-group {
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+.heating-cooling-button-inactive {
+  color: black;
+  background-color: white;
+  outline-color: gray;
+  width: 72px;
+}
+
+.heating-cooling-button-active {
+  color: white;
+  background-color: gray;
+  outline-color: gray;
+  width: 72px;
+}

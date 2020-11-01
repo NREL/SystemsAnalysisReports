@@ -9,6 +9,7 @@ import SummaryContent from '../Components/SummaryContent';
 import DetailedContent from '../Components/DetailedContent';
 import { ObjectSelectionDropDown } from '../Components/ObjectSelectionDropdown';
 import { Context } from '../store/index';
+import './LoadSummary.css';
 import { 
     EQUIDISTANTCOLORS,
     COOLINGHEATINGCOLORS
@@ -148,16 +149,20 @@ export function LoadSummary(props) {
                         />
                     </div>
                     <div className='App-detailed-content'>
-                        <button 
-                            onClick={() => handleHeatingCoolingSelect('cooling')}
-                            style={{ color: ( heatingCoolingSelection == 'cooling' ? 'blue' : 'gray') }}
-                            className="heatingCoolingButtons"
-                        >{t('zoneLoadSummary:Cooling')}</button>
-                        <button
-                            onClick={() => handleHeatingCoolingSelect('heating')}
-                            style={{ color: ( heatingCoolingSelection == 'heating' ? 'red' : 'gray') }}
-                            className="heatingCoolingButtons"
-                        >{t('zoneLoadSummary:Heating')}</button>
+                        <div className="heating-cooling-button-group">
+                            <button 
+                                onClick={() => handleHeatingCoolingSelect('cooling')}
+                                className={
+                                    heatingCoolingSelection == 'cooling' ? "heating-cooling-button-active" : "heating-cooling-button-inactive"
+                                  }
+                            >{t('zoneLoadSummary:Cooling')}</button>
+                            <button
+                                onClick={() => handleHeatingCoolingSelect('heating')}
+                                className={
+                                    heatingCoolingSelection == 'heating' ? "heating-cooling-button-active" : "heating-cooling-button-inactive"
+                                  }
+                            >{t('zoneLoadSummary:Heating')}</button>
+                        </div>
                         <DetailedContent
                             name={name}
                             unitSystem={unitSystem}
