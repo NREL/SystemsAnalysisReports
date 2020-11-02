@@ -1,24 +1,16 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import Col from 'react-bootstrap/Col';
 import Modal from 'react-bootstrap/Modal';
-import Nav from 'react-bootstrap/Nav';
 import ProgressBar from 'react-bootstrap/ProgressBar';
-import Row from 'react-bootstrap/Row'
-import Tab from 'react-bootstrap/Tab';
 import SummaryContent from '../Components/SummaryContent';
 import DetailedContent from '../Components/DetailedContent';
 import { ObjectSelectionDropDown } from '../Components/ObjectSelectionDropdown';
 import { Context } from '../store/index';
 import './LoadSummary.css';
-import { 
-    EQUIDISTANTCOLORS,
-    COOLINGHEATINGCOLORS
-} from '../constants/settings';
-import { getObjectName, convertDataUnit, getUnitLabel, getHeatingAndCoolingPeakLoads, formatLoadComponentChartData } from '../functions/dataFormatting';
+import { getObjectName } from '../functions/dataFormatting';
 import { LoadSummaryPDF } from '../PdfReports/LoadSummaryPDF';
 import { useTranslation } from "react-i18next";
 
-export function LoadSummary(props) {
+function LoadSummary(props) {
     const { 
         //printRef,
         name,
@@ -190,3 +182,5 @@ export function LoadSummary(props) {
         return( <h1>No {name === "zoneLoadSummary" ? "zones": "systems" } found.</h1> )
     }
 }
+
+export default LoadSummary;

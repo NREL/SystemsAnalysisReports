@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
-import Select from 'react-select' 
+import loadable from '@loadable/component';
 import { CustomSelect } from './Components/CustomSelect';
-import { LoadSummary } from './Reports/LoadSummary';
-import { DesignPsychrometrics } from './Reports/DesignPsychrometrics';
+//import { LoadSummary } from './Reports/LoadSummary';
+//import { DesignPsychrometrics } from './Reports/DesignPsychrometrics';
 import { Context } from './store/index';
 import './App.css';
 import {
@@ -13,6 +13,14 @@ import {
 } from './constants/dataMapping';
 import { getLocaleLabel, loadData, formatData } from './functions/dataFormatting';
 import { useTranslation } from "react-i18next";
+
+const LoadSummary = loadable(() => import("./Reports/LoadSummary.js"), {
+    fallback: <p>Loading</p>
+  });
+
+const DesignPsychrometrics = loadable(() => import("./Reports/DesignPsychrometrics.js"), {
+    fallback: <p>Loading</p>
+});
 
 export default function App(props) {
     const { 

@@ -14,7 +14,7 @@ import { getObjectName } from '../functions/dataFormatting';
 import { formatDesignPsychrometricsTableData } from '../functions/tableFunctions';
 import { useTranslation } from "react-i18next";
 
-export function DesignPsychrometrics(props) {
+function DesignPsychrometrics(props) {
     const { 
         name,
         objectSelection,
@@ -161,3 +161,5 @@ export function DesignPsychrometrics(props) {
         );
     // }
 }
+
+export default DesignPsychrometrics;
