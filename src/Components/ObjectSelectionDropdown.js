@@ -106,7 +106,7 @@ export class ObjectSelectionDropDown extends React.Component {
 
         return (
           <Dropdown onSelect={this.props.handleObjectSelect}>
-          <Dropdown.Toggle id="dropdown-custom-components" variant="secondary"> 
+          <Dropdown.Toggle id="dropdown-custom-components"> 
               { this.getObjectName(this.props.objectList, this.props.objectSelection) }
           </Dropdown.Toggle>
 

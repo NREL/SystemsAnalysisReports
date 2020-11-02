@@ -45,7 +45,9 @@ const customStyles = {
       width: '100px',
       paddingTop: '0',
       paddingBottom: '0',
-      fontSize: '14px',
+      fontSize: '12px',
+      backgroundColor: '#FFFFFF',
+      borderColor: '#CCCCCC',
     }),
     singleValue: (provided) => ({
       ...provided,

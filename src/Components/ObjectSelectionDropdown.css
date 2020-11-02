@@ -1,6 +1,15 @@
 .dropdown {
-    padding-top: 5px;
-    padding-right: 5px;
-    padding-bottom: 5px;
-    padding-left: 5px;
+    text-align: left;
   }
+
+.btn-primary {
+  background-color: #FFFFFF;
+  border-color: #CCCCCC;
+}
+
+.btn {
+  font-size: 12px;
+  color: #000000;
+  line-height: 1;
+  border-radius: 0;
+}
