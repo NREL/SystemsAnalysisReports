@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 import loadable from '@loadable/component';
+import Tabs, { Tab } from "@hig/tabs";
 import { CustomSelect } from './Components/CustomSelect';
-//import { LoadSummary } from './Reports/LoadSummary';
-//import { DesignPsychrometrics } from './Reports/DesignPsychrometrics';
 import { Context } from './store/index';
 import './App.css';
 import {
@@ -221,6 +220,8 @@ export default function App(props) {
         }
     }
 
+    const tabList = ["zone_load_summary", "system_load_summary", "design_psychrometrics"];
+
     if( loading ) { // if your component doesn't have to wait for an async action, remove this block 
         return(
             <div className="navigation-container">
@@ -233,12 +234,14 @@ export default function App(props) {
         return(
           <div className="App" id="app">
             <div className="App-navigation">
-                <div className="navigation-button-group">
-                    <button className="navigation-button" onClick={() => handleSectionSelection('zone_load_summary')}>{t("zoneLoadSummary:Zone Load Summary")}</button>
-                    <button className="navigation-button" onClick={() => handleSectionSelection('system_load_summary')}>{t("systemLoadSummary:System Load Summary")}</button>
-                    <button className="navigation-button" onClick={() => handleSectionSelection('design_psychrometrics')}>{t("designPsychrometrics:Design Psychrometrics")}</button>
+                <div className="navigation-group-left" style={{float: "left"}}>
+                    <Tabs onTabChange={(e) => handleSectionSelection(tabList[e])}>
+                        <Tab className={sectionSelection == 'zone_load_summary' ? "tab tab-active" : "tab"} key="zone_load_summary" label={t("zoneLoadSummary:Zone Load Summary")}/>
+                        <Tab className={sectionSelection == 'system_load_summary' ? "tab tab-active" : "tab"} key="system_load_summary" label={t("systemLoadSummary:System Load Summary")}/>
+                        <Tab className={sectionSelection == 'design_psychrometrics' ? "tab tab-active" : "tab"} key="design_psychrometrics" label={t("designPsychrometrics:Design Psychrometrics")}/>
+                    </Tabs>
                 </div>
-                <div className="right-header-button-group">
+                <div className="navigation-group-right">
                     <CustomSelect
                         id="dropdown-unit-selection"
                         className="right-header-select"
@@ -257,7 +260,7 @@ export default function App(props) {
                         width="250px"
                     >
                     </CustomSelect>
-                    <button className="right-header-button" className="right-header-button" onClick={handlePrintClick} disabled={pdfPrint}>
+                    <button className="button" onClick={handlePrintClick} disabled={pdfPrint}>
                         { pdfPrint ? 
                             <Spinner
                                 as="span"

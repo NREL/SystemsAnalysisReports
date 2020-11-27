@@ -44,47 +44,55 @@
 }
 
 .App-navigation {
-  margin-top: 0px;
-  margin-right: 0px;
+  margin-top: 12px;
+  margin-right: 24px;
   margin-bottom: 16px;
-  margin-left: 0px;
+  margin-left: 24px;
+  height: 40px;
+  background-color: #EEEEEE;
   grid-area: navigation;
 };
 
-.App-summary-content {
-  grid-area: summary;
-  margin-left: 24px;
-}
-
-.App-detailed-content {
-  grid-area: detailed;
-  margin-right: 24px;
-}
-
-.App-full-width-content {
-  grid-area: fullWidth;
-  margin-left: 24px;
-  margin-right: 24px;
-}
-
-.navigation-button-group {
-  float: left;
-}
-
-.navigation-button {
-  display: inline-block;
-  height: 24px;
-}
-
-.right-header-button-group {
+.navigation-group-left {
   float: right;
 }
 
-.right-header-button {
+.navigation-group-right {
+  float: right;
+}
+
+.tab {
   display: inline-block;
   height: 24px;
+  margin-bottom: 16px;
+  border-style: none;
+  outline: none; 
+  background-color: #EEEEEE;
+}
+
+.tab-active {
+  border-style: none;
+  outline: none; 
+  background-color: #FFFFFF;
 }
 
 .right-header-select {
   display: inline-block;
+  border-style: none;
+  outline: none;
+  background-color: #EEEEEE;
+}
+
+.button {
+  display: inline-block;
+  height: 24px;
+  border-style: none;
+  outline: none; 
+  background-color: #EEEEEE;
+  font-family: ArtifaktElement-Regular;
+  font-size: 12px;
+}
+
+.button-active {
+  background-color: #FFFFFF;
 }

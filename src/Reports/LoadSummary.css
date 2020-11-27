@@ -1,6 +1,17 @@
+.App-summary-content {
+  grid-area: summary;
+  margin-left: 24px;
+}
+
+.App-detailed-content {
+  grid-area: detailed;
+  margin-right: 24px;
+}
 
 .heating-cooling-button-group {
   text-align: left;
+  font-family: ArtifaktElement-Regular;
+  font-size: 12px;
   margin-bottom: 16px;
 }
 

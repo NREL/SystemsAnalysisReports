@@ -1,19 +1,19 @@
-.App-card {
-    margin-left: 10px;
-    margin-right: 10px;
+.Report-card {
     margin-top: 0px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     width: 220px;
   }
   
-  .App-card-header {
+  .Report-card-header {
     font-size: 12px;
-    line-height: 0.6;
+    line-height: 1.5;
+    background-color: #CCCCCC;
   }
   
-  .App-card-body {
+  .Report-card-body {
     font-size: 11px;
     line-height: 0.4;
+    background-color: #EEEEEE;
     padding-top: 10px;
     padding-bottom: 5px;
     padding-left: 0px;

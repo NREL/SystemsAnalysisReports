@@ -15,16 +15,15 @@ export class ReportCard extends React.Component {
             <Translation>
                 {
                     (t) =>
-                        <Card className="App-card" id={name}>
-                            <Card.Header className="App-card-header">{t(ns+":"+this.props.title)}</Card.Header>
-                            <Card.Body className="App-card-body">
-                                <Container>
+                        <div className="Report-card" id={name}>
+                            <div className="Report-card-header">{t(ns+":"+this.props.title)}</div>
+                            <div className="Report-card-body">
+                                <div>
                                     {dataMapping.map((colData, index) => (
-                                        <Col key={ this.props.name + '-' + index.toString() }>
-                                            { colData["label"] && <p><b>{ t(ns+":"+colData["label"]) }</b></p> }
+                                        <div key={ this.props.name + '-' + index.toString() }>
+                                            { colData["label"] ? <p><b>{ t(ns+":"+colData["label"]) }</b></p> : null }
                                             { colData["items"].map((item) => {
                                                 var dataValue = null;
-
 
                                                 if (data) {
                                                     if ( isNumeric(data[item["jsonKey"]]) ) {
@@ -45,16 +44,21 @@ export class ReportCard extends React.Component {
                                                 const unitLabel = formatUnitLabels(getUnitLabel(this.props.unitSystem, item["type"], t));
 
                                                 return (
-                                                    <p key={ this.props.name + '-' + item["jsonKey"] }>
-                                                        { t(ns+":"+item["displayName"]) } : { dataValue } { unitLabel && unitLabel }
-                                                    </p>
+                                                    <div>
+                                                        <p key={ this.props.name + '-' + item["jsonKey"] }>
+                                                            { t(ns+":"+item["displayName"]) }: 
+                                                        </p>
+                                                        <p>
+                                                            { dataValue } { unitLabel && unitLabel }
+                                                        </p>
+                                                    </div>
                                                 )}
                                             )}
-                                        </Col>
+                                        </div>
                                     ))}
-                                </Container>
-                            </Card.Body>
-                        </Card>
+                                </div>
+                            </div>
+                        </div>
                 }
             </Translation>
         );
