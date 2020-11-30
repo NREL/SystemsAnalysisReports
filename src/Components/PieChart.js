@@ -13,15 +13,6 @@ export function CustomPieChart(props) {
         animationEnable,
     } = useContext(Context);
 
-    const renderLegendText = (value, entry) => {
-        // Sets the legend font size     
-      return <Translation>
-          {
-              (t) => <p style={{ fontSize: "10px", display: "inline-block" }}>{t(ns+":"+value)}</p>
-          }
-      </Translation>;
-    }
-
     const renderCustomizedLabel = ({
         cx, cy, midAngle, outerRadius, value, index,
       }) => {
@@ -52,6 +43,41 @@ export function CustomPieChart(props) {
         }
     }
 
+    
+    const renderLegendText = (ns, value) => {
+        // Sets the legend font size     
+      return <Translation>
+          {
+              (t) => <p className="pie-chart-legend-text">{t(ns+":"+value)}</p>
+          }
+      </Translation>;
+    }
+
+    const renderLegend = (ns, data, colors) => {
+        console.log(colors);
+        console.log(data);
+
+        var legendArray = [];
+        for (var i = 0; i < data.length; i++) {
+            legendArray.push(
+                <div className="pie-chart-legend-item">
+                    <svg width="16" height="16">
+                    <rect
+                        x="0"
+                        y="0"
+                        width="16"
+                        height="16"
+                        fill={colors[i]}
+                    />
+                    </svg> 
+                    {renderLegendText(ns, data[i].name)}
+                </div>
+            )
+        }
+
+        return legendArray;
+    }
+
     const width = 220;
     const height = 220;
 
@@ -79,13 +105,10 @@ export function CustomPieChart(props) {
                     )) : null)
                 }
                 </Pie>
-                <Legend
-                    width={width}
-                    iconSize="12"
-                    align="center"
-                    formatter={renderLegendText}
-                />
             </PieChart>
+            <div>
+                {renderLegend(ns, data, colors)}
+            </div>
         </div>
     );
 }
