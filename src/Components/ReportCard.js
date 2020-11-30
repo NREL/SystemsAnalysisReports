@@ -1,7 +1,4 @@
 import React from 'react';
-import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col'
-import Container from 'react-bootstrap/Container'
 import './ReportCard.css';
 import { convertDataUnit, getUnitLabel } from '../functions/dataFormatting';
 import { formatUnitLabels } from '../functions/textFunctions';
@@ -9,6 +6,58 @@ import { isNumeric, numberWithCommas } from '../functions/numericFunctions';
 import { Translation } from 'react-i18next';
 
 export class ReportCard extends React.Component {
+    getLabel = (t, ns, labelValue) => {
+        if (labelValue) {
+            const labelStr = t(ns+":"+labelValue)
+            const labelLen = labelStr.length;
+            return <p><b>{ labelStr }</b></p>
+        } else {
+            return null
+        }
+    }
+
+    getDisplayName = (t, ns, displayName) => {
+        const lineWidth = 30;
+
+        if (displayName) {
+            var labelStr = t(ns+":"+displayName)
+            const labelLen = labelStr.length;
+
+            console.log(labelStr);
+            console.log(labelLen);
+            console.log(lineWidth);
+
+            if (labelLen > lineWidth) {
+                const strArray = labelStr.split(" ");
+                
+                var finalArray = [strArray[0]];
+                var lineInd = 0;
+                for (var i = 1; i < strArray.length; i++) {
+                    console.log(lineInd);
+                    console.log(finalArray[lineInd]);
+                    var newLineStr = (finalArray[lineInd] + " " + strArray[i]);
+                    var newLineLen = newLineStr.length;
+                    if (newLineLen < lineWidth) {
+                        finalArray[lineInd] = newLineStr;
+                    } else {
+                        lineInd += 1;
+                        finalArray[lineInd] = strArray[i];
+                    }
+                }
+
+                //console.log(finalArray[lineInd]);
+                console.log('-----------------');
+
+                return finalArray
+
+            } else {
+                return [labelStr]
+            }
+        } else {
+            return null
+        }       
+    }
+
     render() {
         var { data, dataMapping, name, ns } = this.props;
         return (
@@ -21,7 +70,7 @@ export class ReportCard extends React.Component {
                                 <div>
                                     {dataMapping.map((colData, index) => (
                                         <div key={ this.props.name + '-' + index.toString() }>
-                                            { colData["label"] ? <p><b>{ t(ns+":"+colData["label"]) }</b></p> : null }
+                                            { this.getLabel(t, ns, colData["Label"]) }
                                             { colData["items"].map((item) => {
                                                 var dataValue = null;
 
@@ -43,10 +92,14 @@ export class ReportCard extends React.Component {
                                                 // Set formatting for the unit labels
                                                 const unitLabel = formatUnitLabels(getUnitLabel(this.props.unitSystem, item["type"], t));
 
+                                                const displayNames = this.getDisplayName(t, ns, item["displayName"]);
+
                                                 return (
                                                     <div>
                                                         <p key={ this.props.name + '-' + item["jsonKey"] }>
-                                                            { t(ns+":"+item["displayName"]) }: 
+                                                            {displayNames.map((displayNameItem) => (
+                                                                <b><p>{ displayNameItem }</p></b>
+                                                            ))}
                                                         </p>
                                                         <p>
                                                             { dataValue } { unitLabel && unitLabel }
