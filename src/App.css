@@ -63,23 +63,6 @@
   float: right;
 }
 
-.tab {
-  display: inline-block;
-  height: 24px;
-  margin-bottom: 16px;
-  border-style: none;
-  outline: none; 
-  background-color: #EEEEEE;
-  font-size: 12px;
-}
-
-.tab-active {
-  border-style: none;
-  outline: none; 
-  background-color: #FFFFFF;
-  font-size: 12px;
-}
-
 .right-header-select {
   display: inline-block;
   border-style: none;
@@ -98,4 +81,16 @@
 
 .button-active {
   background-color: #FFFFFF;
+}
+​
+.tab-active {
+  border-top: 2px solid blue;
+  background-color: #FFFFFF;
+  font-size: 12px;
+}
+
+.tab-inactive {
+  border: none;
+  background-color: #EEEEEE;
+  font-size: 12px;
 }

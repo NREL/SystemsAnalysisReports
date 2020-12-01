@@ -14,6 +14,8 @@ import {
 import { getLocaleLabel, loadData, formatData } from './functions/dataFormatting';
 import { useTranslation } from "react-i18next";
 import zone_default_icon from "../public/icons/zone_defalut.png";
+import system_default_icon from "../public/icons/system_defalut.png";
+import psychrometrics_default_icon from "../public/icons/Psychrometrics_default.png";
 
 
 const LoadSummary = loadable(() => import("./Reports/LoadSummary.js"), {
@@ -57,6 +59,7 @@ export default function App(props) {
     } 
 
     const handleSectionSelection = (value) => {
+        console.log(value);
         if (value) {
             setSectionSelection(value); 
         }
@@ -238,7 +241,27 @@ export default function App(props) {
           <div className="App" id="app">
             <div className="App-navigation">
                 <div className="navigation-group-left" style={{float: "left"}}>
-                    <Tab icon={zone_default_icon} label="zoneLoadSummary:Zone Load Summary"/>
+                    <Tab
+                        name="zone_load_summary"
+                        icon={zone_default_icon}
+                        label="zoneLoadSummary:Zone Load Summary"
+                        isActive={sectionSelection === 'zone_load_summary' ? true : false}
+                        handleSelect={handleSectionSelection}
+                    />
+                    <Tab
+                        name="system_load_summary"
+                        icon={system_default_icon}
+                        label="systemLoadSummary:System Load Summary"
+                        isActive={sectionSelection === 'system_load_summary' ? true : false}
+                        handleSelect={handleSectionSelection}
+                    />
+                    <Tab
+                        name="design_psychrometrics"
+                        icon={psychrometrics_default_icon}
+                        label="designPsychrometrics:Design Psychrometrics"
+                        isActive={sectionSelection === 'design_psychrometrics' ? true : false}
+                        handleSelect={handleSectionSelection}
+                    />
                 </div>
                 <div className="navigation-group-right">
                     <CustomSelect
