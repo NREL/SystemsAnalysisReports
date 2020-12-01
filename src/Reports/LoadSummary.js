@@ -148,12 +148,14 @@ function LoadSummary(props) {
                                 className={
                                     heatingCoolingSelection == 'cooling' ? "heating-cooling-button-active" : "heating-cooling-button-inactive"
                                   }
+                                style={{"border-top-left-radius": "3px", "border-bottom-left-radius": "3px"}}
                             >{t('zoneLoadSummary:Cooling')}</button>
                             <button
                                 onClick={() => handleHeatingCoolingSelect('heating')}
                                 className={
                                     heatingCoolingSelection == 'heating' ? "heating-cooling-button-active" : "heating-cooling-button-inactive"
                                   }
+                                style={{"border-top-right-radius": "3px", "border-bottom-right-radius": "3px"}}
                             >{t('zoneLoadSummary:Heating')}</button>
                         </div>
                         <DetailedContent

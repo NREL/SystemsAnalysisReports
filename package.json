@@ -49,9 +49,11 @@
     "@testing-library/user-event": "^12.1.7",
     "babel-loader": "^8.1.0",
     "css-loader": "^4.3.0",
+    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^4.5.0",
     "imports-loader": "^1.2.0",
     "style-loader": "^2.0.0",
+    "url-loader": "^4.1.1",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"

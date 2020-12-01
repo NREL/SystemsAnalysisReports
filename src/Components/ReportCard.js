@@ -76,15 +76,15 @@ export class ReportCard extends React.Component {
                                                 const displayNames = this.formatTextLabel(t, ns, item["displayName"]);
 
                                                 return (
-                                                    <div>
+                                                    <div className='Report-card-item'>
                                                         <p key={ this.props.name + '-' + item["jsonKey"] }>
                                                             {displayNames.map((displayNameItem) => (
-                                                                <b><p>{ displayNameItem }</p></b>
+                                                                <p>{ displayNameItem }</p>
                                                             ))}
                                                         </p>
-                                                        <p>
+                                                        <b><p>
                                                             { dataValue } { unitLabel && unitLabel }
-                                                        </p>
+                                                        </p></b>
                                                     </div>
                                                 )}
                                             )}

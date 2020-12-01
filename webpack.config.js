@@ -24,6 +24,10 @@ module.exports = {
             test: /\.css$/,
             loaders: ['style-loader', 'css-loader'],
           },
+          { 
+            test: /\.(woff|woff2|eot|ttf|jpe?g|png|gif|svg)$/,
+            loader: 'url-loader?limit=100000'
+          }
         ],
     },
     plugins: [

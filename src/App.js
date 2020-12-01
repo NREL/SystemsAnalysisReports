@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 import loadable from '@loadable/component';
-import Tabs, { Tab } from "@hig/tabs";
+//import Tabs, { Tab } from "@hig/tabs";
+import { Tab } from './Components/Tab';
 import { CustomSelect } from './Components/CustomSelect';
 import { Context } from './store/index';
 import './App.css';
@@ -12,6 +13,8 @@ import {
 } from './constants/dataMapping';
 import { getLocaleLabel, loadData, formatData } from './functions/dataFormatting';
 import { useTranslation } from "react-i18next";
+import zone_default_icon from "../public/icons/zone_defalut.png";
+
 
 const LoadSummary = loadable(() => import("./Reports/LoadSummary.js"), {
     fallback: <p>Loading</p>
@@ -235,11 +238,7 @@ export default function App(props) {
           <div className="App" id="app">
             <div className="App-navigation">
                 <div className="navigation-group-left" style={{float: "left"}}>
-                    <Tabs onTabChange={(e) => handleSectionSelection(tabList[e])}>
-                        <Tab className={sectionSelection == 'zone_load_summary' ? "tab tab-active" : "tab"} key="zone_load_summary" label={t("zoneLoadSummary:Zone Load Summary")}/>
-                        <Tab className={sectionSelection == 'system_load_summary' ? "tab tab-active" : "tab"} key="system_load_summary" label={t("systemLoadSummary:System Load Summary")}/>
-                        <Tab className={sectionSelection == 'design_psychrometrics' ? "tab tab-active" : "tab"} key="design_psychrometrics" label={t("designPsychrometrics:Design Psychrometrics")}/>
-                    </Tabs>
+                    <Tab icon={zone_default_icon} label="zoneLoadSummary:Zone Load Summary"/>
                 </div>
                 <div className="navigation-group-right">
                     <CustomSelect

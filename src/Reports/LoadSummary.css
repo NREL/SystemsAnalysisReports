@@ -10,21 +10,20 @@
 
 .heating-cooling-button-group {
   text-align: left;
-  font-family: ArtifaktElement-Regular;
   font-size: 12px;
   margin-bottom: 16px;
 }
 
 .heating-cooling-button-inactive {
   color: black;
+  border: 2px solid gray;
   background-color: white;
-  outline-color: gray;
-  width: 72px;
+  width: 96px;
 }
 
 .heating-cooling-button-active {
   color: white;
   background-color: gray;
-  outline-color: gray;
-  width: 72px;
+  border: 2px solid gray;
+  width: 96px;
 }
