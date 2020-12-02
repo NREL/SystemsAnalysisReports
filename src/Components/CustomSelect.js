@@ -2,60 +2,51 @@ import React from 'react';
 import Select from 'react-select' 
 
 const customStyles = {
-    container: (provided) => ({
-      ...provided,
-      display: 'inline-block',
-      width: '100px',
-      minHeight: '1px',
-      textAlign: 'left',
-      border: 'none',
-    }),
-    control: (provided) => ({
-      ...provided,
-      border: '2px solid #757575',
-      borderRadius: '0',
-      minHeight: '1px',
-      height: '24px',
-    }),
-    input: (provided) => ({
-      ...provided,
-      minHeight: '1px',
-    }),
-    dropdownIndicator: (provided) => ({
-      ...provided,
-      minHeight: '1px',
-      width:'10px',
-      height:'10px',
-      paddingTop: '0',
-      paddingBottom: '0',
-      color: '#757575',
-    }),
-    indicatorSeparator: (provided) => ({
-      ...provided,
-      display: 'none',
-    }),
-    clearIndicator: (provided) => ({
-      ...provided,
-      minHeight: '1px',
-    }),
-    valueContainer: (provided) => ({
-      ...provided,
-      minHeight: '1px',
-      height: '24px',
-      width: '100px',
-      paddingTop: '0',
-      paddingBottom: '0',
-      fontSize: '12px',
-      backgroundColor: '#FFFFFF',
-      borderColor: '#CCCCCC',
-    }),
-    singleValue: (provided) => ({
-      ...provided,
-      minHeight: '1px',
-      paddingBottom: '2px',
-    }),
-  };
-
+        container: (base) => ({
+            ...base,
+            display: 'inline-block',
+            backgroundColor: '#EEEEEE',
+        }),
+        control: (base) => ({
+          ...base,
+          minHeight: '24px',
+          width: '75px',
+          border: 'none',
+          borderRadius: '2px',
+        }),
+        dropdownIndicator: (base) => ({
+          ...base,
+          color: '#808080',
+          cursor:'pointer',
+          'svg':{
+              width:'12px',
+              height:'12px',
+              '&hover':{
+              color:'#808080',
+              },
+          },
+          paddingTop: 0,
+          paddingBottom: 0,
+        }),
+        indicatorSeparator: (base) => ({
+            ...base,
+            display: 'none',
+        }),
+        clearIndicator: (base) => ({
+          ...base,
+          paddingTop: 0,
+          paddingBottom: 0,
+        }),
+        valueContainer: (base) => ({
+            ...base,
+            //position: 'unset',
+            fontSize: '12px',
+          }),
+        menu: (base) => ({
+            ...base,
+            fontSize: '12px',
+        }),  
+      };
 
 export const CustomSelect = (props) => {
 
@@ -64,12 +55,13 @@ export const CustomSelect = (props) => {
     return (
         <Select
             id={id}
-            className={className}
-            options={options}
+            className="basic-single"
+            classNamePrefix="select"
             defaultValue={defaultValue}
-            onChange={onChange}
+            name="color"
+            options={options}
             styles={customStyles}
-        >
-        </Select>
+            onChange={onChange}
+        />
     )
 }

@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import './Tab.css';
 
 export const Tab = (props) => {
-    const { name, icon, label, isActive, handleSelect } = props;
+    const { name, default_icon, selected_icon, label, isActive, handleSelect } = props;
     const { t } = useTranslation();
 
 return (
@@ -19,7 +19,7 @@ return (
                     backgroundColor: (isActive ? "#FFFFFF":  "#EEEEEE"),
             }}
         >
-            <img src={icon} style={{paddingRight: '5px'}}/>
+            <img src={isActive ? selected_icon : default_icon } style={{paddingRight: '5px'}}/>
             {t(label)}
         </button>
     </div>

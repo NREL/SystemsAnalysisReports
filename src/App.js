@@ -14,9 +14,14 @@ import {
 import { getLocaleLabel, loadData, formatData } from './functions/dataFormatting';
 import { useTranslation } from "react-i18next";
 import zone_default_icon from "../public/icons/zone_defalut.png";
+import zone_selected_icon from "../public/icons/zone_selected.png";
 import system_default_icon from "../public/icons/system_defalut.png";
+import system_selected_icon from "../public/icons/system_selected.png";
 import psychrometrics_default_icon from "../public/icons/Psychrometrics_default.png";
-
+import psychrometrics_selected_icon from "../public/icons/Psychrometrics_selected.png";
+import print_default_icon from "../public/icons/print/Print_default.png";
+import print_hover_icon from "../public/icons/print/Print_hover.png";
+import print_pressed_icon from "../public/icons/print/Print_pressed.png";
 
 const LoadSummary = loadable(() => import("./Reports/LoadSummary.js"), {
     fallback: <p>Loading</p>
@@ -243,21 +248,24 @@ export default function App(props) {
                 <div className="navigation-group-left" style={{float: "left"}}>
                     <Tab
                         name="zone_load_summary"
-                        icon={zone_default_icon}
+                        default_icon={zone_default_icon}
+                        selected_icon={zone_selected_icon}
                         label="zoneLoadSummary:Zone Load Summary"
                         isActive={sectionSelection === 'zone_load_summary' ? true : false}
                         handleSelect={handleSectionSelection}
                     />
                     <Tab
                         name="system_load_summary"
-                        icon={system_default_icon}
+                        default_icon={system_default_icon}
+                        selected_icon={system_selected_icon}
                         label="systemLoadSummary:System Load Summary"
                         isActive={sectionSelection === 'system_load_summary' ? true : false}
                         handleSelect={handleSectionSelection}
                     />
                     <Tab
                         name="design_psychrometrics"
-                        icon={psychrometrics_default_icon}
+                        default_icon={psychrometrics_default_icon}
+                        selected_icon={psychrometrics_selected_icon}
                         label="designPsychrometrics:Design Psychrometrics"
                         isActive={sectionSelection === 'design_psychrometrics' ? true : false}
                         handleSelect={handleSectionSelection}
@@ -291,7 +299,7 @@ export default function App(props) {
                                 role="status"
                                 aria-hidden="true"
                             /> : 
-                            <span>PDF</span>
+                            <img src={print_default_icon}/>
                         }
                     </button>
                 </div>
