@@ -28,15 +28,57 @@ export class ReportCard extends React.Component {
                         finalArray[lineInd] = strArray[i];
                     }
                 }
+                finalArray[-1] += ":"
 
                 return finalArray
 
             } else {
-                return [labelStr]
+                return [labelStr + ":"]
             }
         } else {
             return null
         }       
+    }
+
+    formatTextLine = (name, jsonKey, displayNames, dataValue, unitLabel) => {
+        const lineLimit = 25;
+
+        if (displayNames && dataValue) {
+            var dataUnitStr = dataValue + ' ' + unitLabel;
+            var dataUnitStrLen = dataUnitStr.length;
+            var displayNameStrLen = Math.max.apply(Math, displayNames.map(function (el) { return el.length }));
+            var totalStrLen = dataUnitStrLen + displayNameStrLen;
+
+            if (totalStrLen < lineLimit) {
+                return (
+                    <div className='Report-card-item'>
+                    <span key={ name + '-' + jsonKey }>
+                        {displayNames.map((displayNameItem) => (
+                            <span>{ displayNameItem }</span>
+                        ))}
+                    </span>
+                    <b><span style={{paddingLeft: "12px"}}>
+                        { dataValue } { unitLabel && unitLabel }
+                    </span></b>
+                    </div>
+                )
+            } else {
+                return (
+                    <div className='Report-card-item'>
+                    <p key={ name + '-' + jsonKey }>
+                        {displayNames.map((displayNameItem) => (
+                            <p>{ displayNameItem }</p>
+                        ))}
+                    </p>
+                    <b><p>
+                        { dataValue } { unitLabel && unitLabel }
+                    </p></b>
+                    </div>
+                )
+            }
+        } else {
+            return null
+        }
     }
 
     render() {
@@ -71,21 +113,13 @@ export class ReportCard extends React.Component {
                                                 }
 
                                                 // Set formatting for the unit labels
+                                                const cardName = this.props.name;
+                                                const jsonKey = item["jsonKey"];
                                                 const unitLabel = formatUnitLabels(getUnitLabel(this.props.unitSystem, item["type"], t));
-
                                                 const displayNames = this.formatTextLabel(t, ns, item["displayName"]);
 
                                                 return (
-                                                    <div className='Report-card-item'>
-                                                        <p key={ this.props.name + '-' + item["jsonKey"] }>
-                                                            {displayNames.map((displayNameItem) => (
-                                                                <p>{ displayNameItem }</p>
-                                                            ))}
-                                                        </p>
-                                                        <b><p>
-                                                            { dataValue } { unitLabel && unitLabel }
-                                                        </p></b>
-                                                    </div>
+                                                    <div>{ this.formatTextLine(cardName, jsonKey, displayNames, dataValue, unitLabel) }</div>
                                                 )}
                                             )}
                                         </div>
