@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 import loadable from '@loadable/component';
-//import Tabs, { Tab } from "@hig/tabs";
 import { Tab } from './Components/Tab';
 import { CustomSelect } from './Components/CustomSelect';
 import { Context } from './store/index';

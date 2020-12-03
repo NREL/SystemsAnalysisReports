@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import ProgressBar from 'react-bootstrap/ProgressBar';
-import Button from '@hig/button';
 import SummaryContent from '../Components/SummaryContent';
 import DetailedContent from '../Components/DetailedContent';
 import { ObjectSelectionDropDown } from '../Components/ObjectSelectionDropdown';
