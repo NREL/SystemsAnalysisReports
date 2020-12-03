@@ -1,0 +1,55 @@
+.App-table {
+    font-family: 'ArtifaktElement-Regular';
+    font-size: 12px;
+    font-size: 9px;
+    border-collapse: collapse;
+  }
+
+.table-header {
+    font-family: 'ArtifaktElement-Regular';
+    font-weight: normal;
+    font-size: 12px;
+    background-color: #CCCCCC;
+}
+
+.table-header-row {
+    height: 40px;
+}
+
+.table-row {
+    height: 20px;
+}
+
+.table-border-left {
+    border-left: 1px solid #3C3C3C;
+}
+
+.table-border-top-bottom {
+    border-top: 1px solid #3C3C3C;
+    border-bottom: 1px solid #3C3C3C;
+}
+
+.table-value-regular {
+    font-family: 'ArtifaktElement-Regular';
+    font-size: 12px;
+}
+
+.table-value-bold {
+    font-family: 'ArtifaktElement-Bold';
+    font-size: 12px;
+}
+
+.table-label-regular {
+    font-family: 'ArtifaktElement-Regular';
+    text-align: left;
+    text-indent: 36px;
+    font-size: 12px;
+}
+
+.table-label-bold {
+    font-family: 'ArtifaktElement-Bold';
+    text-align: right;
+    text-indent: 12px;
+    font-size: 12px;
+    padding-right: 12px;
+}

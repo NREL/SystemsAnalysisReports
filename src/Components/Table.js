@@ -1,15 +1,15 @@
 import React from 'react';
-import Table from 'react-bootstrap/Table'
 import { convertDataUnit, getUnitLabel } from '../functions/dataFormatting';
 import { isNumeric, numberWithCommas } from '../functions/numericFunctions';
 import { useTranslation } from "react-i18next";
+import "./Table.css"
 
 export function CustomTable(props) {
     var { name, firstColWidth, unitSystem, dataMapping, displayHeader, data, ns } = props;
     const { t } = useTranslation();
     const numberOfCols = Object.entries(dataMapping.columns).length;
     //const firstColWidth = 20;
-    const colWidth = (100-firstColWidth)/numberOfCols;
+    const colWidth = (656-firstColWidth)/numberOfCols;
 
     const addDataRow = (unitSystem, row, columns, data, t) => {
         const rowKey = row['jsonKey'];
@@ -19,9 +19,12 @@ export function CustomTable(props) {
 
             //if (rowData) {
             return (
-                <tr key={ name + '-' + rowKey }>
-                    <td width={`${firstColWidth}%`}>
-                        { ( ['subtotal', 'grand_total'].includes(rowKey) ? <i>{t(ns+":"+row['displayName'])}</i> : t(ns+":"+row['displayName'])) }
+                <tr key={ name + '-' + rowKey } className="table-row">
+                    <td
+                        width={`${firstColWidth}px`}
+                        className={['subtotal', 'grand_total'].includes(rowKey) ? "table-label-bold table-border-top-bottom" : "table-label-regular table-border-top-bottom"}
+                    >
+                        { t(ns+":"+row['displayName']) }
                     </td>
                     { columns.map((column) => {
                         var dataValue = null;
@@ -49,9 +52,10 @@ export function CustomTable(props) {
                         return (
                             <td
                                 key={ name + '-' + rowKey + '-' + column['jsonKey'] }
-                                width={`${colWidth}%`}
+                                width={`${colWidth}px`}
+                                className={['subtotal', 'grand_total'].includes(rowKey) ? "table-value-bold table-border-left table-border-top-bottom" : "table-value-regular table-border-left table-border-top-bottom"}
                             >
-                                {  ['subtotal', 'grand_total'].includes(rowKey) ? <i>{dataValue}</i> : dataValue }
+                                { dataValue }
                             </td>
                         )
 
@@ -77,14 +81,14 @@ export function CustomTable(props) {
     return(
         // const { t } = useTranslation();
 
-        <Table striped bordered hover responsive size="sm" className="App-table">
+        <table className="App-table">
             <thead style={headerStyle}>
             <tr key={ name + '-header' }>
-                <th  key={ name + '-label-header' } width={`${firstColWidth}%`}></th>
+                <th  key={ name + '-label-header' } width={`${firstColWidth}px`}></th>
                 { dataMapping['columns'].map((column) => (
                     <th
                         key={ name + '-' + column['displayName'] + '-header' }
-                        width={`${colWidth}%`}
+                        width={`${colWidth}px`}
                     >
                         { getHeader(unitSystem, column, t) }
                     </th>
@@ -95,6 +99,6 @@ export function CustomTable(props) {
             <tbody>
             { dataMapping['rows'].map((row) => addDataRow(unitSystem, row, dataMapping['columns'], data, t)) }
             </tbody>
-        </Table>
+        </table>
     );
 }

@@ -78,36 +78,38 @@ export function CustomPieChart(props) {
         return legendArray;
     }
 
-    const width = 220;
-    const height = 220;
+    const width = 180;
+    const height = 180;
 
     return (
         <div ref={pdfRef} className="App-chart-container" style={displayStyle(isHidden)}>
-            <span className="App-chart-title">{title}</span>
-            <PieChart width={width} height={height} >
-                <Pie
-                    data={data}
-                    dataKey="value"
-                    cx={width/2}
-                    cy={height/2}
-                    innerRadius={0}
-                    outerRadius={width/3.25}
-                    fill="#8884d8"
-                    label={renderCustomizedLabel}
-                    isAnimationActive ={animationEnable}
-                >
-                {
-                    ( data ? data.map((entry, index) => (
-                        <Cell
-                        key={ name + '-' + index.toString()}
-                        fill={colors[index % colors.length]}
-                        />
-                    )) : null)
-                }
-                </Pie>
-            </PieChart>
-            <div>
-                {renderLegend(ns, data, colors)}
+            <div className="App-chart-title">{title}</div>
+            <div className="pie-chart-container">
+                <PieChart width={width} height={height} >
+                    <Pie
+                        data={data}
+                        dataKey="value"
+                        cx={width/2}
+                        cy={height/2}
+                        innerRadius={0}
+                        outerRadius={width/3.25}
+                        fill="#8884d8"
+                        label={renderCustomizedLabel}
+                        isAnimationActive ={animationEnable}
+                    >
+                    {
+                        ( data ? data.map((entry, index) => (
+                            <Cell
+                            key={ name + '-' + index.toString()}
+                            fill={colors[index % colors.length]}
+                            />
+                        )) : null)
+                    }
+                    </Pie>
+                </PieChart>
+                <div>
+                    {renderLegend(ns, data, colors)}
+                </div>
             </div>
         </div>
     );

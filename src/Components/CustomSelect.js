@@ -5,10 +5,10 @@ const customStyles = {
         container: (base) => ({
             ...base,
             display: 'inline-block',
-            backgroundColor: '#EEEEEE',
         }),
         control: (base) => ({
           ...base,
+          backgroundColor: '#EEEEEE',
           minHeight: '24px',
           width: '75px',
           border: 'none',

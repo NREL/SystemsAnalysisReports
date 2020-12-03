@@ -7,6 +7,15 @@
     font-weight: normal;
 }
 
+@font-face {
+  font-family: 'ArtifaktElement-Bold';
+  src: 
+    url('../public/fonts/WOFF2/Artifakt Element Bold.woff2') format('woff2'),
+    url('../public/fonts/WOFF/Artifakt Element Bold.woff') format('woff');
+    font-style: normal;
+    font-weight: normal;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
