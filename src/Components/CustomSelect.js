@@ -55,7 +55,7 @@ export const CustomSelect = (props) => {
     return (
         <Select
             id={id}
-            className="basic-single"
+            className={`"basic-single" ${className}`}
             classNamePrefix="select"
             defaultValue={defaultValue}
             name="color"

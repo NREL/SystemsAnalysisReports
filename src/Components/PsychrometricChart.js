@@ -9,6 +9,7 @@ import { useTranslation } from "react-i18next";
 import { convertDataUnit, getUnitLabel } from '../functions/dataFormatting';
 import { filterPointsGreaterThan, filterPointsLessThan, range } from '../functions/numericFunctions';
 import { lineIntersection } from '../functions/geometricFunctions';
+import './PsychrometricChart.css';
 var psychrolib = require('../lib/psychrolib.js');
 
 export const PsychrometricChart = (props) => {
@@ -33,9 +34,9 @@ export const PsychrometricChart = (props) => {
     const yMax = 0.03;
 
     // set the dimensions and margins of the graph
-    var margin = {top: 20, right: 300, bottom: 100, left: 20},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    var margin = {top: 16, right: 24, bottom: 100, left: 0},
+    width = 676 - margin.left - margin.right,
+    height = 600 - margin.top - margin.bottom;
 
     useEffect(() => {
 
@@ -100,7 +101,7 @@ export const PsychrometricChart = (props) => {
         addSystemStatePoints(svg, x, y, data);
 
         // Draw legend
-        addLegend(svg, width, margin, data, t);
+        addLegend(svg, width, height, margin, data, t);
 
         // add the x Axis
         svg.append("g")
@@ -321,7 +322,7 @@ export const PsychrometricChart = (props) => {
         .attr("cy", function(d) { return y(d.humidity_ratio); });
     }
 
-    const addLegend = (svg, width, margin, data, t) => {
+    const addLegend = (svg, width, height, margin, data, t) => {
         let legendEntries = [];
         let i = 0;
 
@@ -331,8 +332,8 @@ export const PsychrometricChart = (props) => {
             // Get the display name for the row data
             Object.entries(dataMapping['rows']).forEach(([k, v]) => {
                 if (v.jsonKey === systemName) {
-                    const yLocation = margin.top + 50 + i*50;
-                    const xLocation = width + margin.left + 100;
+                    const yLocation = height + 70;
+                    const xLocation = margin.left + 50 + i*100;
 
                     // Add a data row
                     legendEntries.push({name: t(ns+":"+v.displayName), x: xLocation, y: yLocation});
@@ -360,8 +361,8 @@ export const PsychrometricChart = (props) => {
         .append("text")
         .attr("class", "legendLabel")
         .text( function (d) { return d.name; })
-        .attr("x", function(d) { return (d.x + 20) } )
-        .attr("y", function(d) { return d.y } );
+        .attr("x", function(d) { return (d.x + 15) } )
+        .attr("y", function(d) { return (d.y + 4) } );
     }
 
     return (

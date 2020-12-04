@@ -9,8 +9,10 @@
 
 .btn {
   font-size: 12px;
+  text-align: left;
   color: #000000;
   line-height: 1;
   border-radius: 0;
   margin-bottom: 16px;
+  width: 220px;
 }

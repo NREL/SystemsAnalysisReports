@@ -1,7 +1,6 @@
 .tab-control {
     display: inline-block;
-    height: 24px;
-    margin-bottom: 16px;
+    height: 40px;
   }
 
   .tab-active {
