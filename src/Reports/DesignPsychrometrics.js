@@ -91,7 +91,7 @@ function DesignPsychrometrics(props) {
     if (dataExists) {
         return (
             <React.Fragment>
-                <div className='App-summary-content'>
+                <div className='App-summary-content'  style={{marginLeft: "24px"}}>
                     {objectList ?  <ObjectSelectionDropDown
                         name={name + "-objectDropdown"}
                         objectList={objectList}
@@ -120,7 +120,7 @@ function DesignPsychrometrics(props) {
                 <div className='App-full-width-content'>
                     <PsychrometricTable
                         name={name + "-statePointTable"}
-                        width={960}
+                        width={932}
                         firstColWidth={150}
                         displayHeader={true}
                         unitSystem={unitSystem}

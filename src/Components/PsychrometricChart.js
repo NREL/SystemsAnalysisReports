@@ -35,8 +35,8 @@ export const PsychrometricChart = (props) => {
 
     // set the dimensions and margins of the graph
     var margin = {top: 16, right: 24, bottom: 100, left: 0},
-    width = 676 - margin.left - margin.right,
-    height = 600 - margin.top - margin.bottom;
+    width = 600 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
 
     useEffect(() => {
 

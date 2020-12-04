@@ -5,14 +5,13 @@ import SummaryContent from '../Components/SummaryContent';
 import DetailedContent from '../Components/DetailedContent';
 import { ObjectSelectionDropDown } from '../Components/ObjectSelectionDropdown';
 import { Context } from '../store/index';
-import './LoadSummary.css';
 import { getObjectName } from '../functions/dataFormatting';
 import { LoadSummaryPDF } from '../PdfReports/LoadSummaryPDF';
 import { useTranslation } from "react-i18next";
+import './LoadSummary.css';
 
 function LoadSummary(props) {
     const { 
-        //printRef,
         name,
         activeSelection,
         handleObjectSelect,
@@ -35,7 +34,6 @@ function LoadSummary(props) {
     const [ progressBarValue, setProgressBarValue ] = useState(0);
     const chart1Ref = useRef(null);
     const chart2Ref = useRef(null);
-    const cardRef = useRef(null);
     const { t } = useTranslation();
 
     useEffect(() => {
@@ -117,7 +115,7 @@ function LoadSummary(props) {
 
         return (
                 <React.Fragment>
-                    <div className='App-summary-content'>
+                    <div className='App-summary-content' style={{marginLeft: "24px"}}>
                         {objectList ? <ObjectSelectionDropDown
                             name={name + "-objectDropdown"}
                             objectList={objectList}
