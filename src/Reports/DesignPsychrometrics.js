@@ -1,13 +1,10 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import Col from 'react-bootstrap/Col';
 import Modal from 'react-bootstrap/Modal';
 import ProgressBar from 'react-bootstrap/ProgressBar';
-import Row from 'react-bootstrap/Row';
-import Tab from 'react-bootstrap/Tab';
 import { ObjectSelectionDropDown } from '../Components/ObjectSelectionDropdown';
-import { CustomTable } from '../Components/Table';
 import { ReportCard } from '../Components/ReportCard';
 import { PsychrometricChart } from '../Components/PsychrometricChart';
+import { PsychrometricTable } from '../Components/PsychrometricTable';
 import { Context } from '../store/index';
 import { DesignPsychrometricsPDF } from '../PdfReports/DesignPsychrometricsPDF';
 import { getObjectName } from '../functions/dataFormatting';
@@ -91,56 +88,47 @@ function DesignPsychrometrics(props) {
         const objectName = getObjectName(objectList, objectSelection);
         const objectData = data[objectName];
 
+    if (dataExists) {
         return (
-            ( dataExists ?
-                <div id={name + '-designpsychrometricreport'}  height="500px" width="50px">
-                <Tab.Container id={name + '-container'}>
-                    <Row>
-                        <Col md={3} className='text-left'>
-                            <Row>
-                                <ObjectSelectionDropDown
-                                name={name + "-objectDropdown"}
-                                objectList={objectList}
-                                objectSelection={objectSelection}
-                                handleObjectSelect={handleObjectSelect}
-                                />
-                            </Row>
-                            <Row>
-                                <ReportCard
-                                name={name + "-conditionsTimePeak"}
-                                title={ t(ns + ":" + "Summary") }
-                                unitSystem={unitSystem}
-                                dataMapping={dataMapping['componentChecks']}
-                                data={objectData["summary"]}
-                                ns={ns}
-                                />
-                            </Row>
-                        </Col>
-                        <Col md={9}>
-                            <PsychrometricChart
-                                d3Container={d3Container}
-                                unitSystem={unitSystem}
-                                animationEnable={animationEnable}
-                                data={objectData}
-                                dataMapping={dataMapping['componentTable']}
-                                ns={ns}
-                                />
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <CustomTable
-                            name={name + "-statePointTable"}
-                            firstColWidth={10}
-                            displayHeader={true}
-                            unitSystem={unitSystem}
-                            dataMapping={dataMapping['componentTable']}
-                            data={formatDesignPsychrometricsTableData(dataMapping['componentTable'], objectData)}
-                            ns={ns}
-                            />
-                        </Col>
-                    </Row>
-                </Tab.Container>
+            <React.Fragment>
+                <div className='App-summary-content'>
+                    {objectList ?  <ObjectSelectionDropDown
+                        name={name + "-objectDropdown"}
+                        objectList={objectList}
+                        objectSelection={objectSelection}
+                        handleObjectSelect={handleObjectSelect}
+                    /> : null }
+                    <ReportCard
+                        name={name + "-conditionsTimePeak"}
+                        title={ t(ns + ":" + "Summary") }
+                        unitSystem={unitSystem}
+                        dataMapping={dataMapping['componentChecks']}
+                        data={objectData["summary"]}
+                        ns={ns}
+                    />
+                </div>
+                <div className='App-detailed-content'>
+                    <PsychrometricChart
+                        d3Container={d3Container}
+                        unitSystem={unitSystem}
+                        animationEnable={animationEnable}
+                        data={objectData}
+                        dataMapping={dataMapping['componentTable']}
+                        ns={ns}
+                    />
+                </div>
+                <div className='App-full-width-content'>
+                    <PsychrometricTable
+                        name={name + "-statePointTable"}
+                        width={960}
+                        firstColWidth={150}
+                        displayHeader={true}
+                        unitSystem={unitSystem}
+                        dataMapping={dataMapping['componentTable']}
+                        data={formatDesignPsychrometricsTableData(dataMapping['componentTable'], objectData)}
+                        ns={ns}
+                    />
+                </div>
                 <Modal
                     show={modalShow}
                     onHide={(() => setModalShow(false))}
@@ -154,12 +142,13 @@ function DesignPsychrometrics(props) {
                     <ProgressBar now={progressBarValue} />
                     </Modal.Body>
                 </Modal>
-                </div>
-            :
-        <h1>No system coils found.</h1>
-            )
+            </React.Fragment>
         );
-    // }
+    } else {
+        return (
+            <h1>No system coils found.</h1>
+        );
+    }
 }
 
 export default DesignPsychrometrics;

@@ -4,10 +4,10 @@ import { useTranslation } from "react-i18next";
 import './Table.css';
 
 export default function TableHeader(props) {
-    var { name, firstColWidth, unitSystem, dataMapping, ns } = props;
+    var { name, width, firstColWidth, unitSystem, dataMapping, ns } = props;
     const { t } = useTranslation();
     const numberOfCols = Object.entries(dataMapping.columns).length;
-    const colWidth = (656-firstColWidth)/numberOfCols;
+    const colWidth = (width-firstColWidth)/numberOfCols;
 
     return (
         <table className="App-table">

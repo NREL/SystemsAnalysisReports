@@ -66,6 +66,10 @@
   background-color: #EEEEEE;
 }
 
+.nav-dropdown-select {
+  border-bottom: 2px solid #3C3C3C;
+}
+
 .button {
   display: inline-block;
   height: 24px;
@@ -78,15 +82,19 @@
 .button-active {
   background-color: #FFFFFF;
 }
-​
-.tab-active {
-  border-top: 2px solid blue;
-  background-color: #FFFFFF;
-  font-size: 12px;
+
+.App-summary-content {
+  grid-area: summary;
+  margin-left: 24px;
 }
 
-.tab-inactive {
-  border: none;
-  background-color: #EEEEEE;
-  font-size: 12px;
+.App-detailed-content {
+  grid-area: detailed;
+  margin-right: 24px;
+}
+
+.App-full-width-content {
+  grid-area: fullWidth;
+  margin-left: 24px;
+  margin-right: 24px;
 }

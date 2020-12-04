@@ -1,0 +1,53 @@
+.psych-table {
+    font-family: 'ArtifaktElement-Regular';
+    font-size: 12px;
+    font-size: 9px;
+    border-collapse: collapse;
+  }
+
+.psych-table-header {
+    font-family: 'ArtifaktElement-Regular';
+    font-weight: normal;
+    font-size: 12px;
+    background-color: #CCCCCC;
+}
+
+.psych-table-header-row {
+    height: 77px;
+}
+
+.psych-table-row {
+    height: 40px;
+}
+
+.psych-table-border-left {
+    border-left: 1px solid #3C3C3C;
+}
+
+.psych-table-border-top-bottom {
+    border-top: 1px solid #3C3C3C;
+    border-bottom: 1px solid #3C3C3C;
+}
+
+.psych-table-value-regular {
+    font-family: 'ArtifaktElement-Regular';
+    font-size: 12px;
+}
+
+.psych-table-value-bold {
+    font-family: 'ArtifaktElement-Bold';
+    font-size: 12px;
+}
+
+.psych-table-label-regular {
+    font-family: 'ArtifaktElement-Regular';
+    text-align: left;
+    font-size: 12px;
+}
+
+.psych-table-label-bold {
+    font-family: 'ArtifaktElement-Bold';
+    text-align: right;
+    font-size: 12px;
+    padding-right: 12px;
+}

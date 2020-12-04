@@ -19,6 +19,7 @@ const DetailedContent = (props) => {
         <React.Fragment>
             <TableHeader
                 name={name + "-headerTable"}
+                width={656}
                 firstColWidth={250}
                 unitSystem={unitSystem}
                 dataMapping={dataMapping['headerTable']}
@@ -28,6 +29,7 @@ const DetailedContent = (props) => {
             <CustomTable
                 t={t}
                 name={name + "-envelopeTable"}
+                width={656}
                 firstColWidth={250}
                 displayHeader={false}
                 unitSystem={unitSystem}
@@ -39,6 +41,7 @@ const DetailedContent = (props) => {
             <CustomTable
                 t={t}
                 name={name + "-internalGainTable"}
+                width={656}
                 firstColWidth={250}
                 displayHeader={false}
                 unitSystem={unitSystem}
@@ -50,6 +53,7 @@ const DetailedContent = (props) => {
             <CustomTable
                 t={t}
                 name={name + "-systemLoadsTable"}
+                width={656}
                 firstColWidth={250}
                 displayHeader={false}
                 unitSystem={unitSystem}
@@ -61,6 +65,7 @@ const DetailedContent = (props) => {
             <CustomTable
                 t={t}
                 name={name + "-totalLoadsTable"}
+                width={656}
                 firstColWidth={250}
                 displayHeader={false}
                 unitSystem={unitSystem}

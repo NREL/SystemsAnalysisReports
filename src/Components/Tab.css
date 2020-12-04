@@ -5,7 +5,7 @@
   }
 
   .tab-active {
-    border-top: 2px solid blue;
+    border-top: 2px solid #0696d7;
     background-color: #FFFFFF;
     font-size: 12px;
   }

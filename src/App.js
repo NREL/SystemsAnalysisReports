@@ -273,7 +273,7 @@ export default function App(props) {
                 <div className="navigation-group-right">
                     <CustomSelect
                         id="dropdown-unit-selection"
-                        className="right-header-select"
+                        className="right-header-select nav-dropdown-select"
                         options={unitSelectionOptions}
                         defaultValue={{ value: 'revit', label: 'Revit' }}
                         onChange={(e) => handleUnitSystemSelection(e.value)}
@@ -282,7 +282,7 @@ export default function App(props) {
                     </CustomSelect>
                     <CustomSelect
                         id="dropdown-locale-selection"
-                        className="right-header-select"
+                        className="right-header-select nav-dropdown-select"
                         options={languageSelectionOptions}
                         defaultValue={{ value:'en', label: 'US'}}
                         onChange={(e) => handleLocaleSelection(e.value)}
