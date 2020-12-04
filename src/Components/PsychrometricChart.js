@@ -34,9 +34,9 @@ export const PsychrometricChart = (props) => {
     const yMax = 0.03;
 
     // set the dimensions and margins of the graph
-    var margin = {top: 16, right: 24, bottom: 100, left: 0},
-    width = 600 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    var margin = {top: 16, right: 100, bottom: 150, left: 0},
+    width = 682 - margin.left - margin.right,
+    height = 550 - margin.top - margin.bottom;
 
     useEffect(() => {
 
@@ -124,7 +124,7 @@ export const PsychrometricChart = (props) => {
         // text label for the y axis
         svg.append("text")
         .attr("transform", "rotate(-90)")
-        .attr("y", width + margin.left + 20)
+        .attr("y", width + margin.left + 40)
         .attr("x",0 - (height / 2))
         .attr("dy", "1em")
         .style("text-anchor", "middle")
@@ -326,21 +326,39 @@ export const PsychrometricChart = (props) => {
         let legendEntries = [];
         let i = 0;
 
+        let yLocation = height + 70;
+        let xLocation = margin.left + 50;
+
         // Set up data for legend
         Object.entries(data).forEach(([systemName, statePoint]) => {
 
             // Get the display name for the row data
             Object.entries(dataMapping['rows']).forEach(([k, v]) => {
                 if (v.jsonKey === systemName) {
-                    const yLocation = height + 70;
-                    const xLocation = margin.left + 50 + i*100;
+                    const labelStr = t(ns+":"+v.displayName)
+                    const labelLen = labelStr.length;
 
                     // Add a data row
-                    legendEntries.push({name: t(ns+":"+v.displayName), x: xLocation, y: yLocation});
+                    legendEntries.push({name: labelStr, x: xLocation, y: yLocation});
+
+                    if (labelLen < 13) {
+                        xLocation += 100;
+                    } else {
+                        xLocation += 5 + labelLen*8;
+                    }
+
+                    // Reset x and y location if too far right
+                    if (xLocation > 500) {
+                        xLocation = margin.left + 50;
+                        yLocation += 30;
+                    }
 
                     i++;
                 }
             })
+
+
+
         })
 
         // Add point for legend entry
@@ -368,8 +386,6 @@ export const PsychrometricChart = (props) => {
     return (
         <svg
             className="d3-component"
-            width={300}
-            height={200}
             ref={d3Container}
         />
     )
