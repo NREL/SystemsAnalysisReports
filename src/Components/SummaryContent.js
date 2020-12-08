@@ -1,6 +1,7 @@
 import React from 'react';
 import { ObjectSelectionDropDown } from '../Components/ObjectSelectionDropdown';
 import { ReportCard } from '../Components/ReportCard';
+import { ReportCardColumn } from '../Components/ReportCardColumn';
 import { CustomPieChart } from '../Components/PieChart';
 import { Context } from '../store/index';
 import { getObjectName, convertDataUnit, getUnitLabel, getHeatingAndCoolingPeakLoads, formatLoadComponentChartData } from '../functions/dataFormatting';
@@ -85,7 +86,7 @@ const SummaryContent = (props) => {
 
     return (
         <React.Fragment>
-            <ReportCard
+            <ReportCardColumn
                 name={name + "-conditionsTimePeak"}
                 title={t("systemLoadSummary:Conditions at Time of Peak")}
                 unitSystem={unitSystem}
@@ -94,7 +95,7 @@ const SummaryContent = (props) => {
                 ns={ns}
                 />
             { name === 'systemLoadSummary' ? (
-                <ReportCard
+                <ReportCardColumn
                 name={name + "-temperatures"}
                 title={t(ns+":Temperatures")}
                 unitSystem={unitSystem}
@@ -104,7 +105,7 @@ const SummaryContent = (props) => {
                 />
             ) : null }
             { name === 'systemLoadSummary' ? (
-                <ReportCard
+                <ReportCardColumn
                 name={name + "-airflows"}
                 title={t(ns+":Airflows")}
                 unitSystem={unitSystem}

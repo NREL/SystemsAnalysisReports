@@ -127,7 +127,7 @@ export const zoneLoadSummaryMapping = {
     },
     "peakConditions": [
         {
-            "Label": null,
+            "label": null,
             "items": [
                 {"displayName": "Time at Peak", "jsonKey": "time_of_peak_load", "unitLabel": null}
             ]
@@ -301,7 +301,7 @@ export const systemLoadSummaryMapping = {
     },
     "peakConditions": [
         {
-            "Label": null,
+            "label": null,
             "items": [
                 {"displayName": "Time at Peak", "jsonKey": "time_of_peak_load", "type": null}
             ]

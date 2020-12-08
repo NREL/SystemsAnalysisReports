@@ -1,0 +1,46 @@
+.Report-card-column {
+    margin-top: 0px;
+    margin-bottom: 12px;
+    width: 220px;
+}
+
+.Report-card-column-header {
+    font-size: 12px;
+    line-height: 1.5;
+    background-color: #CCCCCC59;
+}
+
+.Report-card-column-body {
+    columns: 2 auto;
+    font-size: 11px;
+    line-height: 0.4;
+    background-color: #EEEEEE59;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.Report-card-column-item {
+    margin-bottom: 24px;
+}
+
+.Report-card-column-row{
+    height: 16px;
+}
+
+.Report-card-column-label{
+    padding: 8px;
+}
+
+.Report-card-table-label {
+    width: 94px;
+    text-align: right;
+    padding-right: 6px;
+}
+
+.Report-card-table-value {
+    text-align: left;
+    width: 114px;
+    padding-left: 6px;
+}
