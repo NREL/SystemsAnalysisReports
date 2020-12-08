@@ -8,7 +8,7 @@
 
 .heating-cooling-button-inactive {
   color: black;
-  border: 2px solid gray;
+  border: 1px solid gray;
   background-color: white;
   width: 96px;
 }
@@ -16,6 +16,6 @@
 .heating-cooling-button-active {
   color: white;
   background-color: gray;
-  border: 2px solid gray;
+  border: 1px solid gray;
   width: 96px;
 }

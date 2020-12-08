@@ -2,14 +2,14 @@
 .App-chart-container {
   width: 220px;
   margin-bottom: 12px;
-  background-color: #EEEEEE;
+  background-color: #EEEEEE59;
 }
 
 .App-chart-title {
   align-items: center;
   justify-content: center;
   font-size: 12px;
-  background-color: #CCCCCC
+  background-color: #CCCCCC59
 };
   
 .recharts-wrapper {
@@ -17,7 +17,7 @@
 }
 
 .pie-chart-container {
-  background-color: #EEEEEE;
+  background-color: #EEEEEE59;
 }
 
 .pie-chart-legend-item {

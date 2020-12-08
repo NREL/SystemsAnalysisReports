@@ -2,8 +2,8 @@
     "language": "en-US",
     "units": {
         "heat_transfer_rate": "W",
-        "temperature": "C",
-        "temperature_difference": "C_diff",
+        "temperature": "K",
+        "temperature_difference": "K_diff",
         "humidity_ratio": "kg/kg",
         "flow_rate": "m3/s",
         "enthalpy": "kJ/kg",

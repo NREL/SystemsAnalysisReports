@@ -2,6 +2,28 @@
     text-align: left;
   }
 
+.dropdown-toggle::after {
+  position: relative;
+  display: inline-block;
+  float: right;
+  vertical-align: middle;
+  color: #808080;
+  margin-top: 4px;
+}
+
+.form-control{
+  font-size: 12px;
+}
+
+.rc-pagination {
+  margin-left: 1rem!important;
+  font-size: 12px;
+}
+
+.dropdown-menu {
+  font-size: 12px;
+}
+
 .btn-primary {
   background-color: #FFFFFF;
   border-color: #CCCCCC;

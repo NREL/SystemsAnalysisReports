@@ -33,7 +33,7 @@
   height: 52px;
   background-color: #EEEEEE;
   grid-area: navigation;
-};
+}
 
 .App-summary-content {
   grid-area: summary;

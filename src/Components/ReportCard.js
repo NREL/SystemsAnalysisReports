@@ -33,7 +33,7 @@ export class ReportCard extends React.Component {
                 return finalArray
 
             } else {
-                return [labelStr + ":"]
+                return [labelStr]// + ":"]
             }
         } else {
             return null

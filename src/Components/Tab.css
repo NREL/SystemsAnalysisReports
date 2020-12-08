@@ -1,12 +1,13 @@
 .tab-control {
     display: inline-block;
-    height: 40px;
+    height: 38px;
   }
 
   .tab-active {
     border-top: 2px solid #0696d7;
     background-color: #FFFFFF;
     font-size: 12px;
+    height: 40px;
   }
   
   .tab-inactive {

@@ -9,7 +9,7 @@
     font-family: 'ArtifaktElement-Regular';
     font-weight: normal;
     font-size: 12px;
-    background-color: #CCCCCC;
+    background-color: #CCCCCC59;
 }
 
 .psych-table-header-row {
@@ -21,12 +21,12 @@
 }
 
 .psych-table-border-left {
-    border-left: 1px solid #3C3C3C;
+    border-left: 1px solid #3C3C3C1A;
 }
 
 .psych-table-border-top-bottom {
-    border-top: 1px solid #3C3C3C;
-    border-bottom: 1px solid #3C3C3C;
+    border-top: 1px solid #3C3C3C1A;
+    border-bottom: 1px solid #3C3C3C1A;
 }
 
 .psych-table-value-regular {
