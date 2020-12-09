@@ -371,7 +371,9 @@ export const LoadSummaryPDF = async (
         fileName = 'system_load_summary.pdf';
     }
 
-    doc.save(fileName);
+    doc.autoPrint({variant: 'non-conform'});
+    //doc.save(fileName);
+    //window.open(doc.output('datauristring'));
 
     // Clean up
     setAnimationEnable(true);
@@ -379,6 +381,8 @@ export const LoadSummaryPDF = async (
 
     var endTime = new Date().getTime();
     //alert((endTime - startTime)*0.001/60 + ' minutes');
+
+    return doc
 }
 
 const formatCardText = (unitSystem, dataMapping, data, t, ns) => {

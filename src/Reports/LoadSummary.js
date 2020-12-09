@@ -60,7 +60,7 @@ function LoadSummary(props) {
                 let origHeatingCoolingSelection = heatingCoolingSelection;
                 
                 // Run function to create report
-                await LoadSummaryPDF(
+                const doc = await LoadSummaryPDF(
                     unitSystem,
                     sectionSelection,
                     objectList,
@@ -77,6 +77,9 @@ function LoadSummary(props) {
                     t
                     )
                 
+                console.log(doc);
+                window.open(doc.output('bloburl'), '_blank')
+
                 // Return to original state
                 setModalShow(false);
                 setObjectId(origId);
