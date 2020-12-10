@@ -41,28 +41,12 @@ export class ReportCard extends React.Component {
     }
 
     formatTextLine = (name, jsonKey, displayNames, dataValue, unitLabel) => {
-        const lineLimit = 25;
 
         if (displayNames && dataValue) {
             var dataUnitStr = dataValue + ' ' + unitLabel;
             var dataUnitStrLen = dataUnitStr.length;
             var displayNameStrLen = Math.max.apply(Math, displayNames.map(function (el) { return el.length }));
-            var totalStrLen = dataUnitStrLen + displayNameStrLen;
 
-            if (totalStrLen < lineLimit) {
-                return (
-                    <div className='Report-card-item'>
-                    <span key={ name + '-' + jsonKey }>
-                        {displayNames.map((displayNameItem) => (
-                            <span>{ displayNameItem }</span>
-                        ))}
-                    </span>
-                    <b><span style={{paddingLeft: "12px"}}>
-                        { dataValue } { unitLabel && unitLabel }
-                    </span></b>
-                    </div>
-                )
-            } else {
                 return (
                     <div className='Report-card-item'>
                     <p key={ name + '-' + jsonKey }>
@@ -75,7 +59,7 @@ export class ReportCard extends React.Component {
                     </p></b>
                     </div>
                 )
-            }
+            // }
         } else {
             return null
         }

@@ -800,7 +800,7 @@ function Psychrometrics() {
   
     // Return moist air enthalpy given dry-bulb temperature and humidity ratio.
     // Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1 eqn. 30
-    this.GetMoistAirEnthalpy = function // (o) Moist Air Enthalpy in Btu lb⁻¹ [IP] or J kg⁻¹ [SI]
+    this.GetMoistAirEnthalpy = function // (o) Moist Air Enthalpy in Btu lb⁻¹ [IP] or kJ kg⁻¹ [SI]
       ( TDryBulb                        // (i) Dry bulb temperature in °F [IP] or °C [SI]
       , HumRatio                        // (i) Humidity ratio in lb_H₂O lb_Air⁻¹ [IP] or kg_H₂O kg_Air⁻¹ [SI]
       ) {
