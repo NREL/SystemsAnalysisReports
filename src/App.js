@@ -63,7 +63,6 @@ export default function App(props) {
     } 
 
     const handleSectionSelection = (value) => {
-        console.log(value);
         if (value) {
             setSectionSelection(value); 
         }
@@ -77,8 +76,6 @@ export default function App(props) {
 
     const handleLocaleSelection = (value) => {
         if (value) {
-            // setLocale(value);
-            // console.log(value)
             i18n.changeLanguage(value)
         }
     }
@@ -275,32 +272,32 @@ export default function App(props) {
                         id="dropdown-unit-selection"
                         className="right-header-select nav-dropdown-select"
                         options={unitSelectionOptions}
-                        defaultValue={{ value: 'revit', label: 'Revit' }}
+                        defaultValue={{ value: 'revit', label: 'Revit Units' }}
                         onChange={(e) => handleUnitSystemSelection(e.value)}
                         width="250px"
                     >
                     </CustomSelect>
-                    <CustomSelect
-                        id="dropdown-locale-selection"
-                        className="right-header-select nav-dropdown-select"
-                        options={languageSelectionOptions}
-                        defaultValue={{ value:'en', label: 'US'}}
-                        onChange={(e) => handleLocaleSelection(e.value)}
-                        width="250px"
-                    >
-                    </CustomSelect>
-                    <button className="button" onClick={handlePrintClick} disabled={pdfPrint}>
-                        { pdfPrint ? 
-                            <Spinner
-                                as="span"
-                                animation="border"
-                                size="sm"
-                                role="status"
-                                aria-hidden="true"
-                            /> : 
-                            <img src={print_default_icon}/>
-                        }
-                    </button>
+                    {/*<CustomSelect*/}
+                    {/*    id="dropdown-locale-selection"*/}
+                    {/*    className="right-header-select nav-dropdown-select"*/}
+                    {/*    options={languageSelectionOptions}*/}
+                    {/*    defaultValue={{ value:'en', label: 'US'}}*/}
+                    {/*    onChange={(e) => handleLocaleSelection(e.value)}*/}
+                    {/*    width="250px"*/}
+                    {/*>*/}
+                    {/*</CustomSelect>*/}
+                    {/*<button className="button" onClick={handlePrintClick} disabled={pdfPrint}>*/}
+                    {/*    { pdfPrint ?*/}
+                    {/*        <Spinner*/}
+                    {/*            as="span"*/}
+                    {/*            animation="border"*/}
+                    {/*            size="sm"*/}
+                    {/*            role="status"*/}
+                    {/*            aria-hidden="true"*/}
+                    {/*        /> :*/}
+                    {/*        <img src={print_default_icon}/>*/}
+                    {/*    }*/}
+                    {/*</button>*/}
                 </div>
             </div>
             { renderActiveSection(sectionSelection, data) }
