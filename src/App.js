@@ -124,9 +124,9 @@ export default function App(props) {
     }
     
     const unitSelectionOptions = [
-        { value: 'revit', label: 'Revit' },
-        { value: 'ip', label: 'IP' },
-        { value: 'si', label: 'SI' }
+        { value: 'revit', label: 'Revit Units' },
+        { value: 'ip', label: 'IP Units' },
+        { value: 'si', label: 'SI Units' }
       ]
 
     const languageSelectionOptions = [

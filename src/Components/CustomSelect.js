@@ -10,7 +10,7 @@ const customStyles = {
           ...base,
           backgroundColor: '#EEEEEE',
           minHeight: '24px',
-          width: '75px',
+          width: '100px',
           border: 'none',
           borderRadius: '2px',
         }),
