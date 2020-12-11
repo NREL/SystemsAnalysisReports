@@ -16,5 +16,15 @@
   "Outdoor Air Flow Rate": "Portata dell'aria esterna",
   "Percent Outdoor Air": "Percentuale dell'aria esterna",
   "Air Specific Heat": "Calore specifico dell'aria",
-  "Air Density": "Densità dell'aria"
+  "Air Density": "Densità dell'aria",
+  "Wet Bulb Temperature": "Temperatura del bulbo umido",
+  "Atmospheric Pressure": "Pressione atmosferica",
+  "Supply Fan Temperature Difference": "Differenza temperatura ventola di mandata",
+  "Dew Point Temperature": "Temperatura punto di rugiada",
+  "Relative Humidity": "Umidità relativa",
+  "Enthalpy": "Entalpia",
+  "Specific Heat": "Calore specifico",
+  "Density": "Densità",
+  "Specific Volume": "Volume specifico",
+  "Summary": "Riepilogo"
 }

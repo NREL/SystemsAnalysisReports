@@ -50,5 +50,9 @@
   "ton/ton": "Tonne/Tonne",
   "us_ton/us_ton": "us_ton/us_ton",
   "kg/kg": "kg/kg",
-  "lb/lb": "lb/lb"
+  "lb/lb": "lb/lb",
+  "kJ/kg": "kJ/kg",
+  "Btu/lb": "Btu/lb",
+  "m3/kg": "m³/kg",
+  "ft3/lb": "ft³/lb"
 }

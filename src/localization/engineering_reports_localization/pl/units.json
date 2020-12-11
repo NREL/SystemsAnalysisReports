@@ -50,5 +50,9 @@
   "ton/ton": "tona/tona",
   "us_ton/us_ton": "tona_usa/tona_usa",
   "kg/kg": "kg/kg",
-  "lb/lb": "funt/funt"
+  "lb/lb": "funt/funt",
+  "kJ/kg": "kJ/kg",
+  "Btu/lb": "Btu/funt",
+  "m3/kg": "m3/kg",
+  "ft3/lb": "stopa3/funt"
 }

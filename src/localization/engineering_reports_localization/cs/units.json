@@ -50,5 +50,9 @@
   "ton/ton": "tuna/tunu",
   "us_ton/us_ton": "us_tuna/us_tunu",
   "kg/kg": "kg/kg",
-  "lb/lb": "lb/lb"
+  "lb/lb": "lb/lb",
+  "kJ/kg": "kJ/kg",
+  "Btu/lb": "Btu/lb",
+  "m3/kg": "m3/kg",
+  "ft3/lb": "ft3/lb"
 }

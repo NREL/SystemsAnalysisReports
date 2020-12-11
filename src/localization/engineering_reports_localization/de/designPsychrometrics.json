@@ -16,5 +16,15 @@
   "Outdoor Air Flow Rate": "Außenluft-Massenstrom",
   "Percent Outdoor Air": "Prozent Außenluft",
   "Air Specific Heat": "Luft - Spezifische Wärme",
-  "Air Density": "Luftdichte"
+  "Air Density": "Luftdichte",
+  "Wet Bulb Temperature": "Feuchtkugeltemperatur",
+  "Atmospheric Pressure": "Atmosphärischer Druck",
+  "Supply Fan Temperature Difference": "Temperaturdifferenz Zulüfter",
+  "Dew Point Temperature": "Taupunkttemperatur",
+  "Relative Humidity": "Relative Luftfeuchtigkeit",
+  "Enthalpy": "Enthalpie",
+  "Specific Heat": "Spezifische Wärme",
+  "Density": "Dichte",
+  "Specific Volume": "Spezifisches Volumen",
+  "Summary": "Zusammenfassung"
 }

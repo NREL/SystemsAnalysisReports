@@ -50,5 +50,9 @@
   "ton/ton": "tonelada/tonelada",
   "us_ton/us_ton": "tonelada (EE. UU.)/tonelada (EE. UU.)",
   "kg/kg": "kg/kg",
-  "lb/lb": "lb/lb"
+  "lb/lb": "lb/lb",
+  "kJ/kg": "kJ/kg",
+  "Btu/lb": "Btu/lb",
+  "m3/kg": "m3/kg",
+  "ft3/lb": "ft3/lb"
 }

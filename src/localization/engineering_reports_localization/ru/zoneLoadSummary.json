@@ -55,7 +55,7 @@
   "Airflow per Floor Area": "Расход воздуха по площади помещения",
   "Airflow per Capacity": "Расход воздуха по пропускной способности",
   "Number of People": "Количество человек",
-  "Instant Sensible": "Ощутимая постоянная",
+  "Instant Sensible": "Ощутимая моментальная",
   "Delayed Sensible": "Ощутимая отсроченная",
   "Latent": "Скрытая",
   "Total": "Итого",

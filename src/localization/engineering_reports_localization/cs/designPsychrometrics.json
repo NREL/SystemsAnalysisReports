@@ -16,5 +16,15 @@
   "Outdoor Air Flow Rate": "Rychlost proudění venkovního vzduchu",
   "Percent Outdoor Air": "Venkovní vzduch v %",
   "Air Specific Heat": "Měrné teplo vzduchu",
-  "Air Density": "Hustota vzduchu"
+  "Air Density": "Hustota vzduchu",
+  "Wet Bulb Temperature": "Teplota mokrého teploměru",
+  "Atmospheric Pressure": "Atmosférický tlak",
+  "Supply Fan Temperature Difference": "Rozdíl teplot přívodního ventilátoru",
+  "Dew Point Temperature": "Teplota rosného bodu",
+  "Relative Humidity": "Relativní vlhkost",
+  "Enthalpy": "Entalpie",
+  "Specific Heat": "Měrné teplo",
+  "Density": "Hustota",
+  "Specific Volume": "Měrný objem",
+  "Summary": "Shrnutí"
 }

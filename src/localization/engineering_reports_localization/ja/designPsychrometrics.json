@@ -16,5 +16,15 @@
   "Outdoor Air Flow Rate": "外気流量率",
   "Percent Outdoor Air": "外気率",
   "Air Specific Heat": "空気比熱",
-  "Air Density": "空気密度"
+  "Air Density": "空気密度",
+  "Wet Bulb Temperature": "湿球温度",
+  "Atmospheric Pressure": "大気圧",
+  "Supply Fan Temperature Difference": "給気ファン温度差",
+  "Dew Point Temperature": "露点温度",
+  "Relative Humidity": "相対湿度",
+  "Enthalpy": "エンタルピー",
+  "Specific Heat": "比熱",
+  "Density": "密度",
+  "Specific Volume": "比容積",
+  "Summary": "概要"
 }
