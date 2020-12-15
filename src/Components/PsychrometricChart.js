@@ -34,7 +34,7 @@ export const PsychrometricChart = (props) => {
     const yMax = 0.03;
 
     // set the dimensions and margins of the graph
-    var margin = {top: 16, right: 100, bottom: 150, left: 0},
+    var margin = {top: 16, right: 100, bottom: 125, left: 0},
     width = 682 - margin.left - margin.right,
     height = 550 - margin.top - margin.bottom;
 
