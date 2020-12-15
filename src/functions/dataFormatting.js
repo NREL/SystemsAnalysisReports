@@ -139,7 +139,7 @@ export const formatData = (data) => new Promise((resolve, reject) => {
 
 export function convertDataUnit(unitSystem, type, value) {
   // Function to update a value to a new unit system.
-  // Requires the unit sytem (i.e. "ip" or "si"), the type (e.g. "temperature")
+  // Requires the unit system (i.e. "ip" or "si"), the type (e.g. "temperature")
   // and the numeric value (e.g. 4.12).  Returns the converted value.
 
   if (unitSystem && type && isNumeric(value)) {

@@ -54,8 +54,6 @@ export function CustomPieChart(props) {
     }
 
     const renderLegend = (ns, data, colors) => {
-        console.log(colors);
-        console.log(data);
 
         var legendArray = [];
         for (var i = 0; i < data.length; i++) {
