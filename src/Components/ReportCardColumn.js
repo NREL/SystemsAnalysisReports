@@ -121,7 +121,7 @@ export class ReportCardColumn extends React.Component {
 
                                                     return(
                                                     <tr className="Report-card-column-row">
-                                                        <td className="Report-card-table-label">{item["displayName"]}:</td>
+                                                        <td className="Report-card-table-label">{this.formatTextLabel(t, ns, item["displayName"])}:</td>
                                                         <td className="Report-card-table-value">
                                                             <b>{ dataValue } { unitLabel && unitLabel }</b>
                                                         </td>
