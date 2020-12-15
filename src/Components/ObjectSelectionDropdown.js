@@ -110,11 +110,11 @@ export class ObjectSelectionDropDown extends React.Component {
               { this.getObjectName(this.props.objectList, this.props.objectSelection) }
           </Dropdown.Toggle>
 
-          <Dropdown.Menu as={CustomMenu}>
+          <Dropdown.Menu as={CustomMenu} style="position: 'fixed'">
               { this.props.objectList.map((item, i) => (
                   <Dropdown.Item
                   key={this.props.name + '-' + item.name}
-                  eventKey={item.id}
+                  eventKey={String(item.id)}
                   >
                   {item.name}
                   </Dropdown.Item>

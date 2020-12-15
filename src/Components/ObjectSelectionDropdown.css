@@ -22,6 +22,7 @@
 
 .dropdown-menu {
   font-size: 12px;
+  position: fixed !important;
 }
 
 .btn-primary {
@@ -37,4 +38,5 @@
   border-radius: 0;
   margin-bottom: 16px;
   width: 220px;
+  padding: 4px .375rem;
 }
