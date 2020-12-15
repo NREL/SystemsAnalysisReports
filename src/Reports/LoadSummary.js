@@ -8,6 +8,7 @@ import { Context } from '../store/index';
 import { getObjectName } from '../functions/dataFormatting';
 import { LoadSummaryPDF } from '../PdfReports/LoadSummaryPDF';
 import { useTranslation } from "react-i18next";
+import { sleep } from "../functions/generalFunctions";
 import './LoadSummary.css';
 
 function LoadSummary(props) {
@@ -29,6 +30,7 @@ function LoadSummary(props) {
         pdfPrint, setPdfPrint,
         setAnimationEnable,
     } = useContext(Context);
+    const [ pdfURL ] = useState(null);
     const [ heatingCoolingSelection, setHeatingCoolingSelection ] = useState("cooling");
     const [ modalShow, setModalShow ] = useState(false);
     const [ progressBarValue, setProgressBarValue ] = useState(0);
@@ -36,59 +38,73 @@ function LoadSummary(props) {
     const chart2Ref = useRef(null);
     const { t } = useTranslation();
 
-    useEffect(() => {
-        if (pdfPrint) {
+    // Async function to write report
+    const writePDFReport = () => {
+        console.log('Print pdf report.');
 
-            // Async function to write report
-            async function writePDFReport() {
-                console.log('Print pdf report.');
+        // Open progress modal
+        setModalShow(true);
 
-                // Open progress modal
-                setModalShow(true);
-
-                // Get original state
-                let setObjectId = null;
-                let origId = null;
-                if (sectionSelection==='zone_load_summary') {
-                    setObjectId = setZoneId;
-                    origId = zoneId;
-                } else if (sectionSelection==='system_load_summary') {
-                    setObjectId = setSystemId;
-                    origId = systemId;
-                }
-
-                let origHeatingCoolingSelection = heatingCoolingSelection;
-                
-                // Run function to create report
-                const doc = await LoadSummaryPDF(
-                    unitSystem,
-                    sectionSelection,
-                    objectList,
-                    chart1Ref,
-                    chart2Ref,
-                    setPdfPrint,
-                    setObjectId,
-                    setHeatingCoolingSelection,
-                    setAnimationEnable,
-                    setProgressBarValue,
-                    dataMapping,
-                    data,
-                    ns,
-                    t
-                    )
-                
-                console.log(doc);
-                window.open(doc.output('bloburl'), '_blank')
-
-                // Return to original state
-                setModalShow(false);
-                setObjectId(origId);
-                setHeatingCoolingSelection(origHeatingCoolingSelection);
-            }
-            
-            writePDFReport()
+        // Get original state
+        let setObjectId = null;
+        let origId = null;
+        if (sectionSelection==='zone_load_summary') {
+            setObjectId = setZoneId;
+            origId = zoneId;
+        } else if (sectionSelection==='system_load_summary') {
+            setObjectId = setSystemId;
+            origId = systemId;
         }
-    }, [pdfPrint, sectionSelection]);
+        
+        let origHeatingCoolingSelection = heatingCoolingSelection;
+        
+        // Run function to create report
+        const doc = LoadSummaryPDF(
+            unitSystem,
+            sectionSelection,
+            objectList,
+            chart1Ref,
+            chart2Ref,
+            setPdfPrint,
+            setObjectId,
+            setHeatingCoolingSelection,
+            setAnimationEnable,
+            setProgressBarValue,
+            dataMapping,
+            data,
+            ns,
+            t
+            )
+
+        const pdfURL = doc.output('bloburl');
+
+        let iframe = document.createElement("iframe");
+        iframe.id = "iframe";
+        iframe.style.display = "none";
+        iframe.src = pdfURL;
+        iframe.type = "application/pdf";
+        iframe.onload = setPrint();
+
+        document.body.appendChild(iframe);
+
+        // Return to original state
+        setModalShow(false);
+        setObjectId(origId);
+        setHeatingCoolingSelection(origHeatingCoolingSelection);
+    }
+
+    //let iframe = document.getElementById("iframe");
+    
+    useEffect(() => {
+        window.onbeforeprint = writePDFReport;
+    }, []);
+
+    /*useEffect(() => {
+        if (pdfPrint) {
+            console.log('');
+            //writePDFReport();
+        }
+    }, [pdfPrint, sectionSelection]);*/
 
     const handleHeatingCoolingSelect = (eventKey) => {
         // Update state when user selects either "heating" or "cooling"
