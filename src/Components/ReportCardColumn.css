@@ -6,14 +6,13 @@
 
 .Report-card-column-header {
     font-size: 12px;
-    line-height: 1.5;
+    line-height: 2;
     background-color: #CCCCCC59;
 }
 
 .Report-card-column-body {
-    columns: 2 auto;
     font-size: 11px;
-    line-height: 0.4;
+    line-height: 1;
     background-color: #EEEEEE59;
     padding-top: 16px;
     padding-bottom: 16px;

@@ -9,7 +9,8 @@
   align-items: center;
   justify-content: center;
   font-size: 12px;
-  background-color: #CCCCCC59
+  background-color: #CCCCCC59;
+  line-height: 2;
 }
   
 .recharts-wrapper {

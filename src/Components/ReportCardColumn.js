@@ -88,8 +88,8 @@ export class ReportCardColumn extends React.Component {
                 {
                     (t) =>
                         <div className="Report-card-column" id={name}>
-                            <div className="Report-card-header">{t(ns+":"+this.props.title)}</div>
-                            <div className="Report-card-body">
+                            <div className="Report-card-column-header">{t(ns+":"+this.props.title)}</div>
+                            <div className="Report-card-column-body">
                                 <div>
                                     {dataMapping.map((colData, index) => (
                                         <div key={ this.props.name + '-' + index.toString() }>
