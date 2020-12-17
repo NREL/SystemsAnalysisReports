@@ -76,7 +76,7 @@ function LoadSummary(props) {
             t
             )
 
-        const pdfURL = doc.output('bloburl');
+        /*const pdfURL = doc.output('bloburl');
 
         let iframe = document.createElement("iframe");
         iframe.id = "iframe";
@@ -85,26 +85,35 @@ function LoadSummary(props) {
         iframe.type = "application/pdf";
         iframe.onload = setPrint();
 
-        document.body.appendChild(iframe);
+        document.body.appendChild(iframe);*/
 
         // Return to original state
         setModalShow(false);
         setObjectId(origId);
         setHeatingCoolingSelection(origHeatingCoolingSelection);
+
+        return doc;
     }
 
     //let iframe = document.getElementById("iframe");
-    
-    useEffect(() => {
-        window.onbeforeprint = writePDFReport;
-    }, []);
 
-    /*useEffect(() => {
-        if (pdfPrint) {
-            console.log('');
-            //writePDFReport();
+    useEffect(() => {
+
+        window.onbeforeprint = async function() {
+            let doc = await writePDFReport();
+            console.log(doc);
+            const pdfURL = doc.output('bloburl');
+
+            let iframe = document.createElement("iframe");
+            iframe.id = "iframe";
+            iframe.style.display = "none";
+            iframe.src = pdfURL;
+            iframe.type = "application/pdf";
+            //iframe.onload = setPrint();
+
+            document.body.appendChild(iframe);
         }
-    }, [pdfPrint, sectionSelection]);*/
+    }, []);
 
     const handleHeatingCoolingSelect = (eventKey) => {
         // Update state when user selects either "heating" or "cooling"
