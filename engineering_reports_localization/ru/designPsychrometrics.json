@@ -1,10 +1,10 @@
 {
-  "Design Psychrometrics": "Психометрические данные конструкции",
+  "Design Psychrometrics": "Психрометрические данные конструкции",
   "Zone": "Зона",
   "Return Air": "Рециркулирующий воздух",
   "Outdoor Air": "Наружный воздух",
   "Entering Coil": "На входе в теплообменник",
-  "Leaving Coil": "На выходе их теплообменника",
+  "Leaving Coil": "На выходе из теплообменника",
   "Supply Fan": "Приточный вентилятор",
   "Dry Bulb Temperature": "Температура по сухому термометру",
   "Humidity Ratio": "Коэффициент влажности",
@@ -16,5 +16,16 @@
   "Outdoor Air Flow Rate": "Расход наружного воздуха",
   "Percent Outdoor Air": "Процент наружного воздуха",
   "Air Specific Heat": "Удельная теплоемкость воздуха",
-  "Air Density": "Плотность воздушной среды"
+  "Air Density": "Плотность воздушной среды",
+  "Wet Bulb Temperature": "Температура по влажному термометру",
+  "Atmospheric Pressure": "Атмосферное давление",
+  "Supply Fan Temperature Difference": "Разница температур приточного вентилятора",
+  "Dew Point Temperature": "Температура точки росы",
+  "Relative Humidity": "Относительная влажность",
+  "Enthalpy": "Энтальпия",
+  "Specific Heat": "Удельная теплоемкость",
+  "Density": "Плотность",
+  "Specific Volume": "Удельный объем",
+  "Summary": "Сводка",
+  "No system coils found": "Теплообменники системы не найдены"
 }

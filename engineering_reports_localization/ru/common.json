@@ -1,8 +1,12 @@
 {
   "Type to Filter": "Введите текст для фильтрации",
-  "Revit Systems Analysis - Loads Report": "Revit Systems Analysis —- Отчет о нагрузках",
+  "Revit Systems Analysis - Loads Report": "Расчет систем Revit —- отчет о нагрузках",
   "Zone Load Summary": "Сводка по нагрузке зоны",
   "System Load Summary": "Сводка по нагрузке на систему",
   "Design Psychrometrics": "Психрометрические данные конструкции",
-  "PDF": "PDF"
+  "PDF": "PDF",
+  "Revit Units": "Единицы Revit",
+  "IP Units": "Единицы британской системы",
+  "SI Units": "Единицы СИ",
+  "Printing PDF": "Печать PDF"
 }

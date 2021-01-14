@@ -1,5 +1,5 @@
 {
-  "Design Psychrometrics": "Psicometría de diseño",
+  "Design Psychrometrics": "Psicrometría de diseño",
   "Zone": "Zona",
   "Return Air": "Aire de retorno",
   "Outdoor Air": "Aire exterior",
@@ -12,9 +12,20 @@
   "System Name": "Nombre de sistema",
   "Time of Peak": "Momento máximo",
   "Coil Air Flow Rate": "Velocidad de flujo de aire de serpentín",
-  "Zone Space Sensible Load": "Carga apreciable de espacio de zona",
+  "Zone Space Sensible Load": "Carga sensible de espacio de zona",
   "Outdoor Air Flow Rate": "Velocidad de flujo de aire exterior",
   "Percent Outdoor Air": "Porcentaje de aire exterior",
   "Air Specific Heat": "Calor específico del aire",
-  "Air Density": "Densidad del aire"
+  "Air Density": "Densidad del aire",
+  "Wet Bulb Temperature": "Temperatura húmeda",
+  "Atmospheric Pressure": "Presión atmosférica",
+  "Supply Fan Temperature Difference": "Diferencia de temperatura de ventilador de suministro",
+  "Dew Point Temperature": "Temperatura de punto de rocío",
+  "Relative Humidity": "Humedad relativa",
+  "Enthalpy": "Entalpía",
+  "Specific Heat": "Calor específico",
+  "Density": "Densidad",
+  "Specific Volume": "Volumen específico",
+  "Summary": "Resumen",
+  "No system coils found": "No se ha encontrado ninguna bobina del sistema."
 }

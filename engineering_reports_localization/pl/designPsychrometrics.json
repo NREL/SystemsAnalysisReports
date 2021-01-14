@@ -1,5 +1,5 @@
 {
-  "Design Psychrometrics": "Projektowanie parametrów psychrometrycznych",
+  "Design Psychrometrics": "Psychrometria projektu",
   "Zone": "Strefa",
   "Return Air": "Powietrze recyrkulacyjne",
   "Outdoor Air": "Powietrze zewnętrzne",
@@ -16,5 +16,16 @@
   "Outdoor Air Flow Rate": "Przepływ powietrza zewnętrznego",
   "Percent Outdoor Air": "Procent powietrza zewnętrznego",
   "Air Specific Heat": "Ciepło właściwe powietrza",
-  "Air Density": "Gęstość powietrza"
+  "Air Density": "Gęstość powietrza",
+  "Wet Bulb Temperature": "Temperatura termometru wilgotnego",
+  "Atmospheric Pressure": "Ciśnienie atmosferyczne",
+  "Supply Fan Temperature Difference": "Różnica temperatury wentylatora nawiewowego",
+  "Dew Point Temperature": "Temperatura punktu rosy",
+  "Relative Humidity": "Wilgotność względna",
+  "Enthalpy": "Entalpia",
+  "Specific Heat": "Ciepło właściwe",
+  "Density": "Gęstość",
+  "Specific Volume": "Objętość właściwa",
+  "Summary": "Podsumowanie",
+  "No system coils found": "Nie znaleziono zwojów systemowych"
 }

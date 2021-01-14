@@ -1,10 +1,10 @@
 {
-  "Design Psychrometrics": "Psychometrie návrhu",
+  "Design Psychrometrics": "Psychrometrie návrhu",
   "Zone": "Zóna",
   "Return Air": "Zpětný vzduch",
   "Outdoor Air": "Venkovní vzduch",
-  "Entering Coil": "Vstupní cívka",
-  "Leaving Coil": "Výstupní cívka",
+  "Entering Coil": "Vstup",
+  "Leaving Coil": "Výstup",
   "Supply Fan": "Přívodní ventilátor",
   "Dry Bulb Temperature": "Teplota suchého teploměru",
   "Humidity Ratio": "Poměr vlhkosti",
@@ -15,6 +15,17 @@
   "Zone Space Sensible Load": "Zjevné zatížení prostoru zóny",
   "Outdoor Air Flow Rate": "Rychlost proudění venkovního vzduchu",
   "Percent Outdoor Air": "Venkovní vzduch v %",
-  "Air Specific Heat": "Měrné teplo vzduchu",
-  "Air Density": "Hustota vzduchu"
+  "Air Specific Heat": "Měrná tepelná kapacita vzduchu",
+  "Air Density": "Hustota vzduchu",
+  "Wet Bulb Temperature": "Teplota mokrého teploměru",
+  "Atmospheric Pressure": "Atmosférický tlak",
+  "Supply Fan Temperature Difference": "Rozdíl teplot přívodního ventilátoru",
+  "Dew Point Temperature": "Teplota rosného bodu",
+  "Relative Humidity": "Relativní vlhkost",
+  "Enthalpy": "Entalpie",
+  "Specific Heat": "Měrná tepelná kapacita",
+  "Density": "Hustota",
+  "Specific Volume": "Měrný objem",
+  "Summary": "Shrnutí",
+  "No system coils found": "Nebyly nalezeny žádné systémové cívky."
 }

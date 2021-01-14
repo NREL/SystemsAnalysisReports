@@ -41,9 +41,9 @@
   "Other": "Outro",
   "Conditions at Time of Peak": "Condições no momento do pico",
   "Time at Peak": "Hora no pico",
-  "DB": "DB",
-  "HR": "HR",
-  "WB": "WB",
+  "DB": "Bulbo seco",
+  "HR": "Relação de umidade",
+  "WB": "Bulbo molhado",
   "Outside": "Exterior",
   "System Load Summary": "Resumo da carga do sistema",
   "Engineering Checks": "Verificações de engenharia",
@@ -69,5 +69,6 @@
   "Fan Heat TD": "Diferença de temperatura do calor do ventilador",
   "Airflows": "Fluxos de ar",
   "Main Fan": "Ventilador principal",
-  "Ventilation": "Ventilação"
+  "Ventilation": "Ventilação",
+  "No systems found": "Nenhum sistema encontrado"
 }

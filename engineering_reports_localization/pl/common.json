@@ -3,6 +3,10 @@
   "Revit Systems Analysis - Loads Report": "Analiza systemów Revit — Raport obciążeń",
   "Zone Load Summary": "Podsumowanie obciążenia strefy",
   "System Load Summary": "Podsumowanie obciążenia systemu",
-  "Design Psychrometrics": "Projektowanie parametrów psychrometrycznych",
-  "PDF": "PDF"
+  "Design Psychrometrics": "Psychrometria projektu",
+  "PDF": "PDF",
+  "Revit Units": "Jednostki programu Revit",
+  "IP Units": "Jednostki IP",
+  "SI Units": "Jednostki SI",
+  "Printing PDF": "Drukowanie pliku PDF"
 }

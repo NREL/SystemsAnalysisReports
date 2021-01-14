@@ -1,8 +1,12 @@
 {
   "Type to Filter": "Type à filtrer",
-  "Revit Systems Analysis - Loads Report": "Analyse des systèmes Revit - Rapport de charge",
-  "Zone Load Summary": "Résumé de la charge de la zone",
-  "System Load Summary": "Récapitulatif de la charge système",
-  "Design Psychrometrics": "Psychrométrie de conception",
-  "PDF": "PDF"
+  "Revit Systems Analysis - Loads Report": "Analyse des systèmes Revit - Rapport de charges",
+  "Zone Load Summary": "Récapitulatif des charges de la zone",
+  "System Load Summary": "Récapitulatif des charges du système",
+  "Design Psychrometrics": "Conception psychrométrique",
+  "PDF": "PDF",
+  "Revit Units": "Unités Revit",
+  "IP Units": "Unités IP",
+  "SI Units": "Unités au système international",
+  "Printing PDF": "Impression du PDF"
 }

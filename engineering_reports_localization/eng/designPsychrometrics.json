@@ -16,5 +16,16 @@
   "Outdoor Air Flow Rate": "Outdoor Air Flow Rate",
   "Percent Outdoor Air": "Percent Outdoor Air",
   "Air Specific Heat": "Air Specific Heat",
-  "Air Density": "Air Density"
+  "Air Density": "Air Density",
+  "Wet Bulb Temperature": "Wet Bulb Temperature",
+  "Atmospheric Pressure": "Atmospheric Pressure",
+  "Supply Fan Temperature Difference": "Supply Fan Temperature Difference",
+  "Dew Point Temperature": "Dew Point Temperature",
+  "Relative Humidity": "Relative Humidity",
+  "Enthalpy": "Enthalpy",
+  "Specific Heat": "Specific Heat",
+  "Density": "Density",
+  "Specific Volume": "Specific Volume",
+  "Summary": "Summary",
+  "No system coils found": "No system coils found"
 }

@@ -16,5 +16,16 @@
   "Outdoor Air Flow Rate": "外氣流速",
   "Percent Outdoor Air": "外氣量百分比",
   "Air Specific Heat": "空氣比熱",
-  "Air Density": "空氣密度"
+  "Air Density": "空氣密度",
+  "Wet Bulb Temperature": "濕球溫度",
+  "Atmospheric Pressure": "大氣壓力",
+  "Supply Fan Temperature Difference": "供氣風扇溫差",
+  "Dew Point Temperature": "露點溫度",
+  "Relative Humidity": "相對濕度",
+  "Enthalpy": "焓",
+  "Specific Heat": "比熱",
+  "Density": "密度",
+  "Specific Volume": "比容",
+  "Summary": "摘要",
+  "No system coils found": "找不到系統線圈"
 }

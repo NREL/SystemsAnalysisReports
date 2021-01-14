@@ -4,5 +4,9 @@
   "Zone Load Summary": "ゾーン負荷の概要",
   "System Load Summary": "システム負荷の概要",
   "Design Psychrometrics": "湿り空気を設計",
-  "PDF": "PDF"
+  "PDF": "PDF",
+  "Revit Units": "Revit の単位",
+  "IP Units": "IP 単位",
+  "SI Units": "SI 単位",
+  "Printing PDF": "PDF を出力する"
 }

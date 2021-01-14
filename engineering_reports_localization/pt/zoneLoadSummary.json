@@ -41,13 +41,13 @@
   "Other": "Outro",
   "Conditions at Time of Peak": "Condições no momento do pico",
   "Time at Peak": "Hora no pico",
-  "DB": "DB",
-  "HR": "HR",
-  "WB": "WB",
+  "DB": "Bulbo seco",
+  "HR": "Relação de umidade",
+  "WB": "Bulbo molhado",
   "Outside": "Exterior",
   "Zone": "Zona",
   "Zone Load Summary": "Resumo da carga da zona",
-  "RH": "RH",
+  "RH": "Umidade relativa",
   "Engineering Checks": "Verificações de engenharia",
   "Capacity per Floor Area": "Capacidade por área de piso",
   "Floor Area per Capacity": "Área de piso por capacidade",
@@ -62,5 +62,6 @@
   "Percent of Total": "Percentual do total",
   "Envelope": "Ambiente",
   "Internal Gains": "Ganhos internos",
-  "Systems": "Sistemas"
+  "Systems": "Sistemas",
+  "No zones found": "Nenhuma zona encontrada"
 }
