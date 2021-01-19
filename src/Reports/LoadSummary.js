@@ -179,7 +179,11 @@ function LoadSummary(props) {
                 </React.Fragment>
         );
     } else {
-        return( <h1>No {name === "zoneLoadSummary" ? "zones": "systems" } found.</h1> )
+        return(
+            <div className='App-full-width-content'>
+                <h1>{t(ns + ":No " + (name === 'zoneLoadSummary' ? 'zones': 'systems') + " found")}.</h1>
+            </div>
+        )
     }
 }
 

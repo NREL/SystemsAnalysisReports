@@ -54,9 +54,9 @@ export class ReportCard extends React.Component {
                             <p>{ displayNameItem }</p>
                         ))}
                     </p>
-                    <b><p>
+                    <p className='Report-card-item-value'>
                         { dataValue } { unitLabel && unitLabel }
-                    </p></b>
+                    </p>
                     </div>
                 )
             // }

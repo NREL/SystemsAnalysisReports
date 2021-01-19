@@ -20,6 +20,10 @@
     height: 40px;
 }
 
+.psych-table-row:nth-child(even) {
+    background-color: #CCCCCC33;
+}
+
 .psych-table-border-left {
     border-left: 1px solid #3C3C3C1A;
 }

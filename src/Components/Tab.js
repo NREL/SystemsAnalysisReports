@@ -15,7 +15,7 @@ return (
                     height: '24px',
                     outline: 'none',
                     border: 'none',
-                    borderRight: '1px solid #808080',
+                    borderRight: '1px solid #CCCCCC',
                     backgroundColor: (isActive ? "#FFFFFF":  "#EEEEEE"),
             }}
         >

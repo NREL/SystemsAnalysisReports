@@ -97,6 +97,7 @@ export class ObjectSelectionDropDown extends React.Component {
                     onChange={this.handlePaginationClick.bind(this)}
                     showLessItems={true}
                     locale={en_US}
+                    showTitle={false}
                     /> 
                 : null}
                 </div>

@@ -124,9 +124,9 @@ export default function App(props) {
     }
     
     const unitSelectionOptions = [
-        { value: 'revit', label: 'Revit Units' },
-        { value: 'ip', label: 'IP Units' },
-        { value: 'si', label: 'SI Units' }
+        { value: 'revit', label: t('common:Revit Units') },
+        { value: 'ip', label: t('common:IP Units') },
+        { value: 'si', label: t('common:SI Units') }
       ]
 
     const languageSelectionOptions = [
@@ -272,7 +272,7 @@ export default function App(props) {
                         id="dropdown-unit-selection"
                         className="right-header-select nav-dropdown-select"
                         options={unitSelectionOptions}
-                        defaultValue={{ value: 'revit', label: 'Revit Units' }}
+                        defaultValue={{ value: 'revit', label: t('common:Revit Units') }}
                         onChange={(e) => handleUnitSystemSelection(e.value)}
                         width="250px"
                     >
@@ -286,18 +286,18 @@ export default function App(props) {
                     {/*    width="250px"*/}
                     {/*>*/}
                     {/*</CustomSelect>*/}
-                    {/*<button className="button" onClick={handlePrintClick} disabled={pdfPrint}>*/}
-                    {/*    { pdfPrint ?*/}
-                    {/*        <Spinner*/}
-                    {/*            as="span"*/}
-                    {/*            animation="border"*/}
-                    {/*            size="sm"*/}
-                    {/*            role="status"*/}
-                    {/*            aria-hidden="true"*/}
-                    {/*        /> :*/}
-                    {/*        <img src={print_default_icon}/>*/}
-                    {/*    }*/}
-                    {/*</button>*/}
+                    <button className="button" onClick={handlePrintClick} disabled={pdfPrint}>
+                        { pdfPrint ?
+                            <Spinner
+                                as="span"
+                                animation="border"
+                                size="sm"
+                                role="status"
+                                aria-hidden="true"
+                            /> :
+                            <img src={print_default_icon}/>
+                        }
+                    </button>
                 </div>
             </div>
             { renderActiveSection(sectionSelection, data) }

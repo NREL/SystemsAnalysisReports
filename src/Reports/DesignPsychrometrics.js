@@ -146,7 +146,9 @@ function DesignPsychrometrics(props) {
         );
     } else {
         return (
-            <h1>No system coils found.</h1>
+            <div className='App-full-width-content'>
+                <h1>{t(ns + ":" + "No system coils found")}.</h1>
+            </div>
         );
     }
 }

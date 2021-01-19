@@ -1,16 +1,18 @@
 import React from 'react';
-import Select from 'react-select' 
+import Select from 'react-select'
+import {useTranslation} from "react-i18next";
 
 const customStyles = {
         container: (base) => ({
             ...base,
             display: 'inline-block',
+            overflow: 'initial'
         }),
         control: (base) => ({
           ...base,
           backgroundColor: '#EEEEEE',
           minHeight: '24px',
-          width: '100px',
+          width: '100%',
           border: 'none',
           borderRadius: '2px',
         }),
@@ -37,15 +39,33 @@ const customStyles = {
           paddingTop: 0,
           paddingBottom: 0,
         }),
-        valueContainer: (base) => ({
-            ...base,
+        valueContainer: (provided, state) => ({
+            ...provided,
             //position: 'unset',
             fontSize: '12px',
-          }),
+            textOverflow: "ellipsis",
+            maxWidth: "90%",
+            whiteSpace: "nowrap",
+            overflow: "initial",
+            position: "relative !important",
+            display: "block",
+            textAlign: 'right',
+            height: '28px',
+            padding: '2px 0px'
+        }),
         menu: (base) => ({
             ...base,
             fontSize: '12px',
-        }),  
+        }),
+        singleValue: (base) => ({
+            ...base,
+            position: 'relative',
+            transform: 'none',
+            top: 'none',
+            overflow: 'initial',
+            marginRight: '0px',
+            fontFamily: 'ArtifaktElement-Bold'
+        })
       };
 
 export const CustomSelect = (props) => {
@@ -62,6 +82,7 @@ export const CustomSelect = (props) => {
             options={options}
             styles={customStyles}
             onChange={onChange}
+            isSearchable={false}
         />
     )
 }
