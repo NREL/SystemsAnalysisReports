@@ -26,5 +26,6 @@
   "Specific Heat": "Specific Heat",
   "Density": "Density",
   "Specific Volume": "Specific Volume",
-  "Summary": "Summary"
+  "Summary": "Summary",
+  "No system coils found": "No system coils found"
 }

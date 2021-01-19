@@ -3,6 +3,10 @@
   "Revit Systems Analysis - Loads Report": "Análise dos sistemas do Revit – Relatório de cargas",
   "Zone Load Summary": "Resumo da carga da zona",
   "System Load Summary": "Resumo da carga do sistema",
-  "Design Psychrometrics": "Psicometria do projeto",
-  "PDF": "PDF"
+  "Design Psychrometrics": "Psicrometria do projeto",
+  "PDF": "PDF",
+  "Revit Units": "Unidades do Revit",
+  "IP Units": "Unidades IP",
+  "SI Units": "Unidades SI",
+  "Printing PDF": "Imprimindo PDF"
 }

@@ -26,5 +26,6 @@
   "Specific Heat": "比熱",
   "Density": "密度",
   "Specific Volume": "比容",
-  "Summary": "摘要"
+  "Summary": "摘要",
+  "No system coils found": "找不到系統線圈"
 }

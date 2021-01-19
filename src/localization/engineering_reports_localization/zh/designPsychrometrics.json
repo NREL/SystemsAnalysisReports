@@ -7,7 +7,7 @@
   "Leaving Coil": "离开盘管",
   "Supply Fan": "送风机",
   "Dry Bulb Temperature": "干球温度",
-  "Humidity Ratio": "湿度比",
+  "Humidity Ratio": "比湿度（含湿量）",
   "Temperature Difference": "温度差异",
   "System Name": "系统名称",
   "Time of Peak": "峰值时间",
@@ -26,5 +26,6 @@
   "Specific Heat": "比热",
   "Density": "密度",
   "Specific Volume": "体积比容",
-  "Summary": "概要"
+  "Summary": "概要",
+  "No system coils found": "未找到系统线圈"
 }

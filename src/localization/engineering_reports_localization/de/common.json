@@ -1,8 +1,12 @@
 {
   "Type to Filter": "Zu filternder Typ",
   "Revit Systems Analysis - Loads Report": "Revit-Systemanalyse - Lastenbericht",
-  "Zone Load Summary": "Zonenlast - Zusammenfassung",
-  "System Load Summary": "Systemlast - Zusammenfassung",
-  "Design Psychrometrics": "Psychometrischer Entwurf",
-  "PDF": "PDF"
+  "Zone Load Summary": "Zusammenfassung Zonenlast",
+  "System Load Summary": "Zusammenfassung Systemlast",
+  "Design Psychrometrics": "Psychrometrischer Entwurf",
+  "PDF": "PDF",
+  "Revit Units": "Revit-Einheiten",
+  "IP Units": "IP-Einheiten",
+  "SI Units": "SI-Einheiten",
+  "Printing PDF": "Drucken von PDF-Dateien"
 }

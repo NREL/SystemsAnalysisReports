@@ -1,5 +1,5 @@
 {
-  "Design Psychrometrics": "Psicometria do projeto",
+  "Design Psychrometrics": "Psicrometria do projeto",
   "Zone": "Zona",
   "Return Air": "Ar de retorno",
   "Outdoor Air": "Ar externo",
@@ -26,5 +26,6 @@
   "Specific Heat": "Calor específico",
   "Density": "Densidade",
   "Specific Volume": "Volume específico",
-  "Summary": "Resumo"
+  "Summary": "Resumo",
+  "No system coils found": "Nenhuma espiral do sistema encontrada"
 }

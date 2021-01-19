@@ -3,6 +3,10 @@
   "Revit Systems Analysis - Loads Report": "Revit Systems Analysis – Výkaz zatížení",
   "Zone Load Summary": "Souhrn zatížení zóny",
   "System Load Summary": "Souhrn systémového zatížení",
-  "Design Psychrometrics": "Psychometrie návrhu",
-  "PDF": "PDF"
+  "Design Psychrometrics": "Psychrometrie návrhu",
+  "PDF": "PDF",
+  "Revit Units": "Jednotky aplikace Revit",
+  "IP Units": "Jednotky IP",
+  "SI Units": "Jednotky SI",
+  "Printing PDF": "Tisk do souboru PDF"
 }

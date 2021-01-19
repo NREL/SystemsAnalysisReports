@@ -41,13 +41,13 @@
   "Other": "Inne",
   "Conditions at Time of Peak": "Warunki w czasie szczytu",
   "Time at Peak": "Czas szczytu",
-  "DB": "DB",
-  "HR": "HR",
-  "WB": "WB",
+  "DB": "Temperatura termometru suchego",
+  "HR": "Współczynnik wilgotności",
+  "WB": "Temperatura termometru wilgotnego",
   "Outside": "Na zewnątrz",
   "Zone": "Strefa",
   "Zone Load Summary": "Podsumowanie obciążenia strefy",
-  "RH": "RH",
+  "RH": "Wilgotność względna",
   "Engineering Checks": "Kontrole inżynierskie",
   "Capacity per Floor Area": "Pojemność na powierzchnię stropu",
   "Floor Area per Capacity": "Powierzchnia stropu na pojemność",
@@ -62,5 +62,6 @@
   "Percent of Total": "Procent sumy",
   "Envelope": "Obwiednia",
   "Internal Gains": "Zyski wewnętrzne",
-  "Systems": "Systemy"
+  "Systems": "Systemy",
+  "No zones found": "Nie znaleziono stref"
 }
