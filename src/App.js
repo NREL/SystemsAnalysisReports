@@ -286,18 +286,18 @@ export default function App(props) {
                     {/*    width="250px"*/}
                     {/*>*/}
                     {/*</CustomSelect>*/}
-                    {/*<button className="button" onClick={handlePrintClick} disabled={pdfPrint}>*/}
-                    {/*    { pdfPrint ?*/}
-                    {/*        <Spinner*/}
-                    {/*            as="span"*/}
-                    {/*            animation="border"*/}
-                    {/*            size="sm"*/}
-                    {/*            role="status"*/}
-                    {/*            aria-hidden="true"*/}
-                    {/*        /> :*/}
-                    {/*        <img src={print_default_icon}/>*/}
-                    {/*    }*/}
-                    {/*</button>*/}
+                    <button className="button" onClick={handlePrintClick} disabled={pdfPrint}>
+                        { pdfPrint ?
+                            <Spinner
+                                as="span"
+                                animation="border"
+                                size="sm"
+                                role="status"
+                                aria-hidden="true"
+                            /> :
+                            <img src={print_default_icon}/>
+                        }
+                    </button>
                 </div>
             </div>
             { renderActiveSection(sectionSelection, data) }
