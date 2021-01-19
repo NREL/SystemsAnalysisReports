@@ -117,12 +117,14 @@ export const LoadSummaryPDF = async (
                 doc.setFontSize(10);
                 doc.text(conditionType, xStart+1, yStart);
             } else if (heatingCoolingSelection === 'heating') {
+                const conditionType = t(ns+":"+'Heating').toUpperCase()
+                const conditionTypeLen = doc.getStringUnitWidth(conditionType)*10*25.4/72;
                 doc.setDrawColor(0);
                 doc.setFillColor(220, 53, 69);
-                doc.rect(xStart-1, yStart-4, 15, 5, 'F');
+                doc.rect(xStart, yStart-4, conditionTypeLen + 2, 5, 'F');
                 doc.setTextColor(255,255,255);
                 doc.setFontSize(10);
-                doc.text(t(ns+":"+'Heating').toUpperCase(), xStart, yStart);
+                doc.text(conditionType, xStart + 1, yStart);
             }
 
             // Write Peak Conditions
@@ -250,7 +252,7 @@ export const LoadSummaryPDF = async (
             //     }
             // })
             // .then(function (dataUrl) {
-            //     doc.addImage(dataUrl, 'PNG', 110, yStart, width/8, height/8);
+            //     doc.addImage(dataUrl, 'PNG', 110, yStart, width/8, height/8, null,'FAST');
             // })
             // .catch(function (error) {
             //     console.error('Chart 1 did not render properly.', error);

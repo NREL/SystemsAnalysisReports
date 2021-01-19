@@ -170,7 +170,7 @@ function LoadSummary(props) {
                         keyboard={false}
                     >
                         <Modal.Header closeButton={false}>
-                        <Modal.Title>{sectionSelection === "zone_load_summary" ? "Printing Zone Load Summary Report to PDF": "Printing System Load Summary Report to PDF" }</Modal.Title>
+                        {/*<Modal.Title>{sectionSelection === "zone_load_summary" ? "Printing Zone Load Summary Report to PDF": "Printing System Load Summary Report to PDF" }</Modal.Title>*/}
                         </Modal.Header>
                         <Modal.Body>
                         <ProgressBar now={progressBarValue} />
