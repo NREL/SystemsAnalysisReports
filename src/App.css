@@ -1,9 +1,9 @@
 .App {
   font-family: 'ArtifaktElement-Regular';
   text-align: center;
-  width: 980px;
+  width: 100vw;
   display: grid;
-  grid-template-columns: 250px 730px;
+  grid-template-columns: 244px 724px;
   grid-template-rows: auto auto auto;
   grid-template-areas: 
     "navigation navigation"
@@ -11,6 +11,8 @@
     "fullWidth fullWidth";
   column-gap: 12px;
   row-gap: 0px;
+  justify-content: center;
+  min-width: min-content;
 }
 
 .App-header {
@@ -93,6 +95,7 @@
   outline: none; 
   background-color: #EEEEEE;
   font-size: 12px;
+  padding-right: 0px;
 }
 
 .button-active {

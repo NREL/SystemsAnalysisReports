@@ -26,5 +26,6 @@
   "Specific Heat": "比熱",
   "Density": "密度",
   "Specific Volume": "比容積",
-  "Summary": "概要"
+  "Summary": "概要",
+  "No system coils found": "システム コイルが見つかりません"
 }

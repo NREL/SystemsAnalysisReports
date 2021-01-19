@@ -1,5 +1,5 @@
 {
-  "Design Psychrometrics": "Projektowanie parametrów psychrometrycznych",
+  "Design Psychrometrics": "Psychrometria projektu",
   "Zone": "Strefa",
   "Return Air": "Powietrze recyrkulacyjne",
   "Outdoor Air": "Powietrze zewnętrzne",
@@ -26,5 +26,6 @@
   "Specific Heat": "Ciepło właściwe",
   "Density": "Gęstość",
   "Specific Volume": "Objętość właściwa",
-  "Summary": "Podsumowanie"
+  "Summary": "Podsumowanie",
+  "No system coils found": "Nie znaleziono zwojów systemowych"
 }

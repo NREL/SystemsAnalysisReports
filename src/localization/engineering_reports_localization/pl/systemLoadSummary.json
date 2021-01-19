@@ -41,9 +41,9 @@
   "Other": "Inne",
   "Conditions at Time of Peak": "Warunki w czasie szczytu",
   "Time at Peak": "Czas szczytu",
-  "DB": "DB",
-  "HR": "HR",
-  "WB": "WB",
+  "DB": "Temperatura termometru suchego",
+  "HR": "Współczynnik wilgotności",
+  "WB": "Temperatura termometru wilgotnego",
   "Outside": "Na zewnątrz",
   "System Load Summary": "Podsumowanie obciążenia systemu",
   "Engineering Checks": "Kontrole inżynierskie",
@@ -66,8 +66,9 @@
   "Return": "Recyrkulacyjne",
   "Mixed Air": "Powietrze mieszane",
   "Supply": "Nawiew",
-  "Fan Heat TD": "TD ciepła wentylatora",
+  "Fan Heat TD": "Różnica temperatur ciepła wentylatora",
   "Airflows": "Przepływy powietrza",
   "Main Fan": "Wentylator główny",
-  "Ventilation": "Wentylacja"
+  "Ventilation": "Wentylacja",
+  "No systems found": "Nie znaleziono systemów"
 }

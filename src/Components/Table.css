@@ -42,7 +42,7 @@
 .table-label-regular {
     font-family: 'ArtifaktElement-Regular';
     text-align: left;
-    text-indent: 36px;
+    padding-left: 36px;
     font-size: 12px;
 }
 

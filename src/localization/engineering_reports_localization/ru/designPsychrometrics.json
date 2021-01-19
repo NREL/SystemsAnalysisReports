@@ -22,9 +22,10 @@
   "Supply Fan Temperature Difference": "Разница температур приточного вентилятора",
   "Dew Point Temperature": "Температура точки росы",
   "Relative Humidity": "Относительная влажность",
-  "Enthalpy": "Энтальпический",
+  "Enthalpy": "Энтальпия",
   "Specific Heat": "Удельная теплоемкость",
   "Density": "Плотность",
   "Specific Volume": "Удельный объем",
-  "Summary": "Сводка"
+  "Summary": "Сводка",
+  "No system coils found": "Теплообменники системы не найдены"
 }

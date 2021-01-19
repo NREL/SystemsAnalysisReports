@@ -41,9 +41,9 @@
   "Other": "その他",
   "Conditions at Time of Peak": "ピーク時の状態",
   "Time at Peak": "ピーク時の時間",
-  "DB": "DB",
-  "HR": "HR",
-  "WB": "WB",
+  "DB": "乾球",
+  "HR": "湿度比",
+  "WB": "湿球",
   "Outside": "外側",
   "System Load Summary": "システム負荷の概要",
   "Engineering Checks": "エンジニアリング チェック",
@@ -66,8 +66,9 @@
   "Return": "循環",
   "Mixed Air": "混合空気",
   "Supply": "供給",
-  "Fan Heat TD": "ファン ヒート TD",
+  "Fan Heat TD": "ファン ヒート 温度差",
   "Airflows": "風量",
   "Main Fan": "メイン ファン",
-  "Ventilation": "換気"
+  "Ventilation": "換気",
+  "No systems found": "システムが見つかりません"
 }

@@ -4,5 +4,9 @@
     "Zone Load Summary": "Zone Load Summary",
     "System Load Summary": "System Load Summary",
     "Design Psychrometrics": "Design Psychrometrics",
-    "PDF": "PDF"
+    "PDF": "PDF",
+    "Revit Units": "Revit Units",
+    "IP Units": "IP Units",
+    "SI Units": "SI Units",
+    "Printing PDF": "Printing PDF"
 }

@@ -40,47 +40,6 @@ export class ReportCardColumn extends React.Component {
         }
     }
 
-    formatTextLine = (name, jsonKey, displayNames, dataValue, unitLabel) => {
-        const lineLimit = 25;
-
-        if (displayNames && dataValue) {
-            var dataUnitStr = dataValue + ' ' + unitLabel;
-            var dataUnitStrLen = dataUnitStr.length;
-            var displayNameStrLen = Math.max.apply(Math, displayNames.map(function (el) { return el.length }));
-            var totalStrLen = dataUnitStrLen + displayNameStrLen;
-
-            if (totalStrLen < lineLimit) {
-                return (
-                    <div className='Report-card-item'>
-                    <span key={ name + '-' + jsonKey }>
-                        {displayNames.map((displayNameItem) => (
-                            <span>{ displayNameItem }</span>
-                        ))}
-                    </span>
-                        <b><span style={{paddingLeft: "12px"}}>
-                        { dataValue } { unitLabel && unitLabel }
-                    </span></b>
-                    </div>
-                )
-            } else {
-                return (
-                    <div className='Report-card-item'>
-                        <p key={ name + '-' + jsonKey }>
-                            {displayNames.map((displayNameItem) => (
-                                <p>{ displayNameItem }</p>
-                            ))}
-                        </p>
-                        <b><p>
-                            { dataValue } { unitLabel && unitLabel }
-                        </p></b>
-                    </div>
-                )
-            }
-        } else {
-            return null
-        }
-    }
-
     render() {
         var { data, dataMapping, name, ns } = this.props;
         return (
@@ -123,7 +82,7 @@ export class ReportCardColumn extends React.Component {
                                                     <tr className="Report-card-column-row">
                                                         <td className="Report-card-table-label">{this.formatTextLabel(t, ns, item["displayName"])}:</td>
                                                         <td className="Report-card-table-value">
-                                                            <b>{ dataValue } { unitLabel && unitLabel }</b>
+                                                            { dataValue } { unitLabel && unitLabel }
                                                         </td>
                                                     </tr>
                                                         // <div>{ this.formatTextLine(cardName, jsonKey, displayNames, dataValue, unitLabel) }</div>

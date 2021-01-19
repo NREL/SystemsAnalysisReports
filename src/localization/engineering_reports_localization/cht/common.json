@@ -4,5 +4,9 @@
   "Zone Load Summary": "區域負載摘要",
   "System Load Summary": "系統負載摘要",
   "Design Psychrometrics": "設計濕度",
-  "PDF": "PDF"
+  "PDF": "PDF",
+  "Revit Units": "Revit 單位",
+  "IP Units": "IP 單位",
+  "SI Units": "SI 單位",
+  "Printing PDF": "列印 PDF"
 }

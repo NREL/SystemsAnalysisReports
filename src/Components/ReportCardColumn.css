@@ -33,7 +33,7 @@
 }
 
 .Report-card-table-label {
-    width: 94px;
+    width: 150px;
     text-align: right;
     padding-right: 6px;
 }
@@ -42,4 +42,5 @@
     text-align: left;
     width: 114px;
     padding-left: 6px;
+    font-family: 'ArtifaktElement-Bold';
 }

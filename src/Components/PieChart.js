@@ -76,7 +76,7 @@ export function CustomPieChart(props) {
         return legendArray;
     }
 
-    const width = 180;
+    const width = 220;
     const height = 180;
 
     return (
@@ -90,7 +90,7 @@ export function CustomPieChart(props) {
                         cx={width/2}
                         cy={height/2}
                         innerRadius={0}
-                        outerRadius={width/3.25}
+                        outerRadius={(width-40)/3.25}
                         fill="#8884d8"
                         label={renderCustomizedLabel}
                         isAnimationActive ={animationEnable}

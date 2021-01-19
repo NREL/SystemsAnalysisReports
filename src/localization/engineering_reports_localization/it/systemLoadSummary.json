@@ -41,9 +41,9 @@
   "Other": "Altro",
   "Conditions at Time of Peak": "Condizioni al momento del picco",
   "Time at Peak": "Momento del picco",
-  "DB": "DB",
-  "HR": "HR",
-  "WB": "WB",
+  "DB": "Bulbo secco",
+  "HR": "Tasso di umidità",
+  "WB": "Bulbo umido",
   "Outside": "Esterno",
   "System Load Summary": "Riepilogo carico sistema",
   "Engineering Checks": "Controlli tecnici",
@@ -66,8 +66,9 @@
   "Return": "Ritorno",
   "Mixed Air": "Aria mista",
   "Supply": "Mandata",
-  "Fan Heat TD": "TD calore ventola",
+  "Fan Heat TD": "Differenza di temperatura calore ventola",
   "Airflows": "Flussi d'aria",
   "Main Fan": "Ventola principale",
-  "Ventilation": "Ventilazione"
+  "Ventilation": "Ventilazione",
+  "No systems found": "Nessun sistema trovato"
 }

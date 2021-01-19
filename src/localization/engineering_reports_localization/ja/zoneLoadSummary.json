@@ -41,13 +41,13 @@
   "Other": "その他",
   "Conditions at Time of Peak": "ピーク時の状態",
   "Time at Peak": "ピーク時の時間",
-  "DB": "DB",
-  "HR": "HR",
-  "WB": "WB",
+  "DB": "乾球",
+  "HR": "湿度比",
+  "WB": "湿球",
   "Outside": "外側",
   "Zone": "ゾーン",
   "Zone Load Summary": "ゾーン負荷の概要",
-  "RH": "RH",
+  "RH": "相対湿度",
   "Engineering Checks": "エンジニアリング チェック",
   "Capacity per Floor Area": "床面積あたりの容量",
   "Floor Area per Capacity": "容量あたりの床面積",
@@ -62,5 +62,6 @@
   "Percent of Total": "合計のパーセント",
   "Envelope": "エンベロープ",
   "Internal Gains": "内部増加",
-  "Systems": "システム"
+  "Systems": "システム",
+  "No zones found": "ゾーンが見つかりません"
 }

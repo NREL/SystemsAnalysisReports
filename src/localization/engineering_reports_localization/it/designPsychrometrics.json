@@ -26,5 +26,6 @@
   "Specific Heat": "Calore specifico",
   "Density": "Densità",
   "Specific Volume": "Volume specifico",
-  "Summary": "Riepilogo"
+  "Summary": "Riepilogo",
+  "No system coils found": "Nessuna serpentina di sistema trovata"
 }

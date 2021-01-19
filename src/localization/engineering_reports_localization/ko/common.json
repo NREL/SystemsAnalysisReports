@@ -3,6 +3,10 @@
   "Revit Systems Analysis - Loads Report": "Revit 시스템 해석 - 부하 보고서",
   "Zone Load Summary": "구역 부하 요약",
   "System Load Summary": "시스템 부하 요약",
-  "Design Psychrometrics": "건습구 설계",
-  "PDF": "PDF"
+  "Design Psychrometrics": "습공기 설계",
+  "PDF": "PDF",
+  "Revit Units": "Revit 단위",
+  "IP Units": "IP 단위",
+  "SI Units": "SI 단위",
+  "Printing PDF": "PDF 인쇄"
 }

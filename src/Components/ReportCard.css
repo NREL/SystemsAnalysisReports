@@ -23,3 +23,7 @@
   .Report-card-item {
     margin-bottom: 24px;
   }
+
+  .Report-card-item-value {
+    font-family: 'ArtifaktElement-Bold';
+  }

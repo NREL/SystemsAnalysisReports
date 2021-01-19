@@ -170,7 +170,7 @@ function LoadSummary(props) {
                         keyboard={false}
                     >
                         <Modal.Header closeButton={false}>
-                        <Modal.Title>{sectionSelection === "zone_load_summary" ? "Printing Zone Load Summary Report to PDF": "Printing System Load Summary Report to PDF" }</Modal.Title>
+                        {/*<Modal.Title>{sectionSelection === "zone_load_summary" ? "Printing Zone Load Summary Report to PDF": "Printing System Load Summary Report to PDF" }</Modal.Title>*/}
                         </Modal.Header>
                         <Modal.Body>
                         <ProgressBar now={progressBarValue} />
@@ -179,7 +179,11 @@ function LoadSummary(props) {
                 </React.Fragment>
         );
     } else {
-        return( <h1>No {name === "zoneLoadSummary" ? "zones": "systems" } found.</h1> )
+        return(
+            <div className='App-full-width-content'>
+                <h1>{t(ns + ":No " + (name === 'zoneLoadSummary' ? 'zones': 'systems') + " found")}.</h1>
+            </div>
+        )
     }
 }
 
