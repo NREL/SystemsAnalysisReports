@@ -30,24 +30,24 @@ export const LoadSummaryPDF = async (
     // Set title for report
     var pageTitle = null;
     if (sectionSelection==='zone_load_summary') {
-        pageTitle = 'Zone Load Summary';
+        pageTitle = t(ns+":"+'Zone Load Summary');
     }  else if (sectionSelection==='system_load_summary') {
-        pageTitle = 'System Load Summary';
+        pageTitle = t(ns+":"+'System Load Summary');
     } else {
         pageTitle = '';
     }
 
     const cardFontSize = 6;
-    const tableBodyStyle = { fontStyle: 'normal', fontSize: 5, textColor: 80, padding: 0, minCellHeight: 0, lineWidth: 0.1, fillColor: 255}
-    const tableHeaderStyle =  { fontSize: 5, padding: 0, minCellHeight: 0, lineWidth: 0.1, halign: 'center' };
+    const tableBodyStyle = { fontStyle: 'normal', fontSize: 8, textColor: 80, padding: 0, minCellHeight: 0, lineWidth: 0, fillColor: 255}
+    const tableHeaderStyle =  { fontSize: 8, padding: 0, minCellHeight: 0, lineWidth: 0.1, halign: 'center', fillColor: '#CCCCCC' };
     const columnStyles = {
-        sensible_instant: {cellWidth: 28, halign: 'center' },
-        sensible_delayed: {cellWidth: 28, halign: 'center' },
-        latent: {cellWidth: 28, halign: 'center' },
-        total: {cellWidth: 28, halign: 'center' },
-        percent_grand_total: {cellWidth: 28, halign: 'center' }
+        sensible_instant: {cellWidth: 35, halign: 'center' },
+        sensible_delayed: {cellWidth: 35, halign: 'center' },
+        latent: {cellWidth: 22, halign: 'center' },
+        total: {cellWidth: 22, halign: 'center' },
+        percent_grand_total: {cellWidth: 35, halign: 'center' }
     };
-    const tableSubHeaderSize = 7;
+    const tableSubHeaderSize = 8;
     const tableSubHeaderMargin = 2;
 
     // Default a4 size (210 x 297 mm), units in mm
@@ -87,184 +87,205 @@ export const LoadSummaryPDF = async (
             }
 
             // Title
-            doc.setFontSize(13);
-            doc.text(t(ns+":"+pageTitle), 10, 10);
+            doc.setFontSize(14);
+            doc.setFont(baseFont)
+            doc.text(pageTitle, 5, 17);
 
+            const pageTitleWidth = doc.getStringUnitWidth(pageTitle)*14*25.4/72
             // Object Name
-            xStart = 10;
-            yStart = 16;
-            const objectNameWidth = doc.getStringUnitWidth(objectName)*11*25.4/72;
+            xStart = 5 + pageTitleWidth + 10;
+            yStart = 17;
+            const objectNameWidth = doc.getStringUnitWidth(objectName)*10*25.4/72;
             doc.setDrawColor(0);
-            doc.setFillColor(108, 117, 125);
-            doc.rect(xStart-1, yStart-4, objectNameWidth+3, 5, 'F');
+            doc.setFillColor(108, 118, 126);
+            doc.rect(xStart-1, yStart-4, objectNameWidth+2, 5, 'F');
             doc.setTextColor(255,255,255);
-            doc.setFontSize(11);
+            doc.setFontSize(10);
             doc.text(objectName, xStart, yStart);
 
             // Cooling/Heating Label
-            xStart += objectNameWidth + 5;  // Place label next to the object name label
-            yStart = 16;
+            xStart += objectNameWidth + 7;  // Place label next to the object name label
+            yStart = 17;
 
             if(heatingCoolingSelection === 'cooling'){
+                const conditionType = t(ns+":"+'Cooling').toUpperCase()
+                const conditionTypeLen = doc.getStringUnitWidth(conditionType)*10*25.4/72;
                 doc.setDrawColor(0);
-                doc.setFillColor(0, 123, 255);
-                doc.rect(xStart-1, yStart-4, 15, 5, 'F');
+                doc.setFillColor(67, 116, 186);
+                doc.rect(xStart, yStart-4, conditionTypeLen + 2, 5, 'F');
                 doc.setTextColor(255,255,255);
                 doc.setFontSize(10);
-                doc.text(t(ns+":"+'Cooling'), xStart, yStart);  
+                doc.text(conditionType, xStart+1, yStart);
             } else if (heatingCoolingSelection === 'heating') {
                 doc.setDrawColor(0);
                 doc.setFillColor(220, 53, 69);
                 doc.rect(xStart-1, yStart-4, 15, 5, 'F');
                 doc.setTextColor(255,255,255);
                 doc.setFontSize(10);
-                doc.text(t(ns+":"+'Heating'), xStart, yStart);  
+                doc.text(t(ns+":"+'Heating').toUpperCase(), xStart, yStart);
             }
 
             // Write Peak Conditions
-            xStart = 15; 
-            yStart = 21;
+            xStart = 5;
+            yStart = 17+8;
 
             const peakConditionsData = data[objectName][heatingCoolingSelection]['peak_condition'];
-            var cardText = formatCardText(unitSystem, dataMapping['peakConditions'][0], peakConditionsData, t, ns);
+            let cardText = formatCardText(unitSystem, dataMapping['peakConditions'][0], peakConditionsData, t, ns);
+            let label = t(ns + ':' + 'Conditions at Time of Peak').toUpperCase()
+            let labelLen = doc.getStringUnitWidth(label)*7*25.4/72;
+            const col1Width = labelLen
             doc.setDrawColor(0);
             doc.setFillColor(221, 221, 221);
-            doc.rect(xStart, yStart, 35, 3, 'F');
+            doc.rect(xStart, yStart, labelLen + 4, 5, 'F');
             doc.setTextColor(0, 0, 0);
-            doc.setFontSize(cardFontSize+1);
-            doc.text(t(ns + ':' + 'Conditions at Time of Peak'), xStart, yStart+2);
+            doc.setFont(baseFont, "bold");
+            doc.setFontSize(7);
+            doc.text(label, xStart + 2, yStart+4);
+            doc.setFont(baseFont, "normal");
             doc.setFontSize(cardFontSize);
-            doc.text(cardText, xStart, yStart+6);
-
-            // Write Outside Conditions
-            xStart = 15;
-            yStart = 31;
+            doc.text(cardText, xStart + 2, yStart+9);
+            //
+            // // Write Outside Conditions
+            xStart = 7;
+            yStart = 38;
 
             doc.setFont(baseFont, "bold");
-            doc.text(t(ns + ':' + dataMapping['peakConditions'][1]['label']), xStart, yStart);
+            label = t(ns + ':' + dataMapping['peakConditions'][1]['label'])
+            labelLen = doc.getStringUnitWidth(label)*7*25.4/72;
+            doc.text(label, xStart, yStart);
             cardText = formatCardText(unitSystem, dataMapping['peakConditions'][1], peakConditionsData, t, ns);
             doc.setFont(baseFont, "normal");
             doc.setFontSize(cardFontSize);
-            doc.text(cardText, xStart, yStart+2);
+            doc.text(cardText, xStart + 1.5, yStart+3);
 
             // Write Zone Conditions
             if (sectionSelection==='zone_load_summary') {
-                xStart = 15;
-                yStart = 41;
+                xStart = 7;
+                yStart = 50;
 
                 doc.setFont(baseFont, "bold");
                 doc.text(t(ns + ':' + dataMapping['peakConditions'][2]['label']), xStart, yStart);
                 cardText = formatCardText(unitSystem, dataMapping['peakConditions'][2], peakConditionsData, t, ns);
                 doc.setFont(baseFont, "normal");
                 doc.setFontSize(cardFontSize);
-                doc.text(cardText, xStart, yStart+2);
+                doc.text(cardText, xStart + 1.5, yStart+3);
             }
 
             // Write Temperatures
             if (sectionSelection==='system_load_summary') {
-                xStart = 15;
-                yStart = 41;
+                xStart = 5;
+                yStart = 50;
 
+                label = t(ns + ':' + 'Temperatures').toUpperCase()
+                labelLen = doc.getStringUnitWidth(label)*7*25.4/72;
                 const temperatureData = data[objectName][heatingCoolingSelection]['temperature'];
                 cardText = formatCardText(unitSystem, dataMapping['temperatures'][0], temperatureData, t, ns);
                 doc.setDrawColor(0);
                 doc.setFillColor(221, 221, 221);
-                doc.rect(xStart, yStart, 35, 3, 'F');
+                doc.rect(xStart, yStart, col1Width + 4, 5, 'F');
                 doc.setTextColor(0, 0, 0);
+                doc.setFont(baseFont, "bold");
                 doc.setFontSize(cardFontSize+1);
-                doc.text(t(ns + ':' + 'Temperatures'), xStart, yStart+2);
+                doc.text(label, xStart + 2, yStart+4);
+                doc.setFont(baseFont, "normal");
                 doc.setFontSize(cardFontSize);
-                doc.text(cardText, xStart, yStart+6);
+                doc.text(cardText, xStart + 2, yStart+9);
             }
 
             // Write Airflows
             if (sectionSelection==='system_load_summary') {
-                xStart = 60;
-                yStart = 21;
+                xStart = col1Width + 16;
+                yStart = 17+8;
 
+                label = t(ns + ':' + 'Airflows').toUpperCase()
                 const airflowData = data[objectName][heatingCoolingSelection]['airflow'];
                 cardText = formatCardText(unitSystem, dataMapping['airflows'][0], airflowData, t, ns);
                 doc.setDrawColor(0);
                 doc.setFillColor(221, 221, 221);
-                doc.rect(xStart, yStart, 35, 3, 'F');
+                doc.rect(xStart, yStart, 60, 5, 'F');
                 doc.setTextColor(0, 0, 0);
+                doc.setFont(baseFont, "bold");
                 doc.setFontSize(cardFontSize+1);
-                doc.text(t(ns + ':' + 'Airflows'), xStart, yStart+2);
+                doc.text(label, xStart + 2, yStart+4);
+                doc.setFont(baseFont, "normal");
                 doc.setFontSize(cardFontSize);
-                doc.text(cardText, xStart, yStart+6);
+                doc.text(cardText, xStart + 2, yStart+9);
             }
 
             // Write Engineering Checks
             if (sectionSelection==='zone_load_summary') {
-                xStart = 60;
-                yStart = 21;
+                xStart = col1Width + 16;
+                yStart = 17+8;
             } else if (sectionSelection==='system_load_summary') {
-                xStart = 60;
-                yStart = 35;
+                xStart = col1Width + 16;
+                yStart = 17+23;
             }
 
             const engineeringCheckData = data[objectName][heatingCoolingSelection]['engineering_check'];
             cardText = formatCardText(unitSystem, dataMapping['engineeringCheck'][0], engineeringCheckData, t, ns);
             doc.setDrawColor(0);
             doc.setFillColor(221, 221, 221);
-            doc.rect(xStart, yStart, 40, 3, 'F');
+            doc.rect(xStart, yStart, 60, 5, 'F');
             doc.setTextColor(0, 0, 0);
+            doc.setFont(baseFont, "bold");
             doc.setFontSize(cardFontSize+1);
-            doc.text(t(ns + ':' + 'Engineering Checks'), xStart, yStart+2);
+            doc.text(t(ns + ':' + 'Engineering Checks').toUpperCase(), xStart + 2, yStart+4);
+            doc.setFont(baseFont, "normal");
             doc.setFontSize(cardFontSize);
-            doc.text(cardText, xStart, yStart+6);
+            doc.text(cardText, xStart+2, yStart+9);
 
-            // Write Heating/Cooling Load Chart
-            yStart = 5;
-
-            let svg = ReactDOM.findDOMNode(chart1Ref.current);
-            let width = svg.getBoundingClientRect().width;
-            let height = svg.getBoundingClientRect().height;
-
-            await domtoimage.toPng(svg, {
-                width: width,
-                height: height,
-                style: {
-                'transform': 'scale(1.0)',
-                'transform-origin': 'top left'
-                }
-            })
-            .then(function (dataUrl) {
-                doc.addImage(dataUrl, 'PNG', 110, yStart, width/8, height/8);
-            })
-            .catch(function (error) {
-                console.error('Chart 1 did not render properly.', error);
-            });
-
-            // Write Component Load Chart
-            svg = ReactDOM.findDOMNode(chart2Ref.current);
-            width = svg.getBoundingClientRect().width;
-            height = svg.getBoundingClientRect().height;
-
-            await domtoimage.toPng(svg, {
-                width: width,
-                height: height,
-                style: {
-                'transform': 'scale(1.0)',
-                'transform-origin': 'top left'
-                }
-            })
-            .then(function (dataUrl) {
-                doc.addImage(dataUrl, 'PNG', 155, yStart, width/8, height/8);
-            })
-            .catch(function (error) {
-                console.error('Chart 2 did not render properly.', error);
-            });
-            
+            // // Write Heating/Cooling Load Chart
+            // yStart = 5;
+            //
+            // let svg = ReactDOM.findDOMNode(chart1Ref.current);
+            // let width = svg.getBoundingClientRect().width;
+            // let height = svg.getBoundingClientRect().height;
+            //
+            // await domtoimage.toPng(svg, {
+            //     width: width,
+            //     height: height,
+            //     style: {
+            //     'transform': 'scale(1.0)',
+            //     'transform-origin': 'top left'
+            //     }
+            // })
+            // .then(function (dataUrl) {
+            //     doc.addImage(dataUrl, 'PNG', 110, yStart, width/8, height/8);
+            // })
+            // .catch(function (error) {
+            //     console.error('Chart 1 did not render properly.', error);
+            // });
+            //
+            // // Write Component Load Chart
+            // svg = ReactDOM.findDOMNode(chart2Ref.current);
+            // width = svg.getBoundingClientRect().width;
+            // height = svg.getBoundingClientRect().height;
+            //
+            // await domtoimage.toPng(svg, {
+            //     width: width,
+            //     height: height,
+            //     style: {
+            //     'transform': 'scale(1.0)',
+            //     'transform-origin': 'top left'
+            //     }
+            // })
+            // .then(function (dataUrl) {
+            //     doc.addImage(dataUrl, 'PNG', 155, yStart, width/8, height/8);
+            // })
+            // .catch(function (error) {
+            //     console.error('Chart 2 did not render properly.', error);
+            // });
+            //
             // Load Components Table
             const loadComponentsData = data[objectName][heatingCoolingSelection]['estimated_peak_load_component_table'];
 
             //Table Header
-            yStart = 56;
+            yStart = 68;
             var mapKey = 'envelopeLoadsTable';
             var colLabels = getColumnLabels(unitSystem, mapKey, dataMapping, t, ns);
 
             doc.autoTable({
+                margin: 5,
                 bodyStyles: { lineWidth: 0, fillColor: [255, 255, 255]},
                 alternateRowStyles: { lineWidth: 0, fillColor: [255, 255, 255]},
                 headStyles: tableHeaderStyle,
@@ -272,85 +293,129 @@ export const LoadSummaryPDF = async (
                 body: [{name: null, sensible_instant: null, sensible_delayed: null, latent: null, total: null, percent_grand_total: null}],
                 columns: colLabels,
                 startY: yStart+tableSubHeaderMargin,
+                styles: {
+                    cellPadding: {top: 1, right: 0, bottom: 1, left: 0},
+                }
             })
 
             // Envelope Loads Table
-            yStart += 12;
+            let finalY = doc.lastAutoTable.finalY
+            yStart = finalY - 2;
+            doc.setFont(baseFont, "bold");
             doc.setFontSize(tableSubHeaderSize);
-            doc.text(t(ns + ':' + 'Envelope'), 15, yStart);
+            doc.text(t(ns + ':' + 'Envelope'), 5, yStart);
             var mapKey = 'envelopeLoadsTable';
             var colLabels = getColumnLabels(unitSystem, mapKey, dataMapping, t, ns);
             var tempTableData = formatLoadSummaryTableData(dataMapping[mapKey], loadComponentsData)
             var tableData = convertObjectToPDFTable(unitSystem, dataMapping[mapKey], tempTableData, t, ns);
 
             doc.autoTable({
-                tableLineWidth: 0.1,
+                margin: 5,
+                tableLineWidth: 0,
                 bodyStyles: tableBodyStyle,
                 columnStyles: columnStyles,
                 body: tableData,
                 columns: colLabels,
                 showHead: 'never',
-                startY: yStart+tableSubHeaderMargin,
+                startY: yStart + tableSubHeaderMargin,
+                styles: {
+                    cellPadding: {top: 1, right: 0, bottom: 1, left: 11},
+                },
+                didParseCell: function (data) {
+                    var rows = data.table.body;
+                    if (data.row.index === rows.length - 1) {
+                        data.cell.styles.fontStyle = "bold";
+                    }
+                }
             })
 
-            
+
             // Internal Gains Table
-            yStart += 97;
+            finalY = doc.lastAutoTable.finalY
+            yStart = finalY + 8;
+            doc.setFont(baseFont, "bold");
             doc.setFontSize(tableSubHeaderSize);
-            doc.text(t(ns + ':' + 'Internal Gains'), 15, yStart);
+            doc.text(t(ns + ':' + 'Internal Gains'), 5, yStart);
             mapKey = 'internalGainsTable';
             colLabels = getColumnLabels(unitSystem, mapKey, dataMapping, t, ns);
             tempTableData = formatLoadSummaryTableData(dataMapping[mapKey], loadComponentsData)
             tableData = convertObjectToPDFTable(unitSystem, dataMapping[mapKey], tempTableData, t, ns);
 
             doc.autoTable({
+                margin: 5,
                 bodyStyles: tableBodyStyle,
                 columnStyles: columnStyles,
                 body: tableData,
                 columns: colLabels,
                 showHead: 'never',
-                startY: yStart+tableSubHeaderMargin,
+                startY: yStart + tableSubHeaderMargin,
+                styles: {
+                    cellPadding: {top: 1, right: 0, bottom: 1, left: 11},
+                },
+                didParseCell: function (data) {
+                    var rows = data.table.body;
+                    if (data.row.index === rows.length - 1) {
+                        data.cell.styles.fontStyle = "bold";
+                    }
+                }
             })
 
-            
+
             // System Loads Table
-            yStart += 36;
+            finalY = doc.lastAutoTable.finalY
+            yStart = finalY + 8;
             doc.setFontSize(tableSubHeaderSize);
-            doc.text(t(ns + ':' + 'Systems'), 15, yStart);
+            doc.text(t(ns + ':' + 'Systems'), 5, yStart);
             mapKey = 'systemLoadsTable';
             colLabels = getColumnLabels(unitSystem, mapKey, dataMapping, t, ns);
             tempTableData = formatLoadSummaryTableData(dataMapping[mapKey], loadComponentsData)
             tableData = convertObjectToPDFTable(unitSystem, dataMapping[mapKey], tempTableData, t, ns);
 
             doc.autoTable({
+                margin: 5,
                 bodyStyles: tableBodyStyle,
                 columnStyles: columnStyles,
                 body: tableData,
                 columns: colLabels,
                 showHead: 'never',
                 startY: yStart+tableSubHeaderMargin,
+                styles: {
+                    cellPadding: {top: 1, right: 0, bottom: 1, left: 11},
+                },
+                didParseCell: function (data) {
+                    var rows = data.table.body;
+                    if (data.row.index === rows.length - 1) {
+                        data.cell.styles.fontStyle = "bold";
+                    }
+                }
             })
 
-            // Total Loads Table
-            if (sectionSelection==='zone_load_summary') {
-                yStart += 59;
-            } else if (sectionSelection==='system_load_summary') {
-                yStart += 63;
-            }
+            finalY = doc.lastAutoTable.finalY
+            yStart = finalY + 8;
             doc.setFontSize(tableSubHeaderSize);
-            doc.text(t(ns + ':' + 'Total'), 15, yStart);
+            doc.text(t(ns + ':' + 'Total'), 5, yStart);
             mapKey = 'totalLoadsTable';
             colLabels = getColumnLabels(unitSystem, mapKey, dataMapping, t, ns);
             tempTableData = formatLoadSummaryTableData(dataMapping[mapKey], loadComponentsData)
             tableData = convertObjectToPDFTable(unitSystem, dataMapping[mapKey], tempTableData, t, ns);
 
             doc.autoTable({
+                margin: 5,
                 bodyStyles: tableBodyStyle,
                 columnStyles: columnStyles,
                 body: tableData,
                 columns: colLabels,
                 showHead: 'never',
                 startY: yStart+tableSubHeaderMargin,
+                styles: {
+                    cellPadding: {top: 1, right: 0, bottom: 1, left: 11},
+                },
+                didParseCell: function (data) {
+                    var rows = data.table.body;
+                    if (data.row.index === rows.length - 1) {
+                        data.cell.styles.fontStyle = "bold";
+                    }
+                }
             })
 
             // update progress bar
