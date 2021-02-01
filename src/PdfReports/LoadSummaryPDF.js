@@ -54,7 +54,7 @@ export const LoadSummaryPDF = async (
 
     // Default a4 size (210 x 297 mm), units in mm
     const doc = new jsPDF({orientation: 'portrait', format: 'a4', unit: 'mm', compress: true});
-    doc.setFont('Artifakt Element')
+    doc.setFont('ArtifaktElement')
     const baseFont = doc.getFont()['fontName'];
 
     // Turn off animations
@@ -198,11 +198,11 @@ export const LoadSummaryPDF = async (
                 body: tableData,
                 columns: [{header: '', dataKey: 'key'}, {header: '', dataKey: 'value'}],
                 showHead: 'never',
-                startY: yStart,
+                startY: yStart + 0.5,
                 tableWidth: tableWidth,
                 styles: {
                     cellPadding: {top: 0, right: 0, bottom: 0, left: 0},
-                    font: "Artifakt Element"
+                    font: "ArtifaktElement"
                 }
             });
 
@@ -240,11 +240,11 @@ export const LoadSummaryPDF = async (
                     body: tableData,
                     columns: [{header: '', dataKey: 'key'}, {header: '', dataKey: 'value'}],
                     showHead: 'never',
-                    startY: yStart,
+                    startY: yStart + 0.5,
                     tableWidth: tableWidth,
                     styles: {
                         cellPadding: {top: 0, right: 0, bottom: 0, left: 0},
-                        font: "Artifakt Element"
+                        font: "ArtifaktElement"
                     }
                 });
             }
@@ -292,7 +292,7 @@ export const LoadSummaryPDF = async (
                     tableWidth: tableWidth,
                     styles: {
                         cellPadding: {top: 0, right: 0, bottom: 0, left: 0},
-                        font: "Artifakt Element"
+                        font: "ArtifaktElement"
                     }
                 });
             }
@@ -383,7 +383,7 @@ export const LoadSummaryPDF = async (
                     tableWidth: tableWidth,
                     styles: {
                         cellPadding: {top: 0, right: 0, bottom: 0, left: 0},
-                        font: "Artifakt Element"
+                        font: "ArtifaktElement"
                     }
                 });
             }
@@ -436,7 +436,7 @@ export const LoadSummaryPDF = async (
                 tableWidth: tableWidth,
                 styles: {
                     cellPadding: {top: 0, right: 0, bottom: 0, left: 0},
-                    font: "Artifakt Element"
+                    font: "ArtifaktElement"
                 }
             });
 
@@ -459,7 +459,7 @@ export const LoadSummaryPDF = async (
                 startY: yStart+tableSubHeaderMargin,
                 styles: {
                     cellPadding: {top: 1, right: 0, bottom: 1, left: 0},
-                    font: "Artifakt Element"
+                    font: "ArtifaktElement"
                 }
             })
 
@@ -487,7 +487,7 @@ export const LoadSummaryPDF = async (
                 startY: yStart + tableSubHeaderMargin,
                 styles: {
                     cellPadding: {top: 1, right: 0, bottom: 1, left: 5},
-                    font: "Artifakt Element"
+                    font: "ArtifaktElement"
                 },
                 didParseCell: function (data) {
                     var rows = data.table.body;
@@ -522,7 +522,7 @@ export const LoadSummaryPDF = async (
                 startY: yStart + tableSubHeaderMargin,
                 styles: {
                     cellPadding: {top: 1, right: 0, bottom: 1, left: 5},
-                    font: "Artifakt Element"
+                    font: "ArtifaktElement"
                 },
                 didParseCell: function (data) {
                     var rows = data.table.body;
@@ -556,7 +556,7 @@ export const LoadSummaryPDF = async (
                 startY: yStart+tableSubHeaderMargin,
                 styles: {
                     cellPadding: {top: 1, right: 0, bottom: 1, left: 5},
-                    font: "Artifakt Element"
+                    font: "ArtifaktElement"
                 },
                 didParseCell: function (data) {
                     var rows = data.table.body;
@@ -588,7 +588,7 @@ export const LoadSummaryPDF = async (
                 startY: yStart+tableSubHeaderMargin,
                 styles: {
                     cellPadding: {top: 1, right: 0, bottom: 1, left: 5},
-                    font: "Artifakt Element"
+                    font: "ArtifaktElement"
                 },
                 didParseCell: function (data) {
                     var rows = data.table.body;
