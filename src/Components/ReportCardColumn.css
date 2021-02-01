@@ -36,6 +36,7 @@
     width: 150px;
     text-align: right;
     padding-right: 6px;
+    word-break: break-word;
 }
 
 .Report-card-table-value {

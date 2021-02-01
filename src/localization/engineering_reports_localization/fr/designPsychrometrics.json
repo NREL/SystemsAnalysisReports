@@ -12,7 +12,7 @@
   "System Name": "Nom du système",
   "Time of Peak": "Heure du pic",
   "Coil Air Flow Rate": "Vitesse d'écoulement de l'air",
-  "Zone Space Sensible Load": "Charge sensible de l'espace de zone",
+  "Zone Space Sensible Load": "Apports sensibles (Espace, Zone)",
   "Outdoor Air Flow Rate": "Débit d'air extérieur",
   "Percent Outdoor Air": "Pourcentage d'air extérieur",
   "Air Specific Heat": "Chaleur spécifique à l'air",

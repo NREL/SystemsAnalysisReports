@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Cell, Legend, Pie, PieChart } from 'recharts';
+import { Cell, Legend, Pie, PieChart, ResponsiveContainer } from 'recharts';
 import { Context } from '../store/index';
 import './PieChart.css';
 import { Translation } from 'react-i18next';
@@ -7,10 +7,11 @@ import { Translation } from 'react-i18next';
 const RADIAN = Math.PI / 180;
 
 export function CustomPieChart(props) {
-    const { name, title, colors, data, pdfRef, isHidden, ns } = props;
-    
+    const { name, title, colors, data, pdfRef, isHidden, ns, id } = props;
+
     const { 
         animationEnable,
+        pdfPrint
     } = useContext(Context);
 
     const renderCustomizedLabel = ({
@@ -76,39 +77,82 @@ export function CustomPieChart(props) {
         return legendArray;
     }
 
-    const width = 220;
-    const height = 180;
+    const renderPrintLegend = (value, entry, index) => {
+        return <Translation>
+            {
+                (t) => <span>{t(ns+":"+value)}</span>
+            }
+        </Translation>;
+    }
 
-    return (
-        <div ref={pdfRef} className="App-chart-container" style={displayStyle(isHidden)}>
-            <div className="App-chart-title">{title}</div>
-            <div className="pie-chart-container">
-                <PieChart width={width} height={height} >
-                    <Pie
-                        data={data}
-                        dataKey="value"
-                        cx={width/2}
-                        cy={height/2}
-                        innerRadius={0}
-                        outerRadius={(width-40)/3.25}
-                        fill="#8884d8"
-                        label={renderCustomizedLabel}
-                        isAnimationActive ={animationEnable}
-                    >
-                    {
-                        ( data ? data.map((entry, index) => (
-                            <Cell
-                            key={ name + '-' + index.toString()}
-                            fill={colors[index % colors.length]}
-                            />
-                        )) : null)
-                    }
-                    </Pie>
-                </PieChart>
-                <div>
-                    {renderLegend(ns, data, colors)}
+    const width = 220;
+    const height = 168;
+
+    if (pdfPrint) {
+        return (
+            <div ref={pdfRef} id={id} className="App-chart-container-print" style={displayStyle(isHidden)}>
+                <div className="App-chart-title-print">{title}</div>
+                <div className="pie-chart-container-print">
+                    <PieChart width={width} height={height}>
+                        <Pie
+                            data={data}
+                            dataKey="value"
+                            cx={width/2}
+                            cy={(height)/2}
+                            innerRadius={0}
+                            outerRadius={(width-40)/3.25}
+                            fill="#8884d8"
+                            label={renderCustomizedLabel}
+                            isAnimationActive ={animationEnable}
+                            height={height}
+                        >
+                            {
+                                ( data ? data.map((entry, index) => (
+                                    <Cell
+                                        key={ name + '-' + index.toString()}
+                                        fill={colors[index % colors.length]}
+                                    />
+                                )) : null)
+                            }
+                        </Pie>
+                        <Legend align="center" wrapperStyle={{position:"relative", width:240}} formatter={renderPrintLegend}/>
+                    </PieChart>
                 </div>
             </div>
-        </div>
-    );
+        )
+    } else {
+        return (
+            <div className="App-chart-container" style={displayStyle(isHidden)}>
+                <div className="App-chart-title">{title}</div>
+                <div className="pie-chart-container">
+                    <PieChart width={width} height={height}>
+                        <Pie
+                            data={data}
+                            dataKey="value"
+                            cx={width/2}
+                            cy={height/2}
+                            innerRadius={0}
+                            outerRadius={(width-40)/3.25}
+                            fill="#8884d8"
+                            label={renderCustomizedLabel}
+                            isAnimationActive ={animationEnable}
+                        >
+                            {
+                                ( data ? data.map((entry, index) => (
+                                    <Cell
+                                        key={ name + '-' + index.toString()}
+                                        fill={colors[index % colors.length]}
+                                    />
+                                )) : null)
+                            }
+                        </Pie>
+                    </PieChart>
+                    <div>
+                        {renderLegend(ns, data, colors)}
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
 }
