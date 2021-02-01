@@ -68,10 +68,10 @@ export const PsychrometricChart = (props) => {
                 .range([height, 0]);
         
         // Clear existing svg object
-        select(d3Container.current).selectAll("*").remove();
+        select(d3Container.current.firstChild).selectAll("*").remove();
 
         // Initialize svg object
-        const svg = select(d3Container.current)
+        const svg = select(d3Container.current.firstChild)
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
@@ -384,9 +384,12 @@ export const PsychrometricChart = (props) => {
     }
 
     return (
-        <svg
-            className="d3-component"
-            ref={d3Container}
-        />
+        <div ref={d3Container}>
+            <svg
+                className="d3-component"
+                // ref={d3Container}
+            />
+        </div>
+
     )
 }

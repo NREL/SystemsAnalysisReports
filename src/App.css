@@ -3,13 +3,12 @@
   text-align: center;
   width: 100vw;
   display: grid;
-  grid-template-columns: 244px 724px;
+  grid-template-columns: 250px 730px;
   grid-template-rows: auto auto auto;
   grid-template-areas: 
     "navigation navigation"
     "summary detailed"
     "fullWidth fullWidth";
-  column-gap: 12px;
   row-gap: 0px;
   justify-content: center;
   min-width: min-content;
@@ -44,7 +43,7 @@
 
 .App-detailed-content {
   grid-area: detailed;
-  margin-right: 24px;
+  margin-left: 6px;
 }
 
 .App-full-width-content {

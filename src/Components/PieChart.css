@@ -5,6 +5,12 @@
   background-color: #EEEEEE59;
 }
 
+.App-chart-container-print {
+  width: 244px;
+  margin-bottom: 12px;
+  background-color: #FFFFFF;
+}
+
 .App-chart-title {
   align-items: center;
   justify-content: center;
@@ -12,13 +18,33 @@
   background-color: #CCCCCC59;
   line-height: 2;
 }
+
+.App-chart-title-print {
+  width:244px;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  background-color: #FFFFFF;
+  line-height: 2;
+  font-family: 'ArtifaktElement-Bold';
+}
   
 .recharts-wrapper {
   margin : 0 auto;
+  height: auto !important;
+}
+
+.recharts-legend-item {
+  font-size: 10px;
 }
 
 .pie-chart-container {
   background-color: #EEEEEE59;
+}
+
+.pie-chart-container-print {
+  width: 240px;
+  background-color: #FFFFFF;
 }
 
 .pie-chart-legend-item {
@@ -29,7 +55,7 @@
 }
 
 .pie-chart-legend-text {
-  font-size: 10px;
+  font-size: 12px;
   display: inline-block;
   padding-left: 8px;
   padding-bottom: 12px;
