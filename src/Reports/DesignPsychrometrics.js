@@ -41,7 +41,6 @@ function DesignPsychrometrics(props) {
 
             // Async function to write report
             async function writePDFReport() {
-                console.log('Print pdf report.');
 
                 // Open progress modal
                 setModalShow(true);
@@ -136,7 +135,6 @@ function DesignPsychrometrics(props) {
                     keyboard={false}
                 >
                     <Modal.Header closeButton={false}>
-                    <Modal.Title>{"Printing Design Psychrometrics Report to PDF"}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                     <ProgressBar now={progressBarValue} />

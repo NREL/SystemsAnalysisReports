@@ -5,10 +5,13 @@ import SummaryContent from '../Components/SummaryContent';
 import DetailedContent from '../Components/DetailedContent';
 import { ObjectSelectionDropDown } from '../Components/ObjectSelectionDropdown';
 import { Context } from '../store/index';
-import { getObjectName } from '../functions/dataFormatting';
+import {getHeatingAndCoolingPeakLoads, getObjectName, getUnitLabel} from '../functions/dataFormatting';
 import { LoadSummaryPDF } from '../PdfReports/LoadSummaryPDF';
 import { useTranslation } from "react-i18next";
 import './LoadSummary.css';
+import {render} from "@testing-library/react";
+import {COOLINGHEATINGCOLORS} from "../constants/settings";
+import {CustomPieChart} from "../Components/PieChart";
 
 function LoadSummary(props) {
     const { 
@@ -39,9 +42,7 @@ function LoadSummary(props) {
     useEffect(() => {
         if (pdfPrint) {
 
-            // Async function to write report
             async function writePDFReport() {
-                console.log('Print pdf report.');
 
                 // Open progress modal
                 setModalShow(true);
@@ -79,8 +80,8 @@ function LoadSummary(props) {
                 
                 // Return to original state
                 setModalShow(false);
-                setObjectId(origId);
-                setHeatingCoolingSelection(origHeatingCoolingSelection);
+                // setObjectId(origId);
+                // setHeatingCoolingSelection(origHeatingCoolingSelection);
             }
             
             writePDFReport()
@@ -115,6 +116,34 @@ function LoadSummary(props) {
 
         return (
                 <React.Fragment>
+                    <div id='test_id' style={{width:0, height:0, overflow:"hidden"}}>
+                        {
+                            function() {
+                                var items = []
+                                const heatingCoolingOptions = ['cooling', 'heating'];
+
+                                for (var j = 0; j < heatingCoolingOptions.length; j++) {
+                                    const heatingCoolingSelection = heatingCoolingOptions[j];
+
+                                    for (var i = 0; i < objectList.length; i++) {
+                                        const objectName = getObjectName(objectList, i);
+                                        items.push(
+                                            <CustomPieChart
+                                                name={name + "-peakLoadsChart"}
+                                                title={t(ns+":"+"Peak Loads")+" [" + getUnitLabel(unitSystem, "heat_transfer_rate", t) + "]"}
+                                                colors={COOLINGHEATINGCOLORS}
+                                                data={getHeatingAndCoolingPeakLoads(unitSystem, objectName, data)}
+                                                ns={ns}
+                                                id={objectName + "-peakLoadsChart"}
+                                            />
+                                        )
+                                    }
+                                }
+
+                                return items
+                            }()
+                        }
+                    </div>
                     <div className='App-summary-content' style={{marginLeft: "24px"}}>
                         {objectList ? <ObjectSelectionDropDown
                             name={name + "-objectDropdown"}
@@ -140,7 +169,7 @@ function LoadSummary(props) {
                     </div>
                     <div className='App-detailed-content'>
                         <div className="heating-cooling-button-group">
-                            <button 
+                            <button
                                 onClick={() => handleHeatingCoolingSelect('cooling')}
                                 className={
                                     heatingCoolingSelection == 'cooling' ? "heating-cooling-button-active" : "heating-cooling-button-inactive"

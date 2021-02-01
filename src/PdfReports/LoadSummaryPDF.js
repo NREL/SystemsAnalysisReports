@@ -7,6 +7,8 @@ import { getHeader } from '../functions/tableFunctions';
 import { getObjectName, convertDataUnit, getUnitLabel } from '../functions/dataFormatting';
 import { isNumeric, numberWithCommas } from '../functions/numericFunctions';
 import { formatLoadSummaryTableData } from '../functions/tableFunctions';
+import '../../public/fonts/jsPDF/ArtifaktElement-normal'
+import '../../public/fonts/jsPDF/ArtifaktElement-bold'
 
 export const LoadSummaryPDF = async (
     unitSystem,
@@ -38,8 +40,8 @@ export const LoadSummaryPDF = async (
     }
 
     const cardFontSize = 6;
-    const tableBodyStyle = { fontStyle: 'normal', fontSize: 8, textColor: 80, padding: 0, minCellHeight: 0, lineWidth: 0, fillColor: 255}
-    const tableHeaderStyle =  { fontSize: 8, padding: 0, minCellHeight: 0, lineWidth: 0.1, halign: 'center', fillColor: '#CCCCCC' };
+    const tableBodyStyle = { fontStyle: 'normal', fontSize: 8, textColor: '#000000', padding: 0, minCellHeight: 0, lineWidth: 0, fillColor: 255}
+    const tableHeaderStyle =  { fontStyle: 'normal', fontSize: 8, textColor: '#000000', padding: 0, minCellHeight: 0, lineWidth: 0, halign: 'center', fillColor: '#E5E5E5' };
     const columnStyles = {
         sensible_instant: {cellWidth: 35, halign: 'center' },
         sensible_delayed: {cellWidth: 35, halign: 'center' },
@@ -52,6 +54,7 @@ export const LoadSummaryPDF = async (
 
     // Default a4 size (210 x 297 mm), units in mm
     const doc = new jsPDF({orientation: 'portrait', format: 'a4', unit: 'mm', compress: true});
+    doc.setFont('Artifakt Element')
     const baseFont = doc.getFont()['fontName'];
 
     // Turn off animations
@@ -65,7 +68,8 @@ export const LoadSummaryPDF = async (
     // Initialize progress bar
     setProgressBarValue(progressBarValue);
 
-    console.log('Print page ' + pageNum);  // Console log first page
+    // Render all charts prior to looping through all the data
+
     for (var j = 0; j < heatingCoolingOptions.length; j++) {
         const heatingCoolingSelection = heatingCoolingOptions[j];
 
@@ -82,30 +86,36 @@ export const LoadSummaryPDF = async (
             // Add page, if necessary
             if (!((i===0) && (j===0))) {
                 pageNum++; // Increment page number
-                console.log('Print page ' + pageNum);  // Console log each new page
                 doc.addPage()
             }
 
             // Title
             doc.setFontSize(14);
-            doc.setFont(baseFont)
-            doc.text(pageTitle, 5, 17);
+            doc.setFont(baseFont, "bold")
+            doc.text(pageTitle, 5, 10);
 
             const pageTitleWidth = doc.getStringUnitWidth(pageTitle)*14*25.4/72
+            // Vertical Line
+            let xStartLine = 5 + pageTitleWidth + 5
+            doc.setDrawColor("#EEEEEE")
+            doc.setLineWidth(0.025)
+            doc.line(xStartLine, 6, xStartLine, 11)
+
             // Object Name
             xStart = 5 + pageTitleWidth + 10;
-            yStart = 17;
+            yStart = 10;
             const objectNameWidth = doc.getStringUnitWidth(objectName)*10*25.4/72;
             doc.setDrawColor(0);
             doc.setFillColor(108, 118, 126);
             doc.rect(xStart-1, yStart-4, objectNameWidth+2, 5, 'F');
             doc.setTextColor(255,255,255);
             doc.setFontSize(10);
+            doc.setFont(baseFont, "normal");
             doc.text(objectName, xStart, yStart);
 
             // Cooling/Heating Label
-            xStart += objectNameWidth + 7;  // Place label next to the object name label
-            yStart = 17;
+            xStart += objectNameWidth + 5;  // Place label next to the object name label
+            yStart = 10;
 
             if(heatingCoolingSelection === 'cooling'){
                 const conditionType = t(ns+":"+'Cooling').toUpperCase()
@@ -127,163 +137,316 @@ export const LoadSummaryPDF = async (
                 doc.text(conditionType, xStart + 1, yStart);
             }
 
+            // Horizontal Line
+            xStartLine = 5
+            doc.setDrawColor("#EEEEEE")
+            doc.setLineWidth(0.025)
+            doc.line(xStartLine, 13, 205, 13)
+
             // Write Peak Conditions
             xStart = 5;
-            yStart = 17+8;
+            yStart = 10+6;
 
             const peakConditionsData = data[objectName][heatingCoolingSelection]['peak_condition'];
             let cardText = formatCardText(unitSystem, dataMapping['peakConditions'][0], peakConditionsData, t, ns);
             let label = t(ns + ':' + 'Conditions at Time of Peak').toUpperCase()
             let labelLen = doc.getStringUnitWidth(label)*7*25.4/72;
-            const col1Width = labelLen
+            let col1Width = 55;
             doc.setDrawColor(0);
             doc.setFillColor(221, 221, 221);
-            doc.rect(xStart, yStart, labelLen + 4, 5, 'F');
+            doc.rect(xStart, yStart, col1Width, 5, 'F');
             doc.setTextColor(0, 0, 0);
             doc.setFont(baseFont, "bold");
             doc.setFontSize(7);
-            doc.text(label, xStart + 2, yStart+4);
+            doc.text(label, xStart + 2, yStart+3.5);
             doc.setFont(baseFont, "normal");
             doc.setFontSize(cardFontSize);
             doc.text(cardText, xStart + 2, yStart+9);
             //
             // // Write Outside Conditions
             xStart = 7;
-            yStart = 38;
+            yStart = 29;
 
             doc.setFont(baseFont, "bold");
             label = t(ns + ':' + dataMapping['peakConditions'][1]['label'])
             labelLen = doc.getStringUnitWidth(label)*7*25.4/72;
             doc.text(label, xStart, yStart);
-            cardText = formatCardText(unitSystem, dataMapping['peakConditions'][1], peakConditionsData, t, ns);
-            doc.setFont(baseFont, "normal");
-            doc.setFontSize(cardFontSize);
-            doc.text(cardText, xStart + 1.5, yStart+3);
+            // cardText = formatCardText(unitSystem, dataMapping['peakConditions'][1], peakConditionsData, t, ns);
+            // doc.setFont(baseFont, "normal");
+            // doc.setFontSize(cardFontSize);
+            // doc.text(cardText, xStart + 1.5, yStart+3);
+
+            let mapKey = 'peakConditions';
+            let tableData = dataToRows(unitSystem, dataMapping[mapKey][1], peakConditionsData, t, ns);
+            const dataTableBodyStyle = { fontStyle: 'normal', fontSize: 6, textColor: '#000000', padding: 0, minCellHeight: 0, lineWidth: 0, fillColor: 255}
+
+            let keyColWidth = getLongestString(doc, tableData, dataTableBodyStyle['fontSize']);
+            let valColWidth = 15;
+            let tableWidth = keyColWidth + valColWidth;
+
+            let dataColumnStyles = {
+                key: { halign: 'left', cellWidth: keyColWidth },
+                value: { halign: 'left', fontStyle:'bold' , cellWidth: valColWidth, valign: 'bottom'}
+            };
+
+            doc.autoTable({
+                margin: 8.5,
+                tableLineWidth: 0,
+                theme: 'plain',
+                bodyStyles: dataTableBodyStyle,
+                columnStyles: dataColumnStyles,
+                body: tableData,
+                columns: [{header: '', dataKey: 'key'}, {header: '', dataKey: 'value'}],
+                showHead: 'never',
+                startY: yStart,
+                tableWidth: tableWidth,
+                styles: {
+                    cellPadding: {top: 0, right: 0, bottom: 0, left: 0},
+                    font: "Artifakt Element"
+                }
+            });
 
             // Write Zone Conditions
             if (sectionSelection==='zone_load_summary') {
                 xStart = 7;
-                yStart = 50;
+                yStart = 41;
 
                 doc.setFont(baseFont, "bold");
                 doc.text(t(ns + ':' + dataMapping['peakConditions'][2]['label']), xStart, yStart);
-                cardText = formatCardText(unitSystem, dataMapping['peakConditions'][2], peakConditionsData, t, ns);
-                doc.setFont(baseFont, "normal");
-                doc.setFontSize(cardFontSize);
-                doc.text(cardText, xStart + 1.5, yStart+3);
+                // cardText = formatCardText(unitSystem, dataMapping['peakConditions'][2], peakConditionsData, t, ns);
+                // doc.setFont(baseFont, "normal");
+                // doc.setFontSize(cardFontSize);
+                // doc.text(cardText, xStart + 1.5, yStart+3);
+
+                let mapKey = 'peakConditions';
+                let tableData = dataToRows(unitSystem, dataMapping[mapKey][2], peakConditionsData, t, ns);
+                const dataTableBodyStyle = { fontStyle: 'normal', fontSize: 6, textColor: '#000000', padding: 0, minCellHeight: 0, lineWidth: 0, fillColor: 255}
+
+                let keyColWidth = getLongestString(doc, tableData, dataTableBodyStyle['fontSize']);
+                const valColWidth = 15;
+                let tableWidth = keyColWidth + valColWidth;
+
+                const dataColumnStyles = {
+                    key: { halign: 'left', cellWidth: keyColWidth },
+                    value: { halign: 'left', fontStyle:'bold' , cellWidth: valColWidth, valign: 'bottom'}
+                };
+
+                doc.autoTable({
+                    margin: 8.5,
+                    tableLineWidth: 0,
+                    theme: 'plain',
+                    bodyStyles: dataTableBodyStyle,
+                    columnStyles: dataColumnStyles,
+                    body: tableData,
+                    columns: [{header: '', dataKey: 'key'}, {header: '', dataKey: 'value'}],
+                    showHead: 'never',
+                    startY: yStart,
+                    tableWidth: tableWidth,
+                    styles: {
+                        cellPadding: {top: 0, right: 0, bottom: 0, left: 0},
+                        font: "Artifakt Element"
+                    }
+                });
             }
 
             // Write Temperatures
             if (sectionSelection==='system_load_summary') {
                 xStart = 5;
-                yStart = 50;
+                yStart = 41;
+                let rectWidth = 55;
 
                 label = t(ns + ':' + 'Temperatures').toUpperCase()
                 labelLen = doc.getStringUnitWidth(label)*7*25.4/72;
-                const temperatureData = data[objectName][heatingCoolingSelection]['temperature'];
-                cardText = formatCardText(unitSystem, dataMapping['temperatures'][0], temperatureData, t, ns);
                 doc.setDrawColor(0);
                 doc.setFillColor(221, 221, 221);
-                doc.rect(xStart, yStart, col1Width + 4, 5, 'F');
+                doc.rect(xStart, yStart, rectWidth, 5, 'F');
                 doc.setTextColor(0, 0, 0);
                 doc.setFont(baseFont, "bold");
                 doc.setFontSize(cardFontSize+1);
-                doc.text(label, xStart + 2, yStart+4);
-                doc.setFont(baseFont, "normal");
-                doc.setFontSize(cardFontSize);
-                doc.text(cardText, xStart + 2, yStart+9);
+                doc.text(label, xStart + 2, yStart+3.5);
+
+                mapKey = 'temperatures';
+                const temperatureData = data[objectName][heatingCoolingSelection]['temperature'];
+                tableData = dataToRows(unitSystem, dataMapping[mapKey][0], temperatureData, t, ns);
+                const dataTableBodyStyle = { fontStyle: 'normal', fontSize: 6, textColor: '#000000', padding: 0, minCellHeight: 0, lineWidth: 0, fillColor: 255}
+
+                let keyColWidth = getLongestString(doc, tableData, dataTableBodyStyle['fontSize']);
+                const valColWidth = 15;
+                let tableWidth = keyColWidth + valColWidth;
+
+                const dataColumnStyles = {
+                    key: { halign: 'left', cellWidth: keyColWidth },
+                    value: { halign: 'left', fontStyle:'bold' , cellWidth: valColWidth, valign: 'bottom'}
+                };
+
+                doc.autoTable({
+                    margin: 8.5,
+                    tableLineWidth: 0,
+                    theme: 'plain',
+                    bodyStyles: dataTableBodyStyle,
+                    columnStyles: dataColumnStyles,
+                    body: tableData,
+                    columns: [{header: '', dataKey: 'key'}, {header: '', dataKey: 'value'}],
+                    showHead: 'never',
+                    startY: yStart+6,
+                    tableWidth: tableWidth,
+                    styles: {
+                        cellPadding: {top: 0, right: 0, bottom: 0, left: 0},
+                        font: "Artifakt Element"
+                    }
+                });
             }
 
             // Write Airflows
             if (sectionSelection==='system_load_summary') {
-                xStart = col1Width + 16;
-                yStart = 17+8;
+                xStart = col1Width + 9;
+                yStart = 10+6;
 
                 label = t(ns + ':' + 'Airflows').toUpperCase()
                 const airflowData = data[objectName][heatingCoolingSelection]['airflow'];
-                cardText = formatCardText(unitSystem, dataMapping['airflows'][0], airflowData, t, ns);
+                // cardText = formatCardText(unitSystem, dataMapping['airflows'][0], airflowData, t, ns);
                 doc.setDrawColor(0);
                 doc.setFillColor(221, 221, 221);
                 doc.rect(xStart, yStart, 60, 5, 'F');
                 doc.setTextColor(0, 0, 0);
                 doc.setFont(baseFont, "bold");
                 doc.setFontSize(cardFontSize+1);
-                doc.text(label, xStart + 2, yStart+4);
-                doc.setFont(baseFont, "normal");
-                doc.setFontSize(cardFontSize);
-                doc.text(cardText, xStart + 2, yStart+9);
+                doc.text(label, xStart + 2, yStart+3.5);
+                // doc.setFont(baseFont, "normal");
+                // doc.setFontSize(cardFontSize);
+                // doc.text(cardText, xStart + 2, yStart+9);
+
+                mapKey = 'airflows';
+                tableData = dataToRows(unitSystem, dataMapping[mapKey][0], airflowData, t, ns);
+                const dataTableBodyStyle = { fontStyle: 'normal', fontSize: 6, textColor: '#000000', padding: 0, minCellHeight: 0, lineWidth: 0, fillColor: 255}
+
+                let keyColWidth = getLongestString(doc, tableData, dataTableBodyStyle['fontSize']);
+                const valColWidth = 15;
+                let tableWidth = keyColWidth + valColWidth;
+
+                const dataColumnStyles = {
+                    key: { halign: 'left', cellWidth: keyColWidth },
+                    value: { halign: 'left', fontStyle:'bold' , cellWidth: valColWidth, valign: 'bottom'}
+                };
+
+                doc.autoTable({
+                    margin: xStart + 3.5,
+                    tableLineWidth: 0,
+                    theme: 'plain',
+                    bodyStyles: dataTableBodyStyle,
+                    columnStyles: dataColumnStyles,
+                    body: tableData,
+                    columns: [{header: '', dataKey: 'key'}, {header: '', dataKey: 'value'}],
+                    showHead: 'never',
+                    startY: yStart+6,
+                    tableWidth: tableWidth,
+                    styles: {
+                        cellPadding: {top: 0, right: 0, bottom: 0, left: 0},
+                        font: "Artifakt Element"
+                    }
+                });
             }
 
             // Write Engineering Checks
             if (sectionSelection==='zone_load_summary') {
-                xStart = col1Width + 16;
-                yStart = 17+8;
+                xStart = col1Width + 9;
+                yStart = 10+6;
             } else if (sectionSelection==='system_load_summary') {
-                xStart = col1Width + 16;
-                yStart = 17+23;
+                xStart = col1Width + 9;
+                yStart = 10+21;
             }
 
             const engineeringCheckData = data[objectName][heatingCoolingSelection]['engineering_check'];
-            cardText = formatCardText(unitSystem, dataMapping['engineeringCheck'][0], engineeringCheckData, t, ns);
+            // cardText = formatCardText(unitSystem, dataMapping['engineeringCheck'][0], engineeringCheckData, t, ns);
             doc.setDrawColor(0);
             doc.setFillColor(221, 221, 221);
             doc.rect(xStart, yStart, 60, 5, 'F');
             doc.setTextColor(0, 0, 0);
             doc.setFont(baseFont, "bold");
             doc.setFontSize(cardFontSize+1);
-            doc.text(t(ns + ':' + 'Engineering Checks').toUpperCase(), xStart + 2, yStart+4);
-            doc.setFont(baseFont, "normal");
-            doc.setFontSize(cardFontSize);
-            doc.text(cardText, xStart+2, yStart+9);
+            doc.text(t(ns + ':' + 'Engineering Checks').toUpperCase(), xStart + 2, yStart+3.5);
+            // doc.setFont(baseFont, "normal");
+            // doc.setFontSize(cardFontSize);
+            // doc.text(cardText, xStart+2, yStart+9);
 
-            // // Write Heating/Cooling Load Chart
-            // yStart = 5;
-            //
-            // let svg = ReactDOM.findDOMNode(chart1Ref.current);
-            // let width = svg.getBoundingClientRect().width;
-            // let height = svg.getBoundingClientRect().height;
-            //
-            // await domtoimage.toPng(svg, {
-            //     width: width,
-            //     height: height,
-            //     style: {
-            //     'transform': 'scale(1.0)',
-            //     'transform-origin': 'top left'
-            //     }
-            // })
-            // .then(function (dataUrl) {
-            //     doc.addImage(dataUrl, 'PNG', 110, yStart, width/8, height/8, null,'FAST');
-            // })
-            // .catch(function (error) {
-            //     console.error('Chart 1 did not render properly.', error);
-            // });
-            //
-            // // Write Component Load Chart
-            // svg = ReactDOM.findDOMNode(chart2Ref.current);
-            // width = svg.getBoundingClientRect().width;
-            // height = svg.getBoundingClientRect().height;
-            //
-            // await domtoimage.toPng(svg, {
-            //     width: width,
-            //     height: height,
-            //     style: {
-            //     'transform': 'scale(1.0)',
-            //     'transform-origin': 'top left'
-            //     }
-            // })
-            // .then(function (dataUrl) {
-            //     doc.addImage(dataUrl, 'PNG', 155, yStart, width/8, height/8);
-            // })
-            // .catch(function (error) {
-            //     console.error('Chart 2 did not render properly.', error);
-            // });
-            //
+            mapKey = 'engineeringCheck';
+            tableData = dataToRows(unitSystem, dataMapping[mapKey][0], engineeringCheckData, t, ns);
+
+            keyColWidth = getLongestString(doc, tableData, dataTableBodyStyle['fontSize']);
+
+            tableWidth = keyColWidth + valColWidth;
+
+            valColWidth = 20;
+            dataColumnStyles = {
+                key: { halign: 'left', cellWidth: keyColWidth },
+                value: { halign: 'left', fontStyle:'bold' , cellWidth: valColWidth, valign: 'bottom'}
+            };
+
+            doc.autoTable({
+                margin: xStart + 3.5,
+                tableLineWidth: 0,
+                theme: 'plain',
+                bodyStyles: dataTableBodyStyle,
+                columnStyles: dataColumnStyles,
+                body: tableData,
+                columns: [{header: '', dataKey: 'key'}, {header: '', dataKey: 'value'}],
+                showHead: 'never',
+                startY: yStart+6,
+                tableWidth: tableWidth,
+                styles: {
+                    cellPadding: {top: 0, right: 0, bottom: 0, left: 0},
+                    font: "Artifakt Element"
+                }
+            });
+
+            // Write Heating/Cooling Load Chart
+            yStart = 15;
+
+            let svg = ReactDOM.findDOMNode(chart1Ref.current);
+            let width = svg.getBoundingClientRect().width;
+            let height = svg.getBoundingClientRect().height;
+
+            await domtoimage.toJpeg(svg, {
+                width: width,
+                height: height,
+                style: {
+                'transform': 'scale(1.0)',
+                'transform-origin': 'top left'
+                }
+            })
+            .then(function (dataUrl) {
+                doc.addImage(dataUrl, 'JPEG', 120, yStart, width/5.8, height/5.8, null,'NONE');
+            })
+            .catch(function (error) {
+                console.error('Chart 1 did not render properly.', error);
+            });
+
+            // Write Component Load Chart
+            svg = ReactDOM.findDOMNode(chart2Ref.current);
+            width = svg.getBoundingClientRect().width;
+            height = svg.getBoundingClientRect().height;
+
+            await domtoimage.toJpeg(svg, {
+                width: width,
+                height: height,
+                style: {
+                'transform': 'scale(1.0)',
+                'transform-origin': 'top left'
+                }
+            })
+            .then(function (dataUrl) {
+                doc.addImage(dataUrl, 'JPEG', 160, yStart, width/5.8, height/5.8,null,'NONE');
+            })
+            .catch(function (error) {
+                console.error('Chart 2 did not render properly.', error);
+            });
+
             // Load Components Table
             const loadComponentsData = data[objectName][heatingCoolingSelection]['estimated_peak_load_component_table'];
 
             //Table Header
-            yStart = 68;
-            var mapKey = 'envelopeLoadsTable';
+            yStart = 59;
+            mapKey = 'envelopeLoadsTable';
             var colLabels = getColumnLabels(unitSystem, mapKey, dataMapping, t, ns);
 
             doc.autoTable({
@@ -297,6 +460,7 @@ export const LoadSummaryPDF = async (
                 startY: yStart+tableSubHeaderMargin,
                 styles: {
                     cellPadding: {top: 1, right: 0, bottom: 1, left: 0},
+                    font: "Artifakt Element"
                 }
             })
 
@@ -305,11 +469,13 @@ export const LoadSummaryPDF = async (
             yStart = finalY - 2;
             doc.setFont(baseFont, "bold");
             doc.setFontSize(tableSubHeaderSize);
-            doc.text(t(ns + ':' + 'Envelope'), 5, yStart);
-            var mapKey = 'envelopeLoadsTable';
+            doc.text(t(ns + ':' + 'Envelope'), 6, yStart);
+
+
+            mapKey = 'envelopeLoadsTable';
             var colLabels = getColumnLabels(unitSystem, mapKey, dataMapping, t, ns);
             var tempTableData = formatLoadSummaryTableData(dataMapping[mapKey], loadComponentsData)
-            var tableData = convertObjectToPDFTable(unitSystem, dataMapping[mapKey], tempTableData, t, ns);
+            tableData = convertObjectToPDFTable(unitSystem, dataMapping[mapKey], tempTableData, t, ns);
 
             doc.autoTable({
                 margin: 5,
@@ -321,12 +487,16 @@ export const LoadSummaryPDF = async (
                 showHead: 'never',
                 startY: yStart + tableSubHeaderMargin,
                 styles: {
-                    cellPadding: {top: 1, right: 0, bottom: 1, left: 11},
+                    cellPadding: {top: 1, right: 0, bottom: 1, left: 5},
+                    font: "Artifakt Element"
                 },
                 didParseCell: function (data) {
                     var rows = data.table.body;
                     if (data.row.index === rows.length - 1) {
                         data.cell.styles.fontStyle = "bold";
+                        if (data.column.index === 0) {
+                            data.cell.styles.halign = "right";
+                        }
                     }
                 }
             })
@@ -334,10 +504,10 @@ export const LoadSummaryPDF = async (
 
             // Internal Gains Table
             finalY = doc.lastAutoTable.finalY
-            yStart = finalY + 8;
+            yStart = finalY + 5;
             doc.setFont(baseFont, "bold");
             doc.setFontSize(tableSubHeaderSize);
-            doc.text(t(ns + ':' + 'Internal Gains'), 5, yStart);
+            doc.text(t(ns + ':' + 'Internal Gains'), 6, yStart);
             mapKey = 'internalGainsTable';
             colLabels = getColumnLabels(unitSystem, mapKey, dataMapping, t, ns);
             tempTableData = formatLoadSummaryTableData(dataMapping[mapKey], loadComponentsData)
@@ -352,12 +522,16 @@ export const LoadSummaryPDF = async (
                 showHead: 'never',
                 startY: yStart + tableSubHeaderMargin,
                 styles: {
-                    cellPadding: {top: 1, right: 0, bottom: 1, left: 11},
+                    cellPadding: {top: 1, right: 0, bottom: 1, left: 5},
+                    font: "Artifakt Element"
                 },
                 didParseCell: function (data) {
                     var rows = data.table.body;
                     if (data.row.index === rows.length - 1) {
                         data.cell.styles.fontStyle = "bold";
+                        if (data.column.index === 0) {
+                            data.cell.styles.halign = "right";
+                        }
                     }
                 }
             })
@@ -365,9 +539,9 @@ export const LoadSummaryPDF = async (
 
             // System Loads Table
             finalY = doc.lastAutoTable.finalY
-            yStart = finalY + 8;
+            yStart = finalY + 5;
             doc.setFontSize(tableSubHeaderSize);
-            doc.text(t(ns + ':' + 'Systems'), 5, yStart);
+            doc.text(t(ns + ':' + 'Systems'), 6, yStart);
             mapKey = 'systemLoadsTable';
             colLabels = getColumnLabels(unitSystem, mapKey, dataMapping, t, ns);
             tempTableData = formatLoadSummaryTableData(dataMapping[mapKey], loadComponentsData)
@@ -382,20 +556,24 @@ export const LoadSummaryPDF = async (
                 showHead: 'never',
                 startY: yStart+tableSubHeaderMargin,
                 styles: {
-                    cellPadding: {top: 1, right: 0, bottom: 1, left: 11},
+                    cellPadding: {top: 1, right: 0, bottom: 1, left: 5},
+                    font: "Artifakt Element"
                 },
                 didParseCell: function (data) {
                     var rows = data.table.body;
                     if (data.row.index === rows.length - 1) {
                         data.cell.styles.fontStyle = "bold";
+                        if (data.column.index === 0) {
+                            data.cell.styles.halign = "right";
+                        }
                     }
                 }
             })
 
             finalY = doc.lastAutoTable.finalY
-            yStart = finalY + 8;
+            yStart = finalY + 5;
             doc.setFontSize(tableSubHeaderSize);
-            doc.text(t(ns + ':' + 'Total'), 5, yStart);
+            doc.text(t(ns + ':' + 'Total'), 6, yStart);
             mapKey = 'totalLoadsTable';
             colLabels = getColumnLabels(unitSystem, mapKey, dataMapping, t, ns);
             tempTableData = formatLoadSummaryTableData(dataMapping[mapKey], loadComponentsData)
@@ -410,12 +588,16 @@ export const LoadSummaryPDF = async (
                 showHead: 'never',
                 startY: yStart+tableSubHeaderMargin,
                 styles: {
-                    cellPadding: {top: 1, right: 0, bottom: 1, left: 11},
+                    cellPadding: {top: 1, right: 0, bottom: 1, left: 5},
+                    font: "Artifakt Element"
                 },
                 didParseCell: function (data) {
                     var rows = data.table.body;
                     if (data.row.index === rows.length - 1) {
                         data.cell.styles.fontStyle = "bold";
+                        if (data.column.index === 0) {
+                            data.cell.styles.halign = "right";
+                        }
                     }
                 }
             })
@@ -521,4 +703,34 @@ const addDataRow = (unitSystem, row, columns, data, t, ns) => {
         return rowObject
         
     }
+}
+
+const getLongestString = (doc, data, fontSize, maxLen=35) => {
+    let longestString = 0;
+
+    data.forEach(item => {
+        let length = doc.getStringUnitWidth(item[0])*fontSize*25.4/72;
+        if (length > longestString) {
+            longestString = length
+        }
+    });
+
+    return longestString > maxLen ? maxLen : longestString
+}
+
+const dataToRows = (unitSystem, dataMapping, data, t, ns) => {
+    var rows = []
+
+    dataMapping['items'].forEach(item => {
+        // Set formatting for the unit labels
+        const unitLabel = getUnitLabel(unitSystem, item["type"], t);
+
+        // Set up array
+        let keyText = t(ns + ':' + item['displayName']) + ':'
+        let value =  ' ' + convertDataUnit(unitSystem, item["type"], data[item["jsonKey"]]) + ' ' + unitLabel
+
+        rows.push([keyText, value])
+    })
+
+    return rows
 }
