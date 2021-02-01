@@ -140,7 +140,7 @@ export const DesignPsychrometricsPDF = async (
         time_of_peak_map = dataMapping['componentChecks'][0]['items'][1]
         label = t(ns+":"+time_of_peak_map['displayName']) + ':';
         value = coilData['summary'][time_of_peak_map['jsonKey']]
-        value = convertDataUnit(unitSystem, time_of_peak_map["type"], value)
+        value = (value == null ? '-' : convertDataUnit(unitSystem, time_of_peak_map["type"], value))
         let unitLabel = getUnitLabel(unitSystem, time_of_peak_map["type"], t);
         doc.setFont(baseFont, "bold");
         doc.text(label, xStart, yStart)
@@ -154,7 +154,7 @@ export const DesignPsychrometricsPDF = async (
         time_of_peak_map = dataMapping['componentChecks'][0]['items'][2]
         label = t(ns+":"+time_of_peak_map['displayName']) + ':';
         value = coilData['summary'][time_of_peak_map['jsonKey']]
-        value = convertDataUnit(unitSystem, time_of_peak_map["type"], value)
+        value = (value == null ? '-' : convertDataUnit(unitSystem, time_of_peak_map["type"], value))
         unitLabel = getUnitLabel(unitSystem, time_of_peak_map["type"], t);
         doc.setFont(baseFont, "bold");
         doc.text(label, xStart, yStart)
@@ -168,7 +168,7 @@ export const DesignPsychrometricsPDF = async (
         time_of_peak_map = dataMapping['componentChecks'][0]['items'][3]
         label = t(ns+":"+time_of_peak_map['displayName']) + ':';
         value = coilData['summary'][time_of_peak_map['jsonKey']]
-        value = convertDataUnit(unitSystem, time_of_peak_map["type"], value)
+        value = (value == null ? '-' : convertDataUnit(unitSystem, time_of_peak_map["type"], value))
         unitLabel = getUnitLabel(unitSystem, time_of_peak_map["type"], t);
         doc.setFont(baseFont, "bold");
         doc.text(label, xStart, yStart)
@@ -182,7 +182,7 @@ export const DesignPsychrometricsPDF = async (
         time_of_peak_map = dataMapping['componentChecks'][0]['items'][4]
         label = t(ns+":"+time_of_peak_map['displayName']) + ':';
         value = coilData['summary'][time_of_peak_map['jsonKey']]
-        value = convertDataUnit(unitSystem, time_of_peak_map["type"], value)
+        value = (value == null ? '-' : convertDataUnit(unitSystem, time_of_peak_map["type"], value))
         unitLabel = getUnitLabel(unitSystem, time_of_peak_map["type"], t);
         doc.setFont(baseFont, "bold");
         doc.text(label, xStart, yStart)
@@ -196,7 +196,7 @@ export const DesignPsychrometricsPDF = async (
         time_of_peak_map = dataMapping['componentChecks'][0]['items'][5]
         label = t(ns+":"+time_of_peak_map['displayName']) + ':';
         value = coilData['summary'][time_of_peak_map['jsonKey']]
-        value = convertDataUnit(unitSystem, time_of_peak_map["type"], value)
+        value = (value == null ? '-' : convertDataUnit(unitSystem, time_of_peak_map["type"], value))
         unitLabel = getUnitLabel(unitSystem, time_of_peak_map["type"], t);
         doc.setFont(baseFont, "bold");
         doc.text(label, xStart, yStart)
@@ -210,7 +210,7 @@ export const DesignPsychrometricsPDF = async (
         time_of_peak_map = dataMapping['componentChecks'][0]['items'][6]
         label = t(ns+":"+time_of_peak_map['displayName']) + ':';
         value = coilData['summary'][time_of_peak_map['jsonKey']]
-        value = convertDataUnit(unitSystem, time_of_peak_map["type"], value)
+        value = (value == null ? '-' : convertDataUnit(unitSystem, time_of_peak_map["type"], value))
         unitLabel = getUnitLabel(unitSystem, time_of_peak_map["type"], t);
         doc.setFont(baseFont, "bold");
         doc.text(label, xStart, yStart)
