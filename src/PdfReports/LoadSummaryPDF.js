@@ -7,8 +7,8 @@ import { getHeader } from '../functions/tableFunctions';
 import { getObjectName, convertDataUnit, getUnitLabel } from '../functions/dataFormatting';
 import { isNumeric, numberWithCommas } from '../functions/numericFunctions';
 import { formatLoadSummaryTableData } from '../functions/tableFunctions';
-import '../../public/fonts/jsPDF/ArtifaktElement-normal'
-import '../../public/fonts/jsPDF/ArtifaktElement-bold'
+// import '../../public/fonts/jsPDF/ArtifaktElement-normal'
+// import '../../public/fonts/jsPDF/ArtifaktElement-bold'
 
 export const LoadSummaryPDF = async (
     unitSystem,
