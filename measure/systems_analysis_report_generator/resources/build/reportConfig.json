@@ -64,8 +64,8 @@
     {
       "type": "HVAC_Airflow_Density",
       "forge_schema_spec": "autodesk.spec.aec.hvac:airFlowDensity-1.0.0",
-      "forge_schema_unit": "autodesk.unit.unit:cubicMetersPerSecondSquareMeter-1.0.1",
-      "display": "CUBIC_METERS_PER_SECOND_SQUARE_METER"
+      "forge_schema_unit": "autodesk.unit.unit:litersPerSecondSquareMeter-1.0.1",
+      "display": "LITERS_PER_SECOND_SQUARE_METER"
     },
     {
       "type": "HVAC_Airflow_Divided_By_Cooling_Load",
