@@ -7,8 +7,8 @@ import { getHeader } from '../functions/tableFunctions';
 import { getObjectName, convertDataUnit, getUnitLabel } from '../functions/dataFormatting';
 import { isNumeric, numberWithCommas } from '../functions/numericFunctions';
 import { formatLoadSummaryTableData } from '../functions/tableFunctions';
-import '../../public/fonts/jsPDF/ArtifaktElement-normal'
-import '../../public/fonts/jsPDF/ArtifaktElement-bold'
+// import '../../public/fonts/jsPDF/ArtifaktElement-normal'
+// import '../../public/fonts/jsPDF/ArtifaktElement-bold'
 
 export const LoadSummaryPDF = async (
     unitSystem,
@@ -54,7 +54,7 @@ export const LoadSummaryPDF = async (
 
     // Default a4 size (210 x 297 mm), units in mm
     const doc = new jsPDF({orientation: 'portrait', format: 'a4', unit: 'mm', compress: true});
-    doc.setFont('Artifakt Element')
+    doc.setFont('ArtifaktElement')
     const baseFont = doc.getFont()['fontName'];
 
     // Turn off animations
@@ -181,7 +181,7 @@ export const LoadSummaryPDF = async (
             const dataTableBodyStyle = { fontStyle: 'normal', fontSize: 6, textColor: '#000000', padding: 0, minCellHeight: 0, lineWidth: 0, fillColor: 255}
 
             let keyColWidth = getLongestString(doc, tableData, dataTableBodyStyle['fontSize']);
-            let valColWidth = 15;
+            let valColWidth = 17;
             let tableWidth = keyColWidth + valColWidth;
 
             let dataColumnStyles = {
@@ -198,11 +198,11 @@ export const LoadSummaryPDF = async (
                 body: tableData,
                 columns: [{header: '', dataKey: 'key'}, {header: '', dataKey: 'value'}],
                 showHead: 'never',
-                startY: yStart,
+                startY: yStart + 0.5,
                 tableWidth: tableWidth,
                 styles: {
                     cellPadding: {top: 0, right: 0, bottom: 0, left: 0},
-                    font: "Artifakt Element"
+                    font: "ArtifaktElement"
                 }
             });
 
@@ -223,7 +223,7 @@ export const LoadSummaryPDF = async (
                 const dataTableBodyStyle = { fontStyle: 'normal', fontSize: 6, textColor: '#000000', padding: 0, minCellHeight: 0, lineWidth: 0, fillColor: 255}
 
                 let keyColWidth = getLongestString(doc, tableData, dataTableBodyStyle['fontSize']);
-                const valColWidth = 15;
+                const valColWidth = 17;
                 let tableWidth = keyColWidth + valColWidth;
 
                 const dataColumnStyles = {
@@ -240,11 +240,11 @@ export const LoadSummaryPDF = async (
                     body: tableData,
                     columns: [{header: '', dataKey: 'key'}, {header: '', dataKey: 'value'}],
                     showHead: 'never',
-                    startY: yStart,
+                    startY: yStart + 0.5,
                     tableWidth: tableWidth,
                     styles: {
                         cellPadding: {top: 0, right: 0, bottom: 0, left: 0},
-                        font: "Artifakt Element"
+                        font: "ArtifaktElement"
                     }
                 });
             }
@@ -271,7 +271,7 @@ export const LoadSummaryPDF = async (
                 const dataTableBodyStyle = { fontStyle: 'normal', fontSize: 6, textColor: '#000000', padding: 0, minCellHeight: 0, lineWidth: 0, fillColor: 255}
 
                 let keyColWidth = getLongestString(doc, tableData, dataTableBodyStyle['fontSize']);
-                const valColWidth = 15;
+                const valColWidth = 17;
                 let tableWidth = keyColWidth + valColWidth;
 
                 const dataColumnStyles = {
@@ -280,7 +280,7 @@ export const LoadSummaryPDF = async (
                 };
 
                 doc.autoTable({
-                    margin: 8.5,
+                    margin: 7,
                     tableLineWidth: 0,
                     theme: 'plain',
                     bodyStyles: dataTableBodyStyle,
@@ -292,10 +292,52 @@ export const LoadSummaryPDF = async (
                     tableWidth: tableWidth,
                     styles: {
                         cellPadding: {top: 0, right: 0, bottom: 0, left: 0},
-                        font: "Artifakt Element"
+                        font: "ArtifaktElement"
                     }
                 });
             }
+
+            // Write Heating/Cooling Load Chart
+            yStart = 15;
+
+            let svg = ReactDOM.findDOMNode(chart1Ref.current);
+            let width = svg.getBoundingClientRect().width;
+            let height = svg.getBoundingClientRect().height;
+
+            await domtoimage.toJpeg(svg, {
+                width: width,
+                height: height,
+                style: {
+                    'transform': 'scale(1.0)',
+                    'transform-origin': 'top left'
+                }
+            })
+            .then(function (dataUrl) {
+                doc.addImage(dataUrl, 'JPEG', 120, yStart, width/5.8, height/5.8, null,'NONE');
+            })
+            .catch(function (error) {
+                console.error('Chart 1 did not render properly.', error);
+            });
+
+            // Write Component Load Chart
+            svg = ReactDOM.findDOMNode(chart2Ref.current);
+            width = svg.getBoundingClientRect().width;
+            height = svg.getBoundingClientRect().height;
+
+            await domtoimage.toJpeg(svg, {
+                width: width,
+                height: height,
+                style: {
+                    'transform': 'scale(1.0)',
+                    'transform-origin': 'top left'
+                }
+            })
+            .then(function (dataUrl) {
+                doc.addImage(dataUrl, 'JPEG', 160, yStart, width/5.8, height/5.8,null,'NONE');
+            })
+            .catch(function (error) {
+                console.error('Chart 2 did not render properly.', error);
+            });
 
             // Write Airflows
             if (sectionSelection==='system_load_summary') {
@@ -315,13 +357,12 @@ export const LoadSummaryPDF = async (
                 // doc.setFont(baseFont, "normal");
                 // doc.setFontSize(cardFontSize);
                 // doc.text(cardText, xStart + 2, yStart+9);
-
                 mapKey = 'airflows';
                 tableData = dataToRows(unitSystem, dataMapping[mapKey][0], airflowData, t, ns);
                 const dataTableBodyStyle = { fontStyle: 'normal', fontSize: 6, textColor: '#000000', padding: 0, minCellHeight: 0, lineWidth: 0, fillColor: 255}
 
                 let keyColWidth = getLongestString(doc, tableData, dataTableBodyStyle['fontSize']);
-                const valColWidth = 15;
+                const valColWidth = 20;
                 let tableWidth = keyColWidth + valColWidth;
 
                 const dataColumnStyles = {
@@ -330,7 +371,7 @@ export const LoadSummaryPDF = async (
                 };
 
                 doc.autoTable({
-                    margin: xStart + 3.5,
+                    margin: xStart + 2,
                     tableLineWidth: 0,
                     theme: 'plain',
                     bodyStyles: dataTableBodyStyle,
@@ -342,7 +383,7 @@ export const LoadSummaryPDF = async (
                     tableWidth: tableWidth,
                     styles: {
                         cellPadding: {top: 0, right: 0, bottom: 0, left: 0},
-                        font: "Artifakt Element"
+                        font: "ArtifaktElement"
                     }
                 });
             }
@@ -353,7 +394,7 @@ export const LoadSummaryPDF = async (
                 yStart = 10+6;
             } else if (sectionSelection==='system_load_summary') {
                 xStart = col1Width + 9;
-                yStart = 10+21;
+                yStart = 10+19;
             }
 
             const engineeringCheckData = data[objectName][heatingCoolingSelection]['engineering_check'];
@@ -372,7 +413,7 @@ export const LoadSummaryPDF = async (
             mapKey = 'engineeringCheck';
             tableData = dataToRows(unitSystem, dataMapping[mapKey][0], engineeringCheckData, t, ns);
 
-            keyColWidth = getLongestString(doc, tableData, dataTableBodyStyle['fontSize']);
+            keyColWidth = getLongestString(doc, tableData, dataTableBodyStyle['fontSize'], 37);
 
             tableWidth = keyColWidth + valColWidth;
 
@@ -383,7 +424,7 @@ export const LoadSummaryPDF = async (
             };
 
             doc.autoTable({
-                margin: xStart + 3.5,
+                margin: xStart + 2,
                 tableLineWidth: 0,
                 theme: 'plain',
                 bodyStyles: dataTableBodyStyle,
@@ -395,50 +436,8 @@ export const LoadSummaryPDF = async (
                 tableWidth: tableWidth,
                 styles: {
                     cellPadding: {top: 0, right: 0, bottom: 0, left: 0},
-                    font: "Artifakt Element"
+                    font: "ArtifaktElement"
                 }
-            });
-
-            // Write Heating/Cooling Load Chart
-            yStart = 15;
-
-            let svg = ReactDOM.findDOMNode(chart1Ref.current);
-            let width = svg.getBoundingClientRect().width;
-            let height = svg.getBoundingClientRect().height;
-
-            await domtoimage.toJpeg(svg, {
-                width: width,
-                height: height,
-                style: {
-                'transform': 'scale(1.0)',
-                'transform-origin': 'top left'
-                }
-            })
-            .then(function (dataUrl) {
-                doc.addImage(dataUrl, 'JPEG', 120, yStart, width/5.8, height/5.8, null,'NONE');
-            })
-            .catch(function (error) {
-                console.error('Chart 1 did not render properly.', error);
-            });
-
-            // Write Component Load Chart
-            svg = ReactDOM.findDOMNode(chart2Ref.current);
-            width = svg.getBoundingClientRect().width;
-            height = svg.getBoundingClientRect().height;
-
-            await domtoimage.toJpeg(svg, {
-                width: width,
-                height: height,
-                style: {
-                'transform': 'scale(1.0)',
-                'transform-origin': 'top left'
-                }
-            })
-            .then(function (dataUrl) {
-                doc.addImage(dataUrl, 'JPEG', 160, yStart, width/5.8, height/5.8,null,'NONE');
-            })
-            .catch(function (error) {
-                console.error('Chart 2 did not render properly.', error);
             });
 
             // Load Components Table
@@ -460,7 +459,7 @@ export const LoadSummaryPDF = async (
                 startY: yStart+tableSubHeaderMargin,
                 styles: {
                     cellPadding: {top: 1, right: 0, bottom: 1, left: 0},
-                    font: "Artifakt Element"
+                    font: "ArtifaktElement"
                 }
             })
 
@@ -488,7 +487,7 @@ export const LoadSummaryPDF = async (
                 startY: yStart + tableSubHeaderMargin,
                 styles: {
                     cellPadding: {top: 1, right: 0, bottom: 1, left: 5},
-                    font: "Artifakt Element"
+                    font: "ArtifaktElement"
                 },
                 didParseCell: function (data) {
                     var rows = data.table.body;
@@ -523,7 +522,7 @@ export const LoadSummaryPDF = async (
                 startY: yStart + tableSubHeaderMargin,
                 styles: {
                     cellPadding: {top: 1, right: 0, bottom: 1, left: 5},
-                    font: "Artifakt Element"
+                    font: "ArtifaktElement"
                 },
                 didParseCell: function (data) {
                     var rows = data.table.body;
@@ -557,7 +556,7 @@ export const LoadSummaryPDF = async (
                 startY: yStart+tableSubHeaderMargin,
                 styles: {
                     cellPadding: {top: 1, right: 0, bottom: 1, left: 5},
-                    font: "Artifakt Element"
+                    font: "ArtifaktElement"
                 },
                 didParseCell: function (data) {
                     var rows = data.table.body;
@@ -589,7 +588,7 @@ export const LoadSummaryPDF = async (
                 startY: yStart+tableSubHeaderMargin,
                 styles: {
                     cellPadding: {top: 1, right: 0, bottom: 1, left: 5},
-                    font: "Artifakt Element"
+                    font: "ArtifaktElement"
                 },
                 didParseCell: function (data) {
                     var rows = data.table.body;
@@ -705,7 +704,7 @@ const addDataRow = (unitSystem, row, columns, data, t, ns) => {
     }
 }
 
-const getLongestString = (doc, data, fontSize, maxLen=35) => {
+const getLongestString = (doc, data, fontSize, maxLen=37) => {
     let longestString = 0;
 
     data.forEach(item => {

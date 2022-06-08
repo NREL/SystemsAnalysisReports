@@ -7,8 +7,8 @@ import { sleep } from '../functions/generalFunctions';
 import { getObjectName, convertDataUnit, getUnitLabel } from '../functions/dataFormatting';
 import { isNumeric, numberWithCommas } from '../functions/numericFunctions';
 import { formatDesignPsychrometricsTableData } from '../functions/tableFunctions';
-import '../../public/fonts/jsPDF/ArtifaktElement-normal'
-import '../../public/fonts/jsPDF/ArtifaktElement-bold'
+// import '../../public/fonts/jsPDF/ArtifaktElement-normal'
+// import '../../public/fonts/jsPDF/ArtifaktElement-bold'
 
 export const DesignPsychrometricsPDF = async (
     unitSystem,
@@ -46,7 +46,7 @@ export const DesignPsychrometricsPDF = async (
 
     // Default a4 size (210 x 297 mm), units in mm
     const doc = new jsPDF({orientation: 'portrait', format: 'a4', unit: 'mm', compress: true});
-    doc.setFont('Artifakt Element');
+    doc.setFont('ArtifaktElement');
     const baseFont = doc.getFont()['fontName'];
 
     // Turn off animations
@@ -258,7 +258,7 @@ export const DesignPsychrometricsPDF = async (
             startY: yStart+tableSubHeaderMargin,
             styles: {
                 cellPadding: {top: 2, right: 0, bottom: 2, left: 0},
-                font: "Artifakt Element"
+                font: "ArtifaktElement"
             }
         })
 

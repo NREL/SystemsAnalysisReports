@@ -50,6 +50,7 @@ let conversions = {
     'ft2/ton_r': {'convert':(value) => {return value * 10.76391041671 * 3516.8528421}, label: 'ft2/ton'},
     'ft2/kbtu/hr': {'convert':(value) => {return value * 3154.59}, label: 'ft2/kBtu-hr'},
     'ft3/min/ft2': {'convert':(value) => {return value * 3.280839895013123 * 60}, label: 'ft3/min-ft2'},
+    'm3/hr/m2': {'convert':(value) => {return value * 3600}, label: 'm3/hr-m2'},
     'l/s/m2': {'convert':(value) => {return value * 1000}, label: 'l/s-m2'},
     'm3/s/m2': {'convert':(value) => {return value }, label: 'm3/s-m2'},
     'ft3/min/ton_r': {'convert':(value) => {return value * 35.3147 * 60 / 3.41214 * 12000}, label: 'ft3/min-ton'},
