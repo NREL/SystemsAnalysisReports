@@ -14,7 +14,7 @@
         "outdoor_air_percentage": "percent",
         "heat_transfer_rate_per_area": "W/m2",
         "area_per_heat_transfer_rate": "m2/W",
-        "flow_rate_per_area": "m3/s/m2",
+        "flow_rate_per_area": "m3/hr/m2",
         "flow_rate_per_heat_transfer_rate": "m3/s/W",
         "people": "unitless",
         "pressure": "N/m2",

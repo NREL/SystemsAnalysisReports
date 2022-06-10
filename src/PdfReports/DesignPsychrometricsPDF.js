@@ -7,8 +7,8 @@ import { sleep } from '../functions/generalFunctions';
 import { getObjectName, convertDataUnit, getUnitLabel } from '../functions/dataFormatting';
 import { isNumeric, numberWithCommas } from '../functions/numericFunctions';
 import { formatDesignPsychrometricsTableData } from '../functions/tableFunctions';
-import '../../public/fonts/jsPDF/ArtifaktElement-normal'
-import '../../public/fonts/jsPDF/ArtifaktElement-bold'
+// import '../../public/fonts/jsPDF/ArtifaktElement-normal'
+// import '../../public/fonts/jsPDF/ArtifaktElement-bold'
 
 export const DesignPsychrometricsPDF = async (
     unitSystem,
