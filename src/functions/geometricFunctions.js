@@ -3,12 +3,12 @@ export function lineSegmentIntersection(p11, p12, p21, p22) {
   const s1_y = p12.y - p11.y
   const s2_x = p22.x - p21.x
   const s2_y = p22.y - p21.y
-  
+
   const s = (-s1_y * (p11.x - p21.x) + s1_x * (p11.y - p21.y)) / (-s2_x * s1_y + s1_x * s2_y)
   const t = ( s2_x * (p11.y - p21.y) - s2_y * (p11.x - p21.x)) / (-s2_x * s1_y + s1_x * s2_y)
-  
+
   if (s >= 0 && s <= 1 && t >= 0 && t <= 1) {
-    // Point of intersecdtion
+    // Point of intersection
     return {x: p11.x + (t * s1_x), y: p11.y + (t * s1_y)}
   } else {
     return null
