@@ -1,4 +1,4 @@
-import { getUnitLabel } from '../functions/dataFormatting';
+import { getUnitLabel } from './dataFormatting';
 
 export const getHeader = (unitSystem, column, t, ns) => {
     var header = ""

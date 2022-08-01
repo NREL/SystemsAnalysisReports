@@ -7,8 +7,8 @@ import { getHeader } from '../functions/tableFunctions';
 import { getObjectName, convertDataUnit, getUnitLabel } from '../functions/dataFormatting';
 import { isNumeric, numberWithCommas } from '../functions/numericFunctions';
 import { formatLoadSummaryTableData } from '../functions/tableFunctions';
-// import '../../public/fonts/jsPDF/ArtifaktElement-normal'
-// import '../../public/fonts/jsPDF/ArtifaktElement-bold'
+import '../../public/fonts/jsPDF/ArtifaktElement-normal'
+import '../../public/fonts/jsPDF/ArtifaktElement-bold'
 
 export const LoadSummaryPDF = async (
     unitSystem,
@@ -28,7 +28,7 @@ export const LoadSummaryPDF = async (
     ) => {
     var startTime = new Date().getTime();
     //const { t } = useTranslation();
-    
+
     // Set title for report
     var pageTitle = null;
     if (sectionSelection==='zone_load_summary') {
@@ -76,7 +76,7 @@ export const LoadSummaryPDF = async (
         for (var i = 0; i < objectList.length; i++) {
             var xStart = 0;
             var yStart = 0;
-            
+
             // Set object for loop
             const objectId = i;
             setObjectId(i);
@@ -668,14 +668,14 @@ const convertObjectToPDFTable = (unitSystem, dataMapping, data, t, ns) => {
 
 const addDataRow = (unitSystem, row, columns, data, t, ns) => {
     const rowKey = row['jsonKey'];
-    
+
     if (data) {
         var rowData = data[rowKey];
         var rowObject = {name: t(ns + ':' + row['displayName'])};
-        
+
         columns.map((column) => {
             var dataValue = null;
-            
+
             if (rowData) {
                 if (Object.keys(rowData).includes(column['jsonKey'])) {
                     if ( isNumeric(rowData[column['jsonKey']]) ) {
@@ -700,7 +700,7 @@ const addDataRow = (unitSystem, row, columns, data, t, ns) => {
         })
 
         return rowObject
-        
+
     }
 }
 
