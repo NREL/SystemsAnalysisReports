@@ -6,7 +6,12 @@ This project provides output reports for Revit Systems Analysis.
 
 ### Setup
 
+Install the following. 
+1. [Node.js](https://nodejs.org)
+2. [Node Package Manager (NPM)](https://www.npmjs.com/)
+3. [Node Version Manager (NVM)](http://nvm.sh)
 
+>Note, installing NPM will also install Node.js.
 
 ### Testing
 
