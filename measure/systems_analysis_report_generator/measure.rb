@@ -56,7 +56,6 @@ class SystemsAnalysisReportGenerator < OpenStudio::Measure::ReportingMeasure
     bundle_input_dir = "#{File.dirname(__FILE__)}/resources/build"
     web_config = SystemsAnalysisReport::Config.new({file_path:self.class.get_config_path(runner)})
     data = container.json_generator.generate.to_json
-    data.
 
     SystemsAnalysisReport::Strategies::WebAppWriter.(bundle_input_dir, data, web_config)
 
