@@ -28,8 +28,8 @@ export const PsychrometricChart = (props) => {
     var Pressure = convertDataUnit(psychUnitSystem, 'pressure', ( data['summary']['atmospheric_pressure'] ? data['summary']['atmospheric_pressure'] : 101325 ));
 
     // Initialize chart limits
-    const xMin = ( psychUnitSystem === 'si' ? 0 : 30); 
-    const xMax = ( psychUnitSystem === 'si' ? 50 : 120); 
+    const xMin = ( psychUnitSystem === 'si' ? 0 : 30);
+    const xMax = ( psychUnitSystem === 'si' ? 50 : 120);
     const yMin = 0.0
     const yMax = 0.03;
 
@@ -66,7 +66,7 @@ export const PsychrometricChart = (props) => {
         var y = scaleLinear()
                 .domain([yMin, yMax])
                 .range([height, 0]);
-        
+
         // Clear existing svg object
         select(d3Container.current.firstChild).selectAll("*").remove();
 
@@ -75,10 +75,10 @@ export const PsychrometricChart = (props) => {
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
-        .attr("transform", 
+        .attr("transform",
             "translate(" + margin.left + "," + margin.top + ")");
 
-        // Max humid ratio line array 
+        // Max humid ratio line array
         var MaxHumidRatioArray = [];
         TDryBulbRange.forEach(TDryBulb => {
             MaxHumidRatioArray.push({db: TDryBulb, w: yMax});
@@ -95,7 +95,7 @@ export const PsychrometricChart = (props) => {
         addConstantEnthalpyLines(psychUnitSystem, svg, x, y, Pressure, TDryBulbRange, SaturationArray);
         addMaxHumidityRatioLine(svg, x, y, MaxHumidRatioArray, SaturationArray);
         addMinDryBulbTemperatureLine(svg, x, y, xMin, HumidRatioRange, SaturationArray);
-        
+
         // Draw process points and lines
         addSystemProcessLines(svg, x, y, t1, data);
         addSystemStatePoints(svg, x, y, data);
@@ -109,9 +109,9 @@ export const PsychrometricChart = (props) => {
         .call(axisBottom(x));
 
           // text label for the x axis
-        svg.append("text")             
+        svg.append("text")
         .attr("transform",
-                "translate(" + (width/2) + " ," + 
+                "translate(" + (width/2) + " ," +
                             (height + margin.top + 20) + ")")
         .style("text-anchor", "middle")
         .text(xAxisTitle);
@@ -128,7 +128,7 @@ export const PsychrometricChart = (props) => {
         .attr("x",0 - (height / 2))
         .attr("dy", "1em")
         .style("text-anchor", "middle")
-        .text(yAxisTitle); 
+        .text(yAxisTitle);
     },[unitSystem, t, animationEnable, data, d3Container.current])
 
     const addConstantRelativeHumidityLines = (svg, x, y, Pressure, TDryBulbRange, MaxHumidRatioArray) => {
@@ -141,7 +141,7 @@ export const PsychrometricChart = (props) => {
                 HumRatioArray.push({db: TDryBulb, w: psychrolib.GetHumRatioFromRelHum(TDryBulb, RelHum, Pressure)});
             })
 
-            
+
             // Clip points above humidity ratio limit
             let intersectionPoint = lineIntersection( "db", "w", HumRatioArray, MaxHumidRatioArray);  // Determine intersection point
             if (intersectionPoint) {
@@ -236,7 +236,7 @@ export const PsychrometricChart = (props) => {
                 MinTDryBulbLine.push({db: minTDryBulb, w: item})
             }
         })
-        MinTDryBulbLine.push({db: minTDryBulb, w: humidRatioAtMinTDryBulbSaturation}); 
+        MinTDryBulbLine.push({db: minTDryBulb, w: humidRatioAtMinTDryBulbSaturation});
 
         // Draw min dry bulb tempeature line
         svg.append("path")
@@ -264,16 +264,18 @@ export const PsychrometricChart = (props) => {
 
         // Convert units for each temp and humidity point in data pair
         lineLabelPairs.forEach(pair => {
-            systemProcesses.push([
-                {
-                    dry_bulb_temperature: convertDataUnit(psychUnitSystem, "temperature", data[pair[0]]["dry_bulb_temperature"]),
-                    humidity_ratio: convertDataUnit(psychUnitSystem, "humidity_ratio", data[pair[0]]["humidity_ratio"])
-                },
-                {
-                    dry_bulb_temperature: convertDataUnit(psychUnitSystem, "temperature", data[pair[1]]["dry_bulb_temperature"]),
-                    humidity_ratio: convertDataUnit(psychUnitSystem, "humidity_ratio", data[pair[1]]["humidity_ratio"])
-                }
-            ]);
+            if (data[pair[0]] && data[pair[1]]) {
+                systemProcesses.push([
+                    {
+                        dry_bulb_temperature: convertDataUnit(psychUnitSystem, "temperature", data[pair[0]]["dry_bulb_temperature"]),
+                        humidity_ratio: convertDataUnit(psychUnitSystem, "humidity_ratio", data[pair[0]]["humidity_ratio"])
+                    },
+                    {
+                        dry_bulb_temperature: convertDataUnit(psychUnitSystem, "temperature", data[pair[1]]["dry_bulb_temperature"]),
+                        humidity_ratio: convertDataUnit(psychUnitSystem, "humidity_ratio", data[pair[1]]["humidity_ratio"])
+                    }
+                ]);
+            }
         });
 
         // Loop to create line segments for system process lines
@@ -302,7 +304,7 @@ export const PsychrometricChart = (props) => {
 
             // Get the display name for the row data
             Object.entries(dataMapping['rows']).forEach(([k, v]) => {
-                if (v.jsonKey === systemName) {
+                if (v.jsonKey === systemName && data[v.jsonKey] !== null) {
                     // Add a data row
                     const Tdb = convertDataUnit(psychUnitSystem, 'temperature', data[v.jsonKey]['dry_bulb_temperature']);
                     const w = convertDataUnit(psychUnitSystem, 'humidity_ratio', data[v.jsonKey]['humidity_ratio']);

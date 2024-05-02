@@ -9,7 +9,7 @@ export const getObjectName = (objectList, id) => {
   if ( isNumeric(id) && objectList && objectList.length > 0 ) {
       for (var i = 0; i < objectList.length; i++) {
           if (
-              Object.keys(objectList[i]).includes("id") && 
+              Object.keys(objectList[i]).includes("id") &&
               objectList[i].id.toString() === id.toString()
               ) {
               return objectList[i].name
@@ -19,6 +19,7 @@ export const getObjectName = (objectList, id) => {
 }
 
 const generateStatePoints = (coil, pressure) => {
+  if(!coil) return null;
   let tDryBulb = coil['dry_bulb_temperature']
   let humidityRatio = coil['humidity_ratio']
 
@@ -35,7 +36,7 @@ const generateStatePoints = (coil, pressure) => {
 
 export const loadData = (data) => new Promise((resolve, reject) => {
   // function loads the data from JSON data file using Promise.
-  
+
   setTimeout(() => resolve(JSON.parse(JSON.stringify(data))), 1);
   });
 
@@ -108,7 +109,7 @@ export const formatData = (data) => new Promise((resolve, reject) => {
   // Adjust Systems Checksums
   Object.keys(newData['system_load_summarys']).map((objKey) => {
     var loadObject = newData['system_load_summarys'][objKey];
-      
+
     // Update cooling load tables
     loadObject['cooling']['estimated_peak_load_component_table'] = updateGrandTotalLoad(loadObject['cooling']['estimated_peak_load_component_table']);
     loadObject['cooling']['estimated_peak_load_component_table'] = updatePercentTotalLoad(loadObject['cooling']['estimated_peak_load_component_table']);
@@ -125,13 +126,16 @@ export const formatData = (data) => new Promise((resolve, reject) => {
     var pressure = loadObject['summary']['atmospheric_pressure'];
 
     // Update cooling load tables
-    loadObject['entering_coil'] = generateStatePoints(loadObject['entering_coil'], pressure);
-    loadObject['leaving_coil'] = generateStatePoints(loadObject['leaving_coil'], pressure);
-    loadObject['outdoor_air'] = generateStatePoints(loadObject['outdoor_air'], pressure);
-    loadObject['zone'] = generateStatePoints(loadObject['zone'], pressure);
-    loadObject['return_air'] = generateStatePoints(loadObject['return_air'], pressure);
+    if (loadObject !== null) {
 
-    return loadObject;
+      loadObject['entering_coil'] = generateStatePoints(loadObject['entering_coil'], pressure);
+      loadObject['leaving_coil'] = generateStatePoints(loadObject['leaving_coil'], pressure);
+      loadObject['outdoor_air'] = generateStatePoints(loadObject['outdoor_air'], pressure);
+      loadObject['zone'] = generateStatePoints(loadObject['zone'], pressure);
+      loadObject['return_air'] = generateStatePoints(loadObject['return_air'], pressure);
+
+      return loadObject;
+    }
   })
 
   resolve(newData);
@@ -164,7 +168,7 @@ export function convertDataUnit(unitSystem, type, value) {
 
 export function getUnitLabel(unitSystem, type, t) {
   // Function provides the data label in a specific unit system.
-  // Requires the unit sytem (i.e. "ip" or "si"), the type (e.g. "temperature"). 
+  // Requires the unit sytem (i.e. "ip" or "si"), the type (e.g. "temperature").
   // Returns the unit label (e.g. "C").
 
   if (unitSystem && type) {
@@ -180,7 +184,7 @@ export function getUnitLabel(unitSystem, type, t) {
 
 export function getLocaleLabel(locale, section, key) {
   // Function provides the label for a specific locale.
-  // Requires the local (i.e. "en" or "de"), the label key (e.g. "zone_load_summary"). 
+  // Requires the local (i.e. "en" or "de"), the label key (e.g. "zone_load_summary").
   // Returns the label (e.g. "Zone Load Summary").
 
   if (locale && section && key) {
@@ -193,7 +197,7 @@ export function getLocaleLabel(locale, section, key) {
 export const getHeatingAndCoolingPeakLoads = (unitSystem, objectName, data) => {
   // Assumes that Cooling Peak Condition Table - Sensible Peak Load is the appropriate total load value.
   // Investigate further whether this should be a calculated value from the subcomponents.
-  
+
   if (data) {
       if (objectName) {
           const objectData = data[objectName]
@@ -203,8 +207,8 @@ export const getHeatingAndCoolingPeakLoads = (unitSystem, objectName, data) => {
               const peakCoolingLoad = convertDataUnit(unitSystem, 'heat_transfer_rate', objectData['cooling']['estimated_peak_load_component_table']['grand_total']['total']);
               const peakHeatingLoad = convertDataUnit(unitSystem, 'heat_transfer_rate', objectData['heating']['estimated_peak_load_component_table']['grand_total']['total']);
 
-              const output = [ 
-                  {'name': 'Cooling', 'value': parseInt(Math.abs(peakCoolingLoad))}, 
+              const output = [
+                  {'name': 'Cooling', 'value': parseInt(Math.abs(peakCoolingLoad))},
                   {'name': 'Heating', 'value': parseInt(Math.abs(peakHeatingLoad))}
               ]
 
@@ -212,8 +216,8 @@ export const getHeatingAndCoolingPeakLoads = (unitSystem, objectName, data) => {
           } else {
               return null
           }
-      } else { 
-          return null 
+      } else {
+          return null
       }
   } else {
       return null
