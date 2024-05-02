@@ -4,7 +4,7 @@ const webpack = require('webpack');
 
 module.exports = {
   mode: 'production',
-  devtool: process.env.NODE_ENV === 'development' ? 'inline-source-map' : false,
+  devtool: process.env.NODE_ENV === 'development' ? 'inline-source-map' : 'eval',
   entry: {
     app: './src/index.js'
   },
