@@ -4,7 +4,7 @@ module SystemsAnalysisReport
       include Models::Model
 
       def validate
-        puts "#{self.dry_bulb_temperature}, #{self.humidity_ratio}"
+
       end
     end
   end

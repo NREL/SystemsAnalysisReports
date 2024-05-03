@@ -8,7 +8,6 @@ module SystemsAnalysisReport
       def mapping
         [
             [:coil_air_volume_flow_rate_at_ideal_loads_peak, :coil_air_flow_rate],
-            # [:coil_final_reference_air_volume_flow_rate, :coil_air_flow_rate],
             [:outdoor_air_volume_flow_rate_at_ideal_loads_peak, :outdoor_air_flow_rate],
             [:outdoor_air_flow_percentage_at_ideal_loads_peak, :percent_outdoor_air],
             [:date_time_at_sensible_ideal_loads_peak, :time_of_peak],
@@ -29,11 +28,6 @@ module SystemsAnalysisReport
         result.supply_fan_temperature_difference = fan_temp_diff
 
         result.atmospheric_pressure = location.standard_pressure_at_elevation
-
-        # result.percent_outdoor_air = 100.0 * (result.outdoor_air_flow_rate / result.coil_air_flow_rate)
-        if coil_sizing_detail.date_time_at_air_flow_ideal_loads_peak == 'unknown'
-          result.time_of_peak = "7/21 12:00:00"
-        end
 
         result
       end
