@@ -75,7 +75,7 @@ export const formatDesignPsychrometricsTableData = (dataMapping, data) => {
 
             return newData
         })
-        console.log(newData)
+
         return newData
     } else {
         return null
