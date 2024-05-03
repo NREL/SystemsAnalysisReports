@@ -12,7 +12,7 @@ import { formatDesignPsychrometricsTableData } from '../functions/tableFunctions
 import { useTranslation } from "react-i18next";
 
 function DesignPsychrometrics(props) {
-    const { 
+    const {
         name,
         objectSelection,
         handleObjectSelect,
@@ -24,9 +24,9 @@ function DesignPsychrometrics(props) {
 
     const { t } = useTranslation()
 
-    const { 
-        sectionSelection, 
-        unitSystem, 
+    const {
+        sectionSelection,
+        unitSystem,
         coilId, setCoilId,
         pdfPrint, setPdfPrint,
         animationEnable, setAnimationEnable,
@@ -48,7 +48,7 @@ function DesignPsychrometrics(props) {
                 // Get original state
                 let setObjectId = setCoilId;
                 let origId = coilId;
-                
+
                 // Run function to create report
                 await DesignPsychrometricsPDF(
                     unitSystem,
@@ -64,12 +64,12 @@ function DesignPsychrometrics(props) {
                     ns,
                     t
                     )
-                
+
                 // Return to original state
                 setModalShow(false);
                 setObjectId(origId);
             }
-            
+
             writePDFReport()
         }
     }, [pdfPrint, sectionSelection]);
@@ -88,6 +88,7 @@ function DesignPsychrometrics(props) {
         const objectData = data[objectName];
 
     if (dataExists) {
+        const psychTableData = formatDesignPsychrometricsTableData(dataMapping['componentTable'], objectData)
         return (
             <React.Fragment>
                 <div className='App-summary-content'  style={{marginLeft: "24px"}}>
@@ -116,18 +117,24 @@ function DesignPsychrometrics(props) {
                         ns={ns}
                     />
                 </div>
-                <div className='App-full-width-content'>
-                    <PsychrometricTable
-                        name={name + "-statePointTable"}
-                        width={932}
-                        firstColWidth={150}
-                        displayHeader={true}
-                        unitSystem={unitSystem}
-                        dataMapping={dataMapping['componentTable']}
-                        data={formatDesignPsychrometricsTableData(dataMapping['componentTable'], objectData)}
-                        ns={ns}
-                    />
-                </div>
+                {Object.values(psychTableData).some(row => Object.values(row).some(cell => cell !== null)) ? (
+                    <div className='App-full-width-content'>
+                        <PsychrometricTable
+                            name={name + "-statePointTable"}
+                            width={932}
+                            firstColWidth={150}
+                            displayHeader={true}
+                            unitSystem={unitSystem}
+                            dataMapping={dataMapping['componentTable']}
+                            data={psychTableData}
+                            ns={ns}
+                        />
+                    </div>
+                ) : (
+                    <div className='App-full-width-content'>
+                        <p className='App-message'>{t('systemsAnalysisReport:No ideal loads state points found for ' + objectName + '. Coil has likely been hard-sized by an upstream measure.')}</p>
+                    </div>
+                )}
                 <Modal
                     show={modalShow}
                     onHide={(() => setModalShow(false))}

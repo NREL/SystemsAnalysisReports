@@ -31,7 +31,7 @@ export const formatLoadSummaryTableData = (dataMapping, data) => {
         // Loop and calculate the table subtotals for each column
         if (newData) {
             dataMapping['rows'].map((row) => {
-                Object.keys(totals 
+                Object.keys(totals
                     ).map((colName) => {
                     var rowName = row['jsonKey'];
                     if (Object.keys(newData).includes(rowName) && rowName !== "total" && newData[rowName]) {
@@ -61,13 +61,18 @@ export const formatDesignPsychrometricsTableData = (dataMapping, data) => {
         dataMapping['rows'].map((row) => {
             var rowKey = row['jsonKey'];
             newData[rowKey] = {};
-            
+
             // Loop for each column
             dataMapping['columns'].map((column) => {
                 var colKey = column['jsonKey'];
-                newData[rowKey][colKey] = data[rowKey][colKey];
-                return newData
+                if (data[rowKey] !== null) {
+                    newData[rowKey][colKey] = data[rowKey][colKey];
+                    return newData
+                } else {
+                    newData[rowKey][colKey] = null;
+                }
             })
+
             return newData
         })
 
