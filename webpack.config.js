@@ -1,10 +1,11 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
   mode: 'production',
-  devtool: process.env.NODE_ENV === 'development' ? 'inline-source-map' : 'eval',
+  devtool: process.env.NODE_ENV === 'development' ? 'inline-source-map' : false,
   entry: {
     app: './src/index.js'
   },
@@ -34,10 +35,7 @@ module.exports = {
       },
       {
         test: /\.(woff|woff2|eot|ttf|jpe?g|png|gif|svg)$/,
-        loader: 'url-loader',
-        options: {
-          limit: 100000
-        }
+        type: 'asset/inline'
       }
     ]
   },
