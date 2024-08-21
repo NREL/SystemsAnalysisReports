@@ -50,11 +50,12 @@ end
 #
 # osw_in_path = Config::TEST_OUTPUT_PATH + '/cav_box/in.osw'
 # cmd = "\"#{Config::CLI_PATH}\" run -w \"#{osw_in_path}\""
-cmd = "openstudio run -p -w 'C:\\Users\\t_pflan\\Documents\\GitHub\\SystemsAnalysisReports\\measure\\systems_analysis_report_generator\\test\\functional\\input.osw'" #'C:/Users/t_pflan/Documents/GitHub/SystemsAnalysisReports/measure/systems_analysis_report_generator/test/functional/input.osw'"
+# cmd = "openstudio run -p -w 'C:\\Users\\t_pflan\\Documents\\GitHub\\SystemsAnalysisReports\\measure\\systems_analysis_report_generator\\test\\functional\\input.osw'" #'C:/Users/t_pflan/Documents/GitHub/SystemsAnalysisReports/measure/systems_analysis_report_generator/test/functional/input.osw'"
+cmd = "openstudio run -p -w 'C:\\Repos\\NREL\\SystemsAnalysisReports\\measure\\systems_analysis_report_generator\\test\\functional\\input_revit-221153.osw'"
 run_command(cmd)
-open('sample.json', 'w') do |f|
-  f.puts report.to_json
-end
+# open('sample_revit-221153.json', 'w') do |f|
+#   f.puts report.to_json
+# end
 #
 # require 'openstudio-workflow'
 # osw_path = '/Users/npflaum/Documents/GitHub/SystemsAnalysisReports/measure/systems_analysis_report_generator/test/functional/input.osw'
